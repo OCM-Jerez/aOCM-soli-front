@@ -1,0 +1,16 @@
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.logo-img {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../assets/images/IconoOCM.png') no-repeat center center;
+  // TODO ! No funciona.
+  // http://www.techmonks.org/angular-alias-paths/
+  // background: url('@images/IconoOCM.png') no-repeat center center;
+
+  background-size: contain;
+}
