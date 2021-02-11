@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { faUser, faHome, faAtlas } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -7,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
-  version: string = " Beta 1.0.01";
 
+  faUser = faUser;
+  faHome = faHome;
+  faAtlas = faAtlas
+
+  isAdmin = true;
 
   constructor() { }
 
@@ -20,4 +26,14 @@ export class NavbarComponent implements OnInit {
     this.isNavbarCollapsed = true;
   }
 
+
+  login(): void {
+    // this.loginModalService.open();
+  }
+
+  logout(): void {
+    this.collapseNavbar();
+    // this.loginService.logout();
+    // this.router.navigate(['']);
+  }
 }
