@@ -10,7 +10,7 @@ import { AuthService } from '../auth/services/auth.service';
   providedIn: 'root'
 })
 export class ValidarTokenGuard implements CanActivate, CanLoad {
-  
+
   constructor( private authService: AuthService,
                private router: Router ){}
 
@@ -19,6 +19,7 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
     return this.authService.validarToken()
             .pipe(
               tap( valid => {
+                // console.log(valid);
                 if ( !valid ) {
                   this.router.navigateByUrl('/auth');
                 }
@@ -30,6 +31,7 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
     return this.authService.validarToken()
       .pipe(
         tap( valid => {
+          // console.log(valid);
           if ( !valid ) {
             this.router.navigateByUrl('/auth');
           }

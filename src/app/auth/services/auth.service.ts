@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { AuthResponse, Usuario } from '../interfaces/interfaces';
+import { IUser } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  registro(name: string, email: string, password: string) {
+  registro(login: string, email: string, password: string) {
     // TODO ! crear ruta
     // baseUrl se define en environment.ts
-    const url = `${this.baseUrl}/auth/new`;
-    const body = { email, password, name };
+    const url = `${this.baseUrl}/register`;
+    const body = { email, password, login };
 
     return this.http.post<AuthResponse>(url, body)
       .pipe(
@@ -42,37 +43,39 @@ export class AuthService {
   login(email: string, password: string) {
     // const url  = `${ this.baseUrl }/auth`;
     // TODO ! crear ruta
-    const url = `${this.baseUrl}/users`;
-    const body = { email, password };
+    const url = `${this.baseUrl}/authenticate`;
+    const body = { username: email, password: password };
 
     return this.http.post<AuthResponse>(url, body)
       .pipe(
-        tap(resp => {
-          if (resp.ok) {
-            localStorage.setItem('token', resp.token!);
+        tap(resp  => {
+          const jwt = this.authenticateSuccess(resp);
+          if (jwt) {
+            localStorage.setItem('token', jwt);
           }
         }),
-        map(resp => resp.ok),
-        catchError(err => of(err.error.msg))
+        map(resp => true),
+        catchError(err => of(err.error.message))
       );
   }
 
   validarToken(): Observable<boolean> {
     // TODO ! crear ruta renew
-    const url = `${this.baseUrl}/auth/renew`;
+    const url = `${this.baseUrl}/account`;
     const headers = new HttpHeaders()
-      .set('x-token', localStorage.getItem('token') || '');
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
 
     return this.http.get<AuthResponse>(url, { headers })
       .pipe(
-        map(resp => {
-          localStorage.setItem('token', resp.token!);
+        map((resp: IUser) => {
+          // console.log(resp);
+          //localStorage.setItem('token', resp.token!);
           this._usuario = {
-            name: resp.name!,
-            uid: resp.uid!,
+            name: resp.firstName!,
+            id: resp.id!,
             email: resp.email!
           }
-          return resp.ok;
+          return true;
         }),
         catchError(err => of(false))
       );
@@ -80,6 +83,10 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
+  }
+
+  private authenticateSuccess(response: any): string {
+    return response.id_token;
   }
 
 }

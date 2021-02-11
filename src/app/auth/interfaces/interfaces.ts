@@ -1,5 +1,3 @@
-
-
 export interface AuthResponse {
     ok: boolean;
     uid?: string;
@@ -10,7 +8,10 @@ export interface AuthResponse {
 }
 
 export interface Usuario {
-    uid: string;
-    name: string;
-    email: string;
+    uid?: string;
+    id?: string;
+    name?: string;
+    firstName?: string;
+    email?: string;
 }
+
