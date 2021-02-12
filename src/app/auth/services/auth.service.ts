@@ -5,7 +5,7 @@ import { of, Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { AuthResponse, Usuario, AuthResponse1 } from '../interfaces/interfaces';
+import { AuthResponse, AuthResponse1 } from '../interfaces/interfaces';
 import { IUser } from '../interfaces/user';
 
 @Injectable({
@@ -14,7 +14,8 @@ import { IUser } from '../interfaces/user';
 export class AuthService {
 
   private baseUrl: string = environment.baseUrl;
-  private _usuario!: Usuario;
+  // private _usuario!: Usuario;
+  private _usuario!: IUser;
 
   get usuario() {
     return { ...this._usuario };
@@ -69,15 +70,25 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
 
-    return this.http.get<AuthResponse>(url, { headers })
+    return this.http.get<IUser>(url, { headers })
       .pipe(
         map((resp: IUser) => {
           // console.log(resp);
           //localStorage.setItem('token', resp.token!);
           this._usuario = {
-            name: resp.firstName!,
-            id: resp.id!,
-            email: resp.email!
+            id: resp.id,
+            login: resp.login,
+            firstName: resp.firstName!,
+            lastName: resp.lastName,
+            email: resp.email,
+            activated: resp.activated,
+            langKey: resp.langKey,
+            authorities: resp.authorities,
+            createdBy: resp.createdBy,
+            createdDate: resp.createdDate,
+            lastModifiedBy: resp.lastModifiedBy,
+            lastModifiedDate: resp.lastModifiedDate,
+            password: resp.password
           }
           return true;
         }),

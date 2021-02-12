@@ -16,7 +16,7 @@ export class LoginComponent {
 
   miFormulario: FormGroup = this.fb.group({
     nombre:   ['admin', [ Validators.required, Validators.minLength(3)]],
-    password: ['admin', [ Validators.required, Validators.minLength(5) ]],
+    password: ['admin', [ Validators.required, Validators.minLength(4) ]],
   });
 
   constructor( private fb: FormBuilder,

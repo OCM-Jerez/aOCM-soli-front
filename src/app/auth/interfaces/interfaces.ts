@@ -11,16 +11,11 @@ export interface AuthResponse1 {
    id_token?: string;
 }
 
+// export interface Usuario {
+//     uid?: string;
+//     id?: string;
+//     name?: string;
+//     firstName?: string;
+//     email?: string;
+// }
 
-export interface Usuario {
-    uid?: string;
-    id?: string;
-    name?: string;
-    firstName?: string;
-    email?: string;
-}
-
-export interface UserLogin {
-  name: string;
-  password: string;
- }
