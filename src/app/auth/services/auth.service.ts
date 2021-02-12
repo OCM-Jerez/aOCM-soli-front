@@ -26,18 +26,45 @@ export class AuthService {
   registro(login: string, email: string, password: string) {
     // TODO ! crear ruta
     // baseUrl se define en environment.ts
+    console.log(localStorage.getItem('token'));
     const url = `${this.baseUrl}register`;
-    const body = { email, password, login };
 
-    return this.http.post<AuthResponse>(url, body)
-      .pipe(
-        tap(({ ok, token }) => {
-          if (ok) {
-            localStorage.setItem('token', token!);
-          }
-        }),
-        map(resp => resp.ok),
-        catchError(err => of(err.error.msg))
+    const body = {
+                     "firstName": login,
+                     "email": email,
+                     "password": password,
+                     "login":login,
+                     "lastName":login,
+                     "activated": true,
+                     "langKey": "en"
+                     }
+                      ;
+    console.log(body);
+
+    return this.http.post<IUser>(url, body)
+    .pipe(
+      tap(resp  => {
+         console.log(resp);
+           }),
+      map((resp: IUser) => {
+        this._usuario = {
+          id: resp.id,
+          login: resp.login,
+          firstName: resp.firstName!,
+          lastName: resp.lastName,
+          email: resp.email,
+          activated: resp.activated,
+          langKey: resp.langKey,
+          authorities: resp.authorities,
+          createdBy: resp.createdBy,
+          createdDate: resp.createdDate,
+          lastModifiedBy: resp.lastModifiedBy,
+          lastModifiedDate: resp.lastModifiedDate,
+          password: resp.password
+        }
+        return true;
+      }),
+        catchError(err => of(err.error.message))
       );
   }
 

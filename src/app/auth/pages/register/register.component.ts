@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent {
   miFormulario: FormGroup = this.fb.group({
-    name:     ['Test 4', [ Validators.required ]],
+    login:     ['Test 4', [ Validators.required ]],
     email:    ['test4@test.com', [ Validators.required, Validators.email ]],
     password: ['123456', [ Validators.required, Validators.minLength(5) ]],
   });
@@ -24,14 +24,13 @@ export class RegisterComponent {
     private authService: AuthService ) { }
 
   registro() {
-    console.log(this.miFormulario.value);
-    // console.log(this.miFormulario.valid);
-    this.router.navigateByUrl('/dashboard');
-    const { name, email, password } = this.miFormulario.value;
-    this.authService.registro( name, email, password )
+    // console.log(this.miFormulario.value);
+    // this.router.navigateByUrl('/dashboard');
+    const { login, email, password } = this.miFormulario.value;
+    this.authService.registro( login, email, password )
       .subscribe( ok => {
         if ( ok === true ) {
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/login');
         } else {
           Swal.fire('Error', ok, 'error');
         }
