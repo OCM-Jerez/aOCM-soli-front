@@ -15,9 +15,8 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
 
   miFormulario: FormGroup = this.fb.group({
-    // email:    ['test1@test.com', [ Validators.required, Validators.email ]],
-    email:    ['admin', [ Validators.required ]],
-    password: ['admin', [ Validators.required, Validators.minLength(4) ]],
+    nombre:   ['admin', [ Validators.required, Validators.minLength(3)]],
+    password: ['admin', [ Validators.required, Validators.minLength(5) ]],
   });
 
   constructor( private fb: FormBuilder,
@@ -25,8 +24,8 @@ export class LoginComponent {
                private authService: AuthService) { }
 
   login() {
-    const { email, password } = this.miFormulario.value;
-    this.authService.login( email, password )
+    const { nombre, password } = this.miFormulario.value;
+    this.authService.login( nombre, password )
       .subscribe( ok => {
         // console.log(ok);
         if ( ok === true ) {
