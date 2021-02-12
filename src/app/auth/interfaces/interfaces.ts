@@ -7,6 +7,11 @@ export interface AuthResponse {
     msg?: string;
 }
 
+export interface AuthResponse1 {
+   id_token?: string;
+}
+
+
 export interface Usuario {
     uid?: string;
     id?: string;
@@ -15,3 +20,7 @@ export interface Usuario {
     email?: string;
 }
 
+export interface UserLogin {
+  name: string;
+  password: string;
+ }

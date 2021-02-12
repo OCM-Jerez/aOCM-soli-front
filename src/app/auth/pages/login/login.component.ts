@@ -29,7 +29,6 @@ export class LoginComponent {
       .subscribe( ok => {
         // console.log(ok);
         if ( ok === true ) {
-          // console.log('Login ok.');
           this.router.navigateByUrl('/dashboard');
         } else {
           if(ok === 'Invalid login name or password.')

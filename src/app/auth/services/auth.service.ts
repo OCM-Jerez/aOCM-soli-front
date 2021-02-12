@@ -5,7 +5,7 @@ import { of, Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { AuthResponse, Usuario } from '../interfaces/interfaces';
+import { AuthResponse, Usuario, AuthResponse1 } from '../interfaces/interfaces';
 import { IUser } from '../interfaces/user';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class AuthService {
   registro(login: string, email: string, password: string) {
     // TODO ! crear ruta
     // baseUrl se define en environment.ts
-    const url = `${this.baseUrl}/register`;
+    const url = `${this.baseUrl}register`;
     const body = { email, password, login };
 
     return this.http.post<AuthResponse>(url, body)
@@ -40,28 +40,32 @@ export class AuthService {
       );
   }
 
-  login(email: string, password: string) {
-    // const url  = `${ this.baseUrl }/auth`;
-    // TODO ! crear ruta
-    const url = `${this.baseUrl}/authenticate`;
-    const body = { username: email, password: password };
+  login(username: string, password: string) {
+    const url = `${this.baseUrl}authenticate`;
+    const body = { username, password };
 
-    return this.http.post<AuthResponse>(url, body)
+    // TODO ! No entiendo porque se usa typo AuthResponse cuando lo que responde este metodo el el token.
+    return this.http.post<AuthResponse1>(url, body)
       .pipe(
         tap(resp  => {
-          const jwt = this.authenticateSuccess(resp);
-          if (jwt) {
-            localStorage.setItem('token', jwt);
-          }
-        }),
+          //  console.log((resp as any).id_token);
+           console.log(resp.id_token);
+          // No se puede obtener id.token directamente de resp
+          // Por eso es necesaria la function authenticateSuccess()
+          // const jwt = this.authenticateSuccess(resp);
+          // const jwt = resp.id_token
+          // if (jwt) {
+          //   localStorage.setItem('token', jwt);
+          // }
+          localStorage.setItem('token', resp.id_token!);
+         }),
         map(resp => true),
         catchError(err => of(err.error.message))
       );
   }
 
   validarToken(): Observable<boolean> {
-    // TODO ! crear ruta renew
-    const url = `${this.baseUrl}/account`;
+    const url = `${this.baseUrl}account`;
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
 
@@ -85,8 +89,10 @@ export class AuthService {
     localStorage.clear();
   }
 
-  private authenticateSuccess(response: any): string {
-    return response.id_token;
-  }
+  // private authenticateSuccess(response: any): string {
+    // console.log(typeof(response));
+    // console.log(response);
+    // return response.id_token;
+      // }
 
 }
