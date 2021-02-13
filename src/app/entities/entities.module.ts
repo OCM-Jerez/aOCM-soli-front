@@ -6,12 +6,13 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: 'users',
-        loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+        loadChildren: () => import('./users/user.module').then(m => m.UserModule)
       },
-      // {
-      //   path: 'solicitudes',
-      //   loadChildren: () => import('./solicitud/solicitud.module').then(m => m.OcmSoliServerSolicitudModule)
-      // },
+      {
+        path: 'solicitudes',
+        loadChildren: () => import('./solicitudes/solicitud.module').then(m => m.SolicitudModule)
+      },
+
       // {
       //   path: 'documentos',
       //   loadChildren: () => import('./documento/documento.module').then(m => m.OcmSoliServerDocumentoModule)

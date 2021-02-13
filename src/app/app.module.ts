@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -9,8 +10,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { EntitiesModule } from './entities/entities.module';
-
-
+import { UserModule } from './entities/users/user.module';
+import { SolicitudModule } from './entities/solicitudes/solicitud.module';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,13 @@ import { EntitiesModule } from './entities/entities.module';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    EntitiesModule
+    EntitiesModule,
+    UserModule,
+    SolicitudModule
   ],
   providers: [],
   bootstrap: [AppComponent]
