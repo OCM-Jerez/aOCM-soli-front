@@ -30,9 +30,10 @@ export class RegisterComponent {
     this.authService.registro( login, email, password )
       .subscribe( ok => {
         if ( ok === true ) {
-          this.router.navigateByUrl('/login');
+          Swal.fire('Error',"El nombre ya existe", 'error');
         } else {
-          Swal.fire('Error', ok, 'error');
+          Swal.fire('', 'El usuario ha sido creado correctamente', 'success');
+          this.router.navigateByUrl('/login');
         }
       });
   }
