@@ -134,9 +134,7 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   private loadAll(): void {
     this.solicitudService.query().
     subscribe( resp =>{
-    console.log(resp);
     this.solicitudes = resp
-    console.log(this.solicitudes[1]);
     });
   }
 

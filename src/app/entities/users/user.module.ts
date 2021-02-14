@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { UserComponent } from './user.component';
 import { userRoute } from './user.route';
+import { UserComponent } from './user.component';
 
 @NgModule({
   imports: [
@@ -13,6 +13,7 @@ import { userRoute } from './user.route';
   declarations: [
     UserComponent,
   ],
-  entryComponents: []
+  entryComponents: [
+  ]
 })
 export class UserModule {}

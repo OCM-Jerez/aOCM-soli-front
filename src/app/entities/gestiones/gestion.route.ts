@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Routes } from '@angular/router';
 
-import { UserComponent } from './user.component';
+import { GestionComponent } from './gestion.component';
 
 // @Injectable({ providedIn: 'root' })
-export const userRoute: Routes = [
+export const gestionRoute: Routes = [
   {
     path: '',
-    component: UserComponent,
+    component: GestionComponent,
     resolve: {
     },
     data: {
-      defaultSort: 'id,asc'
+      defaultSort: 'id,asc',
     }
-  },
+  }
 ]

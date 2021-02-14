@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { faUser, faHome, faAtlas } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   faUser = faUser;
   faHome = faHome;
   faAtlas = faAtlas
+  faBell = faBell
 
   isAdmin = true;
 

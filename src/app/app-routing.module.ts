@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ValidarTokenGuard } from './guards/validar-token.guard';
-import { userRoute } from './entities/users/user.route';
-import { UserComponent } from './entities/users/user.component';
-import { SolicitudComponent } from './entities/solicitudes/solicitud.component';
+import { ValidarTokenGuard }    from './guards/validar-token.guard';
+import { UserComponent }        from './entities/users/user.component';
+import { SolicitudComponent }   from './entities/solicitudes/solicitud.component';
+import { DocumentoComponent }   from './entities/documentos/documento.component';
+import { GestionComponent }     from './entities/gestiones/gestion.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,14 @@ const routes: Routes = [
   {
     path: 'solicitudes',
     component: SolicitudComponent,
+  },
+  {
+    path: 'documentos',
+    component: DocumentoComponent,
+  },
+  {
+    path: 'gestiones',
+    component: GestionComponent,
   },
   {
     path: 'auth',

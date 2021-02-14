@@ -103,9 +103,7 @@ export class UserComponent implements OnInit, OnDestroy {
   private loadAll(): void {
     this.userService.query().
     subscribe( resp =>{
-    console.log(resp);
     this.users = resp
-    console.log(this.users[1]);
     });
   }
 
