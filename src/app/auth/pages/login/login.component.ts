@@ -29,7 +29,7 @@ export class LoginComponent {
       .subscribe( ok => {
         // console.log(ok);
         if ( ok === true ) {
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('solicitudes');
         } else {
           if(ok === 'Invalid login name or password.')
           {

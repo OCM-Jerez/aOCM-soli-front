@@ -9,24 +9,21 @@ import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-ico
 })
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
+  isAdmin = true;
 
   faUser = faUser;
   faHome = faHome;
-  faAtlas = faAtlas
-  faBell = faBell
-
-  isAdmin = true;
+  faAtlas = faAtlas;
+  faBell = faBell;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-
   collapseNavbar(): void {
     this.isNavbarCollapsed = true;
   }
-
 
   login(): void {
     // this.loginModalService.open();
