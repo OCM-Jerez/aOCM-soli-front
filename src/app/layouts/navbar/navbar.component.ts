@@ -9,7 +9,7 @@ import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-ico
 })
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
-  isAdmin = true;
+  // isAdmin = true;
 
   faUser = faUser;
   faHome = faHome;

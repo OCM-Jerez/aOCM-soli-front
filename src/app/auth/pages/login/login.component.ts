@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
-import { AuthService } from '../../auth.service';
 
+import { environment } from 'src/environments/environment';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,8 @@ export class LoginComponent {
       .subscribe( ok => {
         // console.log(ok);
         if ( ok === true ) {
+          // TODO ! Si el rol =  admin poner IsAdmin a true.
+          environment.IsAdmin = true;
           this.router.navigateByUrl('solicitudes');
         } else {
           if(ok === 'Invalid login name or password.')

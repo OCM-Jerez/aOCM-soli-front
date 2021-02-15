@@ -6,6 +6,7 @@ import { faPlus, faEye, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg
 
 import { SolicitudService } from './solicitud.service';
 import { ISolicitud } from './solicitud.interface';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-solicitud',
@@ -19,6 +20,7 @@ export class SolicitudComponent implements OnInit {
 
   solicitudes?: ISolicitud[];
   diasRespuesta = 0;
+  isAdmin = environment.IsAdmin;
 
   constructor(
     protected solicitudService: SolicitudService,
@@ -27,6 +29,7 @@ export class SolicitudComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.isAdmin);
     this.loadAll();
   }
 
