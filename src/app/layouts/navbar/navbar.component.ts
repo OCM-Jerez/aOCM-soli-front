@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-icons';
+import { LoginService } from 'src/app/auth/pages/login/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,14 +10,14 @@ import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-ico
 })
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
-  // isAdmin = true;
+  isAdmin = true;
 
   faUser = faUser;
   faHome = faHome;
   faAtlas = faAtlas;
   faBell = faBell;
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +32,7 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.collapseNavbar();
-    // this.loginService.logout();
+    this.loginService.logout();
     // this.router.navigate(['']);
   }
 }

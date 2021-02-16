@@ -4,13 +4,15 @@ import { HttpClient } from '@angular/common/http';
 
 // import { JhiLanguageService } from 'ng-jhipster';
 
-// import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Observable, ReplaySubject, of } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
-// import { StateStorageService } from 'app/core/auth/state-storage.service';
+//import { StateStorageService } from 'app/core/auth/state-storage.service';//
 
 // import { SERVER_API_URL } from 'app/app.constants';
-// import { Account } from 'app/core/user/account.model';
+//import { Account } from 'app/core/user/account.model';
+import { environment } from 'src/environments/environment';
+import { Account } from './account.model';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -19,12 +21,12 @@ export class AccountService {
   private accountCache$?: Observable<Account | null>;
 
   constructor(
-    // private languageService: JhiLanguageService,
-    // private sessionStorage: SessionStorageService,
+    //private languageService: JhiLanguageService,
+    private sessionStorage: SessionStorageService,
     private http: HttpClient,
-    // private stateStorageService: StateStorageService,
+    //private stateStorageService: StateStorageService,
     private router: Router,
-    // private localStorageService: LocalStora
+    private localStorageService: LocalStorageService
   ) {}
 
   // save(account: Account): Observable<{}> {
@@ -36,24 +38,24 @@ export class AccountService {
     this.authenticationState.next(this.userIdentity);
   }
 
-  // hasAnyAuthority(authorities: string[] | string): boolean {
-  //   // if (!this.userIdentity || !this.us.authorities) {
-  //   //   return false;
-  //   // }
-  //   if (!Array.isArray(authorities)) {
-  //     authorities = [authorities];
-  //   }
-  //   // return this.authorities.some((authority: string) => authorities.includes(authority));
-  // }
+  hasAnyAuthority(authorities: string[] | string): boolean {
+    if (!this.userIdentity || !this.userIdentity.authorities) {
+      return false;
+    }
+    if (!Array.isArray(authorities)) {
+      authorities = [authorities];
+    }
+    return this.userIdentity.authorities.some((authority: string) => authorities.includes(authority));
+  }
 
-  // identity(force?: boolean): Observable<Account | null> {
-  //   if (!this.accountCache$ || force || !this.isAuthenticated()) {
-  //     this.accountCache$ = this.fetch().pipe(
-  //       catchError(() => {
-  //         return of(null);
-  //       }),
-  //       tap((account: Account | null) => {
-  //         this.authenticate(account);
+  identity(force?: boolean): Observable<Account | null> {
+    if (!this.accountCache$ || force || !this.isAuthenticated()) {
+      this.accountCache$ = this.fetch().pipe(
+        catchError(() => {
+          return of(null);
+        }),
+        tap((account: Account | null) => {
+          this.authenticate(account);
           // eslint-disable-next-line no-console
           // console.log(account);
 
@@ -64,34 +66,34 @@ export class AccountService {
           //   this.languageService.changeLanguage(langKey);
           // }
 
-          // if (account) {
-            // this.navigateToStoredUrl();
+          if (account) {
+            this.navigateToStoredUrl();
           }
-          // this.localStorageService.store('idUser', account?.id);
-        // }),
-        // shareReplay()
-      // );
-    // }
-    // return this.accountCache$;
-  // }
+          this.localStorageService.store('idUser', account?.id);
+        }),
+        shareReplay()
+      );
+    }
+    return this.accountCache$;
+  }
 
-  // isAuthenticated(): boolean {
-  //   return this.userIdentity !== null;
-  // }
+  isAuthenticated(): boolean {
+    return this.userIdentity !== null;
+  }
 
-  // getAuthenticationState(): Observable<Account | null> {
-  //   return this.authenticationState.asObservable();
-  // }
+  getAuthenticationState(): Observable<Account | null> {
+    return this.authenticationState.asObservable();
+  }
 
   // getImageUrl(): string {
-    // return this.userIdentity ? this.userIdentity.imageUrl : '';
+  //   return this.userIdentity ? this.userIdentity.imageUrl : '';
   // }
 
-  // private fetch(): Observable<Account> {
-    // return this.http.get<Account>(SERVER_API_URL + 'api/account');
-  // }
+  private fetch(): Observable<Account> {
+    return this.http.get<Account>(environment.baseUrl + 'account');
+  }
 
-  // private navigateToStoredUrl(): void {
+  private navigateToStoredUrl(): void {
     // previousState can be set in the authExpiredInterceptor and in the userRouteAccessService
     // if login is successful, go to stored previousState and clear previousState
     // const previousUrl = this.stateStorageService.getUrl();
@@ -99,5 +101,5 @@ export class AccountService {
     //   this.stateStorageService.clearUrl();
     //   this.router.navigateByUrl(previousUrl);
     // }
-  // }
-// }
+  }
+}
