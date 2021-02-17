@@ -31,13 +31,11 @@ export class LoginComponent {
   login() {
     const { nombre, password } = this.miFormulario.value;
     let loginModel = new Login( nombre, password, false);
-
-
     this.loginService.login(loginModel).subscribe(() => {
-      console.log('login ok');
-      this.router.navigateByUrl('solicitudes');
+    this.router.navigateByUrl('solicitudes');
     });
 
+    // TODO ¿como hago esta comprobación?
     // this.authService.login( nombre, password )
     //   .subscribe( ok => {
     //     // console.log(ok);
