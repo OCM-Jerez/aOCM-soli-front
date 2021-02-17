@@ -21,17 +21,17 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  registro(login: string, email: string, password: string) {
+  registro(login: string, nombre: string, apellido: string, email: string, password: string) {
     // baseUrl se define en environment.ts
     const url = `${environment.baseUrl}register`;
     const body = {
-                     "firstName": login,
+                     "firstName": nombre,
                      "email": email,
                      "password": password,
                      "login":login,
-                     "lastName":login,
+                     "lastName":apellido,
                      "activated": true,
-                     "langKey": "en"
+                     "langKey": "es"
                      };
     // console.log(body);
     // Si el nombre existe devuelve true, si no existe lo graba y devuelve false.
