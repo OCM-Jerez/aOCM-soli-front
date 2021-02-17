@@ -54,7 +54,7 @@ export class AuthService {
 
   validarToken(): Observable<boolean> {
     const url = `${environment.baseUrl}account`;
-    // El inttercepto añade el headers.
+    // El interceptor añade el headers.
     // const headers = new HttpHeaders()
     //   .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
 

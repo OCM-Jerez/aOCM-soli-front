@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-icons';
+
 import { LoginService } from 'src/app/auth/pages/login/login.service';
 
 @Component({
@@ -17,7 +19,10 @@ export class NavbarComponent implements OnInit {
   faAtlas = faAtlas;
   faBell = faBell;
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+              private loginService: LoginService,
+              private  router: Router
+              ) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +38,6 @@ export class NavbarComponent implements OnInit {
   logout(): void {
     this.collapseNavbar();
     this.loginService.logout();
-    // this.router.navigate(['']);
+    this.router.navigate(['']);
   }
 }

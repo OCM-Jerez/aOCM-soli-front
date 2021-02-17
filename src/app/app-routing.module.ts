@@ -13,26 +13,30 @@ const routes: Routes = [
   },
   {
     path: 'solicitudes',
+    // TODO ! ¿Como protego esta ruta?
+    // loadChildren: () => import('./entities/solicitudes/solicitud.module').then( m => m.SolicitudModule ),
+    // canActivate: [ ValidarTokenGuard ],
+    // canLoad: [ ValidarTokenGuard ]
     component: SolicitudComponent,
   },
-  {
-    path: 'documentos',
-    component: DocumentoComponent,
-  },
-  {
-    path: 'gestiones',
-    component: GestionComponent,
-  },
+  // {
+  //   path: 'documentos',
+  //   component: DocumentoComponent,
+  // },
+  // {
+  //   path: 'gestiones',
+  //   component: GestionComponent,
+  // },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule )
   },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./protected/protected.module').then( m => m.ProtectedModule ),
-    canActivate: [ ValidarTokenGuard ],
-    canLoad: [ ValidarTokenGuard ]
-  },
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () => import('./protected/protected.module').then( m => m.ProtectedModule ),
+  //   canActivate: [ ValidarTokenGuard ],
+  //   canLoad: [ ValidarTokenGuard ]
+  // },
   {
     path: '**',
     redirectTo: 'auth'

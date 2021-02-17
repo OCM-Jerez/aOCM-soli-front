@@ -22,9 +22,9 @@ export class AuthServerProvider {
 
   login(credentials: Login): Observable<void> {
     // eslint-disable-next-line no-console
-    console.log('*****************************************');
+    // console.log('*****************************************');
     // eslint-disable-next-line no-console
-    console.log(environment.baseUrl);
+    // console.log(environment.baseUrl);
 
     return this.http
       .post<JwtToken>(environment.baseUrl + 'authenticate', credentials)

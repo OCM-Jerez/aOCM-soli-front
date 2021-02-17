@@ -8,12 +8,13 @@ import { SolicitudComponent } from './solicitud.component';
 @NgModule({
 
   imports: [
-    CommonModule,
-    FontAwesomeModule
-  ],
+            CommonModule,
+            FontAwesomeModule,
+
+           ],
   declarations: [
-    SolicitudComponent
-  ],
+                 SolicitudComponent
+                ],
   entryComponents: []
 })
 export class SolicitudModule {}
