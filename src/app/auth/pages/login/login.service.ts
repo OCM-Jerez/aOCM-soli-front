@@ -4,30 +4,30 @@ import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import { ILogin } from './login.interface';
+import { IUser } from 'src/app/entities/users/user.interface';
 
 import { AuthServerProvider } from 'src/app/auth/auth-jwt.service';
 import { AccountService } from 'src/app/entities/account/account.service';
-import { IUser } from 'src/app/entities/users/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   constructor(
-    private accountService: AccountService,
-    private authServerProvider: AuthServerProvider
+    private authServerProvider: AuthServerProvider,
+    private accountService: AccountService
   ) { }
 
   login(login: ILogin): Observable<IUser | null | any> {
+    // Obtiene el token y lo guarda de en los stores.
     return this.authServerProvider.login(login)
       .pipe
-      // mergeMap = flatMap
-      (mergeMap(() => {
-        // console.log(Account);
-        return this.accountService.identity(true);
+      (mergeMap(() => {                            // mergeMap = flatMap
+        return this.accountService.identity(true); // retorna un IUser.
       }));
-    }
+  }
 
   logout(): void {
     this.authServerProvider.logout()
+    // TODO revisar porque tacha subscribe
       .subscribe(null, null, () => this.accountService.authenticate(null));
   }
 

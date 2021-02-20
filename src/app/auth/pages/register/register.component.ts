@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 import { IUser } from 'src/app/entities/users/user.interface';
+
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -36,7 +37,7 @@ export class RegisterComponent {
     this.authService.registro( user)
       .subscribe( ok => {
         if ( ok === true ) {
-          Swal.fire('Error',"El nombre ya existe", 'error');
+          Swal.fire('Error',"El login ya existe", 'error');
         } else {
           Swal.fire('', 'El usuario ha sido creado correctamente', 'success');
           this.router.navigateByUrl('/login');

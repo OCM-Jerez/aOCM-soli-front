@@ -24,8 +24,8 @@ export class AuthServerProvider {
     return this.http
       .post<JwtToken>(environment.baseUrl + 'authenticate', login)
       .pipe(map(response => {
-        // console.log(response);
-        return this.authenticateSuccess(response, false);
+        console.log(response);
+        return this.authenticateSuccess(response, true);
       }));
   }
 
@@ -50,4 +50,5 @@ export class AuthServerProvider {
       this.$sessionStorage.store('authenticationToken', jwt);
     }
   }
+
 }

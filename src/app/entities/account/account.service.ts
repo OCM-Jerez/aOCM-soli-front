@@ -31,6 +31,8 @@ export class AccountService {
 
   authenticate(identity: IUser | null): void {
     this.userIdentity = identity;
+    // TODO da error
+    // environment.userLoged = this.userIdentity?.login;
     this.authenticationState.next(this.userIdentity);
   }
 
@@ -59,9 +61,7 @@ export class AccountService {
           }
           this.localStorageService.store('idUser', user?.id);
           this.localStorageService.store('roles', user?.authorities);
-          // const roles = this.localStorageService.retrieve('roles');
-          // <p ngif roles........
-        }),
+          }),
         shareReplay()
       );
     }
