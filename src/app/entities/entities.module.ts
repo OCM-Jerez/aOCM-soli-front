@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
       //   loadChildren: () => import('./gestion/gestion.module').then(m => m.OcmSoliServerGestionModule)
       // }
     ])
-  ]
+  ],
+  declarations: []
 })
 export class EntitiesModule {}

@@ -9,7 +9,7 @@ import { SolicitudComponent } from './solicitud.component';
 
   imports: [
             CommonModule,
-            FontAwesomeModule,
+            FontAwesomeModule
 
            ],
   declarations: [

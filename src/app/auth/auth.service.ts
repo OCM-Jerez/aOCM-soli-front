@@ -5,6 +5,7 @@ import { of, Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
+
 import { IUser } from 'src/app/entities/users/user.interface';
 import { AuthResponse } from './auth.interfaces';
 
@@ -21,17 +22,17 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  registro(login: string, nombre: string, apellido: string, email: string, password: string) {
+  registro(user: IUser) {
     // baseUrl se define en environment.ts
     const url = `${environment.baseUrl}register`;
     const body = {
-                     "firstName": nombre,
-                     "email": email,
-                     "password": password,
-                     "login":login,
-                     "lastName":apellido,
-                     "activated": true,
-                     "langKey": "es"
+                     "firstName": user.firstName,
+                     "email": user.email,
+                     "password": user.password,
+                     "login":user.login,
+                     "lastName": user.lastName,
+                     "activated": user.activated,
+                     "langKey": user.langKey
                      };
     // console.log(body);
     // Si el nombre existe devuelve true, si no existe lo graba y devuelve false.
@@ -57,7 +58,6 @@ export class AuthService {
     // El interceptor añade el headers.
     // const headers = new HttpHeaders()
     //   .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
-
     // return this.http.get<IUser>(url, { headers })
     return this.http.get<IUser>(url)
       .pipe(

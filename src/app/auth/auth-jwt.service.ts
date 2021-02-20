@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
-import { Login } from './pages/login/login.model';
 import { environment } from 'src/environments/environment';
+import { ILogin } from './pages/login/login.interface';
 
 type JwtToken = {
   id_token: string;
@@ -14,21 +14,19 @@ type JwtToken = {
 
 @Injectable({ providedIn: 'root' })
 export class AuthServerProvider {
-  constructor(private http: HttpClient, private $localStorage: LocalStorageService, private $sessionStorage: SessionStorageService) {}
+  constructor(
+    private http: HttpClient,
+    private $localStorage: LocalStorageService,
+    private $sessionStorage: SessionStorageService
+  ) { }
 
-  getToken(): string {
-    return this.$localStorage.retrieve('authenticationToken') || this.$sessionStorage.retrieve('authenticationToken') || '';
-  }
-
-  login(credentials: Login): Observable<void> {
-    // eslint-disable-next-line no-console
-    // console.log('*****************************************');
-    // eslint-disable-next-line no-console
-    // console.log(environment.baseUrl);
-
+  login(login: ILogin): Observable<void> {
     return this.http
-      .post<JwtToken>(environment.baseUrl + 'authenticate', credentials)
-      .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
+      .post<JwtToken>(environment.baseUrl + 'authenticate', login)
+      .pipe(map(response => {
+        // console.log(response);
+        return this.authenticateSuccess(response, false);
+      }));
   }
 
   logout(): Observable<void> {
@@ -37,6 +35,11 @@ export class AuthServerProvider {
       this.$sessionStorage.clear('authenticationToken');
       observer.complete();
     });
+  }
+
+  getToken(): string {
+    return this.$localStorage.retrieve('authenticationToken') ||
+      this.$sessionStorage.retrieve('authenticationToken') || '';
   }
 
   private authenticateSuccess(response: JwtToken, rememberMe: boolean): void {

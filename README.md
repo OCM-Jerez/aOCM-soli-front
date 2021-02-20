@@ -7,3 +7,10 @@ Actualizado a la versión 11.2.0
 //Uso codigo del curso de Fernando Hererera.
 https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24488426#notes
 
+
+
+
+
+
+--skip-tests
+--flat crear ficheros en la carpeta actual.

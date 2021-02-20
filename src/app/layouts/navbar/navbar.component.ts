@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-icons';
 
+import { environment } from 'src/environments/environment';
+
 import { LoginService } from 'src/app/auth/pages/login/login.service';
 
 @Component({
@@ -12,7 +14,8 @@ import { LoginService } from 'src/app/auth/pages/login/login.service';
 })
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
-  isAdmin = true;
+  isAdmin = environment.IsAdmin;
+  userLoged = environment.userLoged
 
   faUser = faUser;
   faHome = faHome;

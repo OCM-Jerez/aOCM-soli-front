@@ -2,38 +2,34 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-// import { JhiLanguageService } from 'ng-jhipster';
-
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Observable, ReplaySubject, of } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
 //import { StateStorageService } from 'app/core/auth/state-storage.service';//
 
-// import { SERVER_API_URL } from 'app/app.constants';
-//import { Account } from 'app/core/user/account.model';
 import { environment } from 'src/environments/environment';
-import { Account } from './account.model';
+
+import { IUser } from '../users/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-  private userIdentity: Account | null = null;
-  private authenticationState = new ReplaySubject<Account | null>(1);
-  private accountCache$?: Observable<Account | null>;
+  private userIdentity: IUser | null = null;
+  private authenticationState = new ReplaySubject<IUser | null>(1);
+  private accountCache$?: Observable<IUser | null>;
 
   constructor(
-    //private languageService: JhiLanguageService,
     private sessionStorage: SessionStorageService,
     private http: HttpClient,
     //private stateStorageService: StateStorageService,
     private router: Router,
     private localStorageService: LocalStorageService
-  ) {}
+  ) { }
 
   // save(account: Account): Observable<{}> {
   //   // return this.http.post(SERVER_API + 'api/account', account);
   // }
 
-  authenticate(identity: Account | null): void {
+  authenticate(identity: IUser | null): void {
     this.userIdentity = identity;
     this.authenticationState.next(this.userIdentity);
   }
@@ -48,28 +44,23 @@ export class AccountService {
     return this.userIdentity.authorities.some((authority: string) => authorities.includes(authority));
   }
 
-  identity(force?: boolean): Observable<Account | null> {
+  identity(force?: boolean): Observable<IUser | null> {
     if (!this.accountCache$ || force || !this.isAuthenticated()) {
       this.accountCache$ = this.fetch().pipe(
         catchError(() => {
           return of(null);
         }),
-        tap((account: Account | null) => {
-          this.authenticate(account);
-          // eslint-disable-next-line no-console
-          // console.log(account);
+        tap((user: IUser | null) => {
+          // console.log(user);
+          this.authenticate(user);
 
-          // After retrieve the account info, the language will be changed to
-          // the user's preferred language configured in the account setting
-          // if (account && account.langKey) {
-          //   const langKey = this.sessionStorage.retrieve('locale') || account.langKey;
-          //   this.languageService.changeLanguage(langKey);
-          // }
-
-          if (account) {
+          if (user) {
             this.navigateToStoredUrl();
           }
-          this.localStorageService.store('idUser', account?.id);
+          this.localStorageService.store('idUser', user?.id);
+          this.localStorageService.store('roles', user?.authorities);
+          // const roles = this.localStorageService.retrieve('roles');
+          // <p ngif roles........
         }),
         shareReplay()
       );
@@ -81,7 +72,7 @@ export class AccountService {
     return this.userIdentity !== null;
   }
 
-  getAuthenticationState(): Observable<Account | null> {
+  getAuthenticationState(): Observable<IUser | null> {
     return this.authenticationState.asObservable();
   }
 
@@ -89,8 +80,8 @@ export class AccountService {
   //   return this.userIdentity ? this.userIdentity.imageUrl : '';
   // }
 
-  private fetch(): Observable<Account> {
-    return this.http.get<Account>(environment.baseUrl + 'account');
+  private fetch(): Observable<IUser>{
+    return this.http.get<IUser>(environment.baseUrl + 'account');
   }
 
   private navigateToStoredUrl(): void {
