@@ -6,9 +6,9 @@ import { faPlus, faEye, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg
 
 import { environment } from 'src/environments/environment';
 
-import { ISolicitud } from './solicitud.interface';
 
 import { SolicitudService } from './solicitud.service';
+import { ISolicitud } from './solicitud.interface';
 
 @Component({
   selector: 'app-solicitud',

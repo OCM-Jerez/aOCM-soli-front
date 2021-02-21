@@ -42,15 +42,15 @@ export class LoginComponent {
     this.loginService.login(login).subscribe(
       // next (respuesta) es un IUser.
       next => {
-        // TODO ¿Como actualizo los datos en navBar?
         environment.userLoged = next.login;
         environment.IsAdmin = (next.authorities.includes('ROLE_ADMIN')) ? true : false;
-             this.router.navigateByUrl('solicitudes');
+        this.router.navigateByUrl('solicitudes');
       }, error => {
         console.log(error.message);
         console.log(error);
         Swal.fire('Error', error.message, 'error');
       }, () => {
+        // En teoria el observable se completa, pero no estoy seguro.
         console.log('complete');
       });
 

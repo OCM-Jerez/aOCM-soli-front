@@ -7,8 +7,6 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent }     from './app.component';
-import { NavbarComponent }  from './layouts/navbar/navbar.component';
 import { FooterComponent }  from './layouts/footer/footer.component';
 
 import { EntitiesModule }   from './entities/entities.module';
@@ -17,11 +15,11 @@ import { SolicitudModule }  from './entities/solicitudes/solicitud.module';
 import { DocumentoModule }  from './entities/documentos/documento.module';
 import { GestionModule }    from './entities/gestiones/gestion.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     FooterComponent
   ],
   imports: [
