@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 import { ILogin } from './login.interface';
 
 import { LoginService } from './login.service';
-import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +19,7 @@ import { AuthService } from '../../auth.service';
 export class LoginComponent {
 
   miFormulario: FormGroup = this.fb.group({
-    // Todo ¿Donde controlar si son validos?
+    // TODO validators
     // https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24149906#notes
     username: ['admin', [Validators.required, Validators.minLength(3)]],
     password: ['admin', [Validators.required, Validators.minLength(4)]],
@@ -28,7 +27,6 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService,
     private loginService: LoginService
   ) { }
 
@@ -36,57 +34,24 @@ export class LoginComponent {
     const { username, password } = this.miFormulario.value;
     const rememberMe = true;
     const login: ILogin = { username, password, rememberMe }
-    // TODO ¿Porque usar subscribe en lugar de una funcion normal?
-    // ! Al hacer subscribe() ¿el observable emite un valor automaticamente?
     // Existen tres login()
     // 1.- login.service.ts
     // 2.- auth.service.ts
     // 3.- autj.jwt.service.ts
 
     this.loginService.login(login).subscribe(
-      // next es un IUser.
+      // next (respuesta) es un IUser.
       next => {
-        // console.log('next: ', next);
-        // console.log('login: ', next.login);
-        // console.log('password: ', next.password);
-        // console.log('next: ', next.authorities);
-
         // TODO ¿Como actualizo los datos en navBar?
         environment.userLoged = next.login;
-        // if (next.authorities.includes('ROLE_ADMIN')) {
-        //   environment.IsAdmin = true;
-        // } else {
-        //   environment.IsAdmin = false;
-        // }
-
-        //  (next.authorities.includes('ROLE_ADMIN')) ? environment.IsAdmin = true : environment.IsAdmin = false;
-         environment.IsAdmin = (next.authorities.includes('ROLE_ADMIN')) ? true : false;
-
-
-        this.authService.login(next.login, next.password)
-          .subscribe(ok => {
-            // TODO ¿como hago esta comprobación?
-            if (ok === true) {
-              // console.log(ok);
-              this.router.navigateByUrl('solicitudes');
-            } else {
-              // console.log(ok);
-
-              // if(ok === 'Invalid login name or password.')
-              // {
-              //   ok = 'Nombre o password erroneo.'
-              // }
-              Swal.fire('Error', ok, 'error');
-            }
-          },
-            error => {
-              console.log(error);
-            }
-
-          );
-
-
-        // this.router.navigateByUrl('solicitudes');
+        environment.IsAdmin = (next.authorities.includes('ROLE_ADMIN')) ? true : false;
+             this.router.navigateByUrl('solicitudes');
+      }, error => {
+        console.log(error.message);
+        console.log(error);
+        Swal.fire('Error', error.message, 'error');
+      }, () => {
+        console.log('complete');
       });
 
 
