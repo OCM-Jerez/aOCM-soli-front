@@ -17,15 +17,14 @@ import { LoginService } from './login.service';
   ]
 })
 export class LoginComponent {
-
+  miError: string = '';
   miFormulario: FormGroup = this.fb.group({
-    // TODO validators
-    // https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24149906#notes
     username: ['admin', [Validators.required, Validators.minLength(3)]],
     password: ['admin', [Validators.required, Validators.minLength(4)]],
   });
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
     private loginService: LoginService
   ) { }
@@ -46,12 +45,13 @@ export class LoginComponent {
         environment.IsAdmin = (next.authorities.includes('ROLE_ADMIN')) ? true : false;
         this.router.navigateByUrl('solicitudes');
       }, error => {
-        console.log(error.message);
-        console.log(error);
-        Swal.fire('Error', error.message, 'error');
+        if (error.error.message = 'Invalid login name or password.') {
+          this.miError = 'Nombre de usuario o password erroneo.';
+        }
+        Swal.fire('Error', this.miError, 'error');
       }, () => {
         // En teoria el observable se completa, pero no estoy seguro.
-        console.log('complete');
+        // console.log('complete');
       });
 
 
