@@ -24,7 +24,7 @@ export class AuthServerProvider {
     return this.http
       .post<JwtToken>(environment.baseUrl + 'authenticate', login)
       .pipe(map(response => {
-        console.log(response);
+        // console.log(response);
         return this.authenticateSuccess(response, true);
       }));
   }

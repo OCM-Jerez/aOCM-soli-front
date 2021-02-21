@@ -39,7 +39,8 @@ export class AuthService {
     return this.http.post<boolean>(url, body)
    }
 
-  login(username: string, password: string) {
+   // Esta functin se repite en auth-jwt.service.ts
+   login(username: string, password: string) {
     const url = `${environment.baseUrl}authenticate`;
     const body = { username, password };
 
