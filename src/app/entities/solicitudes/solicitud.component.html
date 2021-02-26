@@ -32,9 +32,8 @@
       <tbody>
         <tr *ngFor="let solicitud of solicitudes">
           <td>{{ solicitud.descripcion }}</td>
-          <td>{{ solicitud.fechaSolicitud }}</td>
-          <td>{{ solicitud.fechaRespuesta }}</td>
-          <td></td>
+          <td>{{ solicitud.fechaSolicitud | date: 'dd.MM.yyyy' }}</td>
+          <td>{{ solicitud.fechaRespuesta | date: 'dd.MM.yyyy' }}</td>
           <td
             style="font-weight: bold"
             [ngStyle]="{

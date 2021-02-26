@@ -3,9 +3,9 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { faPlus, faEye, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import * as moment from 'moment';
 
 import { environment } from 'src/environments/environment';
-
 
 import { SolicitudService } from './solicitud.service';
 import { ISolicitud } from './solicitud.interface';
@@ -48,31 +48,19 @@ export class SolicitudComponent implements OnInit {
   private loadAll(): void {
     this.solicitudService.query().
       subscribe(resp => {
+        // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
+        // TODO Es mejor practica calcularlo en el back?
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
-          soli.diasRespuesta = 5;
-      //       if (typeof soli.fechaRespuesta === 'undefined') {
-      //   const date = new Date();
-      //    soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
-      //  } else {
-      //    const date = moment(soli.fechaRespuesta);
-      //    soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
-      //  }
+          if (soli.fechaRespuesta) {
+            const date = moment(soli.fechaRespuesta);
+            soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
+          } else {
+            const date = moment();
+            soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
+          }
         });
       });
-
-    // TODO ! Calcular días respuesta.
-      // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
-    //  data?.forEach(soli => {
-    //   if (typeof soli.fechaRespuesta === 'undefined') {
-    //     const date = moment();
-    //     soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
-    //   } else {
-    //     const date = moment(soli.fechaRespuesta);
-    //     soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
-    //   }
-    // });
-
-  }
+   }
 
 }

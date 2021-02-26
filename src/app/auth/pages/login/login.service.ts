@@ -26,12 +26,9 @@ export class LoginService {
   }
 
   logout(): void {
-    this.authServerProvider.logout()
     // TODO revisar porque tacha subscribe
+    this.authServerProvider.logout()
       .subscribe(null, null, () => this.accountService.authenticate(null));
-      //this.$localStorage.clear('authenticationToken');
-      //this.$sessionStorage.clear('authenticationToken');
-      //navigate to index o login.
   }
 
 }

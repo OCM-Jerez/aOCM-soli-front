@@ -24,6 +24,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "dotenv": "^8.2.0",
+    "moment": "^2.29.1",
     "ngx-webstorage": "^7.0.1",
     "rxjs": "6.5.3",
     "sweetalert2": "^10.14.0",
