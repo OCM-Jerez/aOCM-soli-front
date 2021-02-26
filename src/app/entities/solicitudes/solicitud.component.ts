@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 
 import { SolicitudService } from './solicitud.service';
 import { ISolicitud } from './solicitud.interface';
+// import * as moment from 'moment';
 
 @Component({
   selector: 'app-solicitud',
@@ -47,7 +48,17 @@ export class SolicitudComponent implements OnInit {
   private loadAll(): void {
     this.solicitudService.query().
       subscribe(resp => {
-        this.solicitudes = resp
+        this.solicitudes = resp;
+        this.solicitudes.forEach(soli => {
+          soli.diasRespuesta = 5;
+      //       if (typeof soli.fechaRespuesta === 'undefined') {
+      //   const date = new Date();
+      //    soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
+      //  } else {
+      //    const date = moment(soli.fechaRespuesta);
+      //    soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
+      //  }
+        });
       });
 
     // TODO ! Calcular días respuesta.

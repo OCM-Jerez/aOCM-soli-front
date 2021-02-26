@@ -10,22 +10,22 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class EmailValidatorService implements AsyncValidator {
+export class LoginValidatorService implements AsyncValidator {
 
   constructor(private http: HttpClient) { }
-  public emailPattern         : string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  public loginPattern: string = '([a-z0-9A-Z]+)';
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
-    const email = control.value;
-    const url = `${environment.baseUrl}registerEmail`;
-    const body = { "email": email };
+    const login = control.value;
+    const url = `${environment.baseUrl}registerLogin`;
+    const body = { "login": login };
     // console.log(body);
-    // Si el email existe devuelve true, si no existe devuelve false.
+    // Si el login existe devuelve true, si no existe devuelve false.
     return this.http.post<any>(url, body)
       .pipe(
         map(resp => {
           return (resp)
-            ? { emailExiste: true }
+            ? { loginExiste: true }
             : null
         })
       );

@@ -13,7 +13,6 @@ import { AuthResponse } from './auth.interfaces';
   providedIn: 'root'
 })
 export class AuthService {
-  // private baseUrl: string = environment.baseUrl;
   private _usuario!: IUser;
 
   get usuario() {
@@ -39,7 +38,7 @@ export class AuthService {
     return this.http.post<boolean>(url, body)
    }
 
-   // Esta functin se repite en auth-jwt.service.ts
+   // Esta function se repite en auth-jwt.service.ts
    login(username: string, password: string) {
     const url = `${environment.baseUrl}authenticate`;
     const body = { username, password };

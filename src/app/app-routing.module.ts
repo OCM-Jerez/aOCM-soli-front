@@ -15,8 +15,8 @@ const routes: Routes = [
     path: 'solicitudes',
     // TODO ! ¿Como protego esta ruta?
     // loadChildren: () => import('./entities/solicitudes/solicitud.module').then( m => m.SolicitudModule ),
-    // canActivate: [ ValidarTokenGuard ],
-    // canLoad: [ ValidarTokenGuard ]
+    canActivate: [ ValidarTokenGuard ],
+    canLoad: [ ValidarTokenGuard ],
     component: SolicitudComponent,
   },
   // {

@@ -35,14 +35,14 @@
           <td>{{ solicitud.fechaSolicitud }}</td>
           <td>{{ solicitud.fechaRespuesta }}</td>
           <td></td>
-          <!-- <td
+          <td
             style="font-weight: bold"
             [ngStyle]="{
-              color: solicitud.diasRespuesta > 30 ? 'red' : 'black'
+              color: solicitud.diasRespuesta! > 30 ? 'red' : 'black'
             }"
           >
             {{ solicitud.diasRespuesta }}
-          </td> -->
+          </td>
           <td>{{ solicitud.observacion }}</td>
 
           <td class="text-right">
