@@ -1,9 +1,9 @@
 <app-navbar></app-navbar>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center" style ="margin-top: 20px">
   <div class="col-8">
     <div *ngIf="solicitud">
-      <h2 style="font-weight: bold">Ver solicitud</h2>
+      <h2 style="font-weight: bold">Detalles solicitud</h2>
       <hr />
       <dl class="row-md ">
         <dt><span solicitud.descripcion>Descripción</span></dt>
@@ -42,7 +42,7 @@
 <div class="container mt-5">
     <h5>Documentos asociados</h5>
     <button type="button" class="btn btn-primary" (click)="crearDocumento()"
-    > nuevo</button>
+    *ngIf="isAdmin"> nuevo</button>
   <div class="alert alert-warning" id="no-result" *ngIf="documentos?.length === 0">
     <span>No existen documentos</span>
   </div>
@@ -88,8 +88,8 @@
 <!-- Gestiones asociadas -->
 <div class="container mt-5">
     <h5>Gestiones asociadas</h5>
- <button type="button" class="btn btn-primary" (click)="crearGestion()" *jhiHasAnyAuthority="'ROLE_ADMIN'"
-    > nueva</button>
+ <button type="button" class="btn btn-primary" (click)="crearGestion()"
+ *ngIf="isAdmin"> nueva</button>
   <div class="alert alert-warning" id="no-result" *ngIf="gestions?.length === 0">
     <span>No existen gestiones</span>
   </div>
@@ -132,11 +132,11 @@
   <div class="row justify-content-center">
     <div class="col-8 ">
       <button type="submit" (click)="previousState()" class="btn btn-info">
-        &nbsp;<span >Back</span>
+        &nbsp;<span >Atras</span>
       </button>
 
       <!-- <button type="button" [routerLink]="['/solicitud', solicitud?.id, 'edit']" class="btn btn-primary" > -->
-      <button type="button"  class="btn btn-primary" >
+      <button type="button"  class="btn btn-primary" *ngIf="isAdmin">
        &nbsp;<span >Editar</span>
       </button>
     </div>

@@ -7,17 +7,17 @@
   <div class="navbar-collapse collapse" id="navbarResponsive">
     <ul class="navbar-nav">
       <!-- // TODO! Esta linea va en el <li> inferior, pero al cambiar navvar a solicitudes da error.</li> -->
-      <!-- [routerLinkActiveOptions]="{ exact: true }" -->
+      <!-- [routerLinkActiveOptions]="{ exact: true }"
       <li
         class="nav-item"
         routerLinkActive="active"
       >
-        <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+        <a class="nav-link" routerLink="/" (click)="collapseNavbar()"> -->
           <!-- <span *ngIf="router.url !== '/'"> -->
-          <fa-icon [icon]="faHome"></fa-icon>
+          <!-- <fa-icon [icon]="faHome"></fa-icon>
           <span style ="margin-left: 5px">Inicio</span>
         </a>
-      </li>
+      </li> -->
 
       <li *ngIf="isAdmin">
         <ul class="navbar-nav">
@@ -94,7 +94,7 @@
       </li>
     </ul>
 
-      <ul class="navbar-nav" style="margin-left: auto; margin-right: 120px">
+      <ul class="navbar-nav" style="margin-left: auto; margin-right: 40px">
         <li *ngIf="isAdmin">
               <a
                 class="nav-link"

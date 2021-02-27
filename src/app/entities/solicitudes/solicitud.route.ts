@@ -18,7 +18,6 @@ export class SolicitudResolve implements Resolve<ISolicitud> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<ISolicitud> | Observable<never> {
     const id = route.params['id'];
-    console.log(id);
     if (id) {
       return this.service.find(id).pipe(
         flatMap((solicitud: HttpResponse<Solicitud>) => {

@@ -13,6 +13,7 @@ import { ISolicitud } from './solicitud.interface';
 // Services
 import { DocumentoService } from '../documentos/documento.service';
 import { GestionService } from '../gestiones/gestion.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-solicitud-detail',
@@ -22,6 +23,7 @@ export class SolicitudDetailComponent implements OnInit {
   solicitud: ISolicitud | null = null;
   documentos?: IDocumento[] | any;
   gestions: IGestion[] | any;
+  isAdmin = environment.IsAdmin;
 
   constructor(
     protected documentoService: DocumentoService,
@@ -33,13 +35,12 @@ export class SolicitudDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => (this.solicitud = solicitud));
-
     // Calculo días trancurridos desde la solicitud.
-    if (typeof this.solicitud!.fechaRespuesta === 'undefined') {
-      const date = moment();
+    if (this.solicitud!.fechaRespuesta) {
+      const date = moment(this.solicitud!.fechaRespuesta);
       this.solicitud!.diasRespuesta = date.diff(this.solicitud!.fechaSolicitud, 'days');
     } else {
-      const date = moment(this.solicitud!.fechaRespuesta);
+      const date = moment();
       this.solicitud!.diasRespuesta = date.diff(this.solicitud!.fechaSolicitud, 'days');
     }
 
