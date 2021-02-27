@@ -52,11 +52,22 @@
               <li>
                 <a
                   class="dropdown-item"
-                  routerLink="solicitudes"
+                  [routerLink]="['/solicitudes']"
                   routerLinkActive="active"
                   (click)="collapseNavbar()"
                 >
                   <span>Solicitudes</span>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="['/solicitudes/details']"
+                  routerLinkActive="active"
+                  (click)="collapseNavbar()"
+                >
+                  <span>Solicitudes detalle</span>
                 </a>
               </li>
 

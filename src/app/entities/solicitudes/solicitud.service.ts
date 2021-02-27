@@ -37,7 +37,7 @@ export class SolicitudService {
 
   find(id: number): Observable<EntityResponseType> {
     return this.http
-      .get<ISolicitud>(`${this.baseUrl}/${id}`, { observe: 'response' })
+      .get<ISolicitud>(`${this.baseUrl}solicitudes/${id}`, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

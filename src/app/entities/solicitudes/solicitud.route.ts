@@ -4,15 +4,12 @@ import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
-// import { JhiResolvePagingParams } from 'ng-jhipster';
 
 import { ISolicitud, Solicitud } from './solicitud.interface';
-// import { Authority } from 'app/shared/constants/authority.constants';
-// import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
 import { SolicitudService } from './solicitud.service';
 import { SolicitudComponent } from './solicitud.component';
-// import { SolicitudDetailComponent } from './solicitud-detail.component';
+import { SolicitudDetailComponent } from './solicitud-detail.component';
 // import { SolicitudUpdateComponent } from './solicitud-update.component';
 
 @Injectable({ providedIn: 'root' })
@@ -21,6 +18,7 @@ export class SolicitudResolve implements Resolve<ISolicitud> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<ISolicitud> | Observable<never> {
     const id = route.params['id'];
+    console.log(id);
     if (id) {
       return this.service.find(id).pipe(
         flatMap((solicitud: HttpResponse<Solicitud>) => {
@@ -41,50 +39,59 @@ export const solicitudRoute: Routes = [
   {
     path: '',
     component: SolicitudComponent,
-    resolve: {
-      // pagingParams: JhiResolvePagingParams
-    },
-    data: {
-      // authorities: [Authority.USER],
-      defaultSort: 'id,asc',
-      pageTitle: 'ocmSoliServerApp.solicitud.home.title'
-    },
+    // resolve: {
+    //   // pagingParams: JhiResolvePagingParams
+    // },
+    // data: {
+    //   // authorities: [Authority.USER],
+    //   defaultSort: 'id,asc',
+    //   pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+    // },
     // canActivate: [UserRouteAccessService]
   },
+
   {
-    path: ':id/view',
-    // component: SolicitudDetailComponent,
-    resolve: {
+    path: 'details/:id',
+    component: SolicitudDetailComponent,
+       resolve: {
       solicitud: SolicitudResolve
     },
-    data: {
-      // authorities: [Authority.USER],
-      pageTitle: 'ocmSoliServerApp.solicitud.home.title'
-    },
-    // canActivate: [UserRouteAccessService]
   },
-  {
-    path: 'new',
-    // component: SolicitudUpdateComponent,
-    resolve: {
-      solicitud: SolicitudResolve
-    },
-    data: {
-      // authorities: [Authority.USER],
-      pageTitle: 'ocmSoliServerApp.solicitud.home.title'
-    },
-    // canActivate: [UserRouteAccessService]
-  },
-  {
-    path: ':id/edit',
-    // component: SolicitudUpdateComponent,
-    resolve: {
-      solicitud: SolicitudResolve
-    },
-    data: {
-      // authorities: [Authority.USER],
-      pageTitle: 'ocmSoliServerApp.solicitud.home.title'
-    },
-    // canActivate: [UserRouteAccessService]
-  }
+
+  // {
+  //   path: ':id/view',
+  //   // component: SolicitudDetailComponent,
+  //   resolve: {
+  //     solicitud: SolicitudResolve
+  //   },
+  //   data: {
+  //     // authorities: [Authority.USER],
+  //     pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+  //   },
+  //   // canActivate: [UserRouteAccessService]
+  // },
+  // {
+  //   path: 'new',
+  //   // component: SolicitudUpdateComponent,
+  //   resolve: {
+  //     solicitud: SolicitudResolve
+  //   },
+  //   data: {
+  //     // authorities: [Authority.USER],
+  //     pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+  //   },
+  //   // canActivate: [UserRouteAccessService]
+  // },
+  // {
+  //   path: ':id/edit',
+  //   // component: SolicitudUpdateComponent,
+  //   resolve: {
+  //     solicitud: SolicitudResolve
+  //   },
+  //   data: {
+  //     // authorities: [Authority.USER],
+  //     pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+  //   },
+  //   // canActivate: [UserRouteAccessService]
+  // }
 ];
