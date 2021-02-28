@@ -4,18 +4,18 @@ import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
 
+import { LoginService } from './login.service';
+
 import { environment } from 'src/environments/environment';
 
 import { ILogin } from './login.interface';
 
-import { LoginService } from './login.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styles: [
-  ]
+  styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent {
   miError: string = '';
   miFormulario: FormGroup = this.fb.group({
