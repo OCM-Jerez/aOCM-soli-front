@@ -3,14 +3,10 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import * as moment from 'moment';
+
 import { environment } from '../../../environments/environment';
 import { ISolicitud } from './solicitud.interface';
-
-// import * as moment from 'moment';
-
-// import { DATE_FORMAT } from 'app/shared/constants/input.constants';
-// import { SERVER_API_URL } from 'app/app.constants';
-// import { createRequestOption } from 'app/shared/util/request-util';
 
 type EntityResponseType = HttpResponse<ISolicitud>;
 type EntityArrayResponseType = HttpResponse<ISolicitud[]>;
@@ -20,20 +16,6 @@ export class SolicitudService {
   private baseUrl = environment.baseUrl;
 
   constructor(protected http: HttpClient) {}
-
-  // create(solicitud: ISolicitud): Observable<EntityResponseType> {
-  //   const copy = this.convertDateFromClient(solicitud);
-  //   return this.http
-  //     .post<ISolicitud>(this.url, copy, { observe: 'response' })
-  //     .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-  // }
-
-  // update(solicitud: ISolicitud): Observable<EntityResponseType> {
-  //   const copy = this.convertDateFromClient(solicitud);
-  //   return this.http
-  //     .put<ISolicitud>(this.url, copy, { observe: 'response' })
-  //     .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-  // }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http
@@ -56,18 +38,32 @@ export class SolicitudService {
    return this.http.get<ISolicitud[]>(url, { headers });
   }
 
+  create(solicitud: ISolicitud): Observable<EntityResponseType> {
+    //const copy = this.convertDateFromClient(solicitud);
+    return this.http
+      .post<ISolicitud>(this.baseUrl + 'solicitudes', solicitud, { observe: 'response' });
+          // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  update(solicitud: ISolicitud): Observable<EntityResponseType> {
+    // const copy = this.convertDateFromClient(solicitud);
+    return this.http
+      .put<ISolicitud>(this.baseUrl, solicitud, { observe: 'response' });
+      // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.baseUrl}/${id}`, { observe: 'response' });
   }
 
   // protected convertDateFromClient(solicitud: ISolicitud): ISolicitud {
-    // const copy: ISolicitud = Object.assign({}, solicitud, {
-    //   fechaSolicitud:
-    //     solicitud.fechaSolicitud && solicitud.fechaSolicitud.isValid() ? solicitud.fechaSolicitud.format(DATE_FORMAT) : undefined,
-    //   fechaRespuesta:
-    //     solicitud.fechaRespuesta && solicitud.fechaRespuesta.isValid() ? solicitud.fechaRespuesta.format(DATE_FORMAT) : undefined
-    // });
-    // return copy;
+  //   const copy: ISolicitud = Object.assign({}, solicitud, {
+  //     fechaSolicitud:
+  //       solicitud.fechaSolicitud && solicitud.fechaSolicitud.isValid() ? solicitud.fechaSolicitud.format(DATE_FORMAT) : undefined,
+  //     fechaRespuesta:
+  //       solicitud.fechaRespuesta && solicitud.fechaRespuesta.isValid() ? solicitud.fechaRespuesta.format(DATE_FORMAT) : undefined
+  //   });
+  //   return copy;
   // }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {

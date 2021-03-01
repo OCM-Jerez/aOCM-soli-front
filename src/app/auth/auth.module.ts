@@ -8,7 +8,12 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MainComponent } from './pages/main/main.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MainComponent],
+  declarations: [
+    MainComponent,
+    LoginComponent,
+    RegisterComponent
+  ],
+
   imports: [
     CommonModule,
     AuthRoutingModule,

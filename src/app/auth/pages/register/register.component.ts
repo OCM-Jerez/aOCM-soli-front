@@ -9,6 +9,7 @@ import { IUser } from 'src/app/entities/users/user.interface';
 import { AuthService } from '../../auth.service';
 import { EmailValidatorService } from '../../../validator/email-validator.service';
 import { LoginValidatorService } from '../../../validator/login-validator.service';
+import { Login } from '../login/login.model';
 
 @Component({
   selector: 'app-register',
@@ -21,10 +22,10 @@ export class RegisterComponent {
   // validators
   // https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24149906#notes
   miFormulario: FormGroup = this.fb.group({
-    login: ['', [Validators.required, Validators.pattern( this.loginValidator.loginPattern ) ], [this.loginValidator]],
+    login: ['', [Validators.required, Validators.pattern(this.loginValidator.loginPattern)], [this.loginValidator]],
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email, Validators.pattern( this.emailValidator.emailPattern ) ], [this.emailValidator]],
+    email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailValidator.emailPattern)], [this.emailValidator]],
     password: ['', [Validators.required, Validators.minLength(5)]],
   });
 

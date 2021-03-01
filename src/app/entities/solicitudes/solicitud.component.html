@@ -9,7 +9,11 @@
         </h2>
       </div>
       <div class="col-4" >
-        <button class="btn btn-primary float-right" *ngIf= isAdmin>
+        <button
+             class="btn btn-primary float-right"
+             [routerLink]="['/solicitudes/new']"
+             *ngIf= isAdmin
+              >
           <fa-icon [icon]="faPlus"></fa-icon>
           <span>Crear nueva solicitud</span>
         </button>
@@ -61,15 +65,7 @@
                 <span class="d-none d-md-inline">Editar</span>
               </button> -->
 
-              <button
-                type="button"
-                (click)="delete(solicitud)"
-                class="btn btn-danger btn-sm"
-                *ngIf = isAdmin
-              >
-                <fa-icon  [icon]="faTimes"></fa-icon>
-                <span class="d-none d-md-inline">Borrar</span>
-              </button>
+
             </div>
           </td>
         </tr>

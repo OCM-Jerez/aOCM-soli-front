@@ -4,13 +4,13 @@ import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
-
 import { ISolicitud, Solicitud } from './solicitud.interface';
 
 import { SolicitudService } from './solicitud.service';
+
 import { SolicitudComponent } from './solicitud.component';
 import { SolicitudDetailComponent } from './solicitud-detail.component';
-// import { SolicitudUpdateComponent } from './solicitud-update.component';
+import { SolicitudUpdateComponent } from './solicitud-update.component';
 
 @Injectable({ providedIn: 'root' })
 export class SolicitudResolve implements Resolve<ISolicitud> {
@@ -69,16 +69,17 @@ export const solicitudRoute: Routes = [
   //   },
   //   // canActivate: [UserRouteAccessService]
   // },
-  // {
-  //   path: 'new',
-  //   // component: SolicitudUpdateComponent,
-  //   resolve: {
-  //     solicitud: SolicitudResolve
-  //   },
-  //   data: {
-  //     // authorities: [Authority.USER],
-  //     pageTitle: 'ocmSoliServerApp.solicitud.home.title'
-  //   },
+
+  {
+    path: 'new',
+    component: SolicitudUpdateComponent,
+    resolve: {
+      solicitud: SolicitudResolve
+    },
+    data: {
+      // authorities: [Authority.USER],
+      // pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+    },
   //   // canActivate: [UserRouteAccessService]
   // },
   // {
@@ -93,4 +94,6 @@ export const solicitudRoute: Routes = [
   //   },
   //   // canActivate: [UserRouteAccessService]
   // }
-];
+  }
+
+]

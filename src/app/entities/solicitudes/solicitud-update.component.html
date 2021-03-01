@@ -1,0 +1,92 @@
+<div class="row justify-content-center" style="margin-top: 20px">
+  <div class="col-8">
+    <!-- TODO No acepta esto
+      Sin embargo en register si lo hace.-->
+      <form [formGroup]="editForm" #formDirective="ngForm" >
+        <h2>Crear o editar solicitud</h2>
+      <hr />
+
+      <div>
+        <div class="form-group">
+          <!--  <label for="field_descripcion" class="form-control-label"
+         ? Si utilizo la etiqueta for permite hacer click sobre la etiqueta
+         ? y seleccionará el input asociado.
+         ? Esto puede tener sentido en botones o selectores, pero no en input.
+        https://stackoverflow.com/questions/18432376/what-does-for-attribute-do-in-html-label-tag/18432439-->
+          <!-- ! Esta class no hace nada. -->
+          <label class="form-control-label">Descripción</label>
+          <input
+            id="field_descripcion"
+            type="text"
+            class="form-control"
+            formControlName="descripcion"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label">Fecha solicitud</label>
+          <div class="input-group">
+            <!-- ngbDatepicker #fechaSolicitudDp="ngbDatepicker" -->
+            <input
+              id="field_fechaSolicitud"
+              type="text"
+              class="form-control"
+              style="max-width: 120px"
+              formControlName="fechaSolicitud"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <!-- TODO! añadir DatePicker. -->
+          <label class="form-control-label">Fecha respuesta</label>
+          <div class="input-group">
+            <!-- ngbDatepicker #fechaSolicitudDp="ngbDatepicker" -->
+            <input
+              id="field_fechaRespuesta"
+              type="text"
+              class="form-control"
+              style="max-width: 120px"
+              formControlName="fechaRespuesta"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label">Observación</label>
+          <input
+            id="field_observacion"
+            type="text"
+            class="form-control"
+            formControlName="observacion"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          id="cancel-save"
+          class="btn btn-secondary"
+          (click)="previousState()"
+        >
+          <!-- <fa-icon  [icon]="faEye"></fa-icon> -->
+          &nbsp;<span>Cancelar</span>
+        </button>
+
+        <!-- [disabled]="editForm.invalid || isSaving" -->
+        <!--  TODO No funciona si type = "submit" -->
+        <button
+          type="button"
+          id="save-entity"
+          class="btn btn-primary"
+          (click)="save()"
+        >
+          <!-- <fa-icon  [icon]="faEye"></fa-icon> -->
+          &nbsp;<span>Grabar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+

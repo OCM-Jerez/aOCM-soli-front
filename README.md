@@ -7,6 +7,9 @@ Actualizado a la versión 11.2.0
 //Uso codigo del curso de Fernando Hererera.
 https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24488426#notes
 
+Formularios reactivos:
+https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24079916#notes
+
 
 
 

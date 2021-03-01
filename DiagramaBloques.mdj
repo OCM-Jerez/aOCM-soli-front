@@ -2204,7 +2204,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -1016,
-											"top": 554,
+											"top": 42,
 											"height": 13
 										},
 										{
@@ -2215,7 +2215,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 589,
-											"top": 902,
+											"top": 646,
 											"width": 183,
 											"height": 13,
 											"text": "AuthService"
@@ -2229,7 +2229,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -1016,
-											"top": 554,
+											"top": 42,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -2243,14 +2243,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -1016,
-											"top": 554,
+											"top": 42,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 584,
-									"top": 895,
+									"top": 639,
 									"width": 193,
 									"height": 25,
 									"stereotypeLabel": {
@@ -2270,7 +2270,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 584,
-							"top": 880,
+							"top": 624,
 							"width": 193,
 							"height": 169,
 							"nameCompartment": {

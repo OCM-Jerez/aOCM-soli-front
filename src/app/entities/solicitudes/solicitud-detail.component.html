@@ -40,12 +40,19 @@
 
 <!-- Documentos asociados -->
 <div class="container mt-5">
-    <h5>Documentos asociados</h5>
+  <!-- https://netbasal.com/case-study-how-to-use-an-angular-structural-directive-to-stay-dry-499c4dff09c7 -->
+    <h5 *ngIf="documentos?.length > 0; else noDocumentosTpl">Documentos asociados</h5>
     <button type="button" class="btn btn-primary" (click)="crearDocumento()"
     *ngIf="isAdmin"> nuevo</button>
-  <div class="alert alert-warning" id="no-result" *ngIf="documentos?.length === 0">
+  <!-- <div class="alert alert-warning" id="no-result" *ngIf="documentos?.length === 0">
     <span>No existen documentos</span>
-  </div>
+  </div> -->
+
+  <ng-template #noDocumentosTpl>
+    <div>
+      <h5>No hay documentos asociados a esta solicitud</h5>
+    </div>
+  </ng-template>
 
   <div class="table-responsive" id="entities" *ngIf="documentos?.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
@@ -87,12 +94,17 @@
 
 <!-- Gestiones asociadas -->
 <div class="container mt-5">
-    <h5>Gestiones asociadas</h5>
+    <h5  *ngIf="gestions?.length === 0; else noGestionesTpl">Gestiones asociadas</h5>
  <button type="button" class="btn btn-primary" (click)="crearGestion()"
  *ngIf="isAdmin"> nueva</button>
-  <div class="alert alert-warning" id="no-result" *ngIf="gestions?.length === 0">
+  <!-- <div class="alert alert-warning" id="no-result" *ngIf="gestions?.length === 0">
     <span>No existen gestiones</span>
-  </div>
+  </div> -->
+  <ng-template #noGestionesTpl>
+    <div>
+      <h5>No hay gestiones asociadas a esta solicitud</h5>
+    </div>
+  </ng-template>
 
   <div class="table-responsive" id="entities" *ngIf="gestions?.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
@@ -139,6 +151,17 @@
       <button type="button"  class="btn btn-primary" *ngIf="isAdmin">
        &nbsp;<span >Editar</span>
       </button>
+
+       <!-- (click)="delete(solicitud)" -->
+        <!-- <fa-icon  [icon]="faTimes"></fa-icon> -->
+        <button
+        type="button"
+        class="btn btn-danger"
+        *ngIf = isAdmin
+      >
+        <span class="d-none d-md-inline">Borrar</span>
+      </button>
+
     </div>
   </div>
 </div>

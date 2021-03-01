@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { faPlus, faEye, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
+import { faPlus, faEye, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { environment } from 'src/environments/environment';
 
@@ -22,13 +22,13 @@ export class SolicitudComponent implements OnInit {
   faTimes = faTimes;
 
   solicitudes?: ISolicitud[];
-  diasRespuesta = 0;
+  // diasRespuesta = 0;
   isAdmin = environment.IsAdmin;
 
   constructor(
     protected solicitudService: SolicitudService,
-    protected activatedRoute: ActivatedRoute,
-    protected router: Router,
+    // protected activatedRoute: ActivatedRoute,
+    // protected router: Router,
   ) { }
 
   ngOnInit(): void {
