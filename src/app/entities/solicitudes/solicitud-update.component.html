@@ -1,9 +1,7 @@
 <div class="row justify-content-center" style="margin-top: 20px">
   <div class="col-8">
-    <!-- TODO No acepta esto
-      Sin embargo en register si lo hace.-->
-      <form [formGroup]="editForm" #formDirective="ngForm" >
-        <h2>Crear o editar solicitud</h2>
+    <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
+      <h2> {{ textoCabecera }}</h2>
       <hr />
 
       <div>
@@ -24,7 +22,8 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label">Fecha solicitud</label>
+          <!-- TODO! añadir DatePicker. -->
+          <label class="form-control-label">Fecha solicitud (aaaa-mm-dd)</label>
           <div class="input-group">
             <!-- ngbDatepicker #fechaSolicitudDp="ngbDatepicker" -->
             <input
@@ -38,10 +37,8 @@
         </div>
 
         <div class="form-group">
-          <!-- TODO! añadir DatePicker. -->
           <label class="form-control-label">Fecha respuesta</label>
           <div class="input-group">
-            <!-- ngbDatepicker #fechaSolicitudDp="ngbDatepicker" -->
             <input
               id="field_fechaRespuesta"
               type="text"
@@ -70,23 +67,16 @@
           class="btn btn-secondary"
           (click)="previousState()"
         >
-          <!-- <fa-icon  [icon]="faEye"></fa-icon> -->
+          <fa-icon [icon]="faWindowClose"></fa-icon>
           &nbsp;<span>Cancelar</span>
         </button>
 
         <!-- [disabled]="editForm.invalid || isSaving" -->
-        <!--  TODO No funciona si type = "submit" -->
-        <button
-          type="button"
-          id="save-entity"
-          class="btn btn-primary"
-          (click)="save()"
-        >
-          <!-- <fa-icon  [icon]="faEye"></fa-icon> -->
+        <button type="submit" id="save-entity" class="btn btn-primary">
+          <fa-icon [icon]="faSave"></fa-icon>
           &nbsp;<span>Grabar</span>
         </button>
       </div>
     </form>
   </div>
 </div>
-

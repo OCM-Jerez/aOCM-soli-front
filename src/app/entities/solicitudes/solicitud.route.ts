@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
+
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
-
-import { ISolicitud, Solicitud } from './solicitud.interface';
-
-import { SolicitudService } from './solicitud.service';
 
 import { SolicitudComponent } from './solicitud.component';
 import { SolicitudDetailComponent } from './solicitud-detail.component';
 import { SolicitudUpdateComponent } from './solicitud-update.component';
+
+import { SolicitudService } from './solicitud.service';
+
+import { ISolicitud, Solicitud } from './solicitud.interface';
 
 @Injectable({ providedIn: 'root' })
 export class SolicitudResolve implements Resolve<ISolicitud> {
@@ -65,7 +66,7 @@ export const solicitudRoute: Routes = [
   //   },
   //   data: {
   //     // authorities: [Authority.USER],
-  //     pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+  //     // pageTitle: 'ocmSoliServerApp.solicitud.home.title'
   //   },
   //   // canActivate: [UserRouteAccessService]
   // },
@@ -80,20 +81,21 @@ export const solicitudRoute: Routes = [
       // authorities: [Authority.USER],
       // pageTitle: 'ocmSoliServerApp.solicitud.home.title'
     },
-  //   // canActivate: [UserRouteAccessService]
-  // },
-  // {
-  //   path: ':id/edit',
-  //   // component: SolicitudUpdateComponent,
-  //   resolve: {
-  //     solicitud: SolicitudResolve
-  //   },
-  //   data: {
-  //     // authorities: [Authority.USER],
-  //     pageTitle: 'ocmSoliServerApp.solicitud.home.title'
-  //   },
-  //   // canActivate: [UserRouteAccessService]
-  // }
+     // canActivate: [UserRouteAccessService]
+  },
+
+  {
+    path: 'edit/:id',
+    component: SolicitudUpdateComponent,
+    resolve: {
+      solicitud: SolicitudResolve
+    },
+    data: {
+      // authorities: [Authority.USER],
+      pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+    }
+     // canActivate: [UserRouteAccessService]
   }
+
 
 ]

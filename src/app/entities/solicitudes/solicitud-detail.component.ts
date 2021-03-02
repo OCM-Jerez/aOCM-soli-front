@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 
+import { Observable } from 'rxjs';
 import { LocalStorageService } from 'ngx-webstorage';
 import * as moment from 'moment';
+import Swal from 'sweetalert2';
+
+// Services
+import { SolicitudService } from './solicitud.service';
+import { DocumentoService } from '../documentos/documento.service';
+import { GestionService } from '../gestiones/gestion.service';
 
 // Interfaces
 import { IDocumento } from '../documentos/documento.interface';
 import { IGestion } from '../gestiones/gestion.interface';
-import { ISolicitud } from './solicitud.interface';
+import { ISolicitud, Solicitud } from './solicitud.interface';
 
-
-// Services
-import { DocumentoService } from '../documentos/documento.service';
-import { GestionService } from '../gestiones/gestion.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -26,6 +30,7 @@ export class SolicitudDetailComponent implements OnInit {
   isAdmin = environment.IsAdmin;
 
   constructor(
+    protected solicitudService: SolicitudService,
     protected documentoService: DocumentoService,
     protected gestionService: GestionService,
     protected activatedRoute: ActivatedRoute,
@@ -58,6 +63,33 @@ export class SolicitudDetailComponent implements OnInit {
     //   });
     // }
   }
+
+  save(solicitud: ISolicitud): void {
+    Swal.fire('', 'La solicitud se actualizará aqui.', 'success');
+    this.subscribeToSaveResponse(this.solicitudService.update(solicitud));
+    }
+
+   protected subscribeToSaveResponse(result: Observable<HttpResponse<ISolicitud>>): void {
+      result.subscribe(
+        () => this.onSaveSuccess(),
+        () => this.onSaveError()
+      );
+    }
+
+    protected onSaveSuccess(): void {
+      Swal.fire('', 'La solicitud ha sido actualizada correctamente.', 'success');
+      // this.isSaving = false;
+      this.previousState();
+    }
+
+    protected onSaveError(): void {
+      // TODO Obtener error.
+      Swal.fire('Error', 'error', 'error');
+      // this.isSaving = false;
+    }
+
+
+
 
   crearDocumento(): void {
     this.localStorage.store('solicitud', this.solicitud);

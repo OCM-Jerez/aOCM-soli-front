@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
+import { faEye, faWindowClose, faSave } from '@fortawesome/free-solid-svg-icons';
 
 import { SolicitudService } from './solicitud.service';
 
@@ -16,10 +17,15 @@ import { ISolicitud, Solicitud } from './solicitud.interface';
   styles: [
   ]
 })
+
 export class SolicitudUpdateComponent implements OnInit {
   faEye = faEye;
+  faWindowClose = faWindowClose;
+  faSave = faSave;
 
   isSaving = false;
+  texto = "editada";
+  textoCabecera = "Editar solicitud"
   fechaSolicitudDp: any;
   fechaRespuestaDp: any;
 
@@ -39,8 +45,9 @@ export class SolicitudUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => {
-      console.log(solicitud);
       this.updateForm(solicitud);
+      if (solicitud.id === undefined) { this.textoCabecera = "Crear solicitud"}
+
     });
   }
 
@@ -70,26 +77,19 @@ export class SolicitudUpdateComponent implements OnInit {
   //   });
   // }
 
-  previousState(): void {
-    window.history.back();
-  }
-
   save(): void {
-    console.log(this.editForm);
-    this.isSaving = true;
+    // this.isSaving = true;
     const solicitud = this.createFromForm();
-    console.log(solicitud);
     if (solicitud.id !== undefined) {
       this.subscribeToSaveResponse(this.solicitudService.update(solicitud));
     } else {
+      this.isSaving = true;
       this.subscribeToSaveResponse(this.solicitudService.create(solicitud));
     }
   }
 
   private createFromForm(): ISolicitud {
     const { descripcion } = this.editForm.value;
-    console.log(descripcion);
-
     return {
       ...new Solicitud(),
       id: this.editForm.get(['id'])!.value,
@@ -108,13 +108,20 @@ export class SolicitudUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
+    if (this.isSaving) {this.texto = "guardada" }
+    Swal.fire('', 'La solicitud ha sido ' + this.texto + ' correctamente.', 'success');
     this.isSaving = false;
-    // this.previousState();
+    this.previousState();
   }
 
   protected onSaveError(): void {
+    // TODO Obtener error.
+    Swal.fire('Error', 'error', 'error');
     this.isSaving = false;
   }
 
+  previousState(): void {
+    window.history.back();
+  }
 
 }

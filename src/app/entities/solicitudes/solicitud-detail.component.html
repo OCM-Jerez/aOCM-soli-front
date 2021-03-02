@@ -78,7 +78,6 @@
           <td>{{ documento.observacion }}</td>
 
           <td>
-
             <!-- (click)="openFile(documento.documentoContentType, documento.documento)" -->
             <a
               *ngIf="documento.documento"
@@ -127,7 +126,6 @@
           <td>{{ gestion.observacion }}</td>
 
           <td>
-
             <!-- (click)="openFile(gestion.documentoContentType, gestion.documento)" -->
             <a
               *ngIf="gestion.documento"
@@ -147,8 +145,13 @@
         &nbsp;<span >Atras</span>
       </button>
 
-      <!-- <button type="button" [routerLink]="['/solicitud', solicitud?.id, 'edit']" class="btn btn-primary" > -->
-      <button type="button"  class="btn btn-primary" *ngIf="isAdmin">
+      <button type="button" [routerLink]="['/solicitudes/edit', solicitud?.id]" class="btn btn-primary" >
+      <!-- <button
+         *ngIf="isAdmin"
+         type="button"
+         class="btn btn-primary"
+        (click)="save(solicitud!)"
+        > -->
        &nbsp;<span >Editar</span>
       </button>
 

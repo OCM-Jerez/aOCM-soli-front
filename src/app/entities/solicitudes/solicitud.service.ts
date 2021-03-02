@@ -48,7 +48,9 @@ export class SolicitudService {
   update(solicitud: ISolicitud): Observable<EntityResponseType> {
     // const copy = this.convertDateFromClient(solicitud);
     return this.http
-      .put<ISolicitud>(this.baseUrl, solicitud, { observe: 'response' });
+      // .put<ISolicitud>(this.baseUrl, solicitud, { observe: 'response' });
+      .put<ISolicitud>(this.baseUrl + 'solicitudes', solicitud, { observe: 'response' });
+
       // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
