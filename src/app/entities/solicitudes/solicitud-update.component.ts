@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable } from 'rxjs';
-import Swal from 'sweetalert2';
 import { faEye, faWindowClose, faSave } from '@fortawesome/free-solid-svg-icons';
 
 import { SolicitudService } from './solicitud.service';
@@ -23,11 +20,9 @@ export class SolicitudUpdateComponent implements OnInit {
   faWindowClose = faWindowClose;
   faSave = faSave;
 
-  isSaving = false;
-  texto = "editada";
   textoCabecera = "Editar solicitud"
-  fechaSolicitudDp: any;
-  fechaRespuestaDp: any;
+  // fechaSolicitudDp: any;
+  // fechaRespuestaDp: any;
 
   editForm: FormGroup = this.fb.group({
     id: [],
@@ -46,8 +41,7 @@ export class SolicitudUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => {
       this.updateForm(solicitud);
-      if (solicitud.id === undefined) { this.textoCabecera = "Crear solicitud"}
-
+      if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud"}
     });
   }
 
@@ -59,6 +53,27 @@ export class SolicitudUpdateComponent implements OnInit {
       fechaRespuesta: solicitud.fechaRespuesta,
       observacion: solicitud.observacion
     });
+  }
+
+  save(): void {
+    const solicitud: ISolicitud = this.createFromForm();
+    this.solicitudService.saveOrUpdate(solicitud)
+  }
+
+  private createFromForm(): ISolicitud {
+    const { descripcion } = this.editForm.value;
+    return {
+      ...new Solicitud(),
+      id: this.editForm.get(['id'])!.value,
+      descripcion: this.editForm.get(['descripcion'])!.value,
+      fechaSolicitud: this.editForm.get(['fechaSolicitud'])!.value,
+      fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value,
+      observacion: this.editForm.get(['observacion'])!.value
+    };
+  }
+
+   previousState(): void {
+    window.history.back();
   }
 
   // byteSize(base64String: string): string {
@@ -76,52 +91,5 @@ export class SolicitudUpdateComponent implements OnInit {
   //     );
   //   });
   // }
-
-  save(): void {
-    // this.isSaving = true;
-    const solicitud = this.createFromForm();
-    if (solicitud.id !== undefined) {
-      this.subscribeToSaveResponse(this.solicitudService.update(solicitud));
-    } else {
-      this.isSaving = true;
-      this.subscribeToSaveResponse(this.solicitudService.create(solicitud));
-    }
-  }
-
-  private createFromForm(): ISolicitud {
-    const { descripcion } = this.editForm.value;
-    return {
-      ...new Solicitud(),
-      id: this.editForm.get(['id'])!.value,
-      descripcion: this.editForm.get(['descripcion'])!.value,
-      fechaSolicitud: this.editForm.get(['fechaSolicitud'])!.value,
-      fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value,
-      observacion: this.editForm.get(['observacion'])!.value
-    };
-  }
-
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<ISolicitud>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
-  }
-
-  protected onSaveSuccess(): void {
-    if (this.isSaving) {this.texto = "guardada" }
-    Swal.fire('', 'La solicitud ha sido ' + this.texto + ' correctamente.', 'success');
-    this.isSaving = false;
-    this.previousState();
-  }
-
-  protected onSaveError(): void {
-    // TODO Obtener error.
-    Swal.fire('Error', 'error', 'error');
-    this.isSaving = false;
-  }
-
-  previousState(): void {
-    window.history.back();
-  }
 
 }
