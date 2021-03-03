@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
 
 import * as moment from 'moment';
-import { faPlus, faEye, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { environment } from 'src/environments/environment';
 
 import { SolicitudService } from './solicitud.service';
 import { ISolicitud } from './solicitud.interface';
-// import * as moment from 'moment';
 
 @Component({
   selector: 'app-solicitud',
@@ -18,18 +15,12 @@ import { ISolicitud } from './solicitud.interface';
 export class SolicitudComponent implements OnInit {
   faPlus = faPlus;
   faEye = faEye;
-  faPencilAlt = faPencilAlt;
-  faTimes = faTimes;
 
   solicitudes?: ISolicitud[];
   // diasRespuesta = 0;
   isAdmin = environment.IsAdmin;
 
-  constructor(
-    protected solicitudService: SolicitudService,
-    // protected activatedRoute: ActivatedRoute,
-    // protected router: Router,
-  ) { }
+  constructor(protected solicitudService: SolicitudService) { }
 
   ngOnInit(): void {
     this.loadAll();
@@ -38,11 +29,6 @@ export class SolicitudComponent implements OnInit {
   trackId(index: number, item: ISolicitud): number {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return item.id!;
-  }
-
-  delete(solicitud: ISolicitud): void {
-    // const modalRef = this.modalService.open(SolicitudDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    // modalRef.componentInstance.solicitud = solicitud;
   }
 
   private loadAll(): void {

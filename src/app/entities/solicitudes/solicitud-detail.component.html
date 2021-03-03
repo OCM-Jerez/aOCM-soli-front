@@ -155,13 +155,15 @@
        &nbsp;<span >Editar</span>
       </button>
 
-       <!-- (click)="delete(solicitud)" -->
-        <!-- <fa-icon  [icon]="faTimes"></fa-icon> -->
-        <button
-        type="button"
-        class="btn btn-danger"
-        *ngIf = isAdmin
+      <!-- <button type="button" [routerLink]="['/solicitudes/', solicitud?.id]" class="btn btn-primary" > -->
+
+      <button
+      type="button"
+      class="btn btn-danger"
+      *ngIf = isAdmin
+      (click)="delete(solicitud?.id)"
       >
+      <!-- <fa-icon  [icon]="faTimes"></fa-icon>  -->
         <span class="d-none d-md-inline">Borrar</span>
       </button>
 

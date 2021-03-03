@@ -15,6 +15,7 @@ import { IDocumento } from '../documentos/documento.interface';
 import { IGestion } from '../gestiones/gestion.interface';
 
 import { environment } from 'src/environments/environment';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-solicitud-detail',
@@ -63,6 +64,18 @@ export class SolicitudDetailComponent implements OnInit {
 
   save(solicitud: ISolicitud): void {
     this.solicitudService.saveOrUpdate(solicitud)
+    }
+
+    delete(id: string): void {
+      // const modalRef = this.modalService.open(SolicitudDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+      // modalRef.componentInstance.solicitud = solicitud;
+      this.solicitudService.delete(id)
+      // this.solicitudService.delete(id).subscribe
+    //   this.solicitudService.delete(id).subscribe(() => {
+    //     console.log('vuelvo'),
+    //     console.log(error)
+    // })
+
     }
 
   crearDocumento(): void {

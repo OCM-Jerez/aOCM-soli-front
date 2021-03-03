@@ -84,15 +84,20 @@ previousState(): void {
 
   update(solicitud: ISolicitud): Observable<EntityResponseType> {
     // const copy = this.convertDateFromClient(solicitud);
+    console.log(this.baseUrl + 'solicitudes');
+
+
     return this.http
       // .put<ISolicitud>(this.baseUrl, solicitud, { observe: 'response' });
       .put<ISolicitud>(this.baseUrl + 'solicitudes', solicitud, { observe: 'response' });
-
       // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.baseUrl}/${id}`, { observe: 'response' });
+  delete(id: string): Observable<HttpResponse<{}>> {
+    console.log(`${this.baseUrl}solicitudes/${id}`);
+    return this.http.delete(`${this.baseUrl}solicitudes/${id}`, { observe: 'response' });
+    // return this.http.delete(this.baseUrl + 'solicitudes', id, { observe: 'response' });
+
   }
 
   // protected convertDateFromClient(solicitud: ISolicitud): ISolicitud {

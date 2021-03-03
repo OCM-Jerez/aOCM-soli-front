@@ -95,6 +95,19 @@ export const solicitudRoute: Routes = [
       pageTitle: 'ocmSoliServerApp.solicitud.home.title'
     }
      // canActivate: [UserRouteAccessService]
+  },
+
+  {
+    path: ':id',
+    component: SolicitudUpdateComponent,
+    resolve: {
+      solicitud: SolicitudResolve
+    },
+    data: {
+      // authorities: [Authority.USER],
+      pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+    }
+     // canActivate: [UserRouteAccessService]
   }
 
 

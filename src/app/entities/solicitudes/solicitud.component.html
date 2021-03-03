@@ -10,12 +10,12 @@
       </div>
       <div class="col-4" >
         <button
+             *ngIf= isAdmin
              class="btn btn-primary float-right"
              [routerLink]="['/solicitudes/new']"
-             *ngIf= isAdmin
               >
           <fa-icon [icon]="faPlus"></fa-icon>
-          <span>Crear nueva solicitud</span>
+          <span> Crear nueva solicitud</span>
         </button>
       </div>
     </div>
@@ -32,7 +32,7 @@
           <th scope="col"><span>Observaciones</span></th>
         </tr>
       </thead>
-      <!-- <tbody *ngIf="users"> -->
+
       <tbody>
         <tr *ngFor="let solicitud of solicitudes">
           <td>{{ solicitud.descripcion }}</td>
@@ -54,17 +54,6 @@
                 <fa-icon  [icon]="faEye"></fa-icon>
                 <span class="d-none d-md-inline">Ver</span>
               </button>
-
-              <!-- <button
-                type="submit"
-                queryParamsHandling="merge"
-                class="btn btn-primary btn-sm"
-                *ngIf = isAdmin
-              >
-                <fa-icon  [icon]="faPencilAlt"></fa-icon>
-                <span class="d-none d-md-inline">Editar</span>
-              </button> -->
-
 
             </div>
           </td>
