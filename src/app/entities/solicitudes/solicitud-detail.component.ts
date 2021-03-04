@@ -15,7 +15,6 @@ import { IDocumento } from '../documentos/documento.interface';
 import { IGestion } from '../gestiones/gestion.interface';
 
 import { environment } from 'src/environments/environment';
-import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-solicitud-detail',
@@ -67,16 +66,20 @@ export class SolicitudDetailComponent implements OnInit {
     }
 
     delete(id: string): void {
+      // modal para validar si desea o no eliminar slicitud
+      // validas si tenes documentos if documentos.length > 0 no permite borrar
+      // o agregar eliminar en cascada.
+
+      // console.log(id);
       // const modalRef = this.modalService.open(SolicitudDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
       // modalRef.componentInstance.solicitud = solicitud;
-      this.solicitudService.delete(id)
-      // this.solicitudService.delete(id).subscribe
-    //   this.solicitudService.delete(id).subscribe(() => {
-    //     console.log('vuelvo'),
-    //     console.log(error)
-    // })
-
-    }
+      this.solicitudService.delete(id).subscribe(response => {
+        console.log(response);
+        this.previousState();
+      }, error => {
+        console.log(error);
+      });
+  }
 
   crearDocumento(): void {
     this.localStorage.store('solicitud', this.solicitud);

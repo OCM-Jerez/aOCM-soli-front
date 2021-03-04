@@ -38,7 +38,7 @@ protected subscribeToSaveResponse(result: Observable<HttpResponse<ISolicitud>>):
 }
 
 protected onSaveSuccess(): void {
-  if (this.isSaving) {this.texto = "guardada" }
+  if (this.isSaving) {this.texto = "creada" }
   Swal.fire('', 'La solicitud ha sido ' + this.texto + ' correctamente.', 'success');
   this.isSaving = false;
   this.previousState();
