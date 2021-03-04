@@ -5,7 +5,6 @@ import { LocalStorageService } from 'ngx-webstorage';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
 
-
 // Services
 import { SolicitudService } from './solicitud.service';
 import { DocumentoService } from '../documentos/documento.service';
@@ -63,14 +62,7 @@ export class SolicitudDetailComponent implements OnInit {
     // }
   }
 
-  // update(solicitud: ISolicitud): void {
-  //   // this.solicitudService.saveOrUpdate(solicitud)
-  //   this.solicitudService.consulta(solicitud, 'update')
-  //   }
-
-    // delete(id: string): void {
-      delete(solicitud: ISolicitud): void {
-
+       delete(solicitud: ISolicitud): void {
         Swal.fire({
           title: '¿Realmente quieres borrar esta solicitud?',
           showDenyButton: true,
@@ -84,22 +76,6 @@ export class SolicitudDetailComponent implements OnInit {
             this.solicitudService.consulta(solicitud,'delete')
           }
         })
-
-      // modal para validar si desea o no eliminar slicitud
-      // validas si tenes documentos if documentos.length > 0 no permite borrar
-      // o agregar eliminar en cascada.
-
-      // this.solicitudService.delete(id).subscribe(response => {
-      //   this.solicitudService.consulta(solicitud,'delete').subscribe(response => {
-      //   console.log(response);
-      //   this.previousState();
-      // }, error => {
-      //   console.log(error);
-      // });
-
-
-
-      // this.solicitudService.consulta(solicitud,'delete')
   }
 
   crearDocumento(): void {

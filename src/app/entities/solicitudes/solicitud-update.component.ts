@@ -21,8 +21,6 @@ export class SolicitudUpdateComponent implements OnInit {
   faSave = faSave;
 
   textoCabecera = "Editar solicitud"
-  // fechaSolicitudDp: any;
-  // fechaRespuestaDp: any;
 
   editForm: FormGroup = this.fb.group({
     id: [],
@@ -41,7 +39,7 @@ export class SolicitudUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => {
       this.updateForm(solicitud);
-      if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud"}
+      if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud" }
     });
   }
 
@@ -57,14 +55,12 @@ export class SolicitudUpdateComponent implements OnInit {
 
   save(): void {
     const solicitud: ISolicitud = this.createFromForm();
-    // this.solicitudService.saveOrUpdate(solicitud)
-
     if (solicitud.id === undefined) {
-    this.solicitudService.consulta(solicitud,'save')
-    } else{
-      this.solicitudService.consulta(solicitud,'update')
+      this.solicitudService.consulta(solicitud, 'save')
+    } else {
+      this.solicitudService.consulta(solicitud, 'update')
     }
-}
+  }
 
   private createFromForm(): ISolicitud {
     const { descripcion } = this.editForm.value;
@@ -78,7 +74,7 @@ export class SolicitudUpdateComponent implements OnInit {
     };
   }
 
-   previousState(): void {
+  previousState(): void {
     window.history.back();
   }
 

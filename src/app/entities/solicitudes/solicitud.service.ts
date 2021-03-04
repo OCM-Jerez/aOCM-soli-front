@@ -16,38 +16,8 @@ type EntityArrayResponseType = HttpResponse<ISolicitud[]>;
 export class SolicitudService {
   private baseUrl = environment.baseUrl;
   isSaving = false;
-  // texto = "editada";
 
   constructor(protected http: HttpClient) { }
-
-  // saveOrUpdate(solicitud: ISolicitud) {
-  //   if (solicitud.id !== undefined) {
-  //     this.subscribeToSaveResponse(this.update(solicitud));
-  //   } else {
-  //     this.isSaving = true;
-  //     this.subscribeToSaveResponse(this.create(solicitud));
-  //   }
-  // }
-
-  // protected subscribeToSaveResponse(result: Observable<HttpResponse<ISolicitud>>): void {
-  //   result.subscribe(
-  //     () => this.onSaveSuccess(),
-  //     () => this.onSaveError()
-  //   );
-  // }
-
-  // protected onSaveSuccess(): void {
-  //   if (this.isSaving) {this.texto = "creada" }
-  //   Swal.fire('', 'La solicitud ha sido ' + this.texto + ' correctamente.', 'success');
-  //   this.isSaving = false;
-  //   this.previousState();
-  // }
-
-  // protected onSaveError(): void {
-  //   // TODO Obtener error.
-  //   Swal.fire('Error', 'error', 'error');
-  //   this.isSaving = false;
-  // }
 
   consulta(solicitud: ISolicitud, action: string) {
     console.log(action);
@@ -94,10 +64,6 @@ export class SolicitudService {
     this.isSaving = false;
   }
 
-  // previousState(): void {
-  //   window.history.back();
-  // }
-
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<ISolicitud>(`${this.baseUrl}solicitudes/${id}`, { observe: 'response' })
@@ -122,14 +88,12 @@ export class SolicitudService {
   update(solicitud: ISolicitud): Observable<EntityResponseType> {
     // const copy = this.convertDateFromClient(solicitud);
     return this.http
-      // .put<ISolicitud>(this.baseUrl, solicitud, { observe: 'response' });
       .put<ISolicitud>(this.baseUrl + 'solicitudes', solicitud, { observe: 'response' });
     // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   delete(id: string): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.baseUrl}solicitudes/${id}`, { observe: 'response' });
-    // return this.http.delete(this.baseUrl + 'solicitudes', id, { observe: 'response' });
   }
 
   // query(req?: any): Observable<EntityArrayResponseType> {
