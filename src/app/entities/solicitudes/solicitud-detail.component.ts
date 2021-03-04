@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { LocalStorageService } from 'ngx-webstorage';
 import * as moment from 'moment';
+import Swal from 'sweetalert2';
+
 
 // Services
 import { SolicitudService } from './solicitud.service';
@@ -61,24 +63,43 @@ export class SolicitudDetailComponent implements OnInit {
     // }
   }
 
-  save(solicitud: ISolicitud): void {
-    this.solicitudService.saveOrUpdate(solicitud)
-    }
+  // update(solicitud: ISolicitud): void {
+  //   // this.solicitudService.saveOrUpdate(solicitud)
+  //   this.solicitudService.consulta(solicitud, 'update')
+  //   }
 
-    delete(id: string): void {
+    // delete(id: string): void {
+      delete(solicitud: ISolicitud): void {
+
+        Swal.fire({
+          title: '¿Realmente quieres borrar esta solicitud?',
+          showDenyButton: true,
+          showCancelButton: false,
+          // Pongo el confirm como NO para que este en rojo.
+          confirmButtonText: `NO Borrar`,
+          denyButtonText: `Borrar`,
+        }).then((result) => {
+         if (result.isConfirmed) {
+        } else if (result.isDenied) {
+            this.solicitudService.consulta(solicitud,'delete')
+          }
+        })
+
       // modal para validar si desea o no eliminar slicitud
       // validas si tenes documentos if documentos.length > 0 no permite borrar
       // o agregar eliminar en cascada.
 
-      // console.log(id);
-      // const modalRef = this.modalService.open(SolicitudDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-      // modalRef.componentInstance.solicitud = solicitud;
-      this.solicitudService.delete(id).subscribe(response => {
-        console.log(response);
-        this.previousState();
-      }, error => {
-        console.log(error);
-      });
+      // this.solicitudService.delete(id).subscribe(response => {
+      //   this.solicitudService.consulta(solicitud,'delete').subscribe(response => {
+      //   console.log(response);
+      //   this.previousState();
+      // }, error => {
+      //   console.log(error);
+      // });
+
+
+
+      // this.solicitudService.consulta(solicitud,'delete')
   }
 
   crearDocumento(): void {

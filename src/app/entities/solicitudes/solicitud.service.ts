@@ -4,7 +4,6 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-
 import * as moment from 'moment';
 
 import { environment } from '../../../environments/environment';
@@ -17,47 +16,120 @@ type EntityArrayResponseType = HttpResponse<ISolicitud[]>;
 export class SolicitudService {
   private baseUrl = environment.baseUrl;
   isSaving = false;
-  texto = "editada";
+  // texto = "editada";
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) { }
 
-saveOrUpdate(solicitud: ISolicitud) {
-  if (solicitud.id !== undefined) {
-    this.subscribeToSaveResponse(this.update(solicitud));
-  } else {
-    this.isSaving = true;
-    this.subscribeToSaveResponse(this.create(solicitud));
+  // saveOrUpdate(solicitud: ISolicitud) {
+  //   if (solicitud.id !== undefined) {
+  //     this.subscribeToSaveResponse(this.update(solicitud));
+  //   } else {
+  //     this.isSaving = true;
+  //     this.subscribeToSaveResponse(this.create(solicitud));
+  //   }
+  // }
+
+  // protected subscribeToSaveResponse(result: Observable<HttpResponse<ISolicitud>>): void {
+  //   result.subscribe(
+  //     () => this.onSaveSuccess(),
+  //     () => this.onSaveError()
+  //   );
+  // }
+
+  // protected onSaveSuccess(): void {
+  //   if (this.isSaving) {this.texto = "creada" }
+  //   Swal.fire('', 'La solicitud ha sido ' + this.texto + ' correctamente.', 'success');
+  //   this.isSaving = false;
+  //   this.previousState();
+  // }
+
+  // protected onSaveError(): void {
+  //   // TODO Obtener error.
+  //   Swal.fire('Error', 'error', 'error');
+  //   this.isSaving = false;
+  // }
+
+  consulta(solicitud: ISolicitud, action: string) {
+    console.log(action);
+    switch (action) {
+      case 'save':
+        this.isSaving = true;
+        this.subscribeResponse(this.create(solicitud), action);
+        break;
+      case 'update':
+        this.subscribeResponse(this.update(solicitud), action);
+        this.isSaving = false;
+        break;
+      case 'delete':
+        this.subscribeResponse(this.delete(solicitud.id), action);
+        break;
+    }
   }
-}
 
-protected subscribeToSaveResponse(result: Observable<HttpResponse<ISolicitud>>): void {
-  result.subscribe(
-    () => this.onSaveSuccess(),
-    () => this.onSaveError()
-  );
-}
+  protected subscribeResponse(result: Observable<HttpResponse<ISolicitud>>, action: string): void {
+    result.subscribe(
+      () => this.onSaveSuccess(action),
+      () => this.onSaveError()
+    );
+  }
 
-protected onSaveSuccess(): void {
-  if (this.isSaving) {this.texto = "creada" }
-  Swal.fire('', 'La solicitud ha sido ' + this.texto + ' correctamente.', 'success');
-  this.isSaving = false;
-  this.previousState();
-}
+  protected onSaveSuccess(action: string): void {
+    switch (action) {
+      case 'save':
+        Swal.fire('', 'La solicitud ha sido creada correctamente.', 'success');
+        break;
+      case 'update':
+        Swal.fire('', 'La solicitud ha sido editada correctamente.', 'success');
+        break;
+      case 'delete':
+        Swal.fire('', 'La solicitud ha sido borrada correctamente.', 'success');
+        break;
+    }
+    window.history.back();
+  }
 
-protected onSaveError(): void {
-  // TODO Obtener error.
-  Swal.fire('Error', 'error', 'error');
-  this.isSaving = false;
-}
+  protected onSaveError(): void {
+    // TODO Obtener error.
+    Swal.fire('Error', 'error', 'error');
+    this.isSaving = false;
+  }
 
-previousState(): void {
-  window.history.back();
-}
+  // previousState(): void {
+  //   window.history.back();
+  // }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<ISolicitud>(`${this.baseUrl}solicitudes/${id}`, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  query() {
+    // const options = createRequestOption(req);
+    const url = `${this.baseUrl}solicitudes`;
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
+    return this.http.get<ISolicitud[]>(url, { headers });
+  }
+
+  create(solicitud: ISolicitud): Observable<EntityResponseType> {
+    //const copy = this.convertDateFromClient(solicitud);
+    return this.http
+      .post<ISolicitud>(this.baseUrl + 'solicitudes', solicitud, { observe: 'response' });
+    // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  update(solicitud: ISolicitud): Observable<EntityResponseType> {
+    // const copy = this.convertDateFromClient(solicitud);
+    return this.http
+      // .put<ISolicitud>(this.baseUrl, solicitud, { observe: 'response' });
+      .put<ISolicitud>(this.baseUrl + 'solicitudes', solicitud, { observe: 'response' });
+    // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  delete(id: string): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.baseUrl}solicitudes/${id}`, { observe: 'response' });
+    // return this.http.delete(this.baseUrl + 'solicitudes', id, { observe: 'response' });
   }
 
   // query(req?: any): Observable<EntityArrayResponseType> {
@@ -66,39 +138,6 @@ previousState(): void {
   //     .get<ISolicitud[]>(this.url, { params: options, observe: 'response' })
   //     .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   // }
-
-  query(){
-    // const options = createRequestOption(req);
-    const url = `${this.baseUrl}solicitudes`;
-    const headers = new HttpHeaders()
-    .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
-   return this.http.get<ISolicitud[]>(url, { headers });
-  }
-
-  create(solicitud: ISolicitud): Observable<EntityResponseType> {
-    //const copy = this.convertDateFromClient(solicitud);
-    return this.http
-      .post<ISolicitud>(this.baseUrl + 'solicitudes', solicitud, { observe: 'response' });
-          // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-  }
-
-  update(solicitud: ISolicitud): Observable<EntityResponseType> {
-    // const copy = this.convertDateFromClient(solicitud);
-    console.log(this.baseUrl + 'solicitudes');
-
-
-    return this.http
-      // .put<ISolicitud>(this.baseUrl, solicitud, { observe: 'response' });
-      .put<ISolicitud>(this.baseUrl + 'solicitudes', solicitud, { observe: 'response' });
-      // .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-  }
-
-  delete(id: string): Observable<HttpResponse<{}>> {
-    console.log(`${this.baseUrl}solicitudes/${id}`);
-    return this.http.delete(`${this.baseUrl}solicitudes/${id}`, { observe: 'response' });
-    // return this.http.delete(this.baseUrl + 'solicitudes', id, { observe: 'response' });
-
-  }
 
   // protected convertDateFromClient(solicitud: ISolicitud): ISolicitud {
   //   const copy: ISolicitud = Object.assign({}, solicitud, {

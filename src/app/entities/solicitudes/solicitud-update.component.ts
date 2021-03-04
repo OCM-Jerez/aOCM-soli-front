@@ -57,8 +57,14 @@ export class SolicitudUpdateComponent implements OnInit {
 
   save(): void {
     const solicitud: ISolicitud = this.createFromForm();
-    this.solicitudService.saveOrUpdate(solicitud)
-  }
+    // this.solicitudService.saveOrUpdate(solicitud)
+
+    if (solicitud.id === undefined) {
+    this.solicitudService.consulta(solicitud,'save')
+    } else{
+      this.solicitudService.consulta(solicitud,'update')
+    }
+}
 
   private createFromForm(): ISolicitud {
     const { descripcion } = this.editForm.value;
