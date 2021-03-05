@@ -65,15 +65,17 @@ export class SolicitudDetailComponent implements OnInit {
        delete(solicitud: ISolicitud): void {
         Swal.fire({
           title: '¿Realmente quieres borrar esta solicitud?',
+          confirmButtonColor: '#d33',
+          denyButtonColor: '#3085d6',
           showDenyButton: true,
           showCancelButton: false,
-          // Pongo el confirm como NO para que este en rojo.
-          confirmButtonText: `NO Borrar`,
-          denyButtonText: `Borrar`,
+          confirmButtonText: `Borrar`,
+          denyButtonText: `NO Borrar`,
         }).then((result) => {
          if (result.isConfirmed) {
+             this.solicitudService.consulta(solicitud,'delete')
         } else if (result.isDenied) {
-            this.solicitudService.consulta(solicitud,'delete')
+
           }
         })
   }

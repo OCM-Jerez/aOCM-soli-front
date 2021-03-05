@@ -17,7 +17,6 @@ export class SolicitudComponent implements OnInit {
   faEye = faEye;
 
   solicitudes?: ISolicitud[];
-  // diasRespuesta = 0;
   isAdmin = environment.IsAdmin;
 
   constructor(protected solicitudService: SolicitudService) { }

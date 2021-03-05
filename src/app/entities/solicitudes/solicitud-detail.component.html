@@ -145,7 +145,7 @@
         &nbsp;<span >Atras</span>
       </button>
 
-      <button type="button" [routerLink]="['/solicitudes/edit', solicitud?.id]" class="btn btn-primary" >
+      <button type="button"  *ngIf="isAdmin" [routerLink]="['/solicitudes/edit', solicitud?.id]" class="btn btn-primary" >
       <!-- <button
          *ngIf="isAdmin"
          type="button"
