@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { faPlus, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
 import { DocumentoService } from './documento.service';
@@ -11,6 +13,9 @@ import { IDocumento } from './documento.interface';
   templateUrl: './documento.component.html'
 })
 export class DocumentoComponent implements OnInit, OnDestroy {
+  faPlus = faPlus;
+  faEye = faEye;
+
   documentos: IDocumento[] | null = null;;
   eventSubscriber?: Subscription;
   totalItems = 0;

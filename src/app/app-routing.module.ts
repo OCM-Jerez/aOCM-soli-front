@@ -32,14 +32,21 @@ const routes: Routes = [
   //   canLoad: [ ValidarTokenGuard ],
   //   component: SolicitudDetailComponent,
   // },
-  // {
-  //   path: 'documentos',
-  //   component: DocumentoComponent,
-  // },
-  // {
-  //   path: 'gestiones',
-  //   component: GestionComponent,
-  // },
+
+  {
+    path: 'documentos',
+    loadChildren: () => import('./entities/documentos/documento.module').then( m => m.DocumentoModule ),
+    canActivate: [ ValidarTokenGuard ],
+    canLoad: [ ValidarTokenGuard ],
+  },
+
+  {
+    path: 'gestiones',
+    loadChildren: () => import('./entities/gestiones/gestion.module').then( m => m.GestionModule ),
+    canActivate: [ ValidarTokenGuard ],
+    canLoad: [ ValidarTokenGuard ],
+  },
+
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule )
@@ -53,6 +60,8 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'auth'
+    // redirectTo: 'documentos'
+
   }
 ];
 

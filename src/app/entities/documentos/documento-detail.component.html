@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div >
+            <h2><span>Datos documento</span></h2>
+            <hr>
+
+            <dl class="row-md">
+                <dt><span>Nombre</span></dt>
+                <dd>
+                    <span>{{ documento?.nombreDeDocumento }}</span>
+                </dd>
+                <!-- <dt><span>Fecha</span></dt>
+                <dd>
+                    <span>{{ documento?.fechaSubida | date: 'mediumDate'}}</span>
+                </dd> -->
+                <dt><span>Fichero</span></dt>
+                <dd>
+                    <div *ngIf="documento?.documento">
+                        <a (click)="openFile(documento?.documentoContentType!, documento?.documento)">open</a>
+                        {{ documento?.documentoContentType }}, {{ byteSize(documento?.documento) }}
+                    </div>
+                </dd>
+                <dt><span>Observación</span></dt>
+                <dd>
+                    <span>{{ documento?.observacion }}</span>
+                </dd>
+                <dt><span>Ruta</span></dt>
+                <dd>
+                    <span>{{ documento?.ruta }}</span>
+                </dd>
+                <dt><span>Privado</span></dt>
+                <!-- <dd>
+                    <span>{{ documento.privado }}</span>
+                </dd> -->
+                <dt><span>Solicitud</span></dt>
+                <!-- <dd>
+                    <div *ngIf="documento?.solicitudId">
+                        <a [routerLink]="['/solicitud', documento.solicitudId, 'view']">{{ documento?.solicitudDescripcion }}</a>
+                    </div>
+                </dd>
+                <dt><span>Gestión</span></dt>
+                <dd>
+                    <div *ngIf="documento.gestionId">
+                        <a [routerLink]="['/gestion', documento.gestionId, 'view']">{{ documento?.gestionDetalle }}</a>
+                    </div>
+                </dd> -->
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <!-- <fa-icon icon="arrow-left"></fa-icon> -->
+                &nbsp;<span>Cancelar</span>
+            </button>
+
+            <button type="button"
+                   [routerLink]="['/documentos/edit', documento?.id]"
+                    class="btn btn-primary">
+                <!-- <fa-icon icon="pencil-alt"></fa-icon> -->
+                &nbsp;<span>Editar</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,55 @@
-<div><h1>Documentos</h1></div>
+<!-- <app-navbar></app-navbar> -->
+
+<div class="container">
+  <div class="tituloPagina">
+    <div class="row justify-content-evenly">
+      <div class="col-4">
+        <h2>
+          <span>Documentos.</span>
+        </h2>
+      </div>
+      <div class="col-4" >
+
+        <!-- *ngIf= isAdmin -->
+        <button
+             class="btn btn-primary float-right"
+             [routerLink]="['/documentos/new']"
+              >
+          <fa-icon [icon]="faPlus"></fa-icon>
+          <span> Crear nuevo documento</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive col-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><span>Descripción</span></th>
+          <th scope="col"><span>Fecha </span></th>
+          <th scope="col"><span>Obnservación</span></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let documento of documentos">
+          <td>{{ documento.nombreDeDocumento }}</td>
+          <td>{{ documento.fechaSubida | date: 'dd.MM.yyyy' }}</td>
+          <td>{{ documento.observacion }}</td>
+
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="button" class="btn btn-info btn-sm" [routerLink]="['/documentos/details', documento.id]">
+                <fa-icon  [icon]="faEye"></fa-icon>
+                <span class="d-none d-md-inline">Ver</span>
+              </button>
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

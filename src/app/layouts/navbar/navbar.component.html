@@ -63,28 +63,17 @@
               <li>
                 <a
                   class="dropdown-item"
-                  [routerLink]="['/solicitudes/details']"
+                  [routerLink]="['/documentos']"
                   routerLinkActive="active"
                   (click)="collapseNavbar()"
-                >
-                  <span>Solicitudes detalle</span>
-                </a>
-              </li>
-
-              <li>
-                <a
-                  class="dropdown-item"
-                  routerLink="account/password"
-                  routerLinkActive="active"
-                  (click)="collapseNavbar()"
-                  *ngIf="isAdmin"
                 >
                   <span>Documentos</span>
                 </a>
               </li>
 
               <li>
-                <a class="dropdown-item" (click)="login()" id="login">
+                <a class="dropdown-item" (click)="login()" id="login" [routerLink]="['/gestiones']"
+                routerLinkActive="active">
                   <span>Gestiones</span>
                 </a>
               </li>

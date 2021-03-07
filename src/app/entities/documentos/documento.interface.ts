@@ -1,5 +1,5 @@
 export interface IDocumento {
-  id?: number;
+  id?: any;
   nombreDeDocumento?: string;
   fechaSubida?: Date;
   documentoContentType?: string;
@@ -16,7 +16,7 @@ export interface IDocumento {
 
 export class Documento implements IDocumento {
   constructor(
-    public id?: number,
+    public id?: any,
     public nombreDeDocumento?: string,
     public fechaSubida?: Date,
     public documentoContentType?: string,

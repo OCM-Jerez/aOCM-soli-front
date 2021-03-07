@@ -38,6 +38,7 @@ export class SolicitudUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => {
+      console.log(solicitud);
       this.updateForm(solicitud);
       if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud" }
     });
