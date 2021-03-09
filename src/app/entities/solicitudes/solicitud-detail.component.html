@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 
-<div class="row justify-content-center" style ="margin-top: 20px">
+<div class="row justify-content-center" style="margin-top: 20px">
   <div class="col-8">
     <div *ngIf="solicitud">
       <h2 style="font-weight: bold">Detalles solicitud</h2>
       <hr />
-      <dl class="row-md ">
+      <dl class="row-md">
         <dt><span solicitud.descripcion>Descripción</span></dt>
         <dd>
           <span>{{ solicitud?.descripcion }}</span>
@@ -22,16 +22,29 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <span solicitud.fechaSolicitud style="font-weight: bold; padding-left: 10px">Fecha Solicitud:</span>
-      <span>{{ solicitud?.fechaSolicitud | date: 'mediumDate' }}</span>
+      <span
+        solicitud.fechaSolicitud
+        style="font-weight: bold; padding-left: 10px"
+        >Fecha Solicitud:</span
+      >
+      <span>{{ solicitud?.fechaSolicitud | date: "mediumDate" }}</span>
     </div>
     <div class="col-sm">
-      <span solicitud.fechaRespuesta style="font-weight: bold; padding-left: 10px">Fecha Respuesta:</span>
-      <span>{{ solicitud?.fechaRespuesta | date: 'mediumDate' }}</span>
+      <span
+        solicitud.fechaRespuesta
+        style="font-weight: bold; padding-left: 10px"
+        >Fecha Respuesta:</span
+      >
+      <span>{{ solicitud?.fechaRespuesta | date: "mediumDate" }}</span>
     </div>
     <div class="col-sm">
-      <span style="font-weight: bold; padding-left: 10px">Días transcurridos:</span>
-      <span style="font-weight: bold" [ngStyle]="{ color: solicitud?.diasRespuesta! > 30 ? 'red' : 'black' }">
+      <span style="font-weight: bold; padding-left: 10px"
+        >Días transcurridos:</span
+      >
+      <span
+        style="font-weight: bold"
+        [ngStyle]="{ color: solicitud?.diasRespuesta! > 30 ? 'red' : 'black' }"
+      >
         {{ solicitud?.diasRespuesta }}
       </span>
     </div>
@@ -41,9 +54,17 @@
 <!-- Documentos asociados -->
 <div class="container mt-5">
   <!-- https://netbasal.com/case-study-how-to-use-an-angular-structural-directive-to-stay-dry-499c4dff09c7 -->
-    <h5 *ngIf="documentos?.length > 0; else noDocumentosTpl">Documentos asociados</h5>
-    <button type="button" class="btn btn-primary" (click)="crearDocumento()"
-    *ngIf="isAdmin"> nuevo</button>
+  <h5 *ngIf="documentos?.length > 0; else noDocumentosTpl">
+    Documentos asociados
+  </h5>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="crearDocumento()"
+    *ngIf="isAdmin"
+  >
+    Nuevo documento
+  </button>
   <!-- <div class="alert alert-warning" id="no-result" *ngIf="documentos?.length === 0">
     <span>No existen documentos</span>
   </div> -->
@@ -74,17 +95,14 @@
             <!-- <a [routerLink]="['/documento', documento.id, 'view']">{{ documento.nombreDeDocumento }}</a> -->
           </td>
 
-          <td>{{ documento.fechaSubida | date: 'mediumDate' }}</td>
+          <td>{{ documento.fechaSubida | date: "mediumDate" }}</td>
           <td>{{ documento.observacion }}</td>
 
           <td>
             <!-- (click)="openFile(documento.documentoContentType, documento.documento)" -->
-            <a
-              *ngIf="documento.documento"
-              >Abrir</a>
+            <a *ngIf="documento.documento">Abrir</a>
             <!-- <span *ngIf="documento.documento">{{ documento.documentoContentType }}, {{ byteSize(documento.documento) }}</span> -->
           </td>
-
         </tr>
       </tbody>
     </table>
@@ -93,9 +111,17 @@
 
 <!-- Gestiones asociadas -->
 <div class="container mt-5">
-    <h5  *ngIf="gestions?.length === 0; else noGestionesTpl">Gestiones asociadas</h5>
- <button type="button" class="btn btn-primary" (click)="crearGestion()"
- *ngIf="isAdmin"> nueva</button>
+  <h5 *ngIf="gestions?.length === 0; else noGestionesTpl">
+    Gestiones asociadas
+  </h5>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="crearGestion()"
+    *ngIf="isAdmin"
+  >
+    Nueva gestión
+  </button>
   <!-- <div class="alert alert-warning" id="no-result" *ngIf="gestions?.length === 0">
     <span>No existen gestiones</span>
   </div> -->
@@ -109,15 +135,14 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr>
-          <th scope="col"><span>Descripción</span> </th>
-          <th scope="col"><span>Fecha</span> </th>
+          <th scope="col"><span>Descripción</span></th>
+          <th scope="col"><span>Fecha</span></th>
           <th scope="col"><span>Observación</span></th>
           <th scope="col"><span>Anexo</span></th>
         </tr>
       </thead>
       <tbody>
-
-         <tr *ngFor="let gestion of gestions; trackBy: trackId">
+        <tr *ngFor="let gestion of gestions; trackBy: trackId">
           <!-- <td><a [routerLink]="['/gestion', gestion.id, 'view']">{{ gestion.id }}</a></td> -->
           <td>
             <!-- <a [routerLink]="['/gestion', gestion.id, 'view']">{{ gestion.detalle }}</a> -->
@@ -127,11 +152,8 @@
 
           <td>
             <!-- (click)="openFile(gestion.documentoContentType, gestion.documento)" -->
-            <a
-              *ngIf="gestion.documento"
-              >Abrir</a>
+            <a *ngIf="gestion.documento">Abrir</a>
           </td>
-
         </tr>
       </tbody>
     </table>
@@ -140,35 +162,38 @@
 
 <div class="container" style="padding-top: 60px">
   <div class="row justify-content-center">
-    <div class="col-8 ">
+    <div class="col-8">
       <button type="submit" (click)="previousState()" class="btn btn-info">
-        &nbsp;<span >Atras</span>
+        &nbsp;<span>Atras</span>
       </button>
 
-      <button type="button"  *ngIf="isAdmin" [routerLink]="['/solicitudes/edit', solicitud?.id]" class="btn btn-primary" >
-      <!-- <button
+      <button
+        type="button"
+        *ngIf="isAdmin"
+        [routerLink]="['/solicitudes/edit', solicitud?.id]"
+        class="btn btn-primary"
+      >
+        <!-- <button
          *ngIf="isAdmin"
          type="button"
          class="btn btn-primary"
         (click)="save(solicitud!)"
         > -->
-       &nbsp;<span >Editar</span>
+        &nbsp;<span>Editar</span>
       </button>
 
       <!-- <button type="button" [routerLink]="['/solicitudes/', solicitud?.id]" class="btn btn-primary" > -->
 
-        <!-- (click)="delete(solicitud?.id)" -->
+      <!-- (click)="delete(solicitud?.id)" -->
       <button
-      type="button"
-      class="btn btn-danger"
-      *ngIf = isAdmin
-      (click)="delete(solicitud!)"
-
+        type="button"
+        class="btn btn-danger"
+        *ngIf="isAdmin"
+        (click)="delete(solicitud!)"
       >
-      <!-- <fa-icon  [icon]="faTimes"></fa-icon>  -->
+        <!-- <fa-icon  [icon]="faTimes"></fa-icon>  -->
         <span class="d-none d-md-inline">Borrar</span>
       </button>
-
     </div>
   </div>
 </div>

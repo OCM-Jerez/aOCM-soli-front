@@ -5,10 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { faWindowClose, faSave } from '@fortawesome/free-solid-svg-icons';
+import { LocalStorageService } from 'ngx-webstorage';
 
 import { DocumentoService } from './documento.service';
-
-import { LocalStorageService } from 'ngx-webstorage';
 
 import { SolicitudService } from '../solicitudes/solicitud.service';
 // import { GestionService } from 'app/entities/gestion/gestion.service';

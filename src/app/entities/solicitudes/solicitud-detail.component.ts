@@ -82,12 +82,12 @@ export class SolicitudDetailComponent implements OnInit {
 
   crearDocumento(): void {
     this.localStorage.store('solicitud', this.solicitud);
-    this.router.navigate(['/documento/new']);
+    this.router.navigate(['/documentos/new']);
   }
 
   crearGestion(): void {
     this.localStorage.store('solicitud', this.solicitud);
-    this.router.navigate(['/gestion/new']);
+    this.router.navigate(['/gestiones/new']);
   }
 
   trackId(index: number, item: IDocumento): number {
