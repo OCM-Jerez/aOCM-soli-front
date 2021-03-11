@@ -33,7 +33,7 @@ export class DocumentoUpdateComponent implements OnInit {
   // solicituds: ISolicitud[] = [];
   // gestions: IGestion[] = [];
   fechaSubidaDp: any;
-    // solicitud: ISolicitud | null = null;
+  idSolicitud?: string;
 
   editForm = this.fb.group({
     id: [],
@@ -58,7 +58,7 @@ export class DocumentoUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.solicitud = this.localStorage.retrieve('solicitud');
+     this.idSolicitud = this.localStorage.retrieve('solicitud');
       this.activatedRoute.data.subscribe(({ documento }) => {
       this.updateForm(documento);
       if (documento.id == undefined) { this.textoCabecera = "Crear documento" }
@@ -78,7 +78,6 @@ export class DocumentoUpdateComponent implements OnInit {
       ruta: documento.ruta,
       privado: documento.privado,
       solicitudId: documento.solicitudId
-      // gestionId: documento.gestionId
     });
   }
 
@@ -124,7 +123,7 @@ export class DocumentoUpdateComponent implements OnInit {
       observacion: this.editForm.get(['observacion'])!.value,
       ruta: this.editForm.get(['ruta'])!.value,
       privado: this.editForm.get(['privado'])!.value,
-      // solicitudId: this.editForm.get(['solicitudId'])!.value,
+      solicitudId: this.idSolicitud,
       // gestionId: this.editForm.get(['gestionId'])!.value
     };
   }

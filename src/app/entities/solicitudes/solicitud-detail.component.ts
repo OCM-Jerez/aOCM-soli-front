@@ -48,11 +48,11 @@ export class SolicitudDetailComponent implements OnInit {
     }
 
     // Relación con documentos
-    // if (this.solicitud?.id) {
-    //   this.documentoService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
-    //     this.documentos = response.body;
-    //   });
-    // }
+    if (this.solicitud?.id) {
+      this.documentoService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
+        this.documentos = response.body;
+      });
+    }
 
     // Relación con gestiones
     // if (this.solicitud?.id) {
@@ -81,7 +81,7 @@ export class SolicitudDetailComponent implements OnInit {
   }
 
   crearDocumento(): void {
-    this.localStorage.store('solicitud', this.solicitud);
+    this.localStorage.store('solicitud', this.solicitud?.id);
     this.router.navigate(['/documentos/new']);
   }
 

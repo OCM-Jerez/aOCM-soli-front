@@ -8,7 +8,7 @@ export interface IDocumento {
   ruta?: string;
   privado?: boolean;
   solicitudDescripcion?: string;
-  solicitudId?: number;
+  solicitudId?: string;
   solicitud?: string;
   gestionDetalle?: string;
   gestionId?: number;
@@ -25,7 +25,7 @@ export class Documento implements IDocumento {
     public ruta?: string,
     public privado?: boolean,
     public solicitudDescripcion?: string,
-    public solicitudId?: number,
+    public solicitudId?: string,
     public solicitud?: string,
     public gestionDetalle?: string,
     public gestionId?: number
