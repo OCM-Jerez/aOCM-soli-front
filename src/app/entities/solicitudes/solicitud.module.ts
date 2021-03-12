@@ -10,12 +10,14 @@ import { SolicitudDetailComponent } from './solicitud-detail.component';
 import { NavbarComponent } from 'src/app/layouts/navbar/navbar.component';
 import { solicitudRoute } from './solicitud.route';
 import { SolicitudUpdateComponent } from './solicitud-update.component';
+import { PrimeNgModule } from '../../prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
     SolicitudComponent,
     SolicitudDetailComponent,
     SolicitudUpdateComponent,
+
     NavbarComponent
   ],
 
@@ -23,6 +25,7 @@ import { SolicitudUpdateComponent } from './solicitud-update.component';
     CommonModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    PrimeNgModule,
     RouterModule.forChild(solicitudRoute)
   ],
   entryComponents: []
