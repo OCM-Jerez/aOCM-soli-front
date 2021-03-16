@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 import { LoginService } from './login.service';
 
@@ -26,7 +27,9 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private $localStorage: LocalStorageService,
+
   ) { }
 
   login() {
@@ -41,8 +44,9 @@ export class LoginComponent {
     this.loginService.login(login).subscribe(
       // next (respuesta) es un IUser.
       next => {
-        environment.userLoged = next.login;
+        // environment.userLoged = next.login;
         environment.IsAdmin = (next.authorities.includes('ROLE_ADMIN')) ? true : false;
+        this.$localStorage.store('userLog',username);
         this.router.navigateByUrl('solicitudes');
       }, error => {
         if (error.error.message = 'Invalid login name or password.') {

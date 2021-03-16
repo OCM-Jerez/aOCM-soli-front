@@ -8,6 +8,7 @@ import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-ico
 import { environment } from 'src/environments/environment';
 
 import { LoginService } from 'src/app/auth/pages/login/login.service';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-navbar',
@@ -20,49 +21,66 @@ export class NavbarComponent implements OnInit {
 
   isNavbarCollapsed = true;
   isAdmin = environment.IsAdmin;
-  userLoged = environment.userLoged
+  userLoged?: string;
 
   faUser = faUser;
   faHome = faHome;
   faAtlas = faAtlas;
   faBell = faBell;
 
-
   constructor(
-              private loginService: LoginService,
-              private  router: Router
-              ) { }
+    private loginService: LoginService,
+    private router: Router,
+    private $localStorage: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
+   this.userLoged =  this.$localStorage.retrieve('userLog');
     this.items = [
-      {label: 'Usuarios', command: () => {
-       this.router.navigate(['users']);
-      }},
-      {label: 'Solicitudes', command: () => {
-        this.router.navigate(['solicitudes']);
-      }},
-      {label: 'Documentos', command: () => {
-        this.router.navigate(['documentos']);
-      }},
-      {label: 'Gestiones', command: () => {
-        this.router.navigate(['gestiones']);
-      }}
+      {
+        label: 'Usuarios', command: () => {
+          this.router.navigate(['users']);
+        }
+      },
+      {
+        label: 'Solicitudes', command: () => {
+          this.router.navigate(['solicitudes']);
+        }
+      },
+      {
+        label: 'Documentos', command: () => {
+          this.router.navigate(['documentos']);
+        }
+      },
+      {
+        label: 'Gestiones', command: () => {
+          this.router.navigate(['gestiones']);
+        }
+      }
     ];
 
     this.opciones = [
-      {label: 'Perfil', command: () => {
-       console.log('usuarios');
-       this.router.navigate(['users/datos']);
-      }},
-      {label: 'Contraseña', command: () => {
-        this.router.navigate(['solicitudes']);
-      }},
-      {label: 'Entrar', command: () => {
-        this.router.navigate(['account/password']);
-      }},
-      {label: 'Salir', command: () => {
-        this.router.navigate(['']);
-      }}
+      {
+        label: 'Perfil', command: () => {
+          console.log('usuarios');
+          this.router.navigate(['users/datos']);
+        }
+      },
+      {
+        label: 'Contraseña', command: () => {
+          this.router.navigate(['solicitudes']);
+        }
+      },
+      {
+        label: 'Entrar', command: () => {
+          this.router.navigate(['account/password']);
+        }
+      },
+      {
+        label: 'Salir', command: () => {
+          this.router.navigate(['']);
+        }
+      }
     ];
   }
 
@@ -71,7 +89,6 @@ export class NavbarComponent implements OnInit {
   }
 
   login(): void {
-    // this.loginModalService.open();
   }
 
   logout(): void {

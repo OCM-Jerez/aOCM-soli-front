@@ -23,16 +23,18 @@
 
         <div class="form-group">
           <!-- TODO! añadir DatePicker. -->
-          <label class="form-control-label">Fecha solicitud (aaaa-mm-dd)</label>
+           <label class="form-control-label">Fecha solicitud (aaaa-mm-dd)</label>
           <div class="input-group">
-            <!-- ngbDatepicker #fechaSolicitudDp="ngbDatepicker" -->
-            <input
-              id="field_fechaSolicitud"
-              type="text"
-              class="form-control"
-              style="max-width: 120px"
-              formControlName="fechaSolicitud"
-            />
+            <!-- ngModelOptions="{standalone: true}" -->
+           <p-calendar
+             [(ngModel)]="date"
+             dateFormat="yy-mm-dd"
+             [showButtonBar]="true"
+             [showIcon]="true"
+             formControlName="fechaSolicitud"
+             ></p-calendar>
+             <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
+             <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
           </div>
         </div>
 

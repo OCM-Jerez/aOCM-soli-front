@@ -7,6 +7,8 @@ import { faEye, faWindowClose, faSave } from '@fortawesome/free-solid-svg-icons'
 import { SolicitudService } from './solicitud.service';
 
 import { ISolicitud, Solicitud } from './solicitud.interface';
+import { Calendar } from 'primeng/calendar';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-solicitud-update',
@@ -20,12 +22,14 @@ export class SolicitudUpdateComponent implements OnInit {
   faWindowClose = faWindowClose;
   faSave = faSave;
 
+  date: any;
   textoCabecera = "Editar solicitud"
 
   editForm: FormGroup = this.fb.group({
     id: [],
     descripcion: [null, [Validators.required]],
     fechaSolicitud: [null, [Validators.required]],
+    // fechaSolicitud: [],
     fechaRespuesta: [],
     observacion: []
   });
@@ -34,12 +38,14 @@ export class SolicitudUpdateComponent implements OnInit {
     protected solicitudService: SolicitudService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => {
-      console.log(solicitud);
       this.updateForm(solicitud);
+      this.date = solicitud.fechaSolicitud;
+      // console.log(solicitud.fechaSolicitud);
+      // console.log(this.date);
       if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud" }
     });
   }
@@ -55,6 +61,9 @@ export class SolicitudUpdateComponent implements OnInit {
   }
 
   save(): void {
+    // https://github.com/primefaces/primeng/issues/1226
+    this.date =moment(this.date).format('YYYY-MM-DD');
+    // console.log(this.date);
     const solicitud: ISolicitud = this.createFromForm();
     if (solicitud.id === undefined) {
       this.solicitudService.consulta(solicitud, 'save')
@@ -69,7 +78,8 @@ export class SolicitudUpdateComponent implements OnInit {
       ...new Solicitud(),
       id: this.editForm.get(['id'])!.value,
       descripcion: this.editForm.get(['descripcion'])!.value,
-      fechaSolicitud: this.editForm.get(['fechaSolicitud'])!.value,
+      // fechaSolicitud: this.editForm.get(['fechaSolicitud'])!.value,
+      fechaSolicitud: this.date,
       fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value,
       observacion: this.editForm.get(['observacion'])!.value
     };
@@ -78,6 +88,8 @@ export class SolicitudUpdateComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
+
+
 
   // byteSize(base64String: string): string {
   //   return this.dataUtils.byteSize(base64String);

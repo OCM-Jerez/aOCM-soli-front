@@ -1,11 +1,11 @@
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
-  <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
+  <a class="navbar-brand logo" href="http://ocmjerez.org">
     <span class="logo-img"></span>
     <span class="navbar-title">OCM</span>
   </a>
 
   <div class="navbar-collapse collapse" id="navbarResponsive">
-    <p-splitButton label="Entidades" [model]="items"></p-splitButton>
+    <p-splitButton  *ngIf="isAdmin" icon="pi pi-plus" label="Entidades" [model]="items"></p-splitButton>
 
     <ul class="navbar-nav" style="margin-left: auto; margin-right: 40px">
       <li *ngIf="isAdmin">

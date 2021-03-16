@@ -54,11 +54,11 @@ export class DocumentoUpdateComponent implements OnInit {
     // protected gestionService: GestionService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private localStorage: LocalStorageService
+    private $localStorage: LocalStorageService
   ) {}
 
   ngOnInit(): void {
-     this.idSolicitud = this.localStorage.retrieve('solicitud');
+     this.idSolicitud = this.$localStorage.retrieve('solicitud');
       this.activatedRoute.data.subscribe(({ documento }) => {
       this.updateForm(documento);
       if (documento.id == undefined) { this.textoCabecera = "Crear documento" }

@@ -32,7 +32,7 @@ export class SolicitudDetailComponent implements OnInit {
     protected documentoService: DocumentoService,
     protected gestionService: GestionService,
     protected activatedRoute: ActivatedRoute,
-    private localStorage: LocalStorageService,
+    private $localStorage: LocalStorageService,
     private router: Router
   ) {}
 
@@ -81,12 +81,12 @@ export class SolicitudDetailComponent implements OnInit {
   }
 
   crearDocumento(): void {
-    this.localStorage.store('solicitud', this.solicitud?.id);
+    this.$localStorage.store('solicitud', this.solicitud?.id);
     this.router.navigate(['/documentos/new']);
   }
 
   crearGestion(): void {
-    this.localStorage.store('solicitud', this.solicitud);
+    this.$localStorage.store('solicitud', this.solicitud);
     this.router.navigate(['/gestiones/new']);
   }
 

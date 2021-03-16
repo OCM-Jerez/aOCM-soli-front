@@ -8,7 +8,7 @@ export const environment = {
   baseUrl: 'http://localhost:8081/api/',
   // baseUrl: 'http://mamjerez.es/api/',
   IsAdmin: true,
-  userLoged: 'string'
+  // userLoged: 'string'
 };
 
 
