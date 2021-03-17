@@ -22,10 +22,10 @@
         </div>
 
         <div class="form-group">
-          <!-- TODO! añadir DatePicker. -->
-           <label class="form-control-label">Fecha solicitud (aaaa-mm-dd)</label>
+          <label class="form-control-label">Fecha solicitud (aaaa-mm-dd)</label>
           <div class="input-group">
             <!-- ngModelOptions="{standalone: true}" -->
+            <!-- Si cambio dateFormat no se despliega p-calendar -->
            <p-calendar
              [(ngModel)]="date"
              dateFormat="yy-mm-dd"
@@ -41,13 +41,13 @@
         <div class="form-group">
           <label class="form-control-label">Fecha respuesta</label>
           <div class="input-group">
-            <input
-              id="field_fechaRespuesta"
-              type="text"
-              class="form-control"
-              style="max-width: 120px"
-              formControlName="fechaRespuesta"
-            />
+            <p-calendar
+            [(ngModel)]="dateRes"
+            dateFormat="yy-mm-dd"
+            [showButtonBar]="true"
+            [showIcon]="true"
+            formControlName="fechaRespuesta"
+            ></p-calendar>
           </div>
         </div>
 

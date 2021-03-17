@@ -3,12 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { faEye, faWindowClose, faSave } from '@fortawesome/free-solid-svg-icons';
+import * as moment from 'moment';
 
 import { SolicitudService } from './solicitud.service';
 
 import { ISolicitud, Solicitud } from './solicitud.interface';
-import { Calendar } from 'primeng/calendar';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-solicitud-update',
@@ -22,14 +21,15 @@ export class SolicitudUpdateComponent implements OnInit {
   faWindowClose = faWindowClose;
   faSave = faSave;
 
-  date: any;
+  // TODO ¿Como tipar?
+  date?: any ;
+  dateRes: any ;
   textoCabecera = "Editar solicitud"
 
   editForm: FormGroup = this.fb.group({
     id: [],
     descripcion: [null, [Validators.required]],
     fechaSolicitud: [null, [Validators.required]],
-    // fechaSolicitud: [],
     fechaRespuesta: [],
     observacion: []
   });
@@ -44,8 +44,7 @@ export class SolicitudUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ solicitud }) => {
       this.updateForm(solicitud);
       this.date = solicitud.fechaSolicitud;
-      // console.log(solicitud.fechaSolicitud);
-      // console.log(this.date);
+      this.dateRes = solicitud.fechaRespuesta
       if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud" }
     });
   }
@@ -63,7 +62,8 @@ export class SolicitudUpdateComponent implements OnInit {
   save(): void {
     // https://github.com/primefaces/primeng/issues/1226
     this.date =moment(this.date).format('YYYY-MM-DD');
-    // console.log(this.date);
+    this.dateRes =moment(this.dateRes).format('YYYY-MM-DD');
+    console.log(typeof(this.date));
     const solicitud: ISolicitud = this.createFromForm();
     if (solicitud.id === undefined) {
       this.solicitudService.consulta(solicitud, 'save')
@@ -73,14 +73,15 @@ export class SolicitudUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ISolicitud {
-    const { descripcion } = this.editForm.value;
+    // const { descripcion } = this.editForm.value;
     return {
       ...new Solicitud(),
       id: this.editForm.get(['id'])!.value,
       descripcion: this.editForm.get(['descripcion'])!.value,
       // fechaSolicitud: this.editForm.get(['fechaSolicitud'])!.value,
       fechaSolicitud: this.date,
-      fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value,
+      // fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value,
+      fechaRespuesta: this.dateRes,
       observacion: this.editForm.get(['observacion'])!.value
     };
   }
@@ -88,8 +89,6 @@ export class SolicitudUpdateComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
-
-
 
   // byteSize(base64String: string): string {
   //   return this.dataUtils.byteSize(base64String);
