@@ -5,7 +5,13 @@
   </a>
 
   <div class="navbar-collapse collapse" id="navbarResponsive">
-    <p-splitButton  *ngIf="isAdmin" icon="pi pi-plus" label="Entidades" [model]="items"></p-splitButton>
+    <p-splitButton
+      *ngIf="isAdmin"
+       icon="pi pi-plus"
+       label="Entidades"
+       [model]="items"
+       styleClass="p-button-OCM">
+       ></p-splitButton>
 
     <ul class="navbar-nav" style="margin-left: auto; margin-right: 40px">
       <li *ngIf="isAdmin">
@@ -22,7 +28,12 @@
         />
       </li>
 
-      <p-splitButton label="{{ userLoged }}" [model]="opciones"></p-splitButton>
+      <!-- node_modules\primeng\resources\themes\vela-blue\theme.css -->
+      <p-splitButton
+      label="{{ userLoged }}"
+      [model]="opciones"
+      styleClass="p-button-OCM">
+      ></p-splitButton>
     </ul>
   </div>
 </nav>
