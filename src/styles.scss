@@ -2,8 +2,17 @@
 [ PRIME ng ]*/
 html, body {
   margin: 10px;
+  min-height: 100vh;
+  /* 115px is the height of my footer */
+  padding-bottom: 32px;
+  display: flex;
+  flex-direction: column;
   // background-color: var( --surface-b );
   font-family: var( --font-family );
+}
+
+.main{
+  flex-grow: 1;
 }
 
 .text-layout {

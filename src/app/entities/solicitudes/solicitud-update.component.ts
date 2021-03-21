@@ -44,6 +44,7 @@ export class SolicitudUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ solicitud }) => {
       this.updateForm(solicitud);
       this.date = solicitud.fechaSolicitud;
+      console.log(typeof(this.date));
       this.dateRes = solicitud.fechaRespuesta
       if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud" }
     });
@@ -61,9 +62,8 @@ export class SolicitudUpdateComponent implements OnInit {
 
   save(): void {
     // https://github.com/primefaces/primeng/issues/1226
-    this.date =moment(this.date).format('YYYY-MM-DD');
-    this.dateRes =moment(this.dateRes).format('YYYY-MM-DD');
-    console.log(typeof(this.date));
+    this.date = moment(this.date).format('YYYY-MM-DD');
+    this.dateRes = moment(this.dateRes).format('YYYY-MM-DD');
     const solicitud: ISolicitud = this.createFromForm();
     if (solicitud.id === undefined) {
       this.solicitudService.consulta(solicitud, 'save')

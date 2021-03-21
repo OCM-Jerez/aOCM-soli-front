@@ -17,3 +17,8 @@ https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24079916#not
 
 --skip-tests
 --flat crear ficheros en la carpeta actual.
+
+
+
+Install source-map-explorer
+https://dev.to/salimchemes/analyzing-angular-bundle-with-source-map-explorer-341?utm_source=dormosheio&utm_campaign=dormosheio
