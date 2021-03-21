@@ -1,7 +1,7 @@
 /* ==========================================================================
 Logo styles
 ========================================================================== */
-.logo-img {
+.myLogo-img {
   height: 30px;
   width: 30px;
   display: inline-block;
@@ -14,5 +14,59 @@ Logo styles
   background-size: contain;
   margin-left: 20px;
   margin-right: 5px;
+  margin-top: 5px;
 }
 
+.myLogo-text {
+  color: white;
+  margin-top: 20px;
+}
+
+.myLogo-img:hover{
+  transform: scale(1.1);
+}
+
+header{
+	width: 100%;
+	height: 40px;
+	background-color: #0b132b;
+}
+
+.myNavbarInterior{
+	max-width: 100%;
+	padding: 0 10px;
+	margin: auto;
+}
+.myNavbar{
+	float: right;
+	display: flex;
+	align-items: center;
+	min-height: 40px;
+	z-index: 1000;
+}
+.myNavbar ul{
+	list-style: none;
+	padding: 0 10px;
+}
+.myNavbar ul li{
+	display: inline-block;
+	position: relative;
+	transition: .3s linear;
+	z-index: 1000;
+}
+.myNavbar ul li:hover{
+	transform: scale(1.1);
+}
+.myNavbar ul li a{
+	color: #ffffff;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 12px 20px;
+	transition: .3s linear;
+}
+.myNavbar ul li a:hover{
+	color: #00c9bd;
+	transform: scale(1.1);
+}

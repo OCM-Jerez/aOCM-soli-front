@@ -16,10 +16,9 @@ import { LocalStorageService } from 'ngx-webstorage';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  items: MenuItem[] = [];
+  entidades: MenuItem[] = [];
   opciones: MenuItem[] = [];
 
-  isNavbarCollapsed = true;
   isAdmin = environment.IsAdmin;
   userLoged?: string;
 
@@ -36,7 +35,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
    this.userLoged =  this.$localStorage.retrieve('userLog');
-    this.items = [
+    this.entidades = [
       {
         label: 'Usuarios', command: () => {
           this.router.navigate(['users']);
@@ -72,28 +71,17 @@ export class NavbarComponent implements OnInit {
         }
       },
       {
-        label: 'Entrar', command: () => {
+        label: 'Cambiar ususario', command: () => {
           this.router.navigate(['account/password']);
         }
       },
       {
         label: 'Salir', command: () => {
+          this.loginService.logout();
           this.router.navigate(['']);
         }
       }
     ];
   }
 
-  collapseNavbar(): void {
-    this.isNavbarCollapsed = true;
-  }
-
-  login(): void {
-  }
-
-  logout(): void {
-    this.collapseNavbar();
-    this.loginService.logout();
-    this.router.navigate(['']);
-  }
 }

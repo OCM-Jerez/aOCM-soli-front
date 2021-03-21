@@ -1,39 +1,47 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-dark">
-  <a class="navbar-brand logo" href="http://ocmjerez.org">
-    <span class="logo-img"></span>
-    <span class="navbar-title">OCM</span>
-  </a>
-
-  <div class="navbar-collapse collapse" id="navbarResponsive">
-    <p-splitButton
-      *ngIf="isAdmin"
-       icon="pi pi-plus"
-       label="Entidades"
-       [model]="items"
-       styleClass="p-button-OCM">
-       ></p-splitButton>
-
-    <ul class="navbar-nav" style="margin-left: auto; margin-right: 40px">
-      <li *ngIf="isAdmin">
-        <a class="nav-link" href="#" role="button">
-          <fa-icon [icon]="faBell" size="1x"></fa-icon>
-        </a>
-      </li>
-
-      <li>
-        <img
-          src="https://i.imgur.com/C4egmYM.jpg"
-          class="rounded-circle"
-          width="25"
-        />
-      </li>
-
-      <!-- node_modules\primeng\resources\themes\vela-blue\theme.css -->
-      <p-splitButton
-      label="{{ userLoged }}"
-      [model]="opciones"
-      styleClass="p-button-OCM">
-      ></p-splitButton>
-    </ul>
+<header>
+  <div class="myNavbarInterior">
+    <a href="http://ocmjerez.org">
+      <span class="myLogo-img"></span>
+      <span class="myLogo-text">OCM</span>
+    </a>
+    <nav class="myNavbar">
+      <ul>
+        <li>
+          <p-splitButton
+            *ngIf="isAdmin"
+            icon="pi pi-plus"
+            label="Entidades"
+            [model]="entidades"
+            styleClass="p-button-OCM"
+          >
+          </p-splitButton>
+        </li>
+        <li>
+          <a
+            *ngIf="isAdmin"
+            href="#"
+            role="button"
+            style="display: inline-block"
+          >
+            <fa-icon [icon]="faBell" size="1x"></fa-icon>
+          </a>
+        </li>
+        <li>
+          <img
+            src="https://i.imgur.com/C4egmYM.jpg"
+            class="rounded-circle"
+            width="25"
+          />
+        </li>
+        <li>
+          <p-splitButton
+            label="{{ userLoged }}"
+            [model]="opciones"
+            styleClass="p-button-OCM"
+          >
+          </p-splitButton>
+        </li>
+      </ul>
+    </nav>
   </div>
-</nav>
+</header>

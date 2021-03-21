@@ -4,6 +4,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { CalendarModule } from 'primeng/calendar';
     SplitButtonModule,
     ButtonModule,
     ToastModule,
-    CalendarModule
+    CalendarModule,
+    SidebarModule
   ]
 })
 export class PrimeNgModule { }
