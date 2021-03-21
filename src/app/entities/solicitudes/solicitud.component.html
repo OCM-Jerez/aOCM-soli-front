@@ -1,25 +1,21 @@
 <app-navbar></app-navbar>
+<body>
+<div class="p-text-center myTituloComponent">
+  Solicitudes realizadas
+</div>
 
-<div class="container">
-  <div class="tituloPagina">
-    <div class="row justify-content-evenly">
-      <div class="col-4">
-        <h2>
-          <span>Solicitudes realizadas.</span>
-        </h2>
-      </div>
-      <div class="col-4" >
-        <button
-             *ngIf= isAdmin
-             class="btn btn-primary float-right"
-             [routerLink]="['/solicitudes/new']"
-              >
-          <fa-icon [icon]="faPlus"></fa-icon>
-          <span> Crear nueva solicitud</span>
-        </button>
-      </div>
+<div class="p-grid">
+    <div class="p-col-4">
+      <button
+        *ngIf="isAdmin"
+        class="btn btn-primary float-right"
+        [routerLink]="['/solicitudes/new']"
+      >
+        <fa-icon [icon]="faPlus"></fa-icon>
+        <span> Crear nueva solicitud</span>
+      </button>
     </div>
-  </div>
+
 
   <div class="table-responsive col-12">
     <table class="table table-striped">
@@ -36,8 +32,8 @@
       <tbody>
         <tr *ngFor="let solicitud of solicitudes">
           <td>{{ solicitud.descripcion }}</td>
-          <td>{{ solicitud.fechaSolicitud | date: 'dd.MM.yyyy' }}</td>
-          <td>{{ solicitud.fechaRespuesta | date: 'dd.MM.yyyy' }}</td>
+          <td>{{ solicitud.fechaSolicitud | date: "dd.MM.yyyy" }}</td>
+          <td>{{ solicitud.fechaRespuesta | date: "dd.MM.yyyy" }}</td>
           <td
             style="font-weight: bold"
             [ngStyle]="{
@@ -50,11 +46,14 @@
 
           <td class="text-right">
             <div class="btn-group">
-              <button type="button" class="btn btn-info btn-sm" [routerLink]="['/solicitudes/details', solicitud.id]">
-                <fa-icon  [icon]="faEye"></fa-icon>
+              <button
+                type="button"
+                class="btn btn-info btn-sm"
+                [routerLink]="['/solicitudes/details', solicitud.id]"
+              >
+                <fa-icon [icon]="faEye"></fa-icon>
                 <span class="d-none d-md-inline">Ver</span>
               </button>
-
             </div>
           </td>
         </tr>
@@ -62,3 +61,4 @@
     </table>
   </div>
 </div>
+</body>
