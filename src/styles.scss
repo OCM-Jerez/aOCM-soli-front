@@ -3,6 +3,7 @@
 html, body {
   margin-right: 10px;
   margin-left: 10px;
+  margin-top: 2px;
   min-height: 100vh;
   /* 115px is the height of my footer */
   padding-bottom: 32px;
@@ -26,7 +27,7 @@ html, body {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 40px;
-  color: var(--primary-color)
+  color: var(--text-color)
 }
 
 /*//////////////////////////////////////////////////////////////////
