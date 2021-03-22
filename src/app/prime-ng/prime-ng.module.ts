@@ -5,9 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
 import { SidebarModule } from 'primeng/sidebar';
-import {TableModule} from 'primeng/table';
-
-
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [],
