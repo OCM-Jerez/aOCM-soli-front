@@ -30,6 +30,33 @@ html, body {
   color: var(--text-color)
 }
 
+.mySubtituloComponent{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  font-size: 30px;
+  color: var(--text-color);
+  display: block
+}
+
+.mydt {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  color: white;
+  font-weight: bold;
+}
+
+.mydd {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  color: rgb(146, 137, 137)
+}
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 

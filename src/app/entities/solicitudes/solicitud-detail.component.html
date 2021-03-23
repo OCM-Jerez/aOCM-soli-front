@@ -1,133 +1,140 @@
 <app-navbar></app-navbar>
 
-<div class="row justify-content-center" style="margin-top: 20px">
-  <div class="col-8">
-    <div *ngIf="solicitud">
-      <h2 style="font-weight: bold">Detalles solicitud</h2>
-      <hr />
-      <dl class="row-md">
-        <dt><span solicitud.descripcion>Descripción</span></dt>
-        <dd>
-          <span>{{ solicitud?.descripcion }}</span>
-        </dd>
-        <dt><span solicitud.observacion>Observaciones</span></dt>
-        <dd>
-          <span>{{ solicitud?.observacion }}</span>
-        </dd>
-      </dl>
-    </div>
-  </div>
-</div>
+<div class="p-text-center myTituloComponent">Detalles solicitud</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <span
-        solicitud.fechaSolicitud
-        style="font-weight: bold; padding-left: 10px"
-        >Fecha Solicitud:</span
-      >
-      <span>{{ solicitud?.fechaSolicitud | date: "mediumDate" }}</span>
-    </div>
-    <div class="col-sm">
-      <span
-        solicitud.fechaRespuesta
-        style="font-weight: bold; padding-left: 10px"
-        >Fecha Respuesta:</span
-      >
-      <span>{{ solicitud?.fechaRespuesta | date: "mediumDate" }}</span>
-    </div>
-    <div class="col-sm">
-      <span style="font-weight: bold; padding-left: 10px"
-        >Días transcurridos:</span
-      >
-      <span
-        style="font-weight: bold"
-        [ngStyle]="{ color: solicitud?.diasRespuesta! > 30 ? 'red' : 'black' }"
-      >
-        {{ solicitud?.diasRespuesta }}
-      </span>
-    </div>
+<div class="p-grid">
+  <div class="p-col-2"></div>
+  <div class="p-col-4">
+    <dl class="">
+      <dt class="mydt"><span>Descripción</span></dt>
+      <dd class="mydd">
+        <span>{{ solicitud?.descripcion }}</span>
+      </dd>
+      <dt class="mydt"><span>Observaciones</span></dt>
+      <dd class="mydd">
+        <span>{{ solicitud?.observacion }}</span>
+      </dd>
+    </dl>
   </div>
+
+  <div class="p-col-4">
+    <dl class="">
+      <dt class="mydt"><span>Fecha Solicitud</span></dt>
+      <dd class="mydd">
+        <span>{{ solicitud?.fechaSolicitud | date: "mediumDate" }}</span>
+      </dd>
+      <dt class="mydt"><span>Fecha respuesta</span></dt>
+      <dd class="mydd">
+        <span>{{ solicitud?.fechaRespuesta | date: "mediumDate" }}</span>
+      </dd>
+      <dt class="mydt"><span>Días transcurridos</span></dt>
+      <dd class="mydd">
+        <span
+          style="font-weight: bold"
+          [ngStyle]="{
+            color: solicitud?.diasRespuesta! > 30 ? 'red' : 'black'
+          }"
+          >{{ solicitud?.diasRespuesta }}</span
+        >
+      </dd>
+    </dl>
+  </div>
+  <div class="p-col-2"></div>
 </div>
 
 <!-- Documentos asociados -->
 <div class="container mt-5">
   <!-- https://netbasal.com/case-study-how-to-use-an-angular-structural-directive-to-stay-dry-499c4dff09c7 -->
-  <h5 *ngIf="documentos?.length > 0; else noDocumentosTpl">
+  <span
+    *ngIf="documentos?.length > 0; else noDocumentosTpl"
+    class="mySubtituloComponent"
+  >
     Documentos asociados
-  </h5>
+  </span>
+
   <button
-    type="button"
-    class="btn btn-primary"
+    pButton
+    *ngIf="isAdmin"
     (click)="crearDocumento()"
-    *ngIf="isAdmin"
-  >
-    Nuevo documento
-  </button>
-  <!-- <div class="alert alert-warning" id="no-result" *ngIf="documentos?.length === 0">
-    <span>No existen documentos</span>
-  </div> -->
-
-  <ng-template #noDocumentosTpl>
-    <div>
-      <h5>No hay documentos asociados a esta solicitud</h5>
-    </div>
-  </ng-template>
-
-  <div class="table-responsive" id="entities" *ngIf="documentos?.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr>
-          <th scope="col">
-            <span>Descripción</span>
-          </th>
-          <th scope="col">
-            <span>Fecha Subida</span>
-          </th>
-          <th scope="col"><span>Observación</span></th>
-          <th scope="col"><span>Anexo</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let documento of documentos; trackBy: trackId">
-          <td>
-            <!-- <a [routerLink]="['/documento', documento.id, 'view']">{{ documento.nombreDeDocumento }}</a> -->
-          </td>
-
-          <td>{{ documento.fechaSubida | date: "mediumDate" }}</td>
-          <td>{{ documento.observacion }}</td>
-
-          <td>
-            <!-- (click)="openFile(documento.documentoContentType, documento.documento)" -->
-            <a *ngIf="documento.documento">Abrir</a>
-            <!-- <span *ngIf="documento.documento">{{ documento.documentoContentType }}, {{ byteSize(documento.documento) }}</span> -->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- Gestiones asociadas -->
-<div class="container mt-5">
-  <h5 *ngIf="gestions?.length === 0; else noGestionesTpl">
-    Gestiones asociadas
-  </h5>
-  <button
+    class="p-button-rounded p-button-warning"
     type="button"
-    class="btn btn-primary"
-    (click)="crearGestion()"
+    icon="pi pi-plus"
+    iconPos="left"
+    label="Crear nuevo documento"
+  ></button>
+
+  <div class="p-grid">
+    <div class="p-col p-mt-4">
+      <p-table [value]="documentos" styleClass="p-datatable-striped">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="descripcion">
+              Descripción <p-sortIcon field="nombreDeDocumento"></p-sortIcon>
+            </th>
+            <th pSortableColumn="descripcion">
+              Fecha subida <p-sortIcon field="fechaSolicitud"></p-sortIcon>
+            </th>
+            <th scope="col"><span>Observaciones</span></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-documento>
+          <tr>
+            <td>{{ documento.nombreDeDocumento }}</td>
+            <td>{{ documento.fechaSubida | date: "mediumDate" }}</td>
+            <td>{{ documento.observacion }}</td>
+
+            <td class="text-right">
+              <div class="btn-group">
+                <!-- [routerLink]="['/solicitudes/details', solicitud.id]" -->
+                <button
+                  pButton
+                  class="p-button-rounded p-button-info"
+                  type="button"
+                  icon="pi pi-eye"
+                  iconPos="left"
+                  label="Abrir"
+                ></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template #noDocumentosTpl>
+          <div>
+            <h5>No hay documentos asociados a esta solicitud</h5>
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+   <!-- Gestiones asociadas -->
+   <div class="container mt-5">
+    <span
+      *ngIf="gestions?.length > 0; else noGestionesTpl"
+      class="mySubtituloComponent"
+    >
+      Gestiones asociados
+    </span>
+
+    <button
+    pButton
     *ngIf="isAdmin"
-  >
-    Nueva gestión
-  </button>
+    (click)="crearGestion()"
+    class="p-button-rounded p-button-warning"
+    type="button"
+    icon="pi pi-plus"
+    iconPos="left"
+    label="Crear nueva gestión"
+  ></button>
+
   <!-- <div class="alert alert-warning" id="no-result" *ngIf="gestions?.length === 0">
-    <span>No existen gestiones</span>
-  </div> -->
+  <span>No existen gestiones</span>
+</div> -->
   <ng-template #noGestionesTpl>
     <div>
-      <h5>No hay gestiones asociadas a esta solicitud</h5>
+      <span   class="mySubtituloComponent">No hay gestiones asociadas a esta solicitud</span>
     </div>
   </ng-template>
 
@@ -160,40 +167,44 @@
   </div>
 </div>
 
-<div class="container" style="padding-top: 60px">
-  <div class="row justify-content-center">
-    <div class="col-8">
-      <button type="submit" (click)="previousState()" class="btn btn-info">
-        &nbsp;<span>Atras</span>
-      </button>
+<!-- Botones -->
+  <div class="container" style="padding-top: 60px; padding-bottom: 40px">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <button
+          pButton
+          (click)="previousState()"
+          class="p-button-rounded p-button-primary"
+          type="button"
+          icon="pi pi-chevron-circle-left"
+          iconPos="left"
+          label="Cancelar"
+        ></button>
 
-      <button
-        type="button"
-        *ngIf="isAdmin"
-        [routerLink]="['/solicitudes/edit', solicitud?.id]"
-        class="btn btn-primary"
-      >
-        <!-- <button
-         *ngIf="isAdmin"
-         type="button"
-         class="btn btn-primary"
-        (click)="save(solicitud!)"
-        > -->
-        &nbsp;<span>Editar</span>
-      </button>
+        <button
+          pButton
+          *ngIf="isAdmin"
+          [routerLink]="['/solicitudes/edit', solicitud?.id]"
+          class="p-button-rounded p-button-success"
+          type="button"
+          icon="pi pi-user-edit"
+          iconPos="left"
+          label="Editar"
+        ></button>
 
-      <!-- <button type="button" [routerLink]="['/solicitudes/', solicitud?.id]" class="btn btn-primary" > -->
-
-      <!-- (click)="delete(solicitud?.id)" -->
-      <button
-        type="button"
-        class="btn btn-danger"
-        *ngIf="isAdmin"
-        (click)="delete(solicitud!)"
-      >
-        <!-- <fa-icon  [icon]="faTimes"></fa-icon>  -->
-        <span class="d-none d-md-inline">Borrar</span>
-      </button>
+        <button
+          pButton
+          *ngIf="isAdmin"
+          (click)="delete(solicitud!)"
+          class="p-button-rounded p-button-danger"
+          type="button"
+          icon="pi pi-trash"
+          iconPos="left"
+          label="Borrar"
+        ></button>
+      </div>
     </div>
   </div>
-</div>
+
+
+
