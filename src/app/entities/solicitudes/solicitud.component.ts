@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as moment from 'moment';
-import { faPlus, faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { environment } from 'src/environments/environment';
 
@@ -13,10 +12,7 @@ import { ISolicitud } from './solicitud.interface';
   templateUrl: './solicitud.component.html'
 })
 export class SolicitudComponent implements OnInit {
-  faPlus = faPlus;
-  faEye = faEye;
-
-  solicitudes?: ISolicitud[] = [];
+  solicitudes: any[] = [];
   isAdmin = environment.IsAdmin;
 
   constructor(protected solicitudService: SolicitudService) { }
