@@ -1,18 +1,12 @@
-<div class="row justify-content-center" style="margin-top: 20px">
-  <div class="col-8">
-    <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
-      <h2> {{ textoCabecera }}</h2>
-      <hr />
+<div class="p-text-center myTituloComponent">{{ textoCabecera }}</div>
+<hr />
 
-      <div>
-        <div class="form-group">
-          <!--  <label for="field_descripcion" class="form-control-label"
-         ? Si utilizo la etiqueta for permite hacer click sobre la etiqueta
-         ? y seleccionará el input asociado.
-         ? Esto puede tener sentido en botones o selectores, pero no en input.
-        https://stackoverflow.com/questions/18432376/what-does-for-attribute-do-in-html-label-tag/18432439-->
-          <!-- ! Esta class no hace nada. -->
-          <label class="form-control-label">Descripción</label>
+<div class="" style="margin-top: 20px">
+    <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
+
+      <div class="" style="margin-top: 20px">
+        <label class="myLabel">Descripción</label>
+        <div class="input-group">
           <input
             id="field_descripcion"
             type="text"
@@ -20,65 +14,82 @@
             formControlName="descripcion"
           />
         </div>
+      </div>
 
-        <div class="form-group">
-          <label class="form-control-label">Fecha solicitud (aaaa-mm-dd)</label>
-          <div class="input-group">
-            <!-- ngModelOptions="{standalone: true}" -->
-            <!-- Si cambio dateFormat no se despliega p-calendar -->
-           <p-calendar
-             [(ngModel)]="date"
-             dateFormat="yy-mm-dd"
-             [showButtonBar]="true"
-             [showIcon]="true"
-             formControlName="fechaSolicitud"
-             ></p-calendar>
-             <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
-             <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
-          </div>
+      <div class="" style="margin-top: 20px">
+        <!--  <label for="field_descripcion" class="form-control-label"
+         ? Si utilizo la etiqueta for permite hacer click sobre la etiqueta
+         ? y seleccionará el input asociado.
+         ? Esto puede tener sentido en botones o selectores, pero no en input.
+        https://stackoverflow.com/questions/18432376/what-does-for-attribute-do-in-html-label-tag/18432439-->
+      </div>
+
+      <div class="" style="margin-top: 20px">
+        <label class="myLabel">Fecha solicitud (aaaa-mm-dd)</label>
+        <div class="input-group">
+          <!-- ngModelOptions="{standalone: true}" -->
+          <!-- Si cambio dateFormat no se despliega p-calendar -->
+          <p-calendar
+            [(ngModel)]="date"
+            dateFormat="yy-mm-dd"
+            [showButtonBar]="true"
+            [showIcon]="true"
+            formControlName="fechaSolicitud"
+          ></p-calendar>
+          <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
+          <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
         </div>
+      </div>
 
-        <div class="form-group">
-          <label class="form-control-label">Fecha respuesta</label>
-          <div class="input-group">
-            <p-calendar
+      <div class="" style="margin-top: 20px">
+        <label class="myLabel">Fecha respuesta</label>
+        <div class="input-group">
+          <p-calendar
             [(ngModel)]="dateRes"
             dateFormat="yy-mm-dd"
             [showButtonBar]="true"
             [showIcon]="true"
             formControlName="fechaRespuesta"
-            ></p-calendar>
-          </div>
+          ></p-calendar>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label class="form-control-label">Observación</label>
+      <div class="" style="margin-top: 20px">
+        <label class="myLabel">Observaciones</label>
+        <div class="input-group">
           <input
-            id="field_observacion"
+            id="field_descripcion"
             type="text"
             class="form-control"
             formControlName="observacion"
           />
         </div>
       </div>
-
-      <div>
-        <button
-          type="button"
-          id="cancel-save"
-          class="btn btn-secondary"
-          (click)="previousState()"
-        >
-          <fa-icon [icon]="faWindowClose"></fa-icon>
-          &nbsp;<span>Cancelar</span>
-        </button>
-
-        <!-- [disabled]="editForm.invalid || isSaving" -->
-        <button type="submit" id="save-entity" class="btn btn-primary">
-          <fa-icon [icon]="faSave"></fa-icon>
-          &nbsp;<span>Grabar</span>
-        </button>
-      </div>
     </form>
-  </div>
+
+      <div class="container" style="padding-top: 60px; padding-bottom: 40px">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <button
+              pButton
+              (click)="previousState()"
+              class="p-button-rounded p-button-primary"
+              type="button"
+              icon="pi pi-chevron-circle-left"
+              iconPos="left"
+              label="Cancelar"
+            ></button>
+
+            <button
+              pButton
+              (click)="save()"
+              class="p-button-rounded p-button-success"
+              type="button"
+              icon="pi pi-user-save"
+              iconPos="left"
+              label="Grabar"
+            ></button>
+          </div>
+        </div>
+      </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import * as moment from 'moment';
 
@@ -14,6 +14,7 @@ import { ISolicitud } from './solicitud.interface';
 export class SolicitudComponent implements OnInit {
   solicitudes: any[] = [];
   isAdmin = environment.IsAdmin;
+
 
   constructor(protected solicitudService: SolicitudService) { }
 
