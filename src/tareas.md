@@ -1,28 +1,21 @@
-1.- Comentar codigo de:
+1.- Añadir fichero a documento y poder visualizarlo.
+
+
+
+
+
+
+
+
+
+
+
+ Comentar con Juan Manuel codigo de:
      [login.component.ts]
      [login.service.ts]
      [auth.service.ts]
      [auth-jwt.service.ts]
      [account.service.ts]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
