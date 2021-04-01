@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { faWindowClose, faSave } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageService } from 'ngx-webstorage';
+import * as moment from 'moment';
 
 import { DocumentoService } from './documento.service';
 
@@ -27,8 +28,9 @@ export class DocumentoUpdateComponent implements OnInit {
   faWindowClose = faWindowClose;
   faSave = faSave;
 
+  date?: any ;
   isSaving = false;
-  textoCabecera = "Editar documento"
+  textoCabecera = "Editar documento";
 
   // solicituds: ISolicitud[] = [];
   // gestions: IGestion[] = [];
@@ -61,7 +63,10 @@ export class DocumentoUpdateComponent implements OnInit {
      this.idSolicitud = this.$localStorage.retrieve('solicitud');
       this.activatedRoute.data.subscribe(({ documento }) => {
       this.updateForm(documento);
-      if (documento.id == undefined) { this.textoCabecera = "Crear documento" }
+      if (documento.id == undefined) {
+        this.textoCabecera = "Crear documento";
+        this.isSaving = true;
+      }
       // this.solicitudService.query().subscribe((res: HttpResponse<ISolicitud[]>) => (this.solicituds = res.body || []));
       // this.gestionService.query().subscribe((res: HttpResponse<IGestion[]>) => (this.gestions = res.body || []));
     });
@@ -104,6 +109,7 @@ export class DocumentoUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
+    this.date = moment(this.date).format('YYYY-MM-DD');
     const documento: IDocumento = this.createFromForm();
     if (documento.id !== undefined) {
       this.subscribeToSaveResponse(this.documentoService.update(documento));
@@ -117,7 +123,8 @@ export class DocumentoUpdateComponent implements OnInit {
       ...new Documento(),
       id: this.editForm.get(['id'])!.value,
       nombreDeDocumento: this.editForm.get(['nombreDeDocumento'])!.value,
-      fechaSubida: this.editForm.get(['fechaSubida'])!.value,
+      // fechaSubida: this.editForm.get(['fechaSubida'])!.value,
+      fechaSubida: this.date,
       documentoContentType: this.editForm.get(['documentoContentType'])!.value,
       documento: this.editForm.get(['documento'])!.value,
       observacion: this.editForm.get(['observacion'])!.value,

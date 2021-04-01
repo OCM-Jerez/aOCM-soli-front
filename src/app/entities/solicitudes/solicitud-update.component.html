@@ -1,11 +1,11 @@
-<div class="p-text-center myTituloComponent">{{ textoCabecera }}</div>
+<div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
 <hr />
 
 <div class="" style="margin-top: 20px">
     <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
 
       <div class="" style="margin-top: 20px">
-        <label class="myLabel">Descripción</label>
+        <label class="mam-label">Descripción</label>
         <div class="input-group">
           <input
             id="field_descripcion"
@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div class="" style="margin-top: 20px">
+      <div style="margin-top: 20px">
         <!--  <label for="field_descripcion" class="form-control-label"
          ? Si utilizo la etiqueta for permite hacer click sobre la etiqueta
          ? y seleccionará el input asociado.
@@ -25,7 +25,7 @@
       </div>
 
       <div class="" style="margin-top: 20px">
-        <label class="myLabel">Fecha solicitud (aaaa-mm-dd)</label>
+        <label class="mam-label">Fecha solicitud (aaaa-mm-dd)</label>
         <div class="input-group">
           <!-- ngModelOptions="{standalone: true}" -->
           <!-- Si cambio dateFormat no se despliega p-calendar -->
@@ -42,7 +42,7 @@
       </div>
 
       <div class="" style="margin-top: 20px">
-        <label class="myLabel">Fecha respuesta</label>
+        <label class="mam-label">Fecha respuesta</label>
         <div class="input-group">
           <p-calendar
             [(ngModel)]="dateRes"
@@ -55,7 +55,7 @@
       </div>
 
       <div class="" style="margin-top: 20px">
-        <label class="myLabel">Observaciones</label>
+        <label class="mam-label">Observaciones</label>
         <div class="input-group">
           <input
             id="field_descripcion"

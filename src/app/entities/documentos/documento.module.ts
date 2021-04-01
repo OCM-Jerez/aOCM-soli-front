@@ -1,30 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from 'src/app/layouts/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PrimeNgModule } from 'src/app/prime-ng/prime-ng.module';
 
 import { documentoRoute } from './documento.route';
+
 import { DocumentoComponent } from './documento.component';
 import { DocumentoUpdateComponent } from './documento-update.component';
 import { DocumentoDetailComponent } from './documento-detail.component';
 
 @NgModule({
- declarations: [
+  declarations: [
     DocumentoComponent,
     DocumentoUpdateComponent,
     DocumentoDetailComponent
-    // NavbarComponent
   ],
 
   imports: [
-            ReactiveFormsModule,
-            FontAwesomeModule,
-            RouterModule.forChild(documentoRoute),
-            CommonModule
-           ],
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FontAwesomeModule,
+    PrimeNgModule,
+    RouterModule.forChild(documentoRoute),
+  ],
 
   entryComponents: []
 })
