@@ -1,10 +1,13 @@
 <div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
-<hr />
 
-<div class="" style="margin-top: 20px">
-    <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
-
-      <div class="" style="margin-top: 20px">
+  <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
+    <div
+      class="p-grid p-shadow-24"
+      style="margin-left: 100px; margin-right: 100px"
+    >
+      <div class="p-col-1"></div>
+      <div class="p-col-5">
+        <div class="" style="margin-top: 20px">
         <label class="mam-label">Descripción</label>
         <div class="input-group">
           <input
@@ -12,19 +15,18 @@
             type="text"
             class="form-control"
             formControlName="descripcion"
+            style="width: 90%"
           />
         </div>
       </div>
 
-      <div style="margin-top: 20px">
         <!--  <label for="field_descripcion" class="form-control-label"
          ? Si utilizo la etiqueta for permite hacer click sobre la etiqueta
          ? y seleccionará el input asociado.
          ? Esto puede tener sentido en botones o selectores, pero no en input.
         https://stackoverflow.com/questions/18432376/what-does-for-attribute-do-in-html-label-tag/18432439-->
-      </div>
 
-      <div class="" style="margin-top: 20px">
+      <div style="margin-top: 20px">
         <label class="mam-label">Fecha solicitud (aaaa-mm-dd)</label>
         <div class="input-group">
           <!-- ngModelOptions="{standalone: true}" -->
@@ -41,7 +43,7 @@
         </div>
       </div>
 
-      <div class="" style="margin-top: 20px">
+      <div style="margin-top: 20px">
         <label class="mam-label">Fecha respuesta</label>
         <div class="input-group">
           <p-calendar
@@ -54,7 +56,7 @@
         </div>
       </div>
 
-      <div class="" style="margin-top: 20px">
+      <div style="margin-top: 20px">
         <label class="mam-label">Observaciones</label>
         <div class="input-group">
           <input
@@ -62,34 +64,41 @@
             type="text"
             class="form-control"
             formControlName="observacion"
+            style="width: 90%; margin-bottom: 20px;"
           />
         </div>
       </div>
-    </form>
+    </div>
 
-      <div class="container" style="padding-top: 60px; padding-bottom: 40px">
-        <div class="row justify-content-center">
-          <div class="col-8">
-            <button
-              pButton
-              (click)="previousState()"
-              class="p-button-rounded p-button-primary"
-              type="button"
-              icon="pi pi-chevron-circle-left"
-              iconPos="left"
-              label="Cancelar"
-            ></button>
 
-            <button
-              pButton
-              (click)="save()"
-              class="p-button-rounded p-button-success"
-              type="button"
-              icon="pi pi-user-save"
-              iconPos="left"
-              label="Grabar"
-            ></button>
-          </div>
-        </div>
+      <div class="p-col-1"></div>
+    </div>
+  </form>
+
+  <!-- Botones -->
+  <div class="container" style="padding-top: 60px; padding-bottom: 40px">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <button
+          pButton
+          (click)="previousState()"
+          class="p-button-rounded p-button-primary"
+          type="button"
+          icon="pi pi-chevron-circle-left"
+          iconPos="left"
+          label="Cancelar"
+        ></button>
+
+        <button
+          pButton
+          (click)="save()"
+          class="p-button-rounded p-button-success"
+          type="button"
+          icon="pi pi-user-save"
+          iconPos="left"
+          label="Grabar"
+        ></button>
       </div>
-</div>
+    </div>
+  </div>
+
