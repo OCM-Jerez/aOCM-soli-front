@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PrimeNgModule } from 'src/app/prime-ng/prime-ng.module';
+
 
 import { gestionRoute } from './gestion.route';
 import { GestionComponent } from './gestion.component';
@@ -17,15 +19,17 @@ import { GestionDetailComponent } from './gestion-detail.component';
     GestionComponent,
     GestionUpdateComponent,
     GestionDetailComponent
-   ],
+  ],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     FontAwesomeModule,
-            RouterModule.forChild(gestionRoute),
-            CommonModule
-          ],
+    PrimeNgModule,
+    RouterModule.forChild(gestionRoute),
+  ],
 
   entryComponents: [
-      ]
+  ]
 })
-export class GestionModule {}
+export class GestionModule { }

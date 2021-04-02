@@ -27,6 +27,7 @@ export class GestionUpdateComponent implements OnInit {
   solicituds: ISolicitud[] = [];
   fechaDp: any;
   solicitud: ISolicitud | null = null;
+  textoCabecera = "Editar gestión";
 
   editForm = this.fb.group({
     id: [],
@@ -53,6 +54,10 @@ export class GestionUpdateComponent implements OnInit {
     // this.gestion = this.localStorage.retrieve('gestion');
     this.activatedRoute.data.subscribe(({ gestion }) => {
       this.updateForm(gestion);
+      if (gestion.id == undefined) {
+        this.textoCabecera = "Crear gestión";
+        this.isSaving = true;
+      }
       // this.solicitudService.query().subscribe((res: HttpResponse<IGestion[]>) => (this.gestiones = res.body || []));
     });
   }

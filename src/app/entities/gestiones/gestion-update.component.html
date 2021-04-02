@@ -1,28 +1,27 @@
-<div class="row justify-content-center">
-  <div class="col-8">
-    <form
-      name="editForm"
-      role="form"
-      novalidate
-      (ngSubmit)="save()"
-      [formGroup]="editForm"
-    >
-      <h2>Crear o editar una gestión</h2>
+<div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
 
-      <div>
-        <!-- <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div> -->
-
-        <div class="form-group">
-          <label class="form-control-label">Nombre Documento</label>
+<form
+  name="editForm"
+  role="form"
+  novalidate
+  (ngSubmit)="save()"
+  [formGroup]="editForm"
+>
+  <div
+    class="p-grid p-shadow-24"
+    style="margin-left: 100px; margin-right: 100px"
+  >
+    <div class="p-col-1"></div>
+    <div class="col-5">
+        <div class="form-group" style="margin-top: 20px">
+          <label class="mam-label">Nombre Documento</label>
           <input
             type="text"
             class="form-control"
             name="nombreDeDocumento"
             id="field_nombreDeDocumento"
             formControlName="nombreDeDocumento"
+            style="width: 90%"
           />
           <div
             *ngIf="
@@ -35,13 +34,13 @@
               class="form-text text-danger"
               *ngIf="editForm.get('nombreDeDocumento')?.errors?.required"
             >
-              This field is required.
+              Este campo es requerido.
             </small>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label">Detalle</label>
+        <div class="form-group" style="margin-top: 20px">
+          <label class="mam-label">Detalle</label>
           <input
             type="text"
             class="form-control"
@@ -60,13 +59,13 @@
               class="form-text text-danger"
               *ngIf="editForm.get('detalle')?.errors?.required"
             >
-              This field is required.
+             Este campo es requerido.
             </small>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label">Fecha</label>
+        <div class="form-group" style="margin-top: 20px">
+          <label class="mam-label">Fecha</label>
           <div class="input-group">
             <!-- ngbDatepicker #fechaDp="ngbDatepicker" -->
             <input
@@ -96,114 +95,123 @@
               class="form-text text-danger"
               *ngIf="editForm.get('fecha')?.errors?.required"
             >
-              This field is required.
+              Este campo es requerido.
             </small>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label" for="field_observacion"
-            >Observación</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="observacion"
-            id="field_observacion"
-            formControlName="observacion"
-          />
-        </div>
+      <div class="form-group" style="margin-top: 20px">
+        <label class="mam-label" for="field_observacion">Observación</label>
+        <input
+          type="text"
+          class="form-control"
+          name="observacion"
+          id="field_observacion"
+          formControlName="observacion"
+        />
+      </div>
 
-        <div class="form-group">
-          <label class="form-control-label" for="field_documento"
-            >Documento</label
+      <div class="form-group">
+        <label class="mam-label" for="field_documento">Documento</label>
+        <div>
+          <div
+            *ngIf="editForm.get('documento')!.value"
+            class="form-text text-danger clearfix"
           >
-          <div>
-            <div
-              *ngIf="editForm.get('documento')!.value"
-              class="form-text text-danger clearfix"
+            <a
+              class="pull-left"
+              (click)="
+                openFile(
+                  editForm.get('documentoContentType')!.value,
+                  editForm.get('documento')!.value
+                )
+              "
+              >open</a
+            ><br />
+            <span class="pull-left"
+              >{{ editForm.get("documentoContentType")!.value }},
+              {{ byteSize(editForm.get("documento")!.value) }}</span
             >
-              <a
-                class="pull-left"
-                (click)="
-                  openFile(
-                    editForm.get('documentoContentType')!.value,
-                    editForm.get('documento')!.value
-                  )
-                "
-                jhiTranslate="entity.action.open"
-                >open</a
-              ><br />
-              <span class="pull-left"
-                >{{ editForm.get("documentoContentType")!.value }},
-                {{ byteSize(editForm.get("documento")!.value) }}</span
-              >
-              <button
-                type="button"
-                (click)="
-                  editForm.patchValue({ documento: null });
-                  editForm.patchValue({ documentoContentType: null })
-                "
-                class="btn btn-secondary btn-xs pull-right"
-              >
-                <!-- <fa-icon icon="times"></fa-icon> -->
-              </button>
-            </div>
-            <input
-              type="file"
-              id="file_documento"
-              (change)="setFileData($event, 'documento', false)"
-            />
+            <button
+              type="button"
+              (click)="
+                editForm.patchValue({ documento: null });
+                editForm.patchValue({ documentoContentType: null })
+              "
+              class="btn btn-secondary btn-xs pull-right"
+            >
+              <!-- <fa-icon icon="times"></fa-icon> -->
+            </button>
           </div>
           <input
-            type="hidden"
-            class="form-control"
-            name="documento"
-            id="field_documento"
-            formControlName="documento"
-          />
-          <input
-            type="hidden"
-            class="form-control"
-            name="documentoContentType"
-            id="field_documentoContentType"
-            formControlName="documentoContentType"
+            type="file"
+            id="file_documento"
+            (change)="setFileData($event, 'documento', false)"
           />
         </div>
-
-        <div class="form-group">
-          <label class="form-control-label">Privado</label>
-          <input
-            type="checkbox"
-            class="form-control"
-            name="privado"
-            id="field_privado"
-            formControlName="privado"
-          />
-        </div>
+        <input
+          type="hidden"
+          class="form-control"
+          name="documento"
+          id="field_documento"
+          formControlName="documento"
+        />
+        <input
+          type="hidden"
+          class="form-control"
+          name="documentoContentType"
+          id="field_documentoContentType"
+          formControlName="documentoContentType"
+        />
       </div>
 
-      <div>
-        <button
-          type="button"
-          id="cancel-save"
-          class="btn btn-secondary"
-          (click)="previousState()"
-        >
-          <!-- <fa-icon icon="ban"></fa-icon> -->
-          &nbsp;<span>Cancelar</span>
-        </button>
-
-        <button
-          type="submit"
-          id="save-entity"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
-          <!-- <fa-icon icon="save"></fa-icon> -->
-          &nbsp;<span>Grabar</span>
-        </button>
+      <div class="form-group">
+        <label class="mam-label">Privado</label>
+        <input
+          type="checkbox"
+          class="form-control"
+          name="privado"
+          id="field_privado"
+          formControlName="privado"
+        />
       </div>
-    </form>
+    </div>
+
+    <div class="p-col-1"></div>
+
   </div>
+</form>
+
+<!-- Botones -->
+<div class="col-1 p-shadow-24" style="margin-top: 60px; margin-bottom: 20px">
+  <button
+    pButton
+    (click)="previousState()"
+    class="p-button-rounded p-button-primary"
+    type="button"
+    icon="pi pi-chevron-circle-left"
+    iconPos="left"
+    label="Atras"
+  ></button>
+
+  <!-- [routerLink]="['/documentos/edit', documento?.id]" -->
+  <button
+    pButton
+    class="p-button-rounded p-button-success"
+    type="button"
+    icon="pi pi-user-edit"
+    iconPos="left"
+    label="Grabar"
+  ></button>
+
+  <!-- (click)="delete(documento!)" -->
+  <button
+    *ngIf="isSaving"
+    pButton
+    class="p-button-rounded p-button-danger"
+    type="button"
+    icon="pi pi-trash"
+    iconPos="left"
+    label="Borrar"
+  ></button>
 </div>
