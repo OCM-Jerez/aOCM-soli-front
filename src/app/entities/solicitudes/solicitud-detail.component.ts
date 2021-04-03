@@ -51,7 +51,6 @@ export class SolicitudDetailComponent implements OnInit {
     if (this.solicitud?.id) {
       this.documentoService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
         this.documentos = response.body;
-        console.log(this.documentos);
       });
     }
 
