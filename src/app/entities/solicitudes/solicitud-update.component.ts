@@ -50,6 +50,20 @@ export class SolicitudUpdateComponent implements OnInit {
     });
   }
 
+  private createFromForm(): ISolicitud {
+    // const { descripcion } = this.editForm.value;
+    return {
+      ...new Solicitud(),
+      id: this.editForm.get(['id'])!.value,
+      descripcion: this.editForm.get(['descripcion'])!.value,
+      // fechaSolicitud: this.editForm.get(['fechaSolicitud'])!.value,
+      fechaSolicitud: this.date,
+      // fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value,
+      fechaRespuesta: this.dateRes,
+      observacion: this.editForm.get(['observacion'])!.value
+    };
+  }
+
   updateForm(solicitud: ISolicitud): void {
     this.editForm.patchValue({
       id: solicitud.id,
@@ -72,38 +86,8 @@ export class SolicitudUpdateComponent implements OnInit {
     }
   }
 
-  private createFromForm(): ISolicitud {
-    // const { descripcion } = this.editForm.value;
-    return {
-      ...new Solicitud(),
-      id: this.editForm.get(['id'])!.value,
-      descripcion: this.editForm.get(['descripcion'])!.value,
-      // fechaSolicitud: this.editForm.get(['fechaSolicitud'])!.value,
-      fechaSolicitud: this.date,
-      // fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value,
-      fechaRespuesta: this.dateRes,
-      observacion: this.editForm.get(['observacion'])!.value
-    };
-  }
-
   previousState(): void {
     window.history.back();
   }
-
-  // byteSize(base64String: string): string {
-  //   return this.dataUtils.byteSize(base64String);
-  // }
-
-  // openFile(contentType: string, base64String: string): void {
-  //   this.dataUtils.openFile(contentType, base64String);
-  // }
-
-  // setFileData(event: Event, field: string, isImage: boolean): void {
-  //   this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe(null, (err: JhiFileLoadError) => {
-  //     this.eventManager.broadcast(
-  //       new JhiEventWithContent<AlertError>('ocmSoliServerApp.error', { ...err, key: 'error.file.' + err.key })
-  //     );
-  //   });
-  // }
 
 }
