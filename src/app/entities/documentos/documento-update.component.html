@@ -21,7 +21,7 @@
       </div>
 
       <div style="margin-top: 20px">
-        <label class="mam-label">Fecha solicitud (aaaa-mm-dd)</label>
+        <label class="mam-label">Fecha</label>
         <div class="input-group">
           <p-calendar
             [(ngModel)]="date"
@@ -60,63 +60,17 @@
       </div>
     </div>
 
+    <!-- En lugar de grabar los ficheros en la BBDD el registro guardara el enlace aDrive del OCM -->
     <div class="p-col-5">
+      <label class="mam-label">Ruta del archivo</label>
       <div class="form-group">
-        <div>
-          <div
-            *ngIf="editForm.get('documento')!.value"
-            class="form-text text-danger clearfix"
-          >
-            <a
-              class="pull-left"
-              (click)="
-                openFile(
-                  editForm.get('documentoContentType')!.value,
-                  editForm.get('documento')!.value
-                )
-              "
-              >open</a
-            >
-            <!-- <fa-icon icon="eye"></fa-icon> -->
-            <br />
-
-            <span class="pull-left"
-              >{{ editForm.get("documentoContentType")!.value }},
-              {{ byteSize(editForm.get("documento")!.value) }}</span
-            >
-            <button
-              type="button"
-              (click)="
-                editForm.patchValue({ documento: null });
-                editForm.patchValue({ documentoContentType: null })
-              "
-              class="btn btn-secondary btn-xs pull-right"
-            >
-              <!-- <fa-icon icon="times"></fa-icon> -->
-            </button>
-          </div>
-
-          <!-- Boton seleccionar archivo -->
-          <input
-            type="file"
-            id="file_documento"
-            (change)="setFileData($event, 'documento', false)"
-          />
-        </div>
-
         <input
-          type="hidden"
+          type="text"
           class="form-control"
-          name="documento"
+          name="ruta"
           id="field_documento"
-          formControlName="documento"
-        />
-        <input
-          type="hidden"
-          class="form-control"
-          name="documentoContentType"
-          id="field_documentoContentType"
-          formControlName="documentoContentType"
+          formControlName="ruta"
+          style="width: 90%"
         />
       </div>
     </div>
@@ -140,6 +94,7 @@
   <!-- [routerLink]="['/documentos/edit', documento?.id]" -->
   <button
     pButton
+    (click)="save()"
     class="p-button-rounded p-button-success"
     type="button"
     icon="pi pi-user-edit"

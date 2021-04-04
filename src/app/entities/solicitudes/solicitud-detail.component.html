@@ -82,7 +82,7 @@
               Descripción <p-sortIcon field="nombreDeDocumento"></p-sortIcon>
             </th>
             <th pSortableColumn="fechaSolicitud" style="background-color: #515963; width: 12%">
-              Fecha subida <p-sortIcon field="fechaSolicitud"></p-sortIcon>
+              Fecha <p-sortIcon field="fechaSolicitud"></p-sortIcon>
             </th>
             <th scope="col" style="background-color: #515963; width: 44%"><span>Observaciones</span></th>
             <th style="background-color: #515963; width: 6%"></th>
@@ -97,8 +97,11 @@
 
             <td class="text-right">
               <!-- [routerLink]="['/solicitudes/details', solicitud.id!]" -->
+             <!-- <a href="https://drive.google.com/file/d/17xcy0eJoYqEM6wjiqyoOJG6rdJLtlzcj/view?usp=sharing" target="_blank">Ver</a> -->
+             <a href= '{{ documento.ruta }}' target="_blank">Ver</a>
 
-                <button
+
+              <!-- <button
                   pButton
                   class="p-button-rounded p-button-info"
                   type="button"
@@ -106,7 +109,7 @@
                   iconPos="left"
                   label="Abrir"
                   style ="height: 10px;"
-                ></button>
+                ></button> -->
 
             </td>
           </tr>
