@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { LocalStorageService } from 'ngx-webstorage';
+import { PrimeIcons } from "primeng/api";
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
 
@@ -27,6 +28,9 @@ export class SolicitudDetailComponent implements OnInit {
   gestions: IGestion[] | any;
   isAdmin = environment.IsAdmin;
 
+  events2: any[] = [];
+  eventsHeader: any[] = [];
+
   constructor(
     protected solicitudService: SolicitudService,
     protected documentoService: DocumentoService,
@@ -34,7 +38,7 @@ export class SolicitudDetailComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     private $localStorage: LocalStorageService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => (this.solicitud = solicitud));
@@ -54,6 +58,117 @@ export class SolicitudDetailComponent implements OnInit {
       });
     }
 
+    this.events2 = [
+      {
+        status: "Solicitada:",
+        date: this.solicitud?.fechaSolicitud,
+        icon: PrimeIcons.SHOPPING_CART,
+        color: "#9C27B0",
+        image: "game-controller.jpg"
+      },
+      {
+        status: "Iniciada:",
+        date: "15/10/2020",
+        icon: PrimeIcons.COG,
+        color: "#673AB7"
+      },
+      {
+        status: "Respondida:",
+        date: this.solicitud?.fechaRespuesta,
+        icon: PrimeIcons.ENVELOPE,
+        color: "#FF9800"
+      },
+      {
+        status: "Reclamada",
+        date: "",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      }
+    ];
+
+    this.eventsHeader = [
+      {
+        status: "Solicitada:",
+        date: this.solicitud?.fechaSolicitud,
+        icon: PrimeIcons.SHOPPING_CART,
+        color: "#9C27B0",
+        image: "game-controller.jpg"
+      },
+      {
+        status: "Iniciada:",
+        date: "15/10/2020",
+        icon: PrimeIcons.COG,
+        color: "#673AB7"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      },
+      {
+        status: "Reclamada ",
+        date: "16/10/2020",
+        icon: PrimeIcons.CHECK,
+        color: "#607D8B"
+      }
+    ];
+
+
     // Relación con gestiones
     // if (this.solicitud?.id) {
     //   this.gestionService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
@@ -62,22 +177,22 @@ export class SolicitudDetailComponent implements OnInit {
     // }
   }
 
-       delete(solicitud: ISolicitud): void {
-        Swal.fire({
-          title: '¿Realmente quieres borrar esta solicitud?',
-          confirmButtonColor: '#d33',
-          denyButtonColor: '#3085d6',
-          showDenyButton: true,
-          showCancelButton: false,
-          confirmButtonText: `Borrar`,
-          denyButtonText: `NO Borrar`,
-        }).then((result) => {
-         if (result.isConfirmed) {
-             this.solicitudService.consulta(solicitud,'delete')
-        } else if (result.isDenied) {
+  delete(solicitud: ISolicitud): void {
+    Swal.fire({
+      title: '¿Realmente quieres borrar esta solicitud?',
+      confirmButtonColor: '#d33',
+      denyButtonColor: '#3085d6',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Borrar`,
+      denyButtonText: `NO Borrar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.solicitudService.consulta(solicitud, 'delete')
+      } else if (result.isDenied) {
 
-          }
-        })
+      }
+    })
   }
 
   crearDocumento(): void {

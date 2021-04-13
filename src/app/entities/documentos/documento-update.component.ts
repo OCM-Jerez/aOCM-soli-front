@@ -59,7 +59,7 @@ export class DocumentoUpdateComponent implements OnInit {
     return {
       ...new Documento(),
       id: this.editForm.get(['id'])!.value,
-      nombreDeDocumento: this.editForm.get(['descripcion'])!.value,
+      nombreDocumento: this.editForm.get(['descripcion'])!.value,
       fechaSubida: this.date,
       observacion: this.editForm.get(['observacion'])!.value,
       ruta: this.editForm.get(['ruta'])!.value,
@@ -71,7 +71,7 @@ export class DocumentoUpdateComponent implements OnInit {
   updateForm(documento: IDocumento): void {
     this.editForm.patchValue({
       id: documento.id,
-      descripcion: documento.nombreDeDocumento,
+      descripcion: documento.nombreDocumento,
       fechaSolicitud: documento.fechaSubida,
       observacion: documento.observacion,
       ruta: documento.ruta,

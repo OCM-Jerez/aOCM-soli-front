@@ -1,0 +1,94 @@
+<!-- Basado en https://codepen.io/Hiswe/pen/RMazPW -->
+
+<div class="p-grid p-shadow-24" style="margin: 20px">
+  <ul class="container">
+    <li class="container__item">
+      <h2 style="color: white; margin-bottom: 20px; margin-left: 10px">
+        Estado actual
+      </h2>
+
+
+      <div class="stepper stepper--flexbox">
+        <input
+          class="stepper__input"
+          id="stepper-flex-0"
+          name="stepper-flex"
+          type="radio"
+          checked="checked"
+        />
+        <div class="stepper__step">
+          <label class="stepper__button" for="stepper-flex-0">Solicitada</label>
+          <p class="stepper__content" for="stepper-flex-0">
+            {{ solicitud?.fechaSolicitud | date: "mediumDate" }}
+          </p>
+        </div>
+
+        <input
+          class="stepper__input"
+          id="stepper-flex-1"
+          name="stepper-flex"
+          type="radio"
+        />
+        <div class="stepper__step">
+          <label class="stepper__button" for="stepper-flex-1">Iniciada</label>
+          <p class="stepper__content" for="stepper-flex-1">
+            {{ solicitud?.fechaSolicitud | date: "mediumDate" }}
+          </p>
+        </div>
+
+        <div>
+          <span
+            style="
+              font-weight: bold;
+              font-size: 32px;
+              background-color: rgb(107, 107, 102);
+              padding-left: 4px;
+            "
+            [ngStyle]="{
+              color: solicitud?.diasRespuesta! > 30 ? 'red' : 'black'
+            }"
+            >{{ solicitud?.diasRespuesta }}</span
+          >
+        </div>
+
+        <input
+          class="stepper__input"
+          id="stepper-flex-2"
+          name="stepper-flex"
+          type="radio"
+
+        />
+        <div class="stepper__step">
+          <label class="stepper__button" for="stepper-flex-2">Respondida</label>
+          <p class="stepper__content" for="stepper-flex-2">
+            <span>{{ solicitud?.fechaRespuesta | date: "mediumDate" }}</span>
+          </p>
+        </div>
+
+        <!-- <input class="stepper__input" id="stepper-flex-3" name="stepper-flex" type="radio"/>
+      <div class="stepper__step">
+        <label class="stepper__button" for="stepper-flex-3">manga</label>
+        <p class="stepper__content" for="stepper-flex-3">we need more yellow</p>
+      </div>
+
+      <input class="stepper__input" id="stepper-flex-4" name="stepper-flex" type="radio"/>
+      <div class="stepper__step">
+        <label class="stepper__button" for="stepper-flex-4">banana</label>
+        <p class="stepper__content" for="stepper-flex-4">banananananana Batman!</p>
+      </div>
+
+      <input class="stepper__input" id="stepper-flex-5" name="stepper-flex" type="radio"/>
+      <div class="stepper__step">
+        <label class="stepper__button" for="stepper-flex-5">apple</label>
+        <p class="stepper__content" for="stepper-flex-5">The one that don't make you sleep</p>
+      </div>
+
+      <input class="stepper__input" id="stepper-flex-6" name="stepper-flex" type="radio"/>
+      <div class="stepper__step">
+        <label class="stepper__button" for="stepper-flex-6">orange</label>
+        <p class="stepper__content" for="stepper-flex-6">only for the juice</p>
+      </div> -->
+      </div>
+    </li>
+  </ul>
+</div>

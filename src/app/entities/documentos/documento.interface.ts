@@ -1,8 +1,8 @@
 export interface IDocumento {
   id?: any;
-  nombreDeDocumento?: string;
+  nombreDocumento?: string;
   fechaSubida?: Date;
-  documentoContentType?: string;
+  documentoType?: string;
   documento?: any;
   observacion?: string;
   ruta?: string;
@@ -17,9 +17,9 @@ export interface IDocumento {
 export class Documento implements IDocumento {
   constructor(
     public id?: any,
-    public nombreDeDocumento?: string,
+    public nombreDocumento?: string,
     public fechaSubida?: Date,
-    public documentoContentType?: string,
+    public documentoType?: string,
     public documento?: any,
     public observacion?: string,
     public ruta?: string,

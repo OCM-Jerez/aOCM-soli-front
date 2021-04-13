@@ -97,7 +97,7 @@ update(documento: IDocumento): Observable<EntityResponseType> {
 
   findAllBySolicitud(solicitudId: string): Observable<EntityArrayResponseType> {
     // const usuarioId = this.localStorageService.retrieve('idUser');
-    const usuarioId ="51aac8a8-cf42-4f96-a5cb-a39977806694";
+    const usuarioId ="855e01ee-8631-4321-9e8a-5a2fe6518505";
     return this.http
       .get<IDocumento[]>(this.baseUrl + 'documentos/solicitud/' + solicitudId + '/usuario/' + usuarioId, { observe: 'response' });
       // .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
