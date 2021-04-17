@@ -1,12 +1,13 @@
-:root {
-  --s-width: 900px;
-  --s-gutter: 2.5rem;
-  --c-background: rgb(0, 0, 0);
-  --c-accent: hsl(213, 74%, 58%);
-}
+// :root {
+//   --s-width: 900px;
+//   --s-gutter: 2.5rem;
+//   --c-background: rgb(0, 0, 0);
+//
+// }
 
 .stepper {
   $root: &;
+  --c-accent: hsl(135, 79%, 25%);
   --s-stepper-bullet: 2rem;
   --s-stepper-bullet-half: calc( var(--s-stepper-bullet) / 2 );
   --step-transition: background .5s, color .5s;
@@ -26,36 +27,38 @@
   z-index: 1;
 
     // [] asignacion por atributo. Por ejemplo <button disabled> =>  en CSS [disabled]{color: red;}
-  &[data-debug] {
-    counter-reset: steps;
+  // &[data-debug] {
+  //   counter-reset: steps;
 
-    &::after {
-      content: "number of steps: " counter(steps);
-      display: block;
-      position: absolute;
-      bottom: -1.5rem;
-      width: 100%;
-      text-align: center;
-      color: hsl(40, 50%, 50%);
-    }
-    input {
-      --s-separation: 1.5rem;
-      position: absolute;
-      display: initial;
-      top: -2rem;
-      @for $i from 1 through 10 {
-        &:nth-of-type(#{$i}) {
-          left: calc( var(--s-separation) * #{$i} + .75rem);
-        }
-      }
-    }
-  }
+  //   &::after {
+  //     content: "number of steps: " counter(steps);
+  //     display: block;
+  //     position: absolute;
+  //     bottom: -1.5rem;
+  //     width: 100%;
+  //     text-align: center;
+  //     color: hsl(40, 50%, 50%);
+  //   }
+
+  //   input {
+  //     --s-separation: 1.5rem;
+  //     position: absolute;
+  //     display: initial;
+  //     top: -2rem;
+  //     @for $i from 1 through 10 {
+  //       &:nth-of-type(#{$i}) {
+  //         left: calc( var(--s-separation) * #{$i} + .75rem);
+  //       }
+  //     }
+  //   }
+  // }
 
   // don't know
   &__input {
     counter-increment: steps;
     display: none;
   }
+
   &__step {
     counter-increment: current-step;
 
@@ -98,14 +101,16 @@
 
   // 2ª linea etiqueta
   &__content {
+    width: 16rem;
     color: white;
     text-align: center;
     font-style: italic;
     font-weight: 300;
     color: var(--step-color);
     transition: opacity .5s .05s;
-    padding-right: 4.5rem;
-    padding-left: 4rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+
     &::selection {
       color: black;
       background: var(--step-bullet-color);
@@ -145,7 +150,6 @@
       left: 50%;
       transform: translate( 0, -50%);
       z-index: -1;
-
       // connecting lines are always steps.length - 1
       #{$root}__step:last-child & {
         display: none;

@@ -28,11 +28,12 @@
           id="stepper-flex-1"
           name="stepper-flex"
           type="radio"
+          [checked]="iniciada"
         />
         <div class="stepper__step">
           <label class="stepper__button" for="stepper-flex-1">Iniciada</label>
           <p class="stepper__content" for="stepper-flex-1">
-            {{ solicitud?.fechaSolicitud | date: "mediumDate" }}
+            {{ solicitud?.fechaInicio | date: "mediumDate" }}
           </p>
         </div>
 
@@ -56,7 +57,7 @@
           id="stepper-flex-2"
           name="stepper-flex"
           type="radio"
-
+          [checked]="respondida"
         />
         <div class="stepper__step">
           <label class="stepper__button" for="stepper-flex-2">Respondida</label>
@@ -65,29 +66,6 @@
           </p>
         </div>
 
-        <!-- <input class="stepper__input" id="stepper-flex-3" name="stepper-flex" type="radio"/>
-      <div class="stepper__step">
-        <label class="stepper__button" for="stepper-flex-3">manga</label>
-        <p class="stepper__content" for="stepper-flex-3">we need more yellow</p>
-      </div>
-
-      <input class="stepper__input" id="stepper-flex-4" name="stepper-flex" type="radio"/>
-      <div class="stepper__step">
-        <label class="stepper__button" for="stepper-flex-4">banana</label>
-        <p class="stepper__content" for="stepper-flex-4">banananananana Batman!</p>
-      </div>
-
-      <input class="stepper__input" id="stepper-flex-5" name="stepper-flex" type="radio"/>
-      <div class="stepper__step">
-        <label class="stepper__button" for="stepper-flex-5">apple</label>
-        <p class="stepper__content" for="stepper-flex-5">The one that don't make you sleep</p>
-      </div>
-
-      <input class="stepper__input" id="stepper-flex-6" name="stepper-flex" type="radio"/>
-      <div class="stepper__step">
-        <label class="stepper__button" for="stepper-flex-6">orange</label>
-        <p class="stepper__content" for="stepper-flex-6">only for the juice</p>
-      </div> -->
       </div>
     </li>
   </ul>
