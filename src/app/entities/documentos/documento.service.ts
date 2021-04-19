@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { IDocumento } from './documento.interface';
 
 import { environment } from 'src/environments/environment';
+import { LocalStorageService } from 'ngx-webstorage';
 
 type EntityResponseType = HttpResponse<IDocumento>;
 type EntityArrayResponseType = HttpResponse<IDocumento[]>;
@@ -17,7 +18,11 @@ export class DocumentoService {
   private baseUrl: string = environment.baseUrl;
   isSaving = false;
 
-  constructor(protected http: HttpClient) {}
+  constructor(
+    protected http: HttpClient,
+    private $localStorage: LocalStorageService
+
+    ) {}
 
   consulta(documento: IDocumento, action: string) {
     switch (action) {
@@ -96,8 +101,7 @@ update(documento: IDocumento): Observable<EntityResponseType> {
   }
 
   findAllBySolicitud(solicitudId: string): Observable<EntityArrayResponseType> {
-    // const usuarioId = this.localStorageService.retrieve('idUser');
-    const usuarioId ="855e01ee-8631-4321-9e8a-5a2fe6518505";
+    const usuarioId = this.$localStorage.retrieve('iduser')
     return this.http
       .get<IDocumento[]>(this.baseUrl + 'documentos/solicitud/' + solicitudId + '/usuario/' + usuarioId, { observe: 'response' });
       // .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
