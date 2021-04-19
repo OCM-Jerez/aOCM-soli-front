@@ -1,13 +1,13 @@
 <div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
 
-  <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
-    <div
-      class="p-grid p-shadow-24"
-      style="margin-left: 100px; margin-right: 100px"
-    >
-      <div class="p-col-1"></div>
-      <div class="p-col-5">
-        <div class="" style="margin-top: 20px">
+<form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
+  <div
+    class="p-grid p-shadow-24"
+    style="margin-left: 100px; margin-right: 100px"
+  >
+    <div class="p-col-1"></div>
+    <div class="p-col-5">
+      <div class="" style="margin-top: 20px">
         <label class="mam-label">Descripción</label>
         <div class="input-group">
           <input
@@ -15,12 +15,12 @@
             type="text"
             class="form-control"
             formControlName="descripcion"
-            style="width: 90%"
+            style="width: 90%; height: 30px; font-size: 16px"
           />
         </div>
       </div>
 
-        <!--  <label for="field_descripcion" class="form-control-label"
+      <!--  <label for="field_descripcion" class="form-control-label"
          ? Si utilizo la etiqueta for permite hacer click sobre la etiqueta
          ? y seleccionará el input asociado.
          ? Esto puede tener sentido en botones o selectores, pero no en input.
@@ -32,6 +32,7 @@
           <!-- ngModelOptions="{standalone: true}" -->
           <!-- Si cambio dateFormat no se despliega p-calendar -->
           <p-calendar
+            id="date"
             [(ngModel)]="date"
             dateFormat="yy-mm-dd"
             [showButtonBar]="true"
@@ -44,9 +45,24 @@
       </div>
 
       <div style="margin-top: 20px">
+        <label class="mam-label">Fecha inicio</label>
+        <div class="input-group">
+          <p-calendar
+            id="dateIni"
+            [(ngModel)]="dateIni"
+            dateFormat="yy-mm-dd"
+            [showButtonBar]="true"
+            [showIcon]="true"
+            formControlName="fechaInicio"
+          ></p-calendar>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px">
         <label class="mam-label">Fecha respuesta</label>
         <div class="input-group">
           <p-calendar
+            id="dateRes"
             [(ngModel)]="dateRes"
             dateFormat="yy-mm-dd"
             [showButtonBar]="true"
@@ -60,45 +76,75 @@
         <label class="mam-label">Observaciones</label>
         <div class="input-group">
           <input
-            id="field_descripcion"
+            id="field_observacion"
             type="text"
             class="form-control"
             formControlName="observacion"
-            style="width: 90%; margin-bottom: 20px;"
+            style="
+              width: 90%;
+              margin-bottom: 20px;
+              height: 30px;
+              font-size: 16px;
+            "
           />
+        </div>
+      </div>
+
+      <div style="margin-top: 20px">
+        <div class="input-group">
+          <label class="mam-label" style="margin-right: 20px">isAdmitida</label>
+          <input
+            type="checkbox"
+            class="form-control"
+            name="isAdmitida"
+            id="field_isAdmitida"
+            formControlName="isAdmitida"
+          />
+        </div>
+      </div>
+
+      <div style="margin-top: 20px">
+        <div class="input-group">
+          <label class="mam-label" style="margin-right: 20px"
+            >Calidad respuesta</label
+          >
+          <p-rating
+          id="field_calidadRespuesta"
+          formControlName="calidadRespuesta"
+          [(ngModel)]="calidadRespuesta"
+          [cancel]="false">
+          </p-rating>
         </div>
       </div>
     </div>
 
+    <div class="p-col-1"></div>
+  </div>
+</form>
 
-      <div class="p-col-1"></div>
-    </div>
-  </form>
+<!-- Botones -->
+<div class="container" style="padding-top: 60px; padding-bottom: 40px">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <button
+        pButton
+        (click)="previousState()"
+        class="p-button-rounded p-button-primary"
+        type="button"
+        icon="pi pi-chevron-circle-left"
+        iconPos="left"
+        label="Cancelar"
+      ></button>
 
-  <!-- Botones -->
-  <div class="container" style="padding-top: 60px; padding-bottom: 40px">
-    <div class="row justify-content-center">
-      <div class="col-8">
-        <button
-          pButton
-          (click)="previousState()"
-          class="p-button-rounded p-button-primary"
-          type="button"
-          icon="pi pi-chevron-circle-left"
-          iconPos="left"
-          label="Cancelar"
-        ></button>
-
-        <button
-          pButton
-          (click)="save()"
-          class="p-button-rounded p-button-success"
-          type="button"
-          icon="pi pi-user-save"
-          iconPos="left"
-          label="Grabar"
-        ></button>
-      </div>
+      <button
+        pButton
+        (click)="save()"
+        class="p-button-rounded p-button-success"
+        type="button"
+        icon="pi pi-user-save"
+        iconPos="left"
+        label="Grabar"
+      ></button>
     </div>
   </div>
-
+</div>

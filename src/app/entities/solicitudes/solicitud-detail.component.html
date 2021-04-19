@@ -16,6 +16,38 @@
     </dl>
   </div>
 
+  <div class="p-col-6" *ngIf ="solicitud?.fechaRespuesta" >
+    <!-- <div class="input-group"> -->
+      <label class="mam-label" style="margin-right: 20px">Admitida</label>
+
+      <!--
+        formControlName="isAdmitida"
+        class="form-control"
+            -->
+      <input
+        type="checkbox"
+        name="isAdmitida"
+        id="field_isAdmitida"
+        [checked] = isAdmitida
+        [disabled] = "true"
+      />
+    <!-- </div> -->
+
+
+    <dl class="">
+     <dt class="mydt"><span>Calidad respuesta</span></dt>
+      <dd class="mydd">
+           <p-rating [(ngModel)]="calidadRespuesta" [cancel]="false" [disabled] = "true"></p-rating>
+
+      </dd>
+    </dl>
+
+    <div>
+      <app-rating></app-rating>
+    </div>
+
+  </div>
+
   <!-- <div class="p-col-6">
     <dl class="">
       <dt class="mydt"><span>Fecha solicitud</span></dt>

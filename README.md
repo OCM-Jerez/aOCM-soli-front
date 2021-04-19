@@ -15,8 +15,7 @@ https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24079916#not
 
 
 
---skip-tests
---flat crear ficheros en la carpeta actual.
+--skip-tests --flat crear ficheros en la carpeta actual.
 
 
 

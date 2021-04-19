@@ -13,6 +13,7 @@ import { SolicitudDetailComponent } from './solicitud-detail.component';
 import { SolicitudUpdateComponent } from './solicitud-update.component';
 import { NavbarComponent } from 'src/app/layouts/navbar/navbar.component';
 import { StepperComponent } from '../../layouts/stepper/stepper.component';
+import { RatingComponent } from 'src/app/layouts/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StepperComponent } from '../../layouts/stepper/stepper.component';
     SolicitudDetailComponent,
     SolicitudUpdateComponent,
     NavbarComponent, // Hay que declararlo aqui, de lo contrario da error.
-    StepperComponent // Hay que declararlo aqui, de lo contrario da error.
+    StepperComponent, // Hay que declararlo aqui, de lo contrario da error.
+    RatingComponent
   ],
 
   imports: [

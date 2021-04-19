@@ -26,6 +26,8 @@ export class SolicitudDetailComponent implements OnInit {
   solicitud: ISolicitud | null = null;
   documentos?: IDocumento[] | any;
   gestions: IGestion[] | any;
+  isAdmitida: boolean  | undefined ;
+  calidadRespuesta: number | undefined;
   isAdmin = environment.IsAdmin;
 
   events2: any[] = [];
@@ -42,6 +44,9 @@ export class SolicitudDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => (this.solicitud = solicitud));
+    this.calidadRespuesta = this.solicitud?.calidadRespuesta;
+    this.isAdmitida = this.solicitud?.isAdmitida
+
     // Calculo días trancurridos desde la solicitud.
     if (this.solicitud!.fechaRespuesta) {
       const date = moment(this.solicitud!.fechaRespuesta);
@@ -57,117 +62,6 @@ export class SolicitudDetailComponent implements OnInit {
         this.documentos = response.body;
       });
     }
-
-    this.events2 = [
-      {
-        status: "Solicitada:",
-        date: this.solicitud?.fechaSolicitud,
-        icon: PrimeIcons.SHOPPING_CART,
-        color: "#9C27B0",
-        image: "game-controller.jpg"
-      },
-      {
-        status: "Iniciada:",
-        date: "15/10/2020",
-        icon: PrimeIcons.COG,
-        color: "#673AB7"
-      },
-      {
-        status: "Respondida:",
-        date: this.solicitud?.fechaRespuesta,
-        icon: PrimeIcons.ENVELOPE,
-        color: "#FF9800"
-      },
-      {
-        status: "Reclamada",
-        date: "",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      }
-    ];
-
-    this.eventsHeader = [
-      {
-        status: "Solicitada:",
-        date: this.solicitud?.fechaSolicitud,
-        icon: PrimeIcons.SHOPPING_CART,
-        color: "#9C27B0",
-        image: "game-controller.jpg"
-      },
-      {
-        status: "Iniciada:",
-        date: "15/10/2020",
-        icon: PrimeIcons.COG,
-        color: "#673AB7"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      },
-      {
-        status: "Reclamada ",
-        date: "16/10/2020",
-        icon: PrimeIcons.CHECK,
-        color: "#607D8B"
-      }
-    ];
-
 
     // Relación con gestiones
     // if (this.solicitud?.id) {
