@@ -16,71 +16,31 @@
     </dl>
   </div>
 
-  <div class="p-col-6" *ngIf ="solicitud?.fechaRespuesta" >
-    <!-- <div class="input-group"> -->
-      <label class="mam-label" style="margin-right: 20px">Admitida</label>
-
-      <!--
-        formControlName="isAdmitida"
-        class="form-control"
-            -->
-      <input
-        type="checkbox"
-        name="isAdmitida"
-        id="field_isAdmitida"
-        [checked] = isAdmitida
-        [disabled] = "true"
-      />
-    <!-- </div> -->
-
+  <div class="p-col-6" *ngIf="solicitud?.fechaRespuesta">
+    <label class="mam-label" style="margin-right: 20px">Admitida</label>
+    <input
+      type="checkbox"
+      name="isAdmitida"
+      id="field_isAdmitida"
+      [checked]="isAdmitida"
+      [disabled]="true"
+    />
 
     <dl class="">
-     <dt class="mydt"><span>Calidad respuesta</span></dt>
+      <dt class="mydt"><span>Calidad respuesta</span></dt>
       <dd class="mydd">
-           <p-rating [(ngModel)]="calidadRespuesta" [cancel]="false" [disabled] = "true"></p-rating>
-
+        <p-rating
+          [(ngModel)]="calidadRespuesta"
+          [cancel]="false"
+          [disabled]="true"
+        ></p-rating>
       </dd>
     </dl>
 
-    <div>
+    <!-- <div>
       <app-rating></app-rating>
-    </div>
-
+    </div> -->
   </div>
-
-  <!-- <div class="p-col-6">
-    <dl class="">
-      <dt class="mydt"><span>Fecha solicitud</span></dt>
-      <dd class="mydd">
-        <span>{{ solicitud?.fechaSolicitud | date: "mediumDate" }}</span>
-      </dd>
-      <dt class="mydt"><span>Fecha respuesta</span></dt>
-      <dd class="mydd">
-        <span>{{ solicitud?.fechaRespuesta | date: "mediumDate" }}</span>
-      </dd>
-      <dt class="mydt"><span>Días transcurridos</span></dt>
-      <dd class="mydd">
-        <span
-          style="font-weight: bold"
-          [ngStyle]="{
-            color: solicitud?.diasRespuesta! > 30 ? 'red' : 'black'
-          }"
-          >{{ solicitud?.diasRespuesta }}</span
-        >
-      </dd>
-    </dl>
-  </div> -->
-
-  <!-- <div class="p-col-12">
-    <p-timeline [value]="eventsHeader" layout="horizontal" align="bottom">
-      <ng-template pTemplate="content" let-event>
-        <span class="mam-label">{{ event.status }}</span>
-        <span style="color: burlywood">
-          {{ event.date | date: "mediumDate" }}
-        </span>
-      </ng-template>
-    </p-timeline>
-  </div>-->
 </div>
 
 <app-stepper></app-stepper>
@@ -324,6 +284,3 @@
   <!-- </div> -->
   <!-- </div> -->
 </div>
-
-
-

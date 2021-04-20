@@ -20,7 +20,7 @@ export class SolicitudService {
   constructor(protected http: HttpClient) { }
 
   consulta(solicitud: ISolicitud, action: string) {
-     switch (action) {
+    switch (action) {
       case 'save':
         this.isSaving = true;
         this.subscribeResponse(this.create(solicitud), action);
@@ -38,7 +38,7 @@ export class SolicitudService {
   protected subscribeResponse(result: Observable<HttpResponse<ISolicitud>>, action: string): void {
     result.subscribe(
       () => this.onSaveSuccess(action),
-      () => {this.onSaveError(Error)}
+      () => { this.onSaveError(Error) }
     );
   }
 

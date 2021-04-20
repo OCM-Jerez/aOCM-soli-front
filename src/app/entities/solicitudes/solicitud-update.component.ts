@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { faEye, faWindowClose, faSave } from '@fortawesome/free-solid-svg-icons';
@@ -23,40 +23,28 @@ export class SolicitudUpdateComponent implements OnInit {
   faSave = faSave;
 
   // TODO ¿Como tipar?
-  date?: any ;
-  dateIni?: any ;
-  dateRes?: any ;
+  date?: any;
+  dateIni?: any;
+  dateRes?: any;
   textoCabecera = "Editar solicitud";
   calidadRespuesta?: number;
 
-  editForm: FormGroup = this.fb.group({
-    id: [],
-    descripcion: [null, [Validators.required]],
-    fechaSolicitud: new FormControl( [null, [Validators.required]]),
-    fechaInicio: [],
-    fechaRespuesta: [],
-    observacion: [],
-    isAdmitida: [],
-    calidadRespuesta: []
+  editForm = new FormGroup({
+    id: new FormControl([]),
+    descripcion: new FormControl([null, [Validators.required]]),
+    fechaSolicitud: new FormControl([null, [Validators.required]]),
+    fechaInicio: new FormControl([]),
+    fechaRespuesta: new FormControl([]),
+    observacion: new FormControl([]),
+    isAdmitida: new FormControl([]),
+    calidadRespuesta: new FormControl([])
   });
-
-  //  editForm = new FormGroup({
-  //   id: new FormControl([]),
-  //   descripcion: new FormControl([null, [Validators.required]]),
-  //   fechaSolicitud: new FormControl( [null, [Validators.required]]),
-  //   fechaInicio: new FormControl([]),
-  //   fechaRespuesta: new FormControl([]),
-  //   observacion: new FormControl([]),
-  //   isAdmitida: new FormControl([]),
-  //   calidadRespuesta: new FormControl([])
-  // });
 
   constructor(
     protected solicitudService: SolicitudService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
     private $localStorage: LocalStorageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => {
@@ -69,7 +57,6 @@ export class SolicitudUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ISolicitud {
-    // const { descripcion } = this.editForm.value;
     return {
       ...new Solicitud(),
       id: this.editForm.get(['id'])!.value,
@@ -80,7 +67,6 @@ export class SolicitudUpdateComponent implements OnInit {
       observacion: this.editForm.get(['observacion'])!.value,
       isAdmitida: this.editForm.get(['isAdmitida'])!.value,
       calidadRespuesta: this.editForm.get(['calidadRespuesta'])!.value,
-
       // Campos comunes.
       createdBy: this.$localStorage.retrieve('userLog'),
       createdDate: moment().format('YYYY-MM-DD'),
@@ -99,18 +85,17 @@ export class SolicitudUpdateComponent implements OnInit {
       observacion: solicitud.observacion,
       isAdmitida: solicitud.isAdmitida,
       calidadRespuesta: solicitud.calidadRespuesta,
-
       // Campos comunes.
-       lastModifiedBy: this.$localStorage.retrieve('userLog'),
-       lastModifiedDate: moment().format('YYYY-MM-DD')
+      lastModifiedBy: this.$localStorage.retrieve('userLog'),
+      lastModifiedDate: moment().format('YYYY-MM-DD')
     });
   }
 
   save(): void {
     // https://github.com/primefaces/primeng/issues/1226
     this.date = moment(this.date).format('YYYY-MM-DD');
-    if(this.dateIni){this.dateIni = moment(this.dateIni).format('YYYY-MM-DD')};
-    if(this.dateRes){this.dateRes = moment(this.dateRes).format('YYYY-MM-DD')};
+    if (this.dateIni) { this.dateIni = moment(this.dateIni).format('YYYY-MM-DD') };
+    if (this.dateRes) { this.dateRes = moment(this.dateRes).format('YYYY-MM-DD') };
     const solicitud: ISolicitud = this.createFromForm();
 
     if (solicitud.id === undefined) {
