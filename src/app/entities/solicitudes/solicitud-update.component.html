@@ -1,6 +1,11 @@
 <div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
 
-<form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
+<!-- TODO! No entiendo el uso de #formDirective="ngForm" -->
+<!-- https://angular.io/api/forms/NgForm#description -->
+<!-- <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()"> -->
+<!-- TODO! No entiendo el uso de (ngSubmit)="save()" -->
+<!-- <form [formGroup]="editForm" (ngSubmit)="save()"> -->
+<form [formGroup]="editForm">
   <div
     class="p-grid p-shadow-24"
     style="margin-left: 100px; margin-right: 100px"
@@ -31,6 +36,7 @@
         <div class="input-group">
           <!-- ngModelOptions="{standalone: true}" -->
           <!-- Si cambio dateFormat no se despliega p-calendar -->
+          <!-- Si no uso [(ngModel)] no graba el dato. Sin embargo al compilar da un aviso de que esta deprecado. -->
           <p-calendar
             id="date"
             [(ngModel)]="date"
@@ -109,10 +115,10 @@
             >Calidad respuesta</label
           >
           <p-rating
-          id="field_calidadRespuesta"
-          formControlName="calidadRespuesta"
-          [(ngModel)]="calidadRespuesta"
-          [cancel]="false">
+            id="field_calidadRespuesta"
+            formControlName="calidadRespuesta"
+            [cancel]="false"
+          >
           </p-rating>
         </div>
       </div>
@@ -120,6 +126,8 @@
 
     <div class="p-col-1"></div>
   </div>
+
+
 </form>
 
 <!-- Botones -->
