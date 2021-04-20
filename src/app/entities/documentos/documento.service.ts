@@ -107,6 +107,13 @@ update(documento: IDocumento): Observable<EntityResponseType> {
       // .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
+  findAllBySolicitudDocumentoType(solicitudId: string, tipoDocumento: string): Observable<EntityArrayResponseType> {
+    const usuarioId = this.$localStorage.retrieve('iduser')
+    return this.http
+      .get<IDocumento[]>(this.baseUrl + 'documentos/solicitud/' + solicitudId + '/documentoType/' + tipoDocumento+ '/'+ usuarioId, { observe: 'response' });
+      // .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     // if (res.body) {
     //   res.body.fechaSolicitud = res.body.fechaSolicitud ? moment(res.body.fechaSolicitud) : undefined;

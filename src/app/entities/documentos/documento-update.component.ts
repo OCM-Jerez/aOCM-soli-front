@@ -26,11 +26,13 @@ export class DocumentoUpdateComponent implements OnInit {
   textoCabecera = "Editar documento";
   fechaSubidaDp: any;
   idSolicitud?: string;
+  tipos = ["Solicitud", "Inicio", "Respuesta", "Reclamación CTA"]
 
   editForm = this.fb.group({
     id: [],
     descripcion: [null, [Validators.required]],
     fechaSolicitud: [null, [Validators.required]],
+    documentoType: [null, [Validators.required]],
     observacion: [],
     ruta: [null, [Validators.required]],
     privado: [],
@@ -61,6 +63,7 @@ export class DocumentoUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       nombreDocumento: this.editForm.get(['descripcion'])!.value,
       fechaSubida: this.date,
+      documentoType: this.editForm.get(['documentoType'])!.value,
       observacion: this.editForm.get(['observacion'])!.value,
       ruta: this.editForm.get(['ruta'])!.value,
       privado: this.editForm.get(['privado'])!.value,
@@ -73,6 +76,7 @@ export class DocumentoUpdateComponent implements OnInit {
       id: documento.id,
       descripcion: documento.nombreDocumento,
       fechaSolicitud: documento.fechaSubida,
+      documentotype: documento.documentoType,
       observacion: documento.observacion,
       ruta: documento.ruta,
       privado: documento.privado,

@@ -24,9 +24,11 @@ import { environment } from 'src/environments/environment';
 })
 export class SolicitudDetailComponent implements OnInit {
   solicitud: ISolicitud | null = null;
-  documentos?: IDocumento[] | any;
+  documentosSolicitud?: IDocumento[] | any;
+  documentosInicio?: IDocumento[] | any;
+  documentosRespuesta?: IDocumento[] | any;
   gestions: IGestion[] | any;
-  isAdmitida: boolean  | undefined ;
+  isAdmitida: boolean | undefined;
   calidadRespuesta: number | undefined;
   isAdmin = environment.IsAdmin;
 
@@ -58,60 +60,72 @@ export class SolicitudDetailComponent implements OnInit {
 
     // Relación con documentos
     if (this.solicitud?.id) {
-      this.documentoService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
-        this.documentos = response.body;
+      // this.documentoService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
+      this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'solicitud').subscribe(response => {
+        this.documentosSolicitud = response.body;
+      });
+
+      this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'inicio').subscribe(response => {
+        this.documentosInicio = response.body;
+      });
+
+      this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'respuesta').subscribe(response => {
+        this.documentosRespuesta = response.body;
       });
     }
 
-    // Relación con gestiones
-    // if (this.solicitud?.id) {
-    //   this.gestionService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
-    //     this.gestions = response.body;
-    //   });
-    // }
   }
 
-  delete(solicitud: ISolicitud): void {
-    Swal.fire({
-      title: '¿Realmente quieres borrar esta solicitud?',
-      confirmButtonColor: '#d33',
-      denyButtonColor: '#3085d6',
-      showDenyButton: true,
-      showCancelButton: false,
-      confirmButtonText: `Borrar`,
-      denyButtonText: `NO Borrar`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.solicitudService.consulta(solicitud, 'delete')
-      } else if (result.isDenied) {
-
-      }
-    })
-  }
-
-  crearDocumento(): void {
-    this.$localStorage.store('solicitud', this.solicitud?.id);
-    this.router.navigate(['/documentos/new']);
-  }
-
-  crearGestion(): void {
-    this.$localStorage.store('solicitud', this.solicitud);
-    this.router.navigate(['/gestiones/new']);
-  }
-
-  trackId(index: number, item: IDocumento): number {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    return item.id!;
-  }
-
-  // byteSize(base64String: string): string {
-  //   return this.dataUtils.byteSize(base64String);
-  // }
-  // openFile(contentType: string, base64String: string): void {
-  //   return this.dataUtils.openFile(contentType, base64String);
+  // Relación con gestiones
+  // if (this.solicitud?.id) {
+  //   this.gestionService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
+  //     this.gestions = response.body;
+  //   });
   // }
 
-  previousState(): void {
-    window.history.back();
-  }
+
+
+delete (solicitud: ISolicitud): void {
+  Swal.fire({
+    title: '¿Realmente quieres borrar esta solicitud?',
+    confirmButtonColor: '#d33',
+    denyButtonColor: '#3085d6',
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: `Borrar`,
+    denyButtonText: `NO Borrar`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.solicitudService.consulta(solicitud, 'delete')
+    } else if (result.isDenied) {
+
+    }
+  })
+}
+
+crearDocumento(): void {
+  this.$localStorage.store('solicitud', this.solicitud?.id);
+  this.router.navigate(['/documentos/new']);
+}
+
+crearGestion(): void {
+  this.$localStorage.store('solicitud', this.solicitud);
+  this.router.navigate(['/gestiones/new']);
+}
+
+trackId(index: number, item: IDocumento): number {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+  return item.id!;
+}
+
+// byteSize(base64String: string): string {
+//   return this.dataUtils.byteSize(base64String);
+// }
+// openFile(contentType: string, base64String: string): void {
+//   return this.dataUtils.openFile(contentType, base64String);
+// }
+
+previousState(): void {
+  window.history.back();
+}
 }

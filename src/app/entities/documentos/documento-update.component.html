@@ -20,6 +20,19 @@
         </div>
       </div>
 
+      <!-- https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24207454#overview -->
+      <div>
+        <label class="mam-label">Tipo:</label>
+        <div>
+          <select class="form-control" formControlName="documentoType">
+            <!-- <option value="">-- Seleccione tipo documento --</option> -->
+            <option *ngFor="let tipo of tipos" [value]="tipo | lowercase">
+              {{ tipo }}
+            </option>
+          </select>
+        </div>
+      </div>
+
       <div style="margin-top: 20px">
         <label class="mam-label">Fecha</label>
         <div class="input-group">
@@ -60,7 +73,7 @@
       </div>
     </div>
 
-    <!-- En lugar de grabar los ficheros en la BBDD el registro guardara el enlace aDrive del OCM -->
+    <!-- En lugar de grabar los ficheros en la BBDD el registro guardara el enlace Drive del OCM -->
     <div class="p-col-5">
       <label class="mam-label">Ruta del archivo</label>
       <div class="form-group">

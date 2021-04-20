@@ -58,10 +58,10 @@
       </ng-template>
 
       <span
-        *ngIf="documentos?.length > 0; else noDocumentosTpl"
+        *ngIf="documentosSolicitud?.length > 0; else noDocumentosTpl"
         class="mySubtituloComponent"
       >
-        <!-- Documentos asociados -->
+        <!-- Documentos solicitud -->
       </span>
 
       <button
@@ -84,9 +84,9 @@
         </div>
       </ng-template>
 
-      <div class="p-grid p-shadow-24" *ngIf="documentos?.length > 0">
+      <div class="p-grid p-shadow-24" *ngIf="documentosSolicitud?.length > 0">
         <p-table
-          [value]="documentos"
+          [value]="documentosSolicitud"
           [rowHover]="true"
           [rows]="5"
           [paginator]="true"
@@ -141,33 +141,168 @@
       </div>
     </p-tabPanel>
 
-    <p-tabPanel header="Header II">
+<!-- Documentos inicio -->
+    <p-tabPanel>
       <ng-template pTemplate="header">
-        <i class="pi pi-user"></i>
-        <span>Documentos respuesta</span>
+        <i class="pi pi-calendar"></i>
+        <span>Documentos inicio</span>
       </ng-template>
-      <p>Documentos respuesta</p>
-    </p-tabPanel>
 
-    <p-tabPanel header="Header III">
-      <ng-template pTemplate="header">
-        <i class="pi pi-search"></i>
-        <span>Otros documentos</span>
-        <!-- <i class="pi pi-cog"></i> -->
+      <span
+        *ngIf="documentosInicio?.length > 0; else noDocumentosTpl"
+        class="mySubtituloComponent"
+      >
+      </span>
+
+      <ng-template #noDocumentosTpl>
+        <div>
+          <span class="mySubtituloComponent"
+            >No hay documentos asociados a esta solicitud</span
+          >
+        </div>
       </ng-template>
-      <p>Otros documentos</p>
 
-      <!-- <div class="p-col-12">
-        <p-timeline [value]="events1" layout="horizontal" align="bottom">
-          <ng-template pTemplate="content" let-event>
-            <span class="mam-label">{{ event.status }}</span>
-            <span style="color: burlywood">
-              {{ event.date | date: "mediumDate" }}
-            </span>
+      <div class="p-grid p-shadow-24" *ngIf="documentosInicio?.length > 0">
+        <p-table
+          [value]="documentosInicio"
+          [rowHover]="true"
+          [rows]="5"
+          [paginator]="true"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th
+                pSortableColumn="nombreDocumento"
+                style="background-color: #515963; width: 44%"
+              >
+                Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
+              </th>
+              <th
+                pSortableColumn="fechaSubida"
+                style="background-color: #515963; width: 12%"
+              >
+                Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
+              </th>
+              <th scope="col" style="background-color: #515963; width: 44%">
+                <span>Observaciones</span>
+              </th>
+              <th style="background-color: #515963; width: 6%"></th>
+            </tr>
           </ng-template>
-        </p-timeline>
-      </div> -->
+
+          <ng-template pTemplate="body" let-documento>
+            <tr>
+              <td>{{ documento.nombreDocumento }}</td>
+              <td style="font-weight: bold; text-align: right">
+                {{ documento.fechaSubida | date: "mediumDate" }}
+              </td>
+              <td>{{ documento.observacion }}</td>
+
+              <td class="text-right">
+                <!-- [routerLink]="['/solicitudes/details', solicitud.id!]" -->
+                <!-- <a href="https://drive.google.com/file/d/17xcy0eJoYqEM6wjiqyoOJG6rdJLtlzcj/view?usp=sharing" target="_blank">Ver</a> -->
+                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
+
+                <!-- <button
+                        pButton
+                        class="p-button-rounded p-button-info"
+                        type="button"
+                        icon="pi pi-eye"
+                        iconPos="left"
+                        label="Abrir"
+                        style ="height: 10px;"
+                      ></button> -->
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
     </p-tabPanel>
+
+
+<!-- Documentos respuesta -->
+<p-tabPanel>
+  <ng-template pTemplate="header">
+    <i class="pi pi-calendar"></i>
+    <span>Documentos respuesta</span>
+  </ng-template>
+
+  <span
+    *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl"
+    class="mySubtituloComponent"
+  >
+  </span>
+
+  <ng-template #noDocumentosTpl>
+    <div>
+      <span class="mySubtituloComponent"
+        >No hay documentos asociados a esta solicitud</span
+      >
+    </div>
+  </ng-template>
+
+  <div class="p-grid p-shadow-24" *ngIf="documentosRespuesta?.length > 0">
+    <p-table
+      [value]="documentosRespuesta"
+      [rowHover]="true"
+      [rows]="5"
+      [paginator]="true"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th
+            pSortableColumn="nombreDocumento"
+            style="background-color: #515963; width: 44%"
+          >
+            Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
+          </th>
+          <th
+            pSortableColumn="fechaSubida"
+            style="background-color: #515963; width: 12%"
+          >
+            Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
+          </th>
+          <th scope="col" style="background-color: #515963; width: 44%">
+            <span>Observaciones</span>
+          </th>
+          <th style="background-color: #515963; width: 6%"></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-documento>
+        <tr>
+          <td>{{ documento.nombreDocumento }}</td>
+          <td style="font-weight: bold; text-align: right">
+            {{ documento.fechaSubida | date: "mediumDate" }}
+          </td>
+          <td>{{ documento.observacion }}</td>
+
+          <td class="text-right">
+            <!-- [routerLink]="['/solicitudes/details', solicitud.id!]" -->
+            <!-- <a href="https://drive.google.com/file/d/17xcy0eJoYqEM6wjiqyoOJG6rdJLtlzcj/view?usp=sharing" target="_blank">Ver</a> -->
+            <a href="{{ documento.ruta }}" target="_blank">Ver</a>
+
+            <!-- <button
+                    pButton
+                    class="p-button-rounded p-button-info"
+                    type="button"
+                    icon="pi pi-eye"
+                    iconPos="left"
+                    label="Abrir"
+                    style ="height: 10px;"
+                  ></button> -->
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</p-tabPanel>
+
+
+
+
+
+
 
     <p-tabPanel header="Header III">
       <ng-template pTemplate="header">
@@ -211,7 +346,7 @@
           *ngIf="gestions?.length > 0"
         >
           <p-table
-            [value]="documentos"
+            [value]="documentosSolicitud"
             [rowHover]="true"
             [rows]="5"
             [paginator]="true"
