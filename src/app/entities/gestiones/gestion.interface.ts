@@ -6,6 +6,10 @@ export interface IGestion {
   observacion?: string;
   privado?: boolean;
   solicitudId?: number;
+  createdBy? : string,
+  createdDate?: any,
+  lastModifiedBy?: string,
+  lastModifiedDate?: any
 }
 export class Gestion implements IGestion {
   constructor(
@@ -14,7 +18,11 @@ export class Gestion implements IGestion {
     public fecha?: Date,
     public observacion?: string,
     public privado?: boolean,
-    public solicitudId?: number
+    public solicitudId?: number,
+    public createdBy? : string,
+    public createdDate?: any,
+    public lastModifiedBy?: string,
+    public lastModifiedDate?: any
   ) {
     this.privado = this.privado || false;
   }

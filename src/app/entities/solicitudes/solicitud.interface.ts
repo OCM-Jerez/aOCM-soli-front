@@ -15,7 +15,7 @@ export interface ISolicitud {
   createdBy? : string,
   createdDate?: any,
   lastModifiedBy?: string,
-  lastModifiedDate?: any,
+  lastModifiedDate?: any
 }
 
 export class Solicitud implements ISolicitud {
@@ -36,6 +36,6 @@ export class Solicitud implements ISolicitud {
     public createdBy? : string,
     public createdDate?: any,
     public lastModifiedBy?: string,
-    public lastModifiedDate?: any,
+    public lastModifiedDate?: any
   ) {}
 }
