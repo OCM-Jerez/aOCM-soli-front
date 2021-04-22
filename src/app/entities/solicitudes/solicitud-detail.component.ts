@@ -17,6 +17,7 @@ import { IDocumento } from '../documentos/documento.interface';
 import { IGestion } from '../gestiones/gestion.interface';
 
 import { environment } from 'src/environments/environment';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-solicitud-detail',
@@ -27,11 +28,10 @@ export class SolicitudDetailComponent implements OnInit {
   documentosSolicitud?: IDocumento[] | any;
   documentosInicio?: IDocumento[] | any;
   documentosRespuesta?: IDocumento[] | any;
-  gestions: IGestion[] | any;
+  gestions?: IGestion[] | any;
   isAdmitida: boolean | undefined;
   calidadRespuesta: number | undefined;
   isAdmin = environment.IsAdmin;
-
   events2: any[] = [];
   eventsHeader: any[] = [];
 
@@ -63,6 +63,7 @@ export class SolicitudDetailComponent implements OnInit {
       // this.documentoService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
       this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'solicitud').subscribe(response => {
         this.documentosSolicitud = response.body;
+        // console.log(response.body);
       });
 
       this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'inicio').subscribe(response => {
@@ -74,16 +75,13 @@ export class SolicitudDetailComponent implements OnInit {
       });
     }
 
+    // Relación con gestiones
+    if (this.solicitud?.id) {
+      this.gestionService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
+        this.gestions = response.body;
+      });
+    }
   }
-
-  // Relación con gestiones
-  // if (this.solicitud?.id) {
-  //   this.gestionService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
-  //     this.gestions = response.body;
-  //   });
-  // }
-
-
 
 delete (solicitud: ISolicitud): void {
   Swal.fire({
@@ -109,7 +107,7 @@ crearDocumento(): void {
 }
 
 crearGestion(): void {
-  this.$localStorage.store('solicitud', this.solicitud);
+  this.$localStorage.store('solicitud', this.solicitud?.id);
   this.router.navigate(['/gestiones/new']);
 }
 
@@ -118,14 +116,8 @@ trackId(index: number, item: IDocumento): number {
   return item.id!;
 }
 
-// byteSize(base64String: string): string {
-//   return this.dataUtils.byteSize(base64String);
-// }
-// openFile(contentType: string, base64String: string): void {
-//   return this.dataUtils.openFile(contentType, base64String);
-// }
-
 previousState(): void {
   window.history.back();
 }
+
 }

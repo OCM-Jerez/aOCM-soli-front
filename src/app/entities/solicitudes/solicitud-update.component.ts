@@ -56,6 +56,21 @@ export class SolicitudUpdateComponent implements OnInit {
     });
   }
 
+ updateForm(solicitud: ISolicitud): void {
+    this.editForm.patchValue({
+      id: solicitud.id,
+      descripcion: solicitud.descripcion,
+      fechaSolicitud: solicitud.fechaSolicitud,
+      fechaInicio: solicitud.fechaInicio,
+      fechaRespuesta: solicitud.fechaRespuesta,
+      observacion: solicitud.observacion,
+      isAdmitida: solicitud.isAdmitida,
+      calidadRespuesta: solicitud.calidadRespuesta,
+      // Campos comunes.
+      lastModifiedBy: this.$localStorage.retrieve('userLog'),
+      lastModifiedDate: moment().format('YYYY-MM-DD')
+    });
+  }
   private createFromForm(): ISolicitud {
     return {
       ...new Solicitud(),
@@ -75,23 +90,7 @@ export class SolicitudUpdateComponent implements OnInit {
     };
   }
 
-  updateForm(solicitud: ISolicitud): void {
-    this.editForm.patchValue({
-      id: solicitud.id,
-      descripcion: solicitud.descripcion,
-      fechaSolicitud: solicitud.fechaSolicitud,
-      fechaInicio: solicitud.fechaInicio,
-      fechaRespuesta: solicitud.fechaRespuesta,
-      observacion: solicitud.observacion,
-      isAdmitida: solicitud.isAdmitida,
-      calidadRespuesta: solicitud.calidadRespuesta,
-      // Campos comunes.
-      lastModifiedBy: this.$localStorage.retrieve('userLog'),
-      lastModifiedDate: moment().format('YYYY-MM-DD')
-    });
-  }
-
-  save(): void {
+   save(): void {
     // https://github.com/primefaces/primeng/issues/1226
     this.date = moment(this.date).format('YYYY-MM-DD');
     if (this.dateIni) { this.dateIni = moment(this.dateIni).format('YYYY-MM-DD') };

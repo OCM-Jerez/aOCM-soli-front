@@ -141,7 +141,7 @@
       </div>
     </p-tabPanel>
 
-<!-- Documentos inicio -->
+    <!-- Documentos inicio -->
     <p-tabPanel>
       <ng-template pTemplate="header">
         <i class="pi pi-calendar"></i>
@@ -219,70 +219,69 @@
       </div>
     </p-tabPanel>
 
-
-<!-- Documentos respuesta -->
-<p-tabPanel>
-  <ng-template pTemplate="header">
-    <i class="pi pi-calendar"></i>
-    <span>Documentos respuesta</span>
-  </ng-template>
-
-  <span
-    *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl"
-    class="mySubtituloComponent"
-  >
-  </span>
-
-  <ng-template #noDocumentosTpl>
-    <div>
-      <span class="mySubtituloComponent"
-        >No hay documentos asociados a esta solicitud</span
-      >
-    </div>
-  </ng-template>
-
-  <div class="p-grid p-shadow-24" *ngIf="documentosRespuesta?.length > 0">
-    <p-table
-      [value]="documentosRespuesta"
-      [rowHover]="true"
-      [rows]="5"
-      [paginator]="true"
-    >
+    <!-- Documentos respuesta -->
+    <p-tabPanel>
       <ng-template pTemplate="header">
-        <tr>
-          <th
-            pSortableColumn="nombreDocumento"
-            style="background-color: #515963; width: 44%"
-          >
-            Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
-          </th>
-          <th
-            pSortableColumn="fechaSubida"
-            style="background-color: #515963; width: 12%"
-          >
-            Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
-          </th>
-          <th scope="col" style="background-color: #515963; width: 44%">
-            <span>Observaciones</span>
-          </th>
-          <th style="background-color: #515963; width: 6%"></th>
-        </tr>
+        <i class="pi pi-calendar"></i>
+        <span>Documentos respuesta</span>
       </ng-template>
 
-      <ng-template pTemplate="body" let-documento>
-        <tr>
-          <td>{{ documento.nombreDocumento }}</td>
-          <td style="font-weight: bold; text-align: right">
-            {{ documento.fechaSubida | date: "mediumDate" }}
-          </td>
-          <td>{{ documento.observacion }}</td>
+      <span
+        *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl"
+        class="mySubtituloComponent"
+      >
+      </span>
 
-          <td class="text-right">
-            <!-- [routerLink]="['/solicitudes/details', solicitud.id!]" -->
-            <!-- <a href="https://drive.google.com/file/d/17xcy0eJoYqEM6wjiqyoOJG6rdJLtlzcj/view?usp=sharing" target="_blank">Ver</a> -->
-            <a href="{{ documento.ruta }}" target="_blank">Ver</a>
+      <ng-template #noDocumentosTpl>
+        <div>
+          <span class="mySubtituloComponent"
+            >No hay documentos asociados a esta solicitud</span
+          >
+        </div>
+      </ng-template>
 
-            <!-- <button
+      <div class="p-grid p-shadow-24" *ngIf="documentosRespuesta?.length > 0">
+        <p-table
+          [value]="documentosRespuesta"
+          [rowHover]="true"
+          [rows]="5"
+          [paginator]="true"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th
+                pSortableColumn="nombreDocumento"
+                style="background-color: #515963; width: 44%"
+              >
+                Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
+              </th>
+              <th
+                pSortableColumn="fechaSubida"
+                style="background-color: #515963; width: 12%"
+              >
+                Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
+              </th>
+              <th scope="col" style="background-color: #515963; width: 44%">
+                <span>Observaciones</span>
+              </th>
+              <th style="background-color: #515963; width: 6%"></th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-documento>
+            <tr>
+              <td>{{ documento.nombreDocumento }}</td>
+              <td style="font-weight: bold; text-align: right">
+                {{ documento.fechaSubida | date: "mediumDate" }}
+              </td>
+              <td>{{ documento.observacion }}</td>
+
+              <td class="text-right">
+                <!-- [routerLink]="['/solicitudes/details', solicitud.id!]" -->
+                <!-- <a href="https://drive.google.com/file/d/17xcy0eJoYqEM6wjiqyoOJG6rdJLtlzcj/view?usp=sharing" target="_blank">Ver</a> -->
+                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
+
+                <!-- <button
                     pButton
                     class="p-button-rounded p-button-info"
                     type="button"
@@ -291,19 +290,14 @@
                     label="Abrir"
                     style ="height: 10px;"
                   ></button> -->
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-</p-tabPanel>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </p-tabPanel>
 
-
-
-
-
-
-
+    <!-- Gestiones asociados -->
     <p-tabPanel header="Header III">
       <ng-template pTemplate="header">
         <i class="pi pi-search"></i>
@@ -316,7 +310,6 @@
           *ngIf="gestions?.length > 0; else noGestionesTpl"
           class="mySubtituloComponent"
         >
-          <!-- Gestiones asociados -->
         </span>
 
         <button
@@ -346,34 +339,43 @@
           *ngIf="gestions?.length > 0"
         >
           <p-table
-            [value]="documentosSolicitud"
+            [value]="gestions"
             [rowHover]="true"
             [rows]="5"
             [paginator]="true"
           >
-            <thead>
-              <tr>
-                <th scope="col"><span>Descripción</span></th>
-                <th scope="col"><span>Fecha</span></th>
-                <th scope="col"><span>Observación</span></th>
-                <th scope="col"><span>Anexo</span></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let gestion of gestions; trackBy: trackId">
-                <!-- <td><a [routerLink]="['/gestion', gestion.id, 'view']">{{ gestion.id }}</a></td> -->
-                <td>
-                  <!-- <a [routerLink]="['/gestion', gestion.id, 'view']">{{ gestion.detalle }}</a> -->
-                </td>
-                <!-- <td>{{ gestion.fecha | date: 'mediumDate' }}</td> -->
-                <td>{{ gestion.observacion }}</td>
+          <ng-template pTemplate="header">
+            <tr>
+              <th
+                pSortableColumn="nombreDocumento"
+                style="background-color: #515963; width: 44%"
+              >
+                Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
+              </th>
+              <th
+                pSortableColumn="fechaSubida"
+                style="background-color: #515963; width: 12%"
+              >
+                Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
+              </th>
+              <th scope="col" style="background-color: #515963; width: 44%">
+                <span>Observaciones</span>
+              </th>
+              <th style="background-color: #515963; width: 6%"></th>
+            </tr>
+          </ng-template>
 
-                <td>
-                  <!-- (click)="openFile(gestion.documentoContentType, gestion.documento)" -->
-                  <a *ngIf="gestion.documento">Abrir</a>
-                </td>
-              </tr>
-            </tbody>
+          <ng-template pTemplate="body" let-gestion>
+            <tr>
+              <td>{{ gestion.detalle }}</td>
+              <td style="font-weight: bold; text-align: right">
+                {{ gestion.fecha | date: "mediumDate" }}
+              </td>
+              <td>{{ gestion.observacion }}</td>
+
+
+            </tr>
+          </ng-template>
           </p-table>
         </div>
       </div>
