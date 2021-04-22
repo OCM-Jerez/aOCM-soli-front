@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { LocalStorageService } from 'ngx-webstorage';
-import { PrimeIcons } from "primeng/api";
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
 
@@ -17,7 +16,6 @@ import { IDocumento } from '../documentos/documento.interface';
 import { IGestion } from '../gestiones/gestion.interface';
 
 import { environment } from 'src/environments/environment';
-import { __values } from 'tslib';
 
 @Component({
   selector: 'app-solicitud-detail',
@@ -60,10 +58,8 @@ export class SolicitudDetailComponent implements OnInit {
 
     // Relación con documentos
     if (this.solicitud?.id) {
-      // this.documentoService.findAllBySolicitud(this.solicitud.id).subscribe(response => {
       this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'solicitud').subscribe(response => {
         this.documentosSolicitud = response.body;
-        // console.log(response.body);
       });
 
       this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'inicio').subscribe(response => {
@@ -112,7 +108,6 @@ crearGestion(): void {
 }
 
 trackId(index: number, item: IDocumento): number {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
   return item.id!;
 }
 
