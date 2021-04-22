@@ -9,17 +9,9 @@
                 <dd>
                     <span>{{ documento?.nombreDocumento }}</span>
                 </dd>
-                <!-- <dt><span>Fecha</span></dt>
-                <dd>
-                    <span>{{ documento?.fechaSubida | date: 'mediumDate'}}</span>
-                </dd> -->
-                <dt><span>Fichero</span></dt>
-                <!-- <dd>
-                    <div *ngIf="documento?.documento">
-                        <a (click)="openFile(documento?.documentoType!, documento?.documento)">open</a>
-                        {{ documento?.documentoType }}, {{ byteSize(documento?.documento) }}
-                    </div>
-                </dd> -->
+
+                <!-- <dt><span>Fichero</span></dt> -->
+
                 <dt><span>Observación</span></dt>
                 <dd>
                     <span>{{ documento?.observacion }}</span>
@@ -29,21 +21,9 @@
                     <span>{{ documento?.ruta }}</span>
                 </dd>
                 <dt><span>Privado</span></dt>
-                <!-- <dd>
-                    <span>{{ documento.privado }}</span>
-                </dd> -->
+
                 <dt><span>Solicitud</span></dt>
-                <!-- <dd>
-                    <div *ngIf="documento?.solicitudId">
-                        <a [routerLink]="['/solicitud', documento.solicitudId, 'view']">{{ documento?.solicitudDescripcion }}</a>
-                    </div>
-                </dd>
-                <dt><span>Gestión</span></dt>
-                <dd>
-                    <div *ngIf="documento.gestionId">
-                        <a [routerLink]="['/gestion', documento.gestionId, 'view']">{{ documento?.gestionDetalle }}</a>
-                    </div>
-                </dd> -->
+
             </dl>
 
             <button type="submit"

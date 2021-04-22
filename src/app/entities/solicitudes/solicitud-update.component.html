@@ -1,9 +1,7 @@
 <div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
 
-<!-- TODO! No entiendo el uso de #formDirective="ngForm" -->
 <!-- https://angular.io/api/forms/NgForm#description -->
 <!-- <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()"> -->
-<!-- TODO! No entiendo el uso de (ngSubmit)="save()" -->
 <!-- <form [formGroup]="editForm" (ngSubmit)="save()"> -->
 <form [formGroup]="editForm">
   <div
@@ -126,8 +124,6 @@
 
     <div class="p-col-1"></div>
   </div>
-
-
 </form>
 
 <!-- Botones -->
@@ -153,6 +149,7 @@
         iconPos="left"
         label="Grabar"
       ></button>
+
     </div>
   </div>
 </div>

@@ -121,20 +121,9 @@
               <td>{{ documento.observacion }}</td>
 
               <td class="text-right">
-                <!-- [routerLink]="['/solicitudes/details', solicitud.id!]" -->
-                <!-- <a href="https://drive.google.com/file/d/17xcy0eJoYqEM6wjiqyoOJG6rdJLtlzcj/view?usp=sharing" target="_blank">Ver</a> -->
-                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
-
-                <!-- <button
-                        pButton
-                        class="p-button-rounded p-button-info"
-                        type="button"
-                        icon="pi pi-eye"
-                        iconPos="left"
-                        label="Abrir"
-                        style ="height: 10px;"
-                      ></button> -->
+                               <a href="{{ documento.ruta }}" target="_blank">Ver</a>
               </td>
+
             </tr>
           </ng-template>
         </p-table>
@@ -199,20 +188,9 @@
               <td>{{ documento.observacion }}</td>
 
               <td class="text-right">
-                <!-- [routerLink]="['/solicitudes/details', solicitud.id!]" -->
-                <!-- <a href="https://drive.google.com/file/d/17xcy0eJoYqEM6wjiqyoOJG6rdJLtlzcj/view?usp=sharing" target="_blank">Ver</a> -->
-                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
-
-                <!-- <button
-                        pButton
-                        class="p-button-rounded p-button-info"
-                        type="button"
-                        icon="pi pi-eye"
-                        iconPos="left"
-                        label="Abrir"
-                        style ="height: 10px;"
-                      ></button> -->
+                 <a href="{{ documento.ruta }}" target="_blank">Ver</a>
               </td>
+
             </tr>
           </ng-template>
         </p-table>
@@ -277,20 +255,9 @@
               <td>{{ documento.observacion }}</td>
 
               <td class="text-right">
-                <!-- [routerLink]="['/solicitudes/details', solicitud.id!]" -->
-                <!-- <a href="https://drive.google.com/file/d/17xcy0eJoYqEM6wjiqyoOJG6rdJLtlzcj/view?usp=sharing" target="_blank">Ver</a> -->
-                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
-
-                <!-- <button
-                    pButton
-                    class="p-button-rounded p-button-info"
-                    type="button"
-                    icon="pi pi-eye"
-                    iconPos="left"
-                    label="Abrir"
-                    style ="height: 10px;"
-                  ></button> -->
+                   <a href="{{ documento.ruta }}" target="_blank">Ver</a>
               </td>
+
             </tr>
           </ng-template>
         </p-table>
@@ -385,8 +352,6 @@
 
 <!-- Botones -->
 <div class="col-1 p-shadow-24" style="margin-top: 60px; margin-bottom: 20px">
-  <!-- <div class="row justify-content-center"> -->
-  <!-- <div class="col-8"> -->
   <button
     pButton
     (click)="previousState()"
@@ -418,6 +383,5 @@
     iconPos="left"
     label="Borrar"
   ></button>
-  <!-- </div> -->
-  <!-- </div> -->
+
 </div>
