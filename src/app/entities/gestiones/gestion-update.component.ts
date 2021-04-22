@@ -24,6 +24,7 @@ export class GestionUpdateComponent implements OnInit {
   faSave = faSave;
 
   isSaving = false;
+  idSolicitud?: string;
   solicituds: ISolicitud[] = [];
   fechaDp: any;
   solicitud: ISolicitud | null = null;
@@ -42,7 +43,6 @@ export class GestionUpdateComponent implements OnInit {
   });
 
   constructor(
-
     protected gestionService: GestionService,
     protected solicitudService: SolicitudService,
     protected activatedRoute: ActivatedRoute,
@@ -51,14 +51,13 @@ export class GestionUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.gestion = this.localStorage.retrieve('gestion');
+    this.idSolicitud = this.localStorage.retrieve('solicitud');
     this.activatedRoute.data.subscribe(({ gestion }) => {
       this.updateForm(gestion);
       if (gestion.id == undefined) {
         this.textoCabecera = "Crear gestión";
         this.isSaving = true;
       }
-      // this.solicitudService.query().subscribe((res: HttpResponse<IGestion[]>) => (this.gestiones = res.body || []));
     });
   }
 
@@ -68,29 +67,22 @@ export class GestionUpdateComponent implements OnInit {
       detalle: gestion.detalle,
       fecha: gestion.fecha,
       observacion: gestion.observacion,
-      documento: gestion.documento,
-      documentoContentType: gestion.documentoContentType,
-      nombreDeDocumento: gestion.nombreDeDocumento,
       privado: gestion.privado,
-      solicitudId: gestion.solicitudId
+      solicitudId: this.idSolicitud
     });
   }
 
-  byteSize(base64String: string): string {
-    // return this.dataUtils.byteSize(base64String);
-    return "respuesta"
-  }
-
-  openFile(contentType: string, base64String: string): void {
-    // this.dataUtils.openFile(contentType, base64String);
-  }
-
-  setFileData(event: Event, field: string, isImage: boolean): void {
-    // this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe(null, (err: JhiFileLoadError) => {
-    //   this.eventManager.broadcast(
-    //     new JhiEventWithContent<AlertError>('ocmSoliServerApp.error', { ...err, key: 'error.file.' + err.key })
-    //   );
-    // });
+  private createFromForm(): IGestion {
+    this.idSolicitud = this.localStorage.retrieve('solicitud');
+    return {
+      ...new Gestion(),
+      id: this.editForm.get(['id'])!.value,
+      detalle: this.editForm.get(['detalle'])!.value,
+      fecha: this.editForm.get(['fecha'])!.value,
+      observacion: this.editForm.get(['observacion'])!.value,
+      privado: this.editForm.get(['privado'])!.value,
+      solicitudId: this.solicitud?.id
+    };
   }
 
   previousState(): void {
@@ -100,28 +92,12 @@ export class GestionUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const gestion = this.createFromForm();
+    gestion.solicitudId = this.localStorage.retrieve('solicitud');
     if (gestion.id !== undefined) {
-      console.log('actualizar gestion');
       this.subscribeToSaveResponse(this.gestionService.update(gestion));
     } else {
-      console.log('grabar nueva gestion');
       this.subscribeToSaveResponse(this.gestionService.create(gestion));
     }
-  }
-
-  private createFromForm(): IGestion {
-    return {
-      ...new Gestion(),
-      id: this.editForm.get(['id'])!.value,
-      detalle: this.editForm.get(['detalle'])!.value,
-      fecha: this.editForm.get(['fecha'])!.value,
-      observacion: this.editForm.get(['observacion'])!.value,
-      documentoContentType: this.editForm.get(['documentoContentType'])!.value,
-      documento: this.editForm.get(['documento'])!.value,
-      nombreDeDocumento: this.editForm.get(['nombreDeDocumento'])!.value,
-      privado: this.editForm.get(['privado'])!.value,
-      solicitudId: this.solicitud?.id
-    };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IGestion>>): void {
@@ -142,5 +118,22 @@ export class GestionUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  byteSize(base64String: string): string {
+    // return this.dataUtils.byteSize(base64String);
+    return "respuesta"
+  }
+
+  openFile(contentType: string, base64String: string): void {
+    // this.dataUtils.openFile(contentType, base64String);
+  }
+
+  setFileData(event: Event, field: string, isImage: boolean): void {
+    // this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe(null, (err: JhiFileLoadError) => {
+    //   this.eventManager.broadcast(
+    //     new JhiEventWithContent<AlertError>('ocmSoliServerApp.error', { ...err, key: 'error.file.' + err.key })
+    //   );
+    // });
   }
 }

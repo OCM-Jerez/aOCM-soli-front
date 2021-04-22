@@ -4,7 +4,6 @@
   name="editForm"
   role="form"
   novalidate
-  (ngSubmit)="save()"
   [formGroup]="editForm"
 >
   <div
@@ -13,31 +12,6 @@
   >
     <div class="p-col-1"></div>
     <div class="col-5">
-        <div class="form-group" style="margin-top: 20px">
-          <label class="mam-label">Nombre Documento</label>
-          <input
-            type="text"
-            class="form-control"
-            name="nombreDeDocumento"
-            id="field_nombreDeDocumento"
-            formControlName="nombreDeDocumento"
-            style="width: 90%"
-          />
-          <div
-            *ngIf="
-              editForm.get('nombreDeDocumento')!.invalid &&
-              (editForm.get('nombreDeDocumento')!.dirty ||
-                editForm.get('nombreDeDocumento')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('nombreDeDocumento')?.errors?.required"
-            >
-              Este campo es requerido.
-            </small>
-          </div>
-        </div>
 
         <div class="form-group" style="margin-top: 20px">
           <label class="mam-label">Detalle</label>
@@ -112,60 +86,6 @@
       </div>
 
       <div class="form-group">
-        <label class="mam-label" for="field_documento">Documento</label>
-        <div>
-          <div
-            *ngIf="editForm.get('documento')!.value"
-            class="form-text text-danger clearfix"
-          >
-            <a
-              class="pull-left"
-              (click)="
-                openFile(
-                  editForm.get('documentoContentType')!.value,
-                  editForm.get('documento')!.value
-                )
-              "
-              >open</a
-            ><br />
-            <span class="pull-left"
-              >{{ editForm.get("documentoContentType")!.value }},
-              {{ byteSize(editForm.get("documento")!.value) }}</span
-            >
-            <button
-              type="button"
-              (click)="
-                editForm.patchValue({ documento: null });
-                editForm.patchValue({ documentoContentType: null })
-              "
-              class="btn btn-secondary btn-xs pull-right"
-            >
-              <!-- <fa-icon icon="times"></fa-icon> -->
-            </button>
-          </div>
-          <input
-            type="file"
-            id="file_documento"
-            (change)="setFileData($event, 'documento', false)"
-          />
-        </div>
-        <input
-          type="hidden"
-          class="form-control"
-          name="documento"
-          id="field_documento"
-          formControlName="documento"
-        />
-        <input
-          type="hidden"
-          class="form-control"
-          name="documentoContentType"
-          id="field_documentoContentType"
-          formControlName="documentoContentType"
-        />
-      </div>
-
-      <div class="form-group">
         <label class="mam-label">Privado</label>
         <input
           type="checkbox"
@@ -199,6 +119,7 @@
     pButton
     class="p-button-rounded p-button-success"
     type="button"
+    (click)="save()"
     icon="pi pi-user-edit"
     iconPos="left"
     label="Grabar"
