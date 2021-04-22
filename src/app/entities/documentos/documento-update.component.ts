@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { faWindowClose, faSave } from '@fortawesome/free-solid-svg-icons';
@@ -21,10 +21,9 @@ export class DocumentoUpdateComponent implements OnInit {
   faWindowClose = faWindowClose;
   faSave = faSave;
 
-  date?: any ;
+  date?: any;
   isSaving = false;
   textoCabecera = "Editar documento";
-  fechaSubidaDp: any;
   idSolicitud?: string;
   tipos = ["Solicitud", "Inicio", "Respuesta", "Reclamación CTA"]
 
@@ -43,32 +42,17 @@ export class DocumentoUpdateComponent implements OnInit {
     protected documentoService: DocumentoService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private $localStorage: LocalStorageService
-  ) {}
+    private localStorage: LocalStorageService
+  ) { }
 
   ngOnInit(): void {
-     this.idSolicitud = this.$localStorage.retrieve('solicitud');
-      this.activatedRoute.data.subscribe(({ documento }) => {
+    this.activatedRoute.data.subscribe(({ documento }) => {
       this.updateForm(documento);
       if (documento.id == undefined) {
         this.textoCabecera = "Crear documento";
         this.isSaving = true;
       }
-     });
-  }
-
-  private createFromForm(): IDocumento {
-    return {
-      ...new Documento(),
-      id: this.editForm.get(['id'])!.value,
-      nombreDocumento: this.editForm.get(['descripcion'])!.value,
-      fechaSubida: this.date,
-      documentoType: this.editForm.get(['documentoType'])!.value,
-      observacion: this.editForm.get(['observacion'])!.value,
-      ruta: this.editForm.get(['ruta'])!.value,
-      privado: this.editForm.get(['privado'])!.value,
-      solicitudId: this.idSolicitud
-    };
+    });
   }
 
   updateForm(documento: IDocumento): void {
@@ -84,6 +68,25 @@ export class DocumentoUpdateComponent implements OnInit {
     });
   }
 
+  private createFromForm(): IDocumento {
+    this.idSolicitud = this.localStorage.retrieve('solicitud');
+    return {
+      ...new Documento(),
+      id: this.editForm.get(['id'])!.value,
+      nombreDocumento: this.editForm.get(['descripcion'])!.value,
+      fechaSubida: this.date,
+      documentoType: this.editForm.get(['documentoType'])!.value,
+      observacion: this.editForm.get(['observacion'])!.value,
+      ruta: this.editForm.get(['ruta'])!.value,
+      privado: this.editForm.get(['privado'])!.value,
+      solicitudId: this.idSolicitud
+    };
+  }
+
+  previousState(): void {
+    window.history.back();
+  }
+
   save(): void {
     this.isSaving = true;
     this.date = moment(this.date).format('YYYY-MM-DD');
@@ -91,11 +94,8 @@ export class DocumentoUpdateComponent implements OnInit {
     if (documento.id === undefined) {
       this.documentoService.consulta(documento, 'save')
     } else {
-      this.documentoService.consulta(documento, 'update')    }
-  }
-
-  previousState(): void {
-    window.history.back();
+      this.documentoService.consulta(documento, 'update')
+    }
   }
 
   trackById(index: number, item: SelectableEntity): any {

@@ -14,12 +14,12 @@
                     <span>{{ documento?.fechaSubida | date: 'mediumDate'}}</span>
                 </dd> -->
                 <dt><span>Fichero</span></dt>
-                <dd>
+                <!-- <dd>
                     <div *ngIf="documento?.documento">
                         <a (click)="openFile(documento?.documentoType!, documento?.documento)">open</a>
                         {{ documento?.documentoType }}, {{ byteSize(documento?.documento) }}
                     </div>
-                </dd>
+                </dd> -->
                 <dt><span>Observación</span></dt>
                 <dd>
                     <span>{{ documento?.observacion }}</span>
