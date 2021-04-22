@@ -21,7 +21,6 @@ export class DocumentoService {
   constructor(
     protected http: HttpClient,
     private $localStorage: LocalStorageService
-
     ) {}
 
   consulta(documento: IDocumento, action: string) {

@@ -67,7 +67,7 @@ export class DocumentoUpdateComponent implements OnInit {
       observacion: this.editForm.get(['observacion'])!.value,
       ruta: this.editForm.get(['ruta'])!.value,
       privado: this.editForm.get(['privado'])!.value,
-      solicitudId: this.idSolicitud,
+      solicitudId: this.idSolicitud
     };
   }
 
