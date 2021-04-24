@@ -8,9 +8,8 @@
     class="p-grid p-shadow-24"
     style="margin-left: 100px; margin-right: 100px"
   >
-    <div class="p-col-1"></div>
-    <div class="p-col-5">
-
+    <!-- <div class="p-col-1"></div> -->
+    <div class="p-col-6">
       <div class="" style="margin-top: 20px">
         <label class="mam-label">Año</label>
         <div class="input-group">
@@ -19,7 +18,7 @@
             type="text"
             class="form-control"
             formControlName="year"
-            style="width: 90%; height: 30px; font-size: 16px"
+            style="width: 10%; height: 30px; font-size: 16px"
           />
         </div>
       </div>
@@ -32,7 +31,7 @@
             type="text"
             class="form-control"
             formControlName="code"
-            style="width: 90%; height: 30px; font-size: 16px"
+            style="width: 10%; height: 30px; font-size: 16px"
           />
         </div>
       </div>
@@ -50,106 +49,63 @@
         </div>
       </div>
 
-      <!--  <label for="field_descripcion" class="form-control-label"
+      <div>
+        <!--  <label for="field_descripcion" class="form-control-label"
          ? Si utilizo la etiqueta for permite hacer click sobre la etiqueta
          ? y seleccionará el input asociado.
          ? Esto puede tener sentido en botones o selectores, pero no en input.
         https://stackoverflow.com/questions/18432376/what-does-for-attribute-do-in-html-label-tag/18432439-->
 
-      <div style="margin-top: 20px">
-        <label class="mam-label">Fecha solicitud (aaaa-mm-dd)</label>
-        <div class="input-group">
-          <!-- ngModelOptions="{standalone: true}" -->
-          <!-- Si cambio dateFormat no se despliega p-calendar -->
-          <!-- Si no uso [(ngModel)] no graba el dato. Sin embargo al compilar da un aviso de que esta deprecado. -->
-          <p-calendar
-            id="date"
-            [(ngModel)]="date"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaSolicitud"
-          ></p-calendar>
-          <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
-          <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
+        <div style="margin-top: 20px">
+          <label class="mam-label">Fecha solicitud al Ayuntamiento</label>
+          <div class="input-group">
+            <!-- ngModelOptions="{standalone: true}" -->
+            <!-- Si cambio dateFormat no se despliega p-calendar -->
+            <!-- Si no uso [(ngModel)] no graba el dato. Sin embargo al compilar da un aviso de que esta deprecado. -->
+            <p-calendar
+              id="date"
+              [(ngModel)]="date"
+              dateFormat="yy-mm-dd"
+              [showButtonBar]="true"
+              [showIcon]="true"
+              formControlName="fechaSolicitud"
+            ></p-calendar>
+            <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
+            <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
+          </div>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label class="mam-label">Fecha inicio</label>
+          <div class="input-group">
+            <p-calendar
+              id="dateIni"
+              [(ngModel)]="dateIni"
+              dateFormat="yy-mm-dd"
+              [showButtonBar]="true"
+              [showIcon]="true"
+              formControlName="fechaInicio"
+            ></p-calendar>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label class="mam-label">Fecha respuesta</label>
+          <div class="input-group">
+            <p-calendar
+              id="dateRes"
+              [(ngModel)]="dateRes"
+              dateFormat="yy-mm-dd"
+              [showButtonBar]="true"
+              [showIcon]="true"
+              formControlName="fechaRespuesta"
+            ></p-calendar>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div style="margin-top: 20px">
-        <label class="mam-label">Fecha inicio</label>
-        <div class="input-group">
-          <p-calendar
-            id="dateIni"
-            [(ngModel)]="dateIni"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaInicio"
-          ></p-calendar>
-        </div>
-      </div>
-
-      <div style="margin-top: 20px">
-        <label class="mam-label">Fecha respuesta</label>
-        <div class="input-group">
-          <p-calendar
-            id="dateRes"
-            [(ngModel)]="dateRes"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaRespuesta"
-          ></p-calendar>
-        </div>
-      </div>
-
-      <div style="margin-top: 20px">
-        <label class="mam-label">Fecha Reclamacion Consejo Transparencia Andalucía</label>
-        <div class="input-group">
-          <!-- ngModelOptions="{standalone: true}" -->
-          <!-- Si cambio dateFormat no se despliega p-calendar -->
-          <!-- Si no uso [(ngModel)] no graba el dato. Sin embargo al compilar da un aviso de que esta deprecado. -->
-          <p-calendar
-            id="date"
-            [(ngModel)]="dateReclamacionCTA"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaReclamacionCTA"
-          ></p-calendar>
-          <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
-          <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
-        </div>
-      </div>
-
-      <div style="margin-top: 20px">
-        <label class="mam-label">Fecha inicio</label>
-        <div class="input-group">
-          <p-calendar
-            id="dateIni"
-            [(ngModel)]="dateIniCTA"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaInicioCTA"
-          ></p-calendar>
-        </div>
-      </div>
-
-      <div style="margin-top: 20px">
-        <label class="mam-label">Fecha respuesta</label>
-        <div class="input-group">
-          <p-calendar
-            id="dateRes"
-            [(ngModel)]="dateResCTA"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaRespuestaCTA"
-          ></p-calendar>
-        </div>
-      </div>
-
+    <div class="p-col-6">
       <div style="margin-top: 20px">
         <label class="mam-label">Observaciones</label>
         <div class="input-group">
@@ -194,9 +150,57 @@
           </p-rating>
         </div>
       </div>
-    </div>
 
-    <div class="p-col-1"></div>
+      <div style="margin-top: 20px">
+        <label class="mam-label"
+          >Fecha Reclamacion Consejo Transparencia Andalucía</label
+        >
+        <div class="input-group">
+          <!-- ngModelOptions="{standalone: true}" -->
+          <!-- Si cambio dateFormat no se despliega p-calendar -->
+          <!-- Si no uso [(ngModel)] no graba el dato. Sin embargo al compilar da un aviso de que esta deprecado. -->
+          <p-calendar
+            id="date"
+            [(ngModel)]="dateReclamacionCTA"
+            dateFormat="yy-mm-dd"
+            [showButtonBar]="true"
+            [showIcon]="true"
+            formControlName="fechaReclamacionCTA"
+          ></p-calendar>
+          <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
+          <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
+        </div>
+      </div>
+
+      <div style="margin-top: 20px">
+        <label class="mam-label">Fecha inicio</label>
+        <div class="input-group">
+          <p-calendar
+            id="dateIni"
+            [(ngModel)]="dateIniCTA"
+            dateFormat="yy-mm-dd"
+            [showButtonBar]="true"
+            [showIcon]="true"
+            formControlName="fechaInicioCTA"
+          ></p-calendar>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px">
+        <label class="mam-label">Fecha respuesta</label>
+        <div class="input-group">
+          <p-calendar
+            id="dateRes"
+            [(ngModel)]="dateResCTA"
+            dateFormat="yy-mm-dd"
+            [showButtonBar]="true"
+            [showIcon]="true"
+            formControlName="fechaRespuestaCTA"
+          ></p-calendar>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="p-col-1"></div> -->
   </div>
 </form>
 
@@ -223,7 +227,6 @@
         iconPos="left"
         label="Grabar"
       ></button>
-
     </div>
   </div>
 </div>
