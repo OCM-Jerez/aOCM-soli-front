@@ -3,9 +3,22 @@
 <div class="p-text-center mam-tituloComponent">Detalles solicitud</div>
 
 <div class="p-grid p-shadow-24" style="margin-left: 20px; margin-right: 20px">
-  <div class="p-col-6">
+  <div class="p-col-2">
     <dl class="">
-      <dt class="mydt"><span>Descripción</span></dt>
+      <dt class="mydt"><span>Año</span></dt>
+      <dd class="mydd">
+        <span>{{ solicitud?.year }}</span>
+      </dd>
+      <dt class="mydt" style="display: block"><span>Codigo Ayuntamiento</span></dt>
+      <dd class="mydd">
+        <span>{{ solicitud?.code }}</span>
+      </dd>
+    </dl>
+  </div>
+
+  <div class="p-col-4">
+    <dl class="">
+     <dt class="mydt"><span>Descripción</span></dt>
       <dd class="mydd">
         <span>{{ solicitud?.descripcion }}</span>
       </dd>
@@ -16,18 +29,32 @@
     </dl>
   </div>
 
-  <div class="p-col-6" *ngIf="solicitud?.fechaRespuesta">
-    <label class="mam-label" style="margin-right: 20px">Admitida</label>
+  <div class="p-col-3" *ngIf="solicitud?.fechaRespuesta">
+    <!-- <label class="mam-label" style="margin-right: 20px">Admitida</label>
     <input
       type="checkbox"
       name="isAdmitida"
       id="field_isAdmitida"
       [checked]="isAdmitida"
       [disabled]="true"
-    />
+    /> -->
 
-    <dl class="">
-      <dt class="mydt"><span>Calidad respuesta</span></dt>
+    <span
+      style="font-weight: bold; text-align: right"
+      [ngStyle]="{
+        opacity: solicitud?.fechaRespuesta! && !solicitud?.isAdmitida ? 100 : 0,
+        color: 'red',
+        'font-weight': 'bold',
+        'font-size': '32px'
+      }"
+    >
+      Inadmitida
+    </span>
+
+    <dl class="" *ngIf="solicitud?.isAdmitida">
+      <dt class="mydt">
+        <span>Calidad respuesta</span>
+      </dt>
       <dd class="mydd">
         <p-rating
           [(ngModel)]="calidadRespuesta"
@@ -43,8 +70,15 @@
   </div>
 </div>
 
+<div class="p-grid p-shadow-24" style="margin-left: 20px; margin-right: 20px">
+<div class="p-col-6">
 <app-stepper></app-stepper>
+</div>
 
+<div class="p-col-6" *ngIf="solicitud?.fechaReclamacionCTA">
+  <app-stepperCTA></app-stepperCTA>
+  </div>
+</div>
 <!-- Pestañas -->
 <div
   class="card"
@@ -121,9 +155,8 @@
               <td>{{ documento.observacion }}</td>
 
               <td class="text-right">
-                               <a href="{{ documento.ruta }}" target="_blank">Ver</a>
+                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
               </td>
-
             </tr>
           </ng-template>
         </p-table>
@@ -188,9 +221,8 @@
               <td>{{ documento.observacion }}</td>
 
               <td class="text-right">
-                 <a href="{{ documento.ruta }}" target="_blank">Ver</a>
+                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
               </td>
-
             </tr>
           </ng-template>
         </p-table>
@@ -255,9 +287,8 @@
               <td>{{ documento.observacion }}</td>
 
               <td class="text-right">
-                   <a href="{{ documento.ruta }}" target="_blank">Ver</a>
+                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
               </td>
-
             </tr>
           </ng-template>
         </p-table>
@@ -311,38 +342,36 @@
             [rows]="5"
             [paginator]="true"
           >
-          <ng-template pTemplate="header">
-            <tr>
-              <th
-                pSortableColumn="nombreDocumento"
-                style="background-color: #515963; width: 44%"
-              >
-                Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
-              </th>
-              <th
-                pSortableColumn="fechaSubida"
-                style="background-color: #515963; width: 12%"
-              >
-                Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
-              </th>
-              <th scope="col" style="background-color: #515963; width: 44%">
-                <span>Observaciones</span>
-              </th>
-              <th style="background-color: #515963; width: 6%"></th>
-            </tr>
-          </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th
+                  pSortableColumn="nombreDocumento"
+                  style="background-color: #515963; width: 44%"
+                >
+                  Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
+                </th>
+                <th
+                  pSortableColumn="fechaSubida"
+                  style="background-color: #515963; width: 12%"
+                >
+                  Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
+                </th>
+                <th scope="col" style="background-color: #515963; width: 44%">
+                  <span>Observaciones</span>
+                </th>
+                <th style="background-color: #515963; width: 6%"></th>
+              </tr>
+            </ng-template>
 
-          <ng-template pTemplate="body" let-gestion>
-            <tr>
-              <td>{{ gestion.detalle }}</td>
-              <td style="font-weight: bold; text-align: right">
-                {{ gestion.fecha | date: "mediumDate" }}
-              </td>
-              <td>{{ gestion.observacion }}</td>
-
-
-            </tr>
-          </ng-template>
+            <ng-template pTemplate="body" let-gestion>
+              <tr>
+                <td>{{ gestion.detalle }}</td>
+                <td style="font-weight: bold; text-align: right">
+                  {{ gestion.fecha | date: "mediumDate" }}
+                </td>
+                <td>{{ gestion.observacion }}</td>
+              </tr>
+            </ng-template>
           </p-table>
         </div>
       </div>
@@ -383,5 +412,4 @@
     iconPos="left"
     label="Borrar"
   ></button>
-
 </div>

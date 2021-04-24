@@ -26,6 +26,9 @@ export class SolicitudUpdateComponent implements OnInit {
   date?: any;
   dateIni?: any;
   dateRes?: any;
+  dateReclamacionCTA?: any;
+  dateIniCTA?: any;
+  dateResCTA?: any;
   textoCabecera = "Editar solicitud";
   calidadRespuesta?: number;
 
@@ -35,9 +38,14 @@ export class SolicitudUpdateComponent implements OnInit {
     fechaSolicitud: new FormControl([null, [Validators.required]]),
     fechaInicio: new FormControl([]),
     fechaRespuesta: new FormControl([]),
+    fechaReclamacionCTA: new FormControl([]),
+    fechaInicioCTA: new FormControl([]),
+    fechaRespuestaCTA: new FormControl([]),
     observacion: new FormControl([]),
     isAdmitida: new FormControl([]),
-    calidadRespuesta: new FormControl([])
+    calidadRespuesta: new FormControl([]),
+    year: new FormControl([]),
+    code: new FormControl([])
   });
 
   constructor(
@@ -52,20 +60,28 @@ export class SolicitudUpdateComponent implements OnInit {
       this.date = solicitud.fechaSolicitud;
       this.dateIni = solicitud.fechaInicio;
       this.dateRes = solicitud.fechaRespuesta;
+      this.dateReclamacionCTA = solicitud.fechaReclamacionCTA;
+      this.dateIniCTA = solicitud.fechaInicioCTA;
+      this.dateResCTA = solicitud.fechaRespuestaCTA;
       if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud" }
     });
   }
 
- updateForm(solicitud: ISolicitud): void {
+  updateForm(solicitud: ISolicitud): void {
     this.editForm.patchValue({
       id: solicitud.id,
       descripcion: solicitud.descripcion,
       fechaSolicitud: solicitud.fechaSolicitud,
       fechaInicio: solicitud.fechaInicio,
       fechaRespuesta: solicitud.fechaRespuesta,
+      fechaReclamacionCTA: solicitud.fechaReclamacionCTA,
+      fechaInicioCTA: solicitud.fechaInicioCTA,
+      fechaRespuestaCTA: solicitud.fechaRespuestaCTA,
       observacion: solicitud.observacion,
       isAdmitida: solicitud.isAdmitida,
       calidadRespuesta: solicitud.calidadRespuesta,
+      year: solicitud.year,
+      code: solicitud.code,
       // Campos comunes.
       lastModifiedBy: this.$localStorage.retrieve('userLog'),
       lastModifiedDate: moment().format('YYYY-MM-DD')
@@ -79,9 +95,14 @@ export class SolicitudUpdateComponent implements OnInit {
       fechaSolicitud: this.date,
       fechaInicio: this.dateIni,
       fechaRespuesta: this.dateRes,
+      fechaReclamacionCTA: this.dateReclamacionCTA,
+      fechaInicioCTA: this.dateIniCTA,
+      fechaRespuestaCTA: this.dateResCTA,
       observacion: this.editForm.get(['observacion'])!.value,
       isAdmitida: this.editForm.get(['isAdmitida'])!.value,
       calidadRespuesta: this.editForm.get(['calidadRespuesta'])!.value,
+      year: this.editForm.get(['year'])!.value,
+      code: this.editForm.get(['code'])!.value,
       // Campos comunes.
       createdBy: this.$localStorage.retrieve('userLog'),
       createdDate: moment().format('YYYY-MM-DD'),
@@ -90,11 +111,15 @@ export class SolicitudUpdateComponent implements OnInit {
     };
   }
 
-   save(): void {
+  save(): void {
     // https://github.com/primefaces/primeng/issues/1226
     this.date = moment(this.date).format('YYYY-MM-DD');
     if (this.dateIni) { this.dateIni = moment(this.dateIni).format('YYYY-MM-DD') };
     if (this.dateRes) { this.dateRes = moment(this.dateRes).format('YYYY-MM-DD') };
+    if (this.dateReclamacionCTA) {this.dateReclamacionCTA = moment(this.dateReclamacionCTA).format('YYYY-MM-DD')};
+    if (this.dateIniCTA) { this.dateIniCTA= moment(this.dateIniCTA).format('YYYY-MM-DD') };
+    if (this.dateResCTA) { this.dateResCTA= moment(this.dateResCTA).format('YYYY-MM-DD') };
+
     const solicitud: ISolicitud = this.createFromForm();
 
     if (solicitud.id === undefined) {

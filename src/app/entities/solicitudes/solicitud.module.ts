@@ -14,6 +14,7 @@ import { SolicitudUpdateComponent } from './solicitud-update.component';
 import { NavbarComponent } from 'src/app/layouts/navbar/navbar.component';
 import { StepperComponent } from '../../layouts/stepper/stepper.component';
 import { RatingComponent } from 'src/app/layouts/rating/rating.component';
+import { StepperCTAComponent } from 'src/app/layouts/stepperCTA/stepperCTA.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RatingComponent } from 'src/app/layouts/rating/rating.component';
     SolicitudUpdateComponent,
     NavbarComponent, // Hay que declararlo aqui, de lo contrario da error.
     StepperComponent, // Hay que declararlo aqui, de lo contrario da error.
+    StepperCTAComponent,
     RatingComponent
   ],
 

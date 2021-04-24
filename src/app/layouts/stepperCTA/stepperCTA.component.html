@@ -4,7 +4,7 @@
   <ul class="container">
     <li class="container__item">
       <h2 style="color: white; margin-bottom: 20px; margin-left: 10px">
-        Fases Ayuntamiento
+        Fases Consejo Transparencia Andalucía
       </h2>
 
 
@@ -17,9 +17,9 @@
           checked="checked"
         />
         <div class="stepper__step">
-          <label class="stepper__button" for="stepper-flex-0">Solicitada</label>
+          <label class="stepper__button" for="stepper-flex-0">Reclamada</label>
           <p class="stepper__content" for="stepper-flex-0">
-            {{ solicitud?.fechaSolicitud | date: "mediumDate" }}
+            {{ solicitud?.fechaReclamacionCTA | date: "mediumDate" }}
           </p>
         </div>
 
@@ -28,17 +28,19 @@
           id="stepper-flex-1"
           name="stepper-flex"
           type="radio"
-          [checked]="iniciada"
+          [checked]="iniciadaCTA"
         />
         <div class="stepper__step">
           <label class="stepper__button" for="stepper-flex-1">Iniciada</label>
           <p class="stepper__content" for="stepper-flex-1">
-            {{ solicitud?.fechaInicio | date: "mediumDate" }}
+            {{ solicitud?.fechaInicioCTA | date: "mediumDate" }}
           </p>
         </div>
 
         <div>
-          <span *ngIf="solicitud?.fechaRespuesta"
+          <!-- <span *ngIf="solicitud?.fechaRespuestaCTA" -->
+          <span
+
             style="
               font-weight: bold;
               font-size: 32px;
@@ -46,9 +48,9 @@
               padding: 4px
             "
             [ngStyle]="{
-              color: solicitud?.diasRespuesta! > 30 ? 'red' : 'black'
+              color: solicitud?.diasRespuestaCTA! > 30 ? 'red' : 'black'
             }"
-            >{{ solicitud?.diasRespuesta }}</span
+            >{{ solicitud?.diasRespuestaCTA }}</span
           >
         </div>
 
@@ -57,12 +59,12 @@
           id="stepper-flex-2"
           name="stepper-flex"
           type="radio"
-          [checked]="respondida"
+          [checked]="respondidaCTA"
         />
         <div class="stepper__step">
           <label class="stepper__button" for="stepper-flex-2">Respondida</label>
           <p class="stepper__content" for="stepper-flex-2">
-            <span>{{ solicitud?.fechaRespuesta | date: "mediumDate" }}</span>
+            <span>{{ solicitud?.fechaRespuestaCTA | date: "mediumDate" }}</span>
           </p>
         </div>
 

@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 
-<div class="p-text-center mam-tituloComponent-30">Solicitudes realizadas al Portal de Transparencia del Ayuntamiento de Jerez</div>
+<div class="p-text-center mam-tituloComponent-30">
+  Solicitudes realizadas al Portal de Transparencia del Ayuntamiento de Jerez
+</div>
 
 <button
   pButton
@@ -15,49 +17,80 @@
 ></button>
 
 <div class="p-grid p-shadow-24" style="margin-left: 100px; margin-right: 100px">
-  <!-- lass="p-datatable-striped" -->
   <p-table
     [value]="solicitudes"
     [rowHover]="true"
     [rows]="10"
-    [paginator]="true">
-
+    [paginator]="true"
+    sortField="fechaSolicitud"
+  >
     <ng-template pTemplate="header">
       <tr>
         <th
+          pSortableColumn="year"
+          style="background-color: #515963; width: 3%"
+        >
+          Año
+          <p-sortIcon field="year"></p-sortIcon>
+        </th>
+
+        <th
+          pSortableColumn="code"
+          style="background-color: #515963; width: 4%"
+        >
+          Código
+          <p-sortIcon field="code"></p-sortIcon>
+        </th>
+
+        <th
           pSortableColumn="descripcion"
-          style="background-color: #515963; width: 34%"
+          style="background-color: #515963; width: 28%"
         >
           Descripción
           <p-sortIcon field="descripcion"></p-sortIcon>
         </th>
+
         <th
           pSortableColumn="fechaSolicitud"
-          style="background-color: #515963; width: 12%"
+          style="background-color: #515963; width: 7%"
         >
           Fecha solicitud <p-sortIcon field="fechaSolicitud"></p-sortIcon>
         </th>
+
         <th
           pSortableColumn="fechaRespuesta"
-          style="background-color: #515963; width: 12%"
+          style="background-color: #515963; width: 7%"
         >
           Fecha respuesta <p-sortIcon field="fechaRespuesta"></p-sortIcon>
         </th>
+
         <th
           pSortableColumn="diasRespuesta"
-          style="background-color: #515963; width: 12%"
+          style="background-color: #515963; width: 5%"
         >
           Días respuesta <p-sortIcon field="diasRespuesta"></p-sortIcon>
         </th>
-        <th scope="col" style="background-color: #515963; width: 30%">
+
+        <th scope="col" style="background-color: #515963; width: 24%">
           <span>Observaciones</span>
         </th>
+
+        <th scope="col" style="background-color: #515963; width: 6%">
+          <span>Respuesta</span>
+        </th>
+
+        <th scope="col" style="background-color: #515963; width: 10%">
+        </th>
+
+        <!-- Espacio para botón Ver -->
         <th style="background-color: #515963; width: 6%"></th>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-solicitud>
       <tr>
+        <td>{{ solicitud.year }}</td>
+        <td>{{ solicitud.code }}</td>
         <td>{{ solicitud.descripcion }}</td>
         <td style="font-weight: bold; text-align: right">
           {{ solicitud.fechaSolicitud | date: "dd.MM.yyyy" }}
@@ -74,6 +107,30 @@
           {{ solicitud.diasRespuesta }}
         </td>
         <td>{{ solicitud.observacion }}</td>
+        <td
+          style="font-weight: bold; text-align: right"
+          [ngStyle]="{
+            opacity:
+              solicitud.fechaRespuesta! && !solicitud.isAdmitida ? 100 : 0,
+            color: 'red',
+            'font-weight': 'bold'
+          }"
+        >
+          Inadmitida
+        </td>
+
+        <td
+          [ngStyle]="{
+            opacity: solicitud.fechaRespuesta! && solicitud.isAdmitida ? 100 : 0
+          }"
+        >
+         <p-rating
+           [(ngModel)]="solicitud.calidadRespuesta "
+           [cancel]="false"
+           [disabled]="true"
+           >
+          </p-rating>
+        </td>
 
         <td class="text-right">
           <button

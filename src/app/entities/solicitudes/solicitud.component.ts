@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import * as moment from 'moment';
 
@@ -14,17 +14,12 @@ import { ISolicitud } from './solicitud.interface';
 export class SolicitudComponent implements OnInit {
   solicitudes: any[] = [];
   isAdmin = environment.IsAdmin;
-
+  fechaRespuesta: any;
 
   constructor(protected solicitudService: SolicitudService) { }
 
   ngOnInit(): void {
     this.loadAll();
-  }
-
-  trackId(index: number, item: ISolicitud): number {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    return item.id!;
   }
 
   private loadAll(): void {
@@ -34,7 +29,7 @@ export class SolicitudComponent implements OnInit {
         // TODO Es mejor practica calcularlo en el back?
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
-          if (soli.fechaRespuesta) {
+         if (soli.fechaRespuesta) {
             const date = moment(soli.fechaRespuesta);
             soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
           } else {
@@ -43,6 +38,10 @@ export class SolicitudComponent implements OnInit {
           }
         });
       });
-   }
+  }
+
+  trackId(index: number, item: ISolicitud): number {
+    return item.id!;
+  }
 
 }

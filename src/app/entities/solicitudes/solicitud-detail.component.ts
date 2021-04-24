@@ -30,8 +30,6 @@ export class SolicitudDetailComponent implements OnInit {
   isAdmitida: boolean | undefined;
   calidadRespuesta: number | undefined;
   isAdmin = environment.IsAdmin;
-  events2: any[] = [];
-  eventsHeader: any[] = [];
 
   constructor(
     protected solicitudService: SolicitudService,
@@ -46,6 +44,7 @@ export class SolicitudDetailComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ solicitud }) => (this.solicitud = solicitud));
     this.calidadRespuesta = this.solicitud?.calidadRespuesta;
     this.isAdmitida = this.solicitud?.isAdmitida
+    this.$localStorage.store('solicitud', this.solicitud?.id);
 
     // Calculo días trancurridos desde la solicitud.
     if (this.solicitud!.fechaRespuesta) {
@@ -79,40 +78,38 @@ export class SolicitudDetailComponent implements OnInit {
     }
   }
 
-delete (solicitud: ISolicitud): void {
-  Swal.fire({
-    title: '¿Realmente quieres borrar esta solicitud?',
-    confirmButtonColor: '#d33',
-    denyButtonColor: '#3085d6',
-    showDenyButton: true,
-    showCancelButton: false,
-    confirmButtonText: `Borrar`,
-    denyButtonText: `NO Borrar`,
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.solicitudService.consulta(solicitud, 'delete')
-    } else if (result.isDenied) {
+  delete(solicitud: ISolicitud): void {
+    Swal.fire({
+      title: '¿Realmente quieres borrar esta solicitud?',
+      confirmButtonColor: '#d33',
+      denyButtonColor: '#3085d6',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Borrar`,
+      denyButtonText: `NO Borrar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.solicitudService.consulta(solicitud, 'delete')
+      } else if (result.isDenied) {
 
-    }
-  })
-}
+      }
+    })
+  }
 
-crearDocumento(): void {
-  this.$localStorage.store('solicitud', this.solicitud?.id);
-  this.router.navigate(['/documentos/new']);
-}
+  crearDocumento(): void {
+    this.router.navigate(['/documentos/new']);
+  }
 
-crearGestion(): void {
-  this.$localStorage.store('solicitud', this.solicitud?.id);
-  this.router.navigate(['/gestiones/new']);
-}
+  crearGestion(): void {
+    this.router.navigate(['/gestiones/new']);
+  }
 
-trackId(index: number, item: IDocumento): number {
-  return item.id!;
-}
+  trackId(index: number, item: IDocumento): number {
+    return item.id!;
+  }
 
-previousState(): void {
-  window.history.back();
-}
+  previousState(): void {
+    window.history.back();
+  }
 
 }
