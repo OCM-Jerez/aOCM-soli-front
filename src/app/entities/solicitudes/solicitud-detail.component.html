@@ -3,6 +3,7 @@
 <div class="p-text-center mam-tituloComponent">Detalles solicitud</div>
 
 <div class="p-grid p-shadow-24" style="margin-left: 20px; margin-right: 20px">
+
   <div class="p-col-2">
     <dl class="">
       <dt class="mydt"><span>Año</span></dt>
@@ -17,8 +18,9 @@
   </div>
 
   <div class="p-col-4">
+    <h4>Datos</h4>
     <dl class="">
-     <dt class="mydt"><span>Descripción</span></dt>
+      <dt class="mydt"><span>Descripción</span></dt>
       <dd class="mydd">
         <span>{{ solicitud?.descripcion }}</span>
       </dd>
@@ -29,7 +31,9 @@
     </dl>
   </div>
 
+  <!-- Datos respuesta Ayuntamiento -->
   <div class="p-col-3" *ngIf="solicitud?.fechaRespuesta">
+    <h4>Ayuntamiento</h4>
     <!-- <label class="mam-label" style="margin-right: 20px">Admitida</label>
     <input
       type="checkbox"
@@ -68,17 +72,54 @@
       <app-rating></app-rating>
     </div> -->
   </div>
+
+  <!-- Datos respuesta Consejo Transparencia -->
+  <div class="p-col-3" *ngIf="solicitud?.fechaRespuesta">
+    <h4>Consejo Transparencia</h4>
+    <div  [ngStyle]="{
+        opacity: solicitud?.fechaRespuesta! && solicitud?.isAtendidaCTA ? 100 : 0,
+        color: 'green',
+        'font-weight': 'bold',
+        'font-size': '32px'
+      }"
+      >
+     <span
+      style="font-weight: bold; text-align: right"
+    >
+      Atendida
+    </span>
+
+    <dl class="">
+     <dt class="mydt"><span>Observaciones</span></dt>
+      <dd class="mydd">
+        <span>{{ solicitud?.observacionCTA }}</span>
+      </dd>
+    </dl>
+</div>
+    <!-- <div>
+      <app-rating></app-rating>
+    </div> -->
+  </div>
+
 </div>
 
+<!-- Stepper -->
 <div class="p-grid p-shadow-24" style="margin-left: 20px; margin-right: 20px">
-<div class="p-col-6">
+
+<div class="p-col-4">
 <app-stepper></app-stepper>
 </div>
 
-<div class="p-col-6" *ngIf="solicitud?.fechaReclamacionCTA">
+<div class="p-col-4" *ngIf="solicitud?.fechaReclamacionCTA">
   <app-stepperCTA></app-stepperCTA>
   </div>
+
+<div class="p-col-4" *ngIf="solicitud?.fechaReclamacionCTA">
+  <app-stepperAyto></app-stepperAyto>
+  </div>
+
 </div>
+
 <!-- Pestañas -->
 <div
   class="card"
@@ -253,6 +294,72 @@
       <div class="p-grid p-shadow-24" *ngIf="documentosRespuesta?.length > 0">
         <p-table
           [value]="documentosRespuesta"
+          [rowHover]="true"
+          [rows]="5"
+          [paginator]="true"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th
+                pSortableColumn="nombreDocumento"
+                style="background-color: #515963; width: 44%"
+              >
+                Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
+              </th>
+              <th
+                pSortableColumn="fechaSubida"
+                style="background-color: #515963; width: 12%"
+              >
+                Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
+              </th>
+              <th scope="col" style="background-color: #515963; width: 44%">
+                <span>Observaciones</span>
+              </th>
+              <th style="background-color: #515963; width: 6%"></th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-documento>
+            <tr>
+              <td>{{ documento.nombreDocumento }}</td>
+              <td style="font-weight: bold; text-align: right">
+                {{ documento.fechaSubida | date: "mediumDate" }}
+              </td>
+              <td>{{ documento.observacion }}</td>
+
+              <td class="text-right">
+                <a href="{{ documento.ruta }}" target="_blank">Ver</a>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </p-tabPanel>
+
+     <!-- Documentos respuesta CTA-->
+     <p-tabPanel>
+      <ng-template pTemplate="header">
+        <i class="pi pi-calendar"></i>
+        <span>Documentos Consejo Transparencia</span>
+      </ng-template>
+
+      <span
+        *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl"
+        class="mySubtituloComponent"
+      >
+      </span>
+
+      <ng-template #noDocumentosTpl>
+        <div>
+          <span class="mySubtituloComponent"
+            >No hay documentos asociados a esta solicitud</span
+          >
+        </div>
+      </ng-template>
+
+      <div class="p-grid p-shadow-24" *ngIf="documentosCTA?.length > 0">
+        <p-table
+          [value]="documentosCTA"
           [rowHover]="true"
           [rows]="5"
           [paginator]="true"

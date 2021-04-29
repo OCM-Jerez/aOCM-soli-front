@@ -15,6 +15,8 @@ import { NavbarComponent } from 'src/app/layouts/navbar/navbar.component';
 import { StepperComponent } from '../../layouts/stepper/stepper.component';
 import { RatingComponent } from 'src/app/layouts/rating/rating.component';
 import { StepperCTAComponent } from 'src/app/layouts/stepperCTA/stepperCTA.component';
+import { StepperAytoComponent } from 'src/app/layouts/stepperAyto/stepperAyto.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { StepperCTAComponent } from 'src/app/layouts/stepperCTA/stepperCTA.compo
     NavbarComponent, // Hay que declararlo aqui, de lo contrario da error.
     StepperComponent, // Hay que declararlo aqui, de lo contrario da error.
     StepperCTAComponent,
+    StepperAytoComponent,
     RatingComponent
   ],
 

@@ -25,7 +25,7 @@ export class DocumentoUpdateComponent implements OnInit {
   isSaving = false;
   textoCabecera = "Editar documento";
   idSolicitud?: string;
-  tipos = ["Solicitud", "Inicio", "Respuesta", "Reclamación CTA"]
+  tipos = ["Solicitud", "Inicio", "Respuesta", "CTA"]
 
   editForm = this.fb.group({
     id: [],

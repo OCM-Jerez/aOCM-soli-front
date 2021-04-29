@@ -5,13 +5,17 @@ export interface ISolicitud {
   fechaInicio?: Date;
   fechaRespuesta?: Date;
   observacion?: string;
+  observacionCTA?: string;
   diasRespuesta?: number;
   diasRespuestaCTA?: number;
+  diasRespuestaAytoCTA?: number,
   isAdmitida?: boolean,
   calidadRespuesta?: number,
   isReclamadaCTA?: boolean,
+  isAtendidaCTA?: boolean,
   fechaReclamacionCTA?: Date,
   fechaInicioCTA?: Date,
+  fechaRespuestaAytoCTA?: Date,
   fechaRespuestaCTA?: Date,
   year?: number,
   code?: number,
@@ -29,14 +33,18 @@ export class Solicitud implements ISolicitud {
     public fechaInicio?: Date,
     public fechaRespuesta?: Date,
     public observacion?: string,
+    public observacionCTA?: string,
     public diasRespuesta?: number,
     public diasRespuestaCTA?: number,
+    public diasRespuestaAytoCTA?: number,
     public isAdmitida?: boolean,
     public calidadRespuesta?: number,
     public isReclamadaCTA?: boolean,
+    public isAtendidaCTA?: boolean,
     public fechaReclamacionCTA?: Date,
     public fechaInicioCTA?: Date,
     public fechaRespuestaCTA?: Date,
+    public fechaRespuestaAytoCTA?: Date,
     public year?: number,
     public code?: number,
     public createdBy? : string,

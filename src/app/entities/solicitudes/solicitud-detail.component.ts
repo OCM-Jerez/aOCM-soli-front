@@ -26,6 +26,7 @@ export class SolicitudDetailComponent implements OnInit {
   documentosSolicitud?: IDocumento[] | any;
   documentosInicio?: IDocumento[] | any;
   documentosRespuesta?: IDocumento[] | any;
+  documentosCTA?: IDocumento[] | any;
   gestions?: IGestion[] | any;
   isAdmitida: boolean | undefined;
   calidadRespuesta: number | undefined;
@@ -67,6 +68,10 @@ export class SolicitudDetailComponent implements OnInit {
 
       this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'respuesta').subscribe(response => {
         this.documentosRespuesta = response.body;
+      });
+
+      this.documentoService.findAllBySolicitudDocumentoType(this.solicitud.id, 'CTA').subscribe(response => {
+        this.documentosCTA = response.body;
       });
     }
 

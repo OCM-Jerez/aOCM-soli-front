@@ -1,57 +1,25 @@
-// :root {
-//   --s-width: 900px;
-//   --s-gutter: 2.5rem;
-//   --c-background: rgb(0, 0, 0);
-//
-// }
-
 .stepper {
-  $root: &;
-  --c-accent: hsl(135, 79%, 25%);
-  --s-stepper-bullet: 2rem;
+  $root: &;                                                       // Se usa en la linea 66
+  --c-accent: hsl(135, 79%, 25%);                               // Color definido por los 3 parametros https://www.w3schools.com/colors/colors_hsl.asp
+  --s-stepper-bullet: 2rem;                                       // Ancho de la barra y los circulos. rem = Relative to font-size of the root element
   --s-stepper-bullet-half: calc( var(--s-stepper-bullet) / 2 );
   --step-transition: background .5s, color .5s;
   // all colors are define for the active state
   --step-content: '✔︎';
-  --step-color: hsl(0, 0%, 70%);
-  --step-bar-bg: var(--c-accent);
-  --step-bullet-bg: var(--step-bar-bg);
-  --step-bullet-color: white;
-  counter-reset: current-step;
+  --step-color: hsl(0, 0%, 70%);                                // Color texto segunda linea de step completados.
+  --step-bar-bg: var(--c-accent);                                 // Color barra unión entre bullet
+  --step-bullet-bg: var(--step-bar-bg);                           // Color background bullet completados
+  --step-bullet-color: white;                                   // Color texto bullet completados
+  // counter-reset: current-step;
+
   // Use grid here
   // • we can support a multiline stepper by increasing the minmax min level
   // • grid is more strict at respecting column than flexbox: a very small width, the contents will overlap
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(1px, 1fr) );
+  // grid-template-columns: repeat( auto-fit, minmax(1px, 1fr) );
+  grid-template-columns: 200px 200px 50px 200px ;
   position: relative;
   z-index: 1;
-
-    // [] asignacion por atributo. Por ejemplo <button disabled> =>  en CSS [disabled]{color: red;}
-  // &[data-debug] {
-  //   counter-reset: steps;
-
-  //   &::after {
-  //     content: "number of steps: " counter(steps);
-  //     display: block;
-  //     position: absolute;
-  //     bottom: -1.5rem;
-  //     width: 100%;
-  //     text-align: center;
-  //     color: hsl(40, 50%, 50%);
-  //   }
-
-  //   input {
-  //     --s-separation: 1.5rem;
-  //     position: absolute;
-  //     display: initial;
-  //     top: -2rem;
-  //     @for $i from 1 through 10 {
-  //       &:nth-of-type(#{$i}) {
-  //         left: calc( var(--s-separation) * #{$i} + .75rem);
-  //       }
-  //     }
-  //   }
-  // }
 
   // don't know
   &__input {
@@ -87,12 +55,14 @@
       --step-color: white;
 
       #{$root}__button {
+        width: 150px;
         &::before {
           box-shadow: 0 0 0 2px hsla(0, 0%, 70%, 1);
         }
       }
 
       #{$root}__content {
+
         opacity: 1;
         pointer-events: auto;
         user-select: auto;
@@ -102,7 +72,7 @@
 
   // 2ª linea etiqueta
   &__content {
-    width: 16rem;
+    width: 150px;
     color: white;
     text-align: center;
     font-style: italic;
@@ -124,8 +94,7 @@
     color: var(--step-color);
     display: block;
 
-    // bullet
-    &::before {
+        &::before {
       content: var(--step-content);
       display: flex;
       justify-content: center;
@@ -139,17 +108,16 @@
       color: var(--step-bullet-color);
     }
 
-    // progress bar
     &::after {
       content: '';
       position: absolute;
-      width: 110%;
+      width: 140%;
       height: calc( var(--s-stepper-bullet-half) / 2 );
       background: var(--step-bar-bg);
       transition: var(--step-transition);
       top: var(--s-stepper-bullet-half);
       left: 50%;
-      transform: translate( 0, -40%);
+      // transform: translate( 0, -40%);
       z-index: -1;
       // connecting lines are always steps.length - 1
 
@@ -159,18 +127,6 @@
     }
   }
 
-  // we can also use CSS flexbox.
-  // • but when not enough space
-  //   columns won't be  respected anymore
-  &--flexbox {
-    display: flex;
-
-    #{$root}__step {
-      flex-grow: 1;
-      flex-shrink: 0;
-      flex-basis: 0;
-    }
-  }
 
 }
 

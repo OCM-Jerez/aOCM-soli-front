@@ -4,25 +4,11 @@
   <ul class="container">
     <li class="container__item">
       <h5 style="color: white; margin-bottom: 20px; margin-left: 10px">
-        Fases Consejo Transparencia Andalucía
+        Fases respuesta Ayuntamiento posterior a reclamación Consejo Transparencia Andalucía
       </h5>
 
 
       <div class="stepper">
-        <input
-          class="stepper__input"
-          id="stepper-flex-0"
-          name="stepper-flex"
-          type="radio"
-          checked="checked"
-        />
-        <div class="stepper__step">
-          <label class="stepper__button" for="stepper-flex-0">Reclamada</label>
-          <p class="stepper__content" for="stepper-flex-0">
-            {{ solicitud?.fechaReclamacionCTA | date: "mediumDate" }}
-          </p>
-        </div>
-
         <input
           class="stepper__input"
           id="stepper-flex-1"
@@ -33,7 +19,7 @@
         <div class="stepper__step">
           <label class="stepper__button" for="stepper-flex-1">Iniciada</label>
           <p class="stepper__content" for="stepper-flex-1">
-            {{ solicitud?.fechaInicioCTA | date: "mediumDate" }}
+            <span>{{ solicitud?.fechaRespuestaCTA | date: "mediumDate" }}</span>
           </p>
         </div>
 
@@ -49,9 +35,9 @@
               padding: 4px
             "
             [ngStyle]="{
-              color: solicitud?.diasRespuestaCTA! > 30 ? 'red' : 'black'
+              color: solicitud?.diasRespuestaAytoCTA! > 30 ? 'red' : 'black'
             }"
-            >{{ solicitud?.diasRespuestaCTA }}</span
+            >{{ solicitud?.diasRespuestaAytoCTA }}</span
           >
         </div>
 
@@ -60,12 +46,12 @@
           id="stepper-flex-2"
           name="stepper-flex"
           type="radio"
-          [checked]="respondidaCTA"
+          [checked]="respondidaAytoCTA"
         />
         <div class="stepper__step">
           <label class="stepper__button" for="stepper-flex-2">Respondida</label>
           <p class="stepper__content" for="stepper-flex-2">
-            <span>{{ solicitud?.fechaRespuestaCTA | date: "mediumDate" }}</span>
+            <span>{{ solicitud?.fechaRespuestaAytoCTA | date: "mediumDate" }}</span>
           </p>
         </div>
 
