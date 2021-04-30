@@ -28,10 +28,19 @@
         </li>
         <li>
           <p-avatar
+          *ngIf="isAdmin"
            image="https://imgur.com/U9nIlOB.jpg"
            shape="circle"
            width="15"
           ></p-avatar>
+
+          <p-avatar
+          *ngIf="!isAdmin"
+          image="https://i.imgur.com/C4egmYM.jpg"
+          shape="circle"
+           width="15"
+          ></p-avatar>
+
         </li>
         <li>
           <p-splitButton
