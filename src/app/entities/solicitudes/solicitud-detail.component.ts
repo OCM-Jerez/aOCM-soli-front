@@ -31,6 +31,7 @@ export class SolicitudDetailComponent implements OnInit {
   isAdmitida: boolean | undefined;
   calidadRespuesta: number | undefined;
   isAdmin = environment.IsAdmin;
+  isCerrada: boolean| undefined;
 
   constructor(
     protected solicitudService: SolicitudService,
@@ -44,7 +45,8 @@ export class SolicitudDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ solicitud }) => (this.solicitud = solicitud));
     this.calidadRespuesta = this.solicitud?.calidadRespuesta;
-    this.isAdmitida = this.solicitud?.isAdmitida
+    this.isAdmitida = this.solicitud?.isAdmitida;
+    this.isCerrada = this.solicitud?.isCerrada
     this.$localStorage.store('solicitud', this.solicitud?.id);
 
     // Calculo días trancurridos desde la solicitud.

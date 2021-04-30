@@ -18,7 +18,7 @@
   </div>
 
   <div class="p-col-4">
-    <h4>Datos</h4>
+    <h4 class= "mam-tituloComponent-30 mydt">Datos</h4>
     <dl class="">
       <dt class="mydt"><span>Descripción</span></dt>
       <dd class="mydd">
@@ -33,7 +33,7 @@
 
   <!-- Datos respuesta Ayuntamiento -->
   <div class="p-col-3" *ngIf="solicitud?.fechaRespuesta">
-    <h4>Ayuntamiento</h4>
+    <h4 class= "mam-tituloComponent-30 mydt">Ayuntamiento</h4>
     <!-- <label class="mam-label" style="margin-right: 20px">Admitida</label>
     <input
       type="checkbox"
@@ -74,8 +74,9 @@
   </div>
 
   <!-- Datos respuesta Consejo Transparencia -->
-  <div class="p-col-3" *ngIf="solicitud?.fechaRespuesta">
-    <h4>Consejo Transparencia</h4>
+  <div class="p-col-2" >
+    <div *ngIf="solicitud?.fechaInicioCTA">
+    <h4 class= "mam-tituloComponent-30 mydt">Consejo Transparencia</h4>
     <div  [ngStyle]="{
         opacity: solicitud?.fechaRespuesta! && solicitud?.isAtendidaCTA ? 100 : 0,
         color: 'green',
@@ -100,6 +101,17 @@
       <app-rating></app-rating>
     </div> -->
   </div>
+  </div>
+
+  <!-- Abierta o cerrada -->
+  <div class="p-col-1" *ngIf="isCerrada">
+         <span
+      style="color:red;font-size:26px;font-weight: bold; text-align: right"
+    >
+      Cerrada
+
+    </span>
+</div>
 
 </div>
 

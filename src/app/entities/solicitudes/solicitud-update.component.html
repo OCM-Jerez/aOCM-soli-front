@@ -234,6 +234,33 @@
       </div>
     </div>
 
+    <div style="margin-top: 20px">
+      <label class="mam-label">Fecha respuesta Ayuntamiento a requerimiento CTAS</label>
+      <div class="input-group">
+        <p-calendar
+          id="dateRes"
+          [(ngModel)]="dateResAytoCTA"
+          dateFormat="yy-mm-dd"
+          [showButtonBar]="true"
+          [showIcon]="true"
+          formControlName="fechaRespuestaAytoCTA"
+        ></p-calendar>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px">
+      <div class="input-group">
+        <label class="mam-label" style="margin-right: 20px">isCerrada</label>
+        <input
+          type="checkbox"
+          class="form-control"
+          name="isCerrada"
+          id="field_isCerrada"
+          formControlName="isCerrada"
+        />
+      </div>
+    </div>
+
     </div>
     <!-- <div class="p-col-1"></div> -->
   </div>

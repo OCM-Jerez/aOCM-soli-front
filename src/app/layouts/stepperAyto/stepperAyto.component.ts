@@ -24,10 +24,10 @@ export class StepperAytoComponent implements OnInit {
       this.iniciadaCTA= true
     }
 
-    // Calculo días trancurridos desde la reclamación.
+    // Calculo días trancurridos desde la notificación del CTA al Ayuntamiento.
     if (this.solicitud!.fechaRespuestaAytoCTA) {
       const date = moment(this.solicitud!.fechaRespuestaAytoCTA);
-      this.solicitud!.diasRespuestaAytoCTA = date.diff(this.solicitud!.fechaRespuestaAytoCTA, 'days');
+      this.solicitud!.diasRespuestaAytoCTA = date.diff(this.solicitud!.fechaRespuestaCTA, 'days');
       this.respondidaAytoCTA = true
     } else {
       const date = moment();

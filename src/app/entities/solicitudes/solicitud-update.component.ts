@@ -29,8 +29,10 @@ export class SolicitudUpdateComponent implements OnInit {
   dateReclamacionCTA?: any;
   dateIniCTA?: any;
   dateResCTA?: any;
+  dateResAytoCTA?: any;
   textoCabecera = "Editar solicitud";
   calidadRespuesta?: number;
+
 
   editForm = new FormGroup({
     id: new FormControl([]),
@@ -41,10 +43,12 @@ export class SolicitudUpdateComponent implements OnInit {
     fechaReclamacionCTA: new FormControl([]),
     fechaInicioCTA: new FormControl([]),
     fechaRespuestaCTA: new FormControl([]),
+    fechaRespuestaAytoCTA: new FormControl([]),
     observacion: new FormControl([]),
     observacionCTA: new FormControl([]),
     isAdmitida: new FormControl([]),
     isAtendidaCTA: new FormControl([]),
+    isCerrada: new FormControl([]),
     calidadRespuesta: new FormControl([]),
     year: new FormControl([]),
     code: new FormControl([])
@@ -65,6 +69,7 @@ export class SolicitudUpdateComponent implements OnInit {
       this.dateReclamacionCTA = solicitud.fechaReclamacionCTA;
       this.dateIniCTA = solicitud.fechaInicioCTA;
       this.dateResCTA = solicitud.fechaRespuestaCTA;
+      this.dateResAytoCTA = solicitud.fechaRespuestaAytoCTA
       if (solicitud.id == undefined) { this.textoCabecera = "Crear solicitud" }
     });
   }
@@ -79,10 +84,12 @@ export class SolicitudUpdateComponent implements OnInit {
       fechaReclamacionCTA: solicitud.fechaReclamacionCTA,
       fechaInicioCTA: solicitud.fechaInicioCTA,
       fechaRespuestaCTA: solicitud.fechaRespuestaCTA,
+      fechaRespuestaAytoCTA: solicitud.fechaRespuestaAytoCTA,
       observacion: solicitud.observacion,
       observacionCTA: solicitud.observacionCTA,
       isAdmitida: solicitud.isAdmitida,
       isAtendidaCTA: solicitud.isAtendidaCTA,
+      isCerrada: solicitud.isCerrada,
       calidadRespuesta: solicitud.calidadRespuesta,
       year: solicitud.year,
       code: solicitud.code,
@@ -102,10 +109,12 @@ export class SolicitudUpdateComponent implements OnInit {
       fechaReclamacionCTA: this.dateReclamacionCTA,
       fechaInicioCTA: this.dateIniCTA,
       fechaRespuestaCTA: this.dateResCTA,
+      fechaRespuestaAytoCTA: this.dateResAytoCTA,
       observacion: this.editForm.get(['observacion'])!.value,
       observacionCTA: this.editForm.get(['observacionCTA'])!.value,
       isAdmitida: this.editForm.get(['isAdmitida'])!.value,
       isAtendidaCTA: this.editForm.get(['isAtendidaCTA'])!.value,
+      isCerrada: this.editForm.get(['isCerrada'])!.value,
       calidadRespuesta: this.editForm.get(['calidadRespuesta'])!.value,
       year: this.editForm.get(['year'])!.value,
       code: this.editForm.get(['code'])!.value,
@@ -125,6 +134,7 @@ export class SolicitudUpdateComponent implements OnInit {
     if (this.dateReclamacionCTA) {this.dateReclamacionCTA = moment(this.dateReclamacionCTA).format('YYYY-MM-DD')};
     if (this.dateIniCTA) { this.dateIniCTA= moment(this.dateIniCTA).format('YYYY-MM-DD') };
     if (this.dateResCTA) { this.dateResCTA= moment(this.dateResCTA).format('YYYY-MM-DD') };
+    if (this.dateResAytoCTA) { this.dateResAytoCTA= moment(this.dateResAytoCTA).format('YYYY-MM-DD') };
 
     const solicitud: ISolicitud = this.createFromForm();
 

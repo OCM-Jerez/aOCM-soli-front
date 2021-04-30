@@ -26,14 +26,14 @@ html, body {
 .mam-tituloComponent{
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 45px;
+  font-size: 25px;
   color: var(--text-color)
 }
 
 .mam-tituloComponent-30{
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 30px;
+  // margin-top: 20px;
+  // margin-bottom: 20px;
+  font-size: 14px;
   color: var(--text-color)
 }
 
@@ -57,7 +57,9 @@ html, body {
   margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
-  color:var(--text-color);
+  // color:var(--text-color);
+  color: rgb(1, 9, 44);
+  // text-shadow: 0.5px 0.5px rgb(113, 183, 240);
   font-weight: bold;
   font-size: 25px;
 }
@@ -68,10 +70,9 @@ html, body {
   margin-bottom: 1em;
   margin-left: 0;
   margin-right: 0;
-  color: rgb(146, 137, 137);
+  color:white;
   font-size: 20px;
 }
-
 
 .mam-label {
   display: block;
@@ -79,15 +80,14 @@ html, body {
   margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
-  color: var(--text-color);
+  // color: var(--text-color);
+  color: rgb(7, 18, 68);
   font-weight: bold;
 }
-
 
 #mam-textoFooter {
   color: var(--text-color)
 }
-
 
 #mam-iconRRSS {
   margin-left: 14px;
@@ -115,7 +115,6 @@ html, body {
 //   font-family: Poppins-SemiBold;
 //   src: url('./assets/fonts/poppins/Poppins-SemiBold.ttf');
 // }
-
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
