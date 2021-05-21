@@ -20,8 +20,8 @@ import { ILogin } from './login.interface';
 export class LoginComponent {
   miError: string = '';
   miFormulario: FormGroup = this.fb.group({
-    username: ['admin', [Validators.required, Validators.minLength(3)]],
-    password: ['admin', [Validators.required, Validators.minLength(4)]],
+    username: ['user', [Validators.required, Validators.minLength(3)]],
+    password: ['user', [Validators.required, Validators.minLength(4)]],
   });
 
   constructor(
@@ -31,6 +31,23 @@ export class LoginComponent {
     private $localStorage: LocalStorageService,
 
   ) { }
+
+  get usernameErrorMsg(): string {
+    const errors = this.miFormulario.get('username')?.errors;
+    console.log(errors);
+    if (errors?.required) {
+      return 'El nombre de usuario es obligatorio';
+     // IMPORTANTE usar minlenght no minLenght l de lenght miniscula.
+    } else if (errors?.minlength) {
+      return 'El mombre de usuario debe tener al menos 3 caracteres';
+    }
+    return '';
+  }
+
+  campoNoValido(campo: string): boolean | undefined {
+    return this.miFormulario.get(campo)?.invalid
+      && this.miFormulario.get(campo)?.touched;
+  }
 
   login() {
     const { username, password } = this.miFormulario.value;
@@ -57,8 +74,6 @@ export class LoginComponent {
         // En teoria el observable se completa, pero no estoy seguro.
         // console.log('complete');
       });
-
-
   }
 
 }

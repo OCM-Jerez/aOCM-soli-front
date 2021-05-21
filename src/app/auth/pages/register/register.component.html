@@ -15,9 +15,8 @@
       placeholder="Ingresa tu nombre de usuario"
     />
     <!-- <span class="focus-input100"></span> -->
-    <span class="form-text text-danger" *ngIf="campoNoValido('login')">
+    <span class="form-text mam-textError" *ngIf="campoNoValido('login')">
       {{ loginErrorMsg }}
-
     </span>
   </div>
 
@@ -52,7 +51,7 @@
       placeholder="Ingrese su email"
     />
     <!-- <span class="focus-input100"></span> -->
-    <span class="form-text text-danger" *ngIf="campoNoValido('email')">
+    <span class="mam-textError" *ngIf="campoNoValido('email')">
       {{ emailErrorMsg }}
     </span>
   </div>

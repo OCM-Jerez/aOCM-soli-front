@@ -9,7 +9,7 @@ import { ISolicitud } from '../../entities/solicitudes/solicitud.interface';
 @Component({
   selector: 'app-stepperAyto',
   templateUrl: './stepperAyto.component.html',
-  styleUrls: ['./stepperayto.component.scss']
+  styleUrls: ['./stepperAyto.component.scss']
 })
 export class StepperAytoComponent implements OnInit {
   solicitud: ISolicitud | null = null;

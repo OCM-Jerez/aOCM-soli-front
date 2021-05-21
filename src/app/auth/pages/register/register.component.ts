@@ -19,8 +19,14 @@ import { Login } from '../login/login.model';
 })
 export class RegisterComponent {
   miError: string = '';
-  // validators
-  // https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24149906#notes
+  /*
+  validators
+  https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/24149906#notes
+
+  Curso fuckynCode
+  https://www.youtube.com/watch?v=Y-97KAxoydk&t=13s
+*/
+
   miFormulario: FormGroup = this.fb.group({
     login: ['', [Validators.required, Validators.pattern(this.loginValidator.loginPattern)], [this.loginValidator]],
     firstName: ['', [Validators.required]],
