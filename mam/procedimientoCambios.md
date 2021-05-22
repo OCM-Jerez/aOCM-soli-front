@@ -13,5 +13,6 @@
 4.- dockers ps  comprueba que todos los servicios estan levantados.
 5.- cd al directorio del front o el back (el que tenga cambios)
 6.- git pull
-7.- docker-compose up -d --build
-8.- Si al abrir el navegador no refleja los cambios, probar desde una ventana de incognito, si funciona es problema de la cache, limpiar historico de navegación.
+7.- cd a home
+8.- docker-compose up -d --build
+9.- Si al abrir el navegador no refleja los cambios, probar desde una ventana de incognito, si funciona es problema de la cache, limpiar historico de navegación.

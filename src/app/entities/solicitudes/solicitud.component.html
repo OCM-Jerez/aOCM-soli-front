@@ -52,14 +52,14 @@
 
         <th
           pSortableColumn="fechaSolicitud"
-          style="background-color: #515963; width: 7%"
+          style="background-color: #515963; width: 5%"
         >
           Fecha solicitud <p-sortIcon field="fechaSolicitud"></p-sortIcon>
         </th>
 
         <th
           pSortableColumn="fechaRespuesta"
-          style="background-color: #515963; width: 7%"
+          style="background-color: #515963; width: 5%"
         >
           Fecha respuesta <p-sortIcon field="fechaRespuesta"></p-sortIcon>
         </th>
@@ -79,11 +79,14 @@
           <span>Respuesta</span>
         </th>
 
-        <th scope="col" style="background-color: #515963; width: 10%">
+        <th scope="col" style="background-color: #515963; width: 6%">
+          <span>Estado</span>
         </th>
 
-        <!-- Espacio para botón Ver -->
-        <th style="background-color: #515963; width: 6%"></th>
+        <th scope="col" style="background-color: #515963; width: 10%"> <!-- Espacio para calificación respuesta -->
+        </th>
+
+        <th style="background-color: #515963; width: 6%"></th> <!-- Espacio para botón Ver -->
       </tr>
     </ng-template>
 
@@ -118,6 +121,13 @@
         >
           Inadmitida
         </td>
+
+        <td
+        style="font-weight: bold;"
+        [ngStyle]="{
+          color: solicitud.isCerrada! ? 'green' : 'white'
+                   }"
+        > {{ solicitud.estado }}</td>
 
         <td
           [ngStyle]="{

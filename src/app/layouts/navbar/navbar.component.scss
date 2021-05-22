@@ -72,3 +72,11 @@ header{
 	color: #00c9bd;
 	transform: scale(1.1);
 }
+
+.p-button.p-button-OCM, .p-buttonset.p-button-OCM > .p-button, .p-splitbutton.p-button-OCM > .p-button {
+  color: white;
+  background: #212529;
+  border: 1px solid #212529;
+  padding: 0px;
+  margin-left: 10px;
+ }
