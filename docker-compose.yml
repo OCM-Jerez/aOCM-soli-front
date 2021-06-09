@@ -13,7 +13,7 @@ services:
       # You can use whatever password you like
       MYSQL_PASSWORD: 'root'
       # Password for root access
-      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'M163lr9u6j2v'
     ports:
       - 3306:3306
     expose:
@@ -25,7 +25,7 @@ services:
   ocm-front:
     container_name: ocm-front
     build:
-      context: aOCM-soli-front
+      context: .
     ports:
       - '8080:80'
     depends_on:
@@ -35,11 +35,11 @@ services:
   ocm-back:
     container_name: ocm-back
     build:
-      context: OCM-soli-back
+      context: ../OCM-soli-back
     ports:
       - '8081:8081'
     environment:
-      - DATABASE_URL=mysql://root:root@ocm-data-base/ocm # TODO Cambiar despues el usuario y contraseña
+      - DATABASE_URL=mysql://root:M163lr9u6j2v@ocm-data-base/ocm # TODO Cambiar despues el usuario y contraseña
       - NODE_ENV=prod
     depends_on:
       - ocm-data-base
