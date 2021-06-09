@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // baseUrl: 'http://localhost:4000/api'
-  baseUrl: 'http://localhost:8081/api/',
+  baseUrl: 'http://142.93.163.223:8081/api/',
   // baseUrl: 'http://mamjerez.es/api/',
   IsAdmin: true,
   // userLoged: 'string'
