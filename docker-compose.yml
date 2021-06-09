@@ -25,7 +25,7 @@ services:
   ocm-front:
     container_name: ocm-front
     build:
-      context: .
+      context: aOCM-soli-front
     ports:
       - '8080:80'
     depends_on:
@@ -35,7 +35,7 @@ services:
   ocm-back:
     container_name: ocm-back
     build:
-      context: ../OCM-soli-back
+      context: OCM-soli-back
     ports:
       - '8081:8081'
     environment:
