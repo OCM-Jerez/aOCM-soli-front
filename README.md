@@ -1,5 +1,6 @@
 <h2 align='center'> Observatorio Ciudadano Municipal de Jerez. </h2>
 <h2 align='center'> App para la gestión de las solicitudes realizadas al Portal de Transparencia del Ayuntamiento de Jerez </h2>
+<img src='https://res.cloudinary.com/dabrencx7/image/upload/v1629542399/Solicitudes/solicitudes_zfcvik.jpg'/>
 
 # Motivación 💪
 <ul>
