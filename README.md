@@ -17,7 +17,7 @@
  </ul>
 
 # Como ejecutar el código 🖥
-️- Clonar el repositorio.
+- Clonar el repositorio.
 - npm install para instalar referencias.
 
 
@@ -28,8 +28,7 @@
 - Si encuentras algun error, por favor, crea una nueva Issue.
 
 # Planes futuras mejoras 📆
-
-
+- 
 
 # Licencia ⚖
 ️- Distribuido bajo ```MIT License```. Ver LICENSE.TXT para más información.
