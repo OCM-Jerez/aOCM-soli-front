@@ -1,5 +1,6 @@
 export const environment = {
-  production: false,
-  baseUrl: 'http://localhost:4000/api'
+  production: true,
+  // baseUrl: 'http://localhost:4000/api'
+  baseUrl: 'https://ocmapi.org/api/'
 };
 
