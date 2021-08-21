@@ -36,7 +36,7 @@
 
 # Contacto ☎️
 - <a href= 'mailto:info@ocmjerez.org'> email </a>
-- <a href= 'https://w-ocmjerez.org'> WEB </a>
+- <a href= 'https://w.ocmjerez.org'> WEB </a>
 - <a href= 'https://www.facebook.com/OcmJerez/'> Facebook </a>
 - <a href= 'https://twitter.com/ocmjerez'> Twitter </a>
 
