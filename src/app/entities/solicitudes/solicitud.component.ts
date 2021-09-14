@@ -30,6 +30,7 @@ export class SolicitudComponent implements OnInit {
         // TODO Es mejor practica calcularlo en el back?
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
+          console.log(soli.code);
           if (soli.fechaRespuesta) {
             const date = moment(soli.fechaRespuesta);
             soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
