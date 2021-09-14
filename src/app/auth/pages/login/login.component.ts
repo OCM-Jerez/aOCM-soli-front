@@ -34,10 +34,10 @@ export class LoginComponent {
 
   get usernameErrorMsg(): string {
     const errors = this.miFormulario.get('username')?.errors;
-    console.log(errors);
+    // console.log(errors);
     if (errors?.required) {
       return 'El nombre de usuario es obligatorio';
-     // IMPORTANTE usar minlenght no minLenght l de lenght miniscula.
+      // IMPORTANTE usar minlenght no minLenght l de lenght miniscula.
     } else if (errors?.minlength) {
       return 'El mombre de usuario debe tener al menos 3 caracteres';
     }
@@ -63,7 +63,7 @@ export class LoginComponent {
       next => {
         // environment.userLoged = next.login;
         environment.IsAdmin = (next.authorities.includes('ROLE_ADMIN')) ? true : false;
-        this.$localStorage.store('userLog',username);
+        this.$localStorage.store('userLog', username);
         this.router.navigateByUrl('solicitudes');
       }, error => {
         if (error.error.message = 'Invalid login name or password.') {
