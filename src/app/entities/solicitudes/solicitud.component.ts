@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { Table } from 'primeng/table';
+import { PrimeNGConfig } from 'primeng/api';
 
 import * as moment from 'moment';
 
@@ -17,7 +20,10 @@ export class SolicitudComponent implements OnInit {
   fechaRespuesta: any;
   estado = "Solicitada"
 
-  constructor(protected solicitudService: SolicitudService) { }
+  @ViewChild('dt') table: Table | undefined;
+
+  constructor(protected solicitudService: SolicitudService,
+    private primengConfig: PrimeNGConfig) { }
 
   ngOnInit(): void {
     this.loadAll();
@@ -60,7 +66,9 @@ export class SolicitudComponent implements OnInit {
 
         });
       });
+    this.primengConfig.ripple = true;
   }
+
 
   trackId(index: number, item: ISolicitud): number {
     return item.id!;

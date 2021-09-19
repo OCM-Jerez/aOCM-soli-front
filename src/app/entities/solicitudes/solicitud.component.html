@@ -8,7 +8,8 @@
   type="button" icon="pi pi-plus" iconPos="left" label="Crear nueva solicitud" style="margin-left: 160px"></button>
 
 <div class="p-grid p-shadow-24" style="margin-left: 100px; margin-right: 100px">
-  <p-table [value]="solicitudes" [rowHover]="true" [rows]="10" [paginator]="true" sortField="fechaSolicitud"
+  <p-table #dt [value]="solicitudes" [rowHover]="true" [rows]="10" [paginator]="true" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" sortField="fechaSolicitud"
     [sortOrder]="-1">
     <ng-template pTemplate="header">
       <tr>
