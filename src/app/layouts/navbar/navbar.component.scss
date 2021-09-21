@@ -2,81 +2,83 @@
 Logo styles
 ========================================================================== */
 .myLogo-img {
-  height: 30px;
-  width: 30px;
-  display: inline-block;
-  vertical-align: middle;
-  background: url('../../../assets/images/IconoOCMblanco.png') no-repeat center center;
-  // TODO ! No funciona.
-  // http://www.techmonks.org/angular-alias-paths/
-  // añadido en tsconfig.json
-  // background: url('@images/IconoOCMblanco.png') no-repeat center center;
-  background-size: contain;
-  margin-left: 20px;
-  margin-right: 5px;
-  margin-top: 5px;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	vertical-align: middle;
+	background: url("../../../assets/images/IconoOCMblanco.png") no-repeat center center;
+	// TODO ! No funciona.
+	// http://www.techmonks.org/angular-alias-paths/
+	// añadido en tsconfig.json
+	// background: url('@images/IconoOCMblanco.png') no-repeat center center;
+	background-size: contain;
+	margin-left: 20px;
+	margin-right: 5px;
+	margin-top: 5px;
 }
 
 .myLogo-text {
-  color: white;
-  margin-top: 24px;
-  font-size: 20px;
-  font-weight: bold
+	color: white;
+	margin-top: 24px;
+	font-size: 20px;
+	font-weight: bold;
 }
 
-.myLogo-img:hover{
-  transform: scale(1.1);
+.myLogo-img:hover {
+	transform: scale(1.1);
 }
 
-header{
+header {
 	width: 100%;
 	height: 40px;
-	background-color: #0b132b;
+	background-color: #78909c;
 }
 
-.myNavbarInterior{
+.myNavbarInterior {
 	max-width: 100%;
 	padding: 0 10px;
 	margin: auto;
 }
-.myNavbar{
+.myNavbar {
 	float: right;
 	display: flex;
 	align-items: center;
 	min-height: 40px;
 	z-index: 1000;
 }
-.myNavbar ul{
+.myNavbar ul {
 	list-style: none;
 	padding: 0 10px;
 }
-.myNavbar ul li{
+.myNavbar ul li {
 	display: inline-block;
 	position: relative;
-	transition: .3s linear;
+	transition: 0.3s linear;
 	z-index: 1000;
 }
-.myNavbar ul li:hover{
+.myNavbar ul li:hover {
 	transform: scale(1.1);
 }
-.myNavbar ul li a{
+.myNavbar ul li a {
 	color: #ffffff;
 	text-align: center;
 	text-transform: uppercase;
 	font-size: 14px;
 	font-weight: bold;
 	padding: 12px 20px;
-	transition: .3s linear;
+	transition: 0.3s linear;
 }
-.myNavbar ul li a:hover{
+.myNavbar ul li a:hover {
 	color: #00c9bd;
 	transform: scale(1.1);
 }
 
-.p-button.p-button-OCM, .p-buttonset.p-button-OCM > .p-button, .p-splitbutton.p-button-OCM > .p-button {
-  color: white;
-  background: #212529;
-  border: 1px solid #212529;
-  padding: 0px;
-  margin-left: 10px;
- }
+.p-button.p-button-OCM,
+.p-buttonset.p-button-OCM > .p-button,
+.p-splitbutton.p-button-OCM > .p-button {
+	color: white;
+	background: #212529;
+	border: 1px solid #212529;
+	padding: 0px;
+	margin-left: 10px;
+}

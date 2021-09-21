@@ -7,47 +7,26 @@
     <nav class="myNavbar">
       <ul>
         <li>
-          <p-splitButton
-            *ngIf="isAdmin"
-            icon="pi pi-plus"
-            label="Entidades"
-            [model]="entidades"
-            styleClass="p-button-OCM"
-          >
+          <p-splitButton *ngIf="isAdmin" icon="pi pi-plus" label="Entidades" [model]="entidades"
+            styleClass="p-button-secondary p-mb-2">>
           </p-splitButton>
         </li>
         <li>
-          <a
-            *ngIf="isAdmin"
-            href="#"
-            role="button"
-            style="display: inline-block"
-          >
+          <a *ngIf="isAdmin" href="#" role="button" style="display: inline-block">
             <fa-icon [icon]="faBell" size="1x"></fa-icon>
           </a>
         </li>
         <li>
-          <p-avatar
-          *ngIf="isAdmin"
-           image="https://imgur.com/U9nIlOB.jpg"
-           shape="circle"
-           width="15"
-          ></p-avatar>
+          <p-avatar *ngIf="isAdmin" image="https://imgur.com/U9nIlOB.jpg" shape="circle" width="10"
+            style="margin-top: 20px"></p-avatar>
 
-          <p-avatar
-          *ngIf="!isAdmin"
-          image="https://i.imgur.com/C4egmYM.jpg"
-          shape="circle"
-           width="15"
-          ></p-avatar>
+          <p-avatar *ngIf="!isAdmin" image="https://i.imgur.com/C4egmYM.jpg" shape="circle" width="10"></p-avatar>
 
         </li>
+
         <li>
-          <p-splitButton
-            label="{{ userLoged }}"
-            [model]="opciones"
-            styleClass="p-button-OCM"
-          >
+          <p-splitButton label="{{ userLoged }}" [model]="opciones" styleClass="p-button-secondary p-mb-2">
+
           </p-splitButton>
         </li>
       </ul>
