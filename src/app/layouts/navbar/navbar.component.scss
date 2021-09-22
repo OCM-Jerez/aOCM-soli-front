@@ -1,84 +1,148 @@
-/* ==========================================================================
-Logo styles
-========================================================================== */
-.myLogo-img {
-	height: 30px;
-	width: 30px;
-	display: inline-block;
-	vertical-align: middle;
-	background: url("../../../assets/images/IconoOCMblanco.png") no-repeat center center;
-	// TODO ! No funciona.
-	// http://www.techmonks.org/angular-alias-paths/
-	// añadido en tsconfig.json
-	// background: url('@images/IconoOCMblanco.png') no-repeat center center;
-	background-size: contain;
-	margin-left: 20px;
-	margin-right: 5px;
-	margin-top: 5px;
+// Necesario para que predomine sobre el theme de Primeng.
+//#region
+:host ::ng-deep.p-button {
+	color: #ffffff;
+	background: #515963;
+	border: 1px solid #515963;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+	border-radius: 3px;
+	height: 20px;
+	align-content: center;
+	text-align: center;
 }
 
-.myLogo-text {
-	color: white;
-	margin-top: 24px;
-	font-size: 20px;
-	font-weight: bold;
+:host ::ng-deep.p-avatar {
+	background-color: #304562;
+	border-radius: 3px;
+	margin-top: 6px;
 }
-
-.myLogo-img:hover {
-	transform: scale(1.1);
-}
+//#endregion
 
 header {
 	width: 100%;
 	height: 40px;
-	background-color: #78909c;
+	background-color: #515963;
 }
 
-.myNavbarInterior {
-	max-width: 100%;
-	padding: 0 10px;
-	margin: auto;
-}
-.myNavbar {
+// NavBar
+//#region
+.OCM-Navbar {
 	float: right;
 	display: flex;
 	align-items: center;
 	min-height: 40px;
 	z-index: 1000;
-}
-.myNavbar ul {
-	list-style: none;
-	padding: 0 10px;
-}
-.myNavbar ul li {
-	display: inline-block;
-	position: relative;
-	transition: 0.3s linear;
-	z-index: 1000;
-}
-.myNavbar ul li:hover {
-	transform: scale(1.1);
-}
-.myNavbar ul li a {
-	color: #ffffff;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 12px 20px;
-	transition: 0.3s linear;
-}
-.myNavbar ul li a:hover {
-	color: #00c9bd;
-	transform: scale(1.1);
+	ul {
+		list-style: none;
+		padding: 0 10px;
+		li {
+			display: inline-block;
+			position: relative;
+			transition: 0.3s linear;
+			z-index: 1000;
+			a {
+				color: #ffffff;
+				text-align: center;
+				text-transform: uppercase;
+				font-size: 14px;
+				font-weight: bold;
+				padding: 12px 20px;
+				transition: 0.3s linear;
+			}
+			a:hover {
+				color: #00c9bd;
+				transform: scale(1.1);
+			}
+		}
+		li:hover {
+			transform: scale(1.1);
+		}
+	}
 }
 
-.p-button.p-button-OCM,
-.p-buttonset.p-button-OCM > .p-button,
-.p-splitbutton.p-button-OCM > .p-button {
-	color: white;
-	background: #212529;
-	border: 1px solid #212529;
-	padding: 0px;
-	margin-left: 10px;
+.OCM-NavbarInterior {
+	max-width: 100%;
+	padding: 0 10px;
+	margin: auto;
 }
+
+// .myNavbar ul {
+// 	list-style: none;
+// 	padding: 0 10px;
+// }
+// .myNavbar ul li {
+// 	display: inline-block;
+// 	position: relative;
+// 	transition: 0.3s linear;
+// 	z-index: 1000;
+// }
+// .myNavbar ul li:hover {
+// 	transform: scale(1.1);
+// }
+// .myNavbar ul li a {
+// 	color: #ffffff;
+// 	text-align: center;
+// 	text-transform: uppercase;
+// 	font-size: 14px;
+// 	font-weight: bold;
+// 	padding: 12px 20px;
+// 	transition: 0.3s linear;
+// }
+// .myNavbar ul li a:hover {
+// 	color: #00c9bd;
+// 	transform: scale(1.1);
+// }
+//#endregion
+
+// Logo
+//#region
+.OCM-logo {
+	:hover {
+		transform: scale(1.1);
+	}
+	&--img {
+		height: 30px;
+		width: 30px;
+		display: inline-block;
+		vertical-align: middle;
+		background: url("../../../assets/images/IconoOCMblanco.png") no-repeat center center;
+		// TODO ! No funciona.
+		// http://www.techmonks.org/angular-alias-paths/
+		// añadido en tsconfig.json
+		// background: url('@images/IconoOCMblanco.png') no-repeat center center;
+		background-size: contain;
+		margin-left: 20px;
+		margin-right: 5px;
+		margin-top: 5px;
+	}
+	&--text {
+		color: white;
+		margin-top: 24px;
+		font-size: 20px;
+		font-weight: bold;
+	}
+}
+
+// .OCM-logo-text {
+// 	color: white;
+// 	margin-top: 24px;
+// 	font-size: 20px;
+// 	font-weight: bold;
+// }
+
+.OCM-Logo--img:hover {
+	transform: scale(1.1);
+}
+//#endregion
+
+// .p-button.p-button-OCM,
+// .p-buttonset.p-button-OCM > .p-button,
+// .p-splitbutton.p-button-OCM > .p-button {
+// 	color: white;
+// 	background: #212529;
+// 	border: 1px solid #212529;
+// 	padding: 0px;
+// 	margin-left: 10px;
+// }

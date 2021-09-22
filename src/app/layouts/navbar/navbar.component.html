@@ -1,14 +1,13 @@
 <header>
-  <div class="myNavbarInterior">
+  <div class="OCM-NavbarInterior">
     <a href="http://ocmjerez.org">
-      <span class="myLogo-img"></span>
-      <span class="myLogo-text">Observatorio Ciudadano Municipal de Jerez.</span>
+      <span class="OCM-logo--img"></span>
+      <span class="OCM-logo--text">Observatorio Ciudadano Municipal de Jerez.</span>
     </a>
-    <nav class="myNavbar">
+    <nav class="OCM-Navbar">
       <ul>
         <li>
-          <p-splitButton *ngIf="isAdmin" icon="pi pi-plus" label="Entidades" [model]="entidades"
-            styleClass="p-button-secondary p-mb-2">>
+          <p-splitButton *ngIf="isAdmin" label="Entidades" [model]="entidades">
           </p-splitButton>
         </li>
         <li>
@@ -17,15 +16,18 @@
           </a>
         </li>
         <li>
-          <p-avatar *ngIf="isAdmin" image="https://imgur.com/U9nIlOB.jpg" shape="circle" width="10"
-            style="margin-top: 20px"></p-avatar>
+          <p-avatar *ngIf="isAdmin" image="https://imgur.com/U9nIlOB.jpg" shape="circle" width="50"
+            style="margin-top: 5px;" style="margin-top: 20px"></p-avatar>
 
-          <p-avatar *ngIf="!isAdmin" image="https://i.imgur.com/C4egmYM.jpg" shape="circle" width="10"></p-avatar>
+          <p-avatar *ngIf="!isAdmin" image="https://i.imgur.com/C4egmYM.jpg" shape="circle" width="10"
+            style="margin-top: 5px;"></p-avatar>
 
         </li>
 
         <li>
-          <p-splitButton label="{{ userLoged }}" [model]="opciones" styleClass="p-button-secondary p-mb-2">
+          <!-- <p-splitButton label="{{ userLoged }}" [model]="opciones" styleClass="p-button-secondary"> -->
+          <p-splitButton label="{{ userLoged }}" [model]="opciones">
+
 
           </p-splitButton>
         </li>
