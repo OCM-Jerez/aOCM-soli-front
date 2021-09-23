@@ -67,39 +67,12 @@ header {
 	padding: 0 10px;
 	margin: auto;
 }
-
-// .myNavbar ul {
-// 	list-style: none;
-// 	padding: 0 10px;
-// }
-// .myNavbar ul li {
-// 	display: inline-block;
-// 	position: relative;
-// 	transition: 0.3s linear;
-// 	z-index: 1000;
-// }
-// .myNavbar ul li:hover {
-// 	transform: scale(1.1);
-// }
-// .myNavbar ul li a {
-// 	color: #ffffff;
-// 	text-align: center;
-// 	text-transform: uppercase;
-// 	font-size: 14px;
-// 	font-weight: bold;
-// 	padding: 12px 20px;
-// 	transition: 0.3s linear;
-// }
-// .myNavbar ul li a:hover {
-// 	color: #00c9bd;
-// 	transform: scale(1.1);
-// }
 //#endregion
 
 // Logo
 //#region
 .OCM-logo {
-	:hover {
+	&:hover {
 		transform: scale(1.1);
 	}
 	&--img {
@@ -124,25 +97,4 @@ header {
 		font-weight: bold;
 	}
 }
-
-// .OCM-logo-text {
-// 	color: white;
-// 	margin-top: 24px;
-// 	font-size: 20px;
-// 	font-weight: bold;
-// }
-
-.OCM-Logo--img:hover {
-	transform: scale(1.1);
-}
 //#endregion
-
-// .p-button.p-button-OCM,
-// .p-buttonset.p-button-OCM > .p-button,
-// .p-splitbutton.p-button-OCM > .p-button {
-// 	color: white;
-// 	background: #212529;
-// 	border: 1px solid #212529;
-// 	padding: 0px;
-// 	margin-left: 10px;
-// }
