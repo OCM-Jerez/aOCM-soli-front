@@ -1,11 +1,14 @@
 <header>
-  <nav class="OCM-Navbar">
-    <div>
-      <a href="http://ocmjerez.org">
-        <span class="OCM-logo--img"></span>
-        <span class="OCM-logo--text">Observatorio Ciudadano Municipal de Jerez.</span>
-      </a>
+  <nav class="OCM-navbar">
+    <div class="OCM-navbar--brand">
+      <div class="OCM-navbar--brand--logo">
+        <a href="http://ocmjerez.org"></a>
+      </div>
+      <div class="OCM-navbar--brand--text">
+        Observatorio Ciudadano Municipal de Jerez
+      </div>
     </div>
+
     <div>
       <ul>
         <li>
@@ -22,10 +25,10 @@
           <p-avatar *ngIf="!isAdmin" image="https://i.imgur.com/C4egmYM.jpg" shape="circle"></p-avatar>
         </li>
         <li>
-          <!-- <p-splitButton label="{{ userLoged }}" [model]="opciones" styleClass="p-button-secondary"> -->
           <p-splitButton label="{{ userLoged }}" [model]="opciones"></p-splitButton>
         </li>
       </ul>
     </div>
+
   </nav>
 </header>

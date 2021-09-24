@@ -1,16 +1,11 @@
 // Necesario para que predomine sobre el theme de Primeng.
-//#region
 :host ::ng-deep.p-button {
 	color: #ffffff;
 	background: #515963;
-	border: 1px solid #515963;
-	padding: 0.5rem 1rem;
+	border: 0px;
+	padding: 0px;
 	font-size: 1rem;
-	transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 	border-radius: 3px;
-	height: 20px;
-	align-content: center;
-	text-align: center;
 }
 
 // :host ::ng-deep.p-avatar {
@@ -18,7 +13,6 @@
 // border-radius: 3px;
 // margin-top: 6px;
 // }
-//#endregion
 
 header {
 	width: 100%;
@@ -26,12 +20,36 @@ header {
 	background-color: #515963;
 }
 
-// NavBar
-//#region
-.OCM-Navbar {
+.OCM-navbar {
 	display: flex;
 	justify-content: space-between;
 	height: 45px;
+	&--brand {
+		display: flex;
+		justify-content: space-between;
+		&--logo {
+			height: 30px;
+			width: 30px;
+			vertical-align: middle;
+			background: url("../../../assets/images/IconoOCMblanco.png") no-repeat center center;
+			background-size: contain;
+			margin-left: 20px;
+			margin-right: 5px;
+			margin-top: 5px;
+			&:hover {
+				transform: scale(1.2);
+			}
+		}
+		&--text {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			color: white;
+			font-size: 20px;
+			font-weight: bold;
+		}
+	}
+
 	ul {
 		display: flex;
 		flex-direction: row;
@@ -41,8 +59,7 @@ header {
 		li {
 			display: inline-block;
 			position: relative;
-			transition: 0.3s linear;
-			z-index: 1000;
+			margin-left: 6px;
 			a {
 				color: #ffffff;
 				text-align: center;
@@ -57,34 +74,5 @@ header {
 				transform: scale(1.1);
 			}
 		}
-		li:hover {
-			transform: scale(1.1);
-		}
 	}
 }
-//#endregion
-
-// Logo
-//#region
-.OCM-logo {
-	&--img {
-		height: 30px;
-		width: 30px;
-		display: inline-block;
-		vertical-align: middle;
-		background: url("../../../assets/images/IconoOCMblanco.png") no-repeat center center;
-		background-size: contain;
-		margin-left: 20px;
-		margin-right: 5px;
-		margin-top: 5px;
-		&:hover {
-			transform: scale(1.1);
-		}
-	}
-	&--text {
-		color: white;
-		font-size: 20px;
-		font-weight: bold;
-	}
-}
-//#endregion
