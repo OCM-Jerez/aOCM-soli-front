@@ -13,11 +13,11 @@
 	text-align: center;
 }
 
-:host ::ng-deep.p-avatar {
-	background-color: #304562;
-	border-radius: 3px;
-	margin-top: 6px;
-}
+// :host ::ng-deep.p-avatar {
+// background-color: #304562;
+// border-radius: 3px;
+// margin-top: 6px;
+// }
 //#endregion
 
 header {
@@ -29,12 +29,13 @@ header {
 // NavBar
 //#region
 .OCM-Navbar {
-	float: right;
 	display: flex;
-	align-items: center;
-	min-height: 40px;
-	z-index: 1000;
+	justify-content: space-between;
+	height: 45px;
 	ul {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
 		list-style: none;
 		padding: 0 10px;
 		li {
@@ -61,38 +62,27 @@ header {
 		}
 	}
 }
-
-.OCM-NavbarInterior {
-	max-width: 100%;
-	padding: 0 10px;
-	margin: auto;
-}
 //#endregion
 
 // Logo
 //#region
 .OCM-logo {
-	&:hover {
-		transform: scale(1.1);
-	}
 	&--img {
 		height: 30px;
 		width: 30px;
 		display: inline-block;
 		vertical-align: middle;
 		background: url("../../../assets/images/IconoOCMblanco.png") no-repeat center center;
-		// TODO ! No funciona.
-		// http://www.techmonks.org/angular-alias-paths/
-		// añadido en tsconfig.json
-		// background: url('@images/IconoOCMblanco.png') no-repeat center center;
 		background-size: contain;
 		margin-left: 20px;
 		margin-right: 5px;
 		margin-top: 5px;
+		&:hover {
+			transform: scale(1.1);
+		}
 	}
 	&--text {
 		color: white;
-		margin-top: 24px;
 		font-size: 20px;
 		font-weight: bold;
 	}

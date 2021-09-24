@@ -1,10 +1,12 @@
 <header>
-  <div class="OCM-NavbarInterior">
-    <a href="http://ocmjerez.org">
-      <span class="OCM-logo--img"></span>
-      <span class="OCM-logo--text">Observatorio Ciudadano Municipal de Jerez.</span>
-    </a>
-    <nav class="OCM-Navbar">
+  <nav class="OCM-Navbar">
+    <div>
+      <a href="http://ocmjerez.org">
+        <span class="OCM-logo--img"></span>
+        <span class="OCM-logo--text">Observatorio Ciudadano Municipal de Jerez.</span>
+      </a>
+    </div>
+    <div>
       <ul>
         <li>
           <p-splitButton *ngIf="isAdmin" label="Entidades" [model]="entidades">
@@ -16,22 +18,14 @@
           </a>
         </li>
         <li>
-          <p-avatar *ngIf="isAdmin" image="https://imgur.com/U9nIlOB.jpg" shape="circle" width="50"
-            style="margin-top: 5px;" style="margin-top: 20px"></p-avatar>
-
-          <p-avatar *ngIf="!isAdmin" image="https://i.imgur.com/C4egmYM.jpg" shape="circle" width="10"
-            style="margin-top: 5px;"></p-avatar>
-
+          <p-avatar *ngIf="isAdmin" image="https://imgur.com/U9nIlOB.jpg" shape="circle"></p-avatar>
+          <p-avatar *ngIf="!isAdmin" image="https://i.imgur.com/C4egmYM.jpg" shape="circle"></p-avatar>
         </li>
-
         <li>
           <!-- <p-splitButton label="{{ userLoged }}" [model]="opciones" styleClass="p-button-secondary"> -->
-          <p-splitButton label="{{ userLoged }}" [model]="opciones">
-
-
-          </p-splitButton>
+          <p-splitButton label="{{ userLoged }}" [model]="opciones"></p-splitButton>
         </li>
       </ul>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>
