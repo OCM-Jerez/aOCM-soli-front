@@ -19,6 +19,7 @@
 # Como ejecutar el código 🖥
 - Clonar el repositorio.
 - npm install para instalar referencias.
+- ng s -o
 
 
 # Sugerencias nuevas caracteristicas 💎
@@ -28,7 +29,22 @@
 - Si encuentras algun error, por favor, crea una nueva Issue.
 
 # Planes futuras mejoras 📆
+
+
+# Framework desarrollo 🚀
+
+- [Angular](https://angular.io) 
 - 
+
+# Librerias usadas 📖
+- <a href= 'https://fortawesome.com/' target="_blank">fortawesome</a>
+- <a href= 'https://www.npmjs.com/package/dotenv' target="_blank">dotenv</a>
+- <a href= 'https://momentjs.com/' target="_blank">momentjs</a>
+- <a href= 'https://www.npmjs.com/package/ngx-webstorage' target="_blank">ngx-webstorage</a>
+- <a href= 'https://www.primefaces.org/primeflex/' target="_blank">primeflex</a>
+- <a href= 'https://github.com/primefaces/primeicons' target="_blank">primeicons</a>
+- <a href= 'https://www.primefaces.org/primeng/' target="_blank">primeng</a>
+- <a href= 'https://sweetalert2.github.io/' target="_blank">sweetalert2</a>
 
 # Licencia ⚖
 ️- Distribuido bajo ```MIT License```. Ver LICENSE.TXT para más información.
