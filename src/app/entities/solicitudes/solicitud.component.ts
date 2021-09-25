@@ -12,7 +12,8 @@ import { ISolicitud } from './solicitud.interface';
 
 @Component({
   selector: 'app-solicitud',
-  templateUrl: './solicitud.component.html'
+  templateUrl: './solicitud.component.html',
+  styleUrls: ['./solicitud.component.scss']
 })
 export class SolicitudComponent implements OnInit {
   solicitudes: any[] = [];
