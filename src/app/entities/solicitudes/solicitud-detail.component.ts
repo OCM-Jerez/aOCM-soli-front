@@ -19,7 +19,8 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-solicitud-detail',
-  templateUrl: './solicitud-detail.component.html'
+  templateUrl: './solicitud-detail.component.html',
+  styleUrls: ['./solicitud-detail.component.scss']
 })
 export class SolicitudDetailComponent implements OnInit {
   solicitud: ISolicitud | null = null;
@@ -31,7 +32,7 @@ export class SolicitudDetailComponent implements OnInit {
   isAdmitida: boolean | undefined;
   calidadRespuesta: number | undefined;
   isAdmin = environment.IsAdmin;
-  isCerrada: boolean| undefined;
+  isCerrada: boolean | undefined;
 
   constructor(
     protected solicitudService: SolicitudService,

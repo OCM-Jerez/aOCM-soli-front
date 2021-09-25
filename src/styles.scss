@@ -26,14 +26,14 @@ body {
 
 /*//////////////////////////////////////////////////////////////////
 [ MI CODIGO ]*/
-.mam-tituloComponent {
+.OCM-tituloComponent {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 25px;
   color: var(--text-color);
 }
 
-.mam-tituloComponent-30 {
+.OCM-tituloComponent-30 {
   // margin-top: 20px;
   // margin-bottom: 20px;
   font-size: 14px;
@@ -54,48 +54,17 @@ body {
   color: red;
 }
 
-.mydt {
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  // color:var(--text-color);
-  color: rgb(1, 9, 44);
-  // text-shadow: 0.5px 0.5px rgb(113, 183, 240);
-  font-weight: bold;
-  font-size: 25px;
-}
+// .mam-label {
+//   display: block;
+//   margin-top: 1em;
+//   margin-bottom: 0;
+//   margin-left: 0;
+//   margin-right: 0;
+//   // color: var(--text-color);
+//   color: rgb(7, 18, 68);
+//   font-weight: bold;
+// }
 
-.mydd {
-  display: block;
-  margin-top: 0;
-  margin-bottom: 1em;
-  margin-left: 0;
-  margin-right: 0;
-  color: white;
-  font-size: 20px;
-}
-
-.mam-label {
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  // color: var(--text-color);
-  color: rgb(7, 18, 68);
-  font-weight: bold;
-}
-
-#mam-textoFooter {
-  color: var(--text-color);
-}
-
-#mam-iconRRSS {
-  margin-left: 14px;
-  color: var(--text-color);
-}
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 

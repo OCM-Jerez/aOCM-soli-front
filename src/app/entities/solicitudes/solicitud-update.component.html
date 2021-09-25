@@ -1,51 +1,33 @@
-<div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
+<div class="p-text-center OCM-tituloComponent">{{ textoCabecera }}</div>
 
 <!-- https://angular.io/api/forms/NgForm#description -->
 <!-- <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()"> -->
 <!-- <form [formGroup]="editForm" (ngSubmit)="save()"> -->
 <form [formGroup]="editForm">
-  <div
-    class="p-grid p-shadow-24"
-    style="margin-left: 100px; margin-right: 100px"
-  >
+  <div class="p-grid p-shadow-24" style="margin-left: 100px; margin-right: 100px">
     <!-- <div class="p-col-1"></div> -->
     <div class="p-col-6">
       <div class="" style="margin-top: 20px">
         <label class="mam-label">Año</label>
         <div class="input-group">
-          <input
-            id="field_year"
-            type="text"
-            class="form-control"
-            formControlName="year"
-            style="width: 10%; height: 30px; font-size: 16px"
-          />
+          <input id="field_year" type="text" class="form-control" formControlName="year"
+            style="width: 10%; height: 30px; font-size: 16px" />
         </div>
       </div>
 
       <div class="" style="margin-top: 20px">
         <label class="mam-label">Codigo Ayuntamiento</label>
         <div class="input-group">
-          <input
-            id="field_code"
-            type="text"
-            class="form-control"
-            formControlName="code"
-            style="width: 10%; height: 30px; font-size: 16px"
-          />
+          <input id="field_code" type="text" class="form-control" formControlName="code"
+            style="width: 10%; height: 30px; font-size: 16px" />
         </div>
       </div>
 
       <div class="" style="margin-top: 20px">
         <label class="mam-label">Descripción</label>
         <div class="input-group">
-          <input
-            id="field_descripcion"
-            type="text"
-            class="form-control"
-            formControlName="descripcion"
-            style="width: 90%; height: 30px; font-size: 16px"
-          />
+          <input id="field_descripcion" type="text" class="form-control" formControlName="descripcion"
+            style="width: 90%; height: 30px; font-size: 16px" />
         </div>
       </div>
 
@@ -62,14 +44,8 @@
             <!-- ngModelOptions="{standalone: true}" -->
             <!-- Si cambio dateFormat no se despliega p-calendar -->
             <!-- Si no uso [(ngModel)] no graba el dato. Sin embargo al compilar da un aviso de que esta deprecado. -->
-            <p-calendar
-              id="date"
-              [(ngModel)]="date"
-              dateFormat="yy-mm-dd"
-              [showButtonBar]="true"
-              [showIcon]="true"
-              formControlName="fechaSolicitud"
-            ></p-calendar>
+            <p-calendar id="date" [(ngModel)]="date" dateFormat="yy-mm-dd" [showButtonBar]="true" [showIcon]="true"
+              formControlName="fechaSolicitud"></p-calendar>
             <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
             <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
           </div>
@@ -78,28 +54,16 @@
         <div style="margin-top: 20px">
           <label class="mam-label">Fecha inicio</label>
           <div class="input-group">
-            <p-calendar
-              id="dateIni"
-              [(ngModel)]="dateIni"
-              dateFormat="yy-mm-dd"
-              [showButtonBar]="true"
-              [showIcon]="true"
-              formControlName="fechaInicio"
-            ></p-calendar>
+            <p-calendar id="dateIni" [(ngModel)]="dateIni" dateFormat="yy-mm-dd" [showButtonBar]="true"
+              [showIcon]="true" formControlName="fechaInicio"></p-calendar>
           </div>
         </div>
 
         <div style="margin-top: 20px">
           <label class="mam-label">Fecha respuesta</label>
           <div class="input-group">
-            <p-calendar
-              id="dateRes"
-              [(ngModel)]="dateRes"
-              dateFormat="yy-mm-dd"
-              [showButtonBar]="true"
-              [showIcon]="true"
-              formControlName="fechaRespuesta"
-            ></p-calendar>
+            <p-calendar id="dateRes" [(ngModel)]="dateRes" dateFormat="yy-mm-dd" [showButtonBar]="true"
+              [showIcon]="true" formControlName="fechaRespuesta"></p-calendar>
           </div>
         </div>
       </div>
@@ -109,64 +73,39 @@
       <div style="margin-top: 20px">
         <label class="mam-label">Observaciones</label>
         <div class="input-group">
-          <input
-            id="field_observacion"
-            type="text"
-            class="form-control"
-            formControlName="observacion"
-            style="
+          <input id="field_observacion" type="text" class="form-control" formControlName="observacion" style="
               width: 90%;
               margin-bottom: 20px;
               height: 30px;
               font-size: 16px;
-            "
-          />
+            " />
         </div>
       </div>
 
       <div style="margin-top: 20px">
         <div class="input-group">
           <label class="mam-label" style="margin-right: 20px">isAdmitida</label>
-          <input
-            type="checkbox"
-            class="form-control"
-            name="isAdmitida"
-            id="field_isAdmitida"
-            formControlName="isAdmitida"
-          />
+          <input type="checkbox" class="form-control" name="isAdmitida" id="field_isAdmitida"
+            formControlName="isAdmitida" />
         </div>
       </div>
 
       <div style="margin-top: 20px">
         <div class="input-group">
-          <label class="mam-label" style="margin-right: 20px"
-            >Calidad respuesta</label
-          >
-          <p-rating
-            id="field_calidadRespuesta"
-            formControlName="calidadRespuesta"
-            [cancel]="false"
-          >
+          <label class="mam-label" style="margin-right: 20px">Calidad respuesta</label>
+          <p-rating id="field_calidadRespuesta" formControlName="calidadRespuesta" [cancel]="false">
           </p-rating>
         </div>
       </div>
 
       <div style="margin-top: 20px">
-        <label class="mam-label"
-          >Fecha Reclamacion Consejo Transparencia Andalucía</label
-        >
+        <label class="mam-label">Fecha Reclamacion Consejo Transparencia Andalucía</label>
         <div class="input-group">
           <!-- ngModelOptions="{standalone: true}" -->
           <!-- Si cambio dateFormat no se despliega p-calendar -->
           <!-- Si no uso [(ngModel)] no graba el dato. Sin embargo al compilar da un aviso de que esta deprecado. -->
-          <p-calendar
-            id="date"
-            [(ngModel)]="dateReclamacionCTA"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaReclamacionCTA"
-          ></p-calendar>
+          <p-calendar id="date" [(ngModel)]="dateReclamacionCTA" dateFormat="yy-mm-dd" [showButtonBar]="true"
+            [showIcon]="true" formControlName="fechaReclamacionCTA"></p-calendar>
           <!--  Requiere import { FormsModule } from '@angular/forms'  de no hacerlo da este error:-->
           <!-- error TS2740: Type 'Event' is missing the following properties from type 'Date': toDateString, toTimeString, toLocaleDateString, toLocaleTimeString, and 37 mo -->
         </div>
@@ -175,28 +114,16 @@
       <div style="margin-top: 20px">
         <label class="mam-label">Fecha inicio</label>
         <div class="input-group">
-          <p-calendar
-            id="dateIni"
-            [(ngModel)]="dateIniCTA"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaInicioCTA"
-          ></p-calendar>
+          <p-calendar id="dateIni" [(ngModel)]="dateIniCTA" dateFormat="yy-mm-dd" [showButtonBar]="true"
+            [showIcon]="true" formControlName="fechaInicioCTA"></p-calendar>
         </div>
       </div>
 
       <div style="margin-top: 20px">
         <label class="mam-label">Fecha respuesta</label>
         <div class="input-group">
-          <p-calendar
-            id="dateRes"
-            [(ngModel)]="dateResCTA"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaRespuestaCTA"
-          ></p-calendar>
+          <p-calendar id="dateRes" [(ngModel)]="dateResCTA" dateFormat="yy-mm-dd" [showButtonBar]="true"
+            [showIcon]="true" formControlName="fechaRespuestaCTA"></p-calendar>
         </div>
       </div>
 
@@ -204,62 +131,40 @@
         <div style="margin-top: 20px">
           <label class="mam-label">Observaciones CTA</label>
           <div class="input-group">
-            <input
-              id="field_observacionCTA"
-              type="text"
-              class="form-control"
-              formControlName="observacionCTA"
-              style="
+            <input id="field_observacionCTA" type="text" class="form-control" formControlName="observacionCTA" style="
                 width: 90%;
                 margin-bottom: 20px;
                 height: 30px;
                 font-size: 16px;
-              "
-            />
+              " />
           </div>
+        </div>
       </div>
-    </div>
 
 
-    <div style="margin-top: 20px">
-      <div class="input-group">
-        <label class="mam-label" style="margin-right: 20px">isAtendidaCTA</label>
-        <input
-          type="checkbox"
-          class="form-control"
-          name="isAtendidaCTA"
-          id="field_isAtendidaCTA"
-          formControlName="isAtendidaCTA"
-        />
+      <div style="margin-top: 20px">
+        <div class="input-group">
+          <label class="mam-label" style="margin-right: 20px">isAtendidaCTA</label>
+          <input type="checkbox" class="form-control" name="isAtendidaCTA" id="field_isAtendidaCTA"
+            formControlName="isAtendidaCTA" />
+        </div>
       </div>
-    </div>
 
-    <div style="margin-top: 20px">
-      <label class="mam-label">Fecha respuesta Ayuntamiento a requerimiento CTAS</label>
-      <div class="input-group">
-        <p-calendar
-          id="dateRes"
-          [(ngModel)]="dateResAytoCTA"
-          dateFormat="yy-mm-dd"
-          [showButtonBar]="true"
-          [showIcon]="true"
-          formControlName="fechaRespuestaAytoCTA"
-        ></p-calendar>
+      <div style="margin-top: 20px">
+        <label class="mam-label">Fecha respuesta Ayuntamiento a requerimiento CTAS</label>
+        <div class="input-group">
+          <p-calendar id="dateRes" [(ngModel)]="dateResAytoCTA" dateFormat="yy-mm-dd" [showButtonBar]="true"
+            [showIcon]="true" formControlName="fechaRespuestaAytoCTA"></p-calendar>
+        </div>
       </div>
-    </div>
 
-    <div style="margin-top: 20px">
-      <div class="input-group">
-        <label class="mam-label" style="margin-right: 20px">isCerrada</label>
-        <input
-          type="checkbox"
-          class="form-control"
-          name="isCerrada"
-          id="field_isCerrada"
-          formControlName="isCerrada"
-        />
+      <div style="margin-top: 20px">
+        <div class="input-group">
+          <label class="mam-label" style="margin-right: 20px">isCerrada</label>
+          <input type="checkbox" class="form-control" name="isCerrada" id="field_isCerrada"
+            formControlName="isCerrada" />
+        </div>
       </div>
-    </div>
 
     </div>
     <!-- <div class="p-col-1"></div> -->
@@ -270,25 +175,11 @@
 <div class="container" style="padding-top: 60px; padding-bottom: 40px">
   <div class="row justify-content-center">
     <div class="col-8">
-      <button
-        pButton
-        (click)="previousState()"
-        class="p-button-rounded p-button-primary"
-        type="button"
-        icon="pi pi-chevron-circle-left"
-        iconPos="left"
-        label="Cancelar"
-      ></button>
+      <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
+        icon="pi pi-chevron-circle-left" iconPos="left" label="Cancelar"></button>
 
-      <button
-        pButton
-        (click)="save()"
-        class="p-button-rounded p-button-success"
-        type="button"
-        icon="pi pi-user-save"
-        iconPos="left"
-        label="Grabar"
-      ></button>
+      <button pButton (click)="save()" class="p-button-rounded p-button-success" type="button" icon="pi pi-user-save"
+        iconPos="left" label="Grabar"></button>
     </div>
   </div>
 </div>

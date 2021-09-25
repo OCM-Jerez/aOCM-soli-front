@@ -1,31 +1,31 @@
 <app-navbar></app-navbar>
 
-<div class="p-text-center mam-tituloComponent">Detalles solicitud</div>
+<div class="p-text-center OCM-tituloComponent">Detalles solicitud</div>
 
 <div class="p-grid p-shadow-24" style="margin-left: 20px; margin-right: 20px">
 
   <div class="p-col-2">
     <dl class="">
-      <dt class="mydt"><span>Año</span></dt>
-      <dd class="mydd">
+      <dt class="OCM-dt"><span>Año</span></dt>
+      <dd class="OCM-dd">
         <span>{{ solicitud?.year }}</span>
       </dd>
-      <dt class="mydt" style="display: block"><span>Codigo Ayuntamiento</span></dt>
-      <dd class="mydd">
+      <dt class="OCM-dt" style="display: block"><span>Codigo Ayuntamiento</span></dt>
+      <dd class="OCM-dd">
         <span>{{ solicitud?.code }}</span>
       </dd>
     </dl>
   </div>
 
   <div class="p-col-4">
-    <h4 class= "mam-tituloComponent-30 mydt">Datos</h4>
+    <h4 class="OCM-tituloComponent-30 OCM-dt">Datos</h4>
     <dl class="">
-      <dt class="mydt"><span>Descripción</span></dt>
-      <dd class="mydd">
+      <dt class="OCM-dt"><span>Descripción</span></dt>
+      <dd class="OCM-dd">
         <span>{{ solicitud?.descripcion }}</span>
       </dd>
-      <dt class="mydt"><span>Observaciones</span></dt>
-      <dd class="mydd">
+      <dt class="OCM-dt"><span>Observaciones</span></dt>
+      <dd class="OCM-dd">
         <span>{{ solicitud?.observacion }}</span>
       </dd>
     </dl>
@@ -33,7 +33,7 @@
 
   <!-- Datos respuesta Ayuntamiento -->
   <div class="p-col-3" *ngIf="solicitud?.fechaRespuesta">
-    <h4 class= "mam-tituloComponent-30 mydt">Ayuntamiento</h4>
+    <h4 class="OCM-tituloComponent-30 OCM-dt">Ayuntamiento</h4>
     <!-- <label class="mam-label" style="margin-right: 20px">Admitida</label>
     <input
       type="checkbox"
@@ -43,28 +43,21 @@
       [disabled]="true"
     /> -->
 
-    <span
-      style="font-weight: bold; text-align: right"
-      [ngStyle]="{
+    <span style="font-weight: bold; text-align: right" [ngStyle]="{
         opacity: solicitud?.fechaRespuesta! && !solicitud?.isAdmitida ? 100 : 0,
         color: 'red',
         'font-weight': 'bold',
         'font-size': '32px'
-      }"
-    >
+      }">
       Inadmitida
     </span>
 
     <dl class="" *ngIf="solicitud?.isAdmitida">
-      <dt class="mydt">
+      <dt class="OCM-dt">
         <span>Calidad respuesta</span>
       </dt>
-      <dd class="mydd">
-        <p-rating
-          [(ngModel)]="calidadRespuesta"
-          [cancel]="false"
-          [disabled]="true"
-        ></p-rating>
+      <dd class="OCM-dd">
+        <p-rating [(ngModel)]="calidadRespuesta" [cancel]="false" [disabled]="true"></p-rating>
       </dd>
     </dl>
 
@@ -74,69 +67,61 @@
   </div>
 
   <!-- Datos respuesta Consejo Transparencia -->
-  <div class="p-col-2" >
+  <div class="p-col-2">
     <div *ngIf="solicitud?.fechaInicioCTA">
-    <h4 class= "mam-tituloComponent-30 mydt">Consejo Transparencia</h4>
-    <div  [ngStyle]="{
+      <h4 class="OCM-tituloComponent-30 OCM-dt">Consejo Transparencia</h4>
+      <div [ngStyle]="{
         opacity: solicitud?.fechaRespuesta! && solicitud?.isAtendidaCTA ? 100 : 0,
         color: 'green',
         'font-weight': 'bold',
         'font-size': '32px'
-      }"
-      >
-     <span
-      style="font-weight: bold; text-align: right"
-    >
-      Atendida
-    </span>
+      }">
+        <span style="font-weight: bold; text-align: right">
+          Atendida
+        </span>
 
-    <dl class="">
-     <dt class="mydt"><span>Observaciones</span></dt>
-      <dd class="mydd">
-        <span>{{ solicitud?.observacionCTA }}</span>
-      </dd>
-    </dl>
-</div>
-    <!-- <div>
+        <dl class="">
+          <dt class="OCM-dt"><span>Observaciones</span></dt>
+          <dd class="OCM-dd">
+            <span>{{ solicitud?.observacionCTA }}</span>
+          </dd>
+        </dl>
+      </div>
+      <!-- <div>
       <app-rating></app-rating>
     </div> -->
-  </div>
+    </div>
   </div>
 
   <!-- Abierta o cerrada -->
   <div class="p-col-1" *ngIf="isCerrada">
-         <span
-      style="color:red;font-size:26px;font-weight: bold; text-align: right"
-    >
+    <span style="color:red;font-size:26px;font-weight: bold; text-align: right">
       Cerrada
 
     </span>
-</div>
+  </div>
 
 </div>
 
 <!-- Stepper -->
 <div class="p-grid p-shadow-24" style="margin-left: 20px; margin-right: 20px">
 
-<div class="p-col-4">
-<app-stepper></app-stepper>
-</div>
-
-<div class="p-col-4" *ngIf="solicitud?.fechaReclamacionCTA">
-  <app-stepperCTA></app-stepperCTA>
+  <div class="p-col-4">
+    <app-stepper></app-stepper>
   </div>
 
-<div class="p-col-4" *ngIf="solicitud?.fechaReclamacionCTA">
-  <app-stepperAyto></app-stepperAyto>
+  <div class="p-col-4" *ngIf="solicitud?.fechaReclamacionCTA">
+    <app-stepperCTA></app-stepperCTA>
+  </div>
+
+  <div class="p-col-4" *ngIf="solicitud?.fechaReclamacionCTA">
+    <app-stepperAyto></app-stepperAyto>
   </div>
 
 </div>
 
 <!-- Pestañas -->
-<div
-  class="card"
-  style="margin-top: 20px; margin-left: 20px; margin-right: 20px"
->
+<div class="card" style="margin-top: 20px; margin-left: 20px; margin-right: 20px">
   <p-tabView styleClass="tabview-custom">
     <p-tabPanel>
       <ng-template pTemplate="header">
@@ -144,52 +129,27 @@
         <span>Documentos solicitud</span>
       </ng-template>
 
-      <span
-        *ngIf="documentosSolicitud?.length > 0; else noDocumentosTpl"
-        class="mySubtituloComponent"
-      >
+      <span *ngIf="documentosSolicitud?.length > 0; else noDocumentosTpl" class="mySubtituloComponent">
         <!-- Documentos solicitud -->
       </span>
 
-      <button
-        pButton
-        *ngIf="isAdmin"
-        (click)="crearDocumento()"
-        class="p-button-rounded p-button-warning"
-        type="button"
-        icon="pi pi-plus"
-        iconPos="left"
-        label="Crear nuevo documento"
-        style="margin-left: 160px"
-      ></button>
+      <button pButton *ngIf="isAdmin" (click)="crearDocumento()" class="p-button-rounded p-button-warning" type="button"
+        icon="pi pi-plus" iconPos="left" label="Crear nuevo documento" style="margin-left: 160px"></button>
 
       <ng-template #noDocumentosTpl>
         <div>
-          <span class="mySubtituloComponent"
-            >No hay documentos asociados a esta solicitud</span
-          >
+          <span class="mySubtituloComponent">No hay documentos asociados a esta solicitud</span>
         </div>
       </ng-template>
 
       <div class="p-grid p-shadow-24" *ngIf="documentosSolicitud?.length > 0">
-        <p-table
-          [value]="documentosSolicitud"
-          [rowHover]="true"
-          [rows]="5"
-          [paginator]="true"
-        >
+        <p-table [value]="documentosSolicitud" [rowHover]="true" [rows]="5" [paginator]="true">
           <ng-template pTemplate="header">
             <tr>
-              <th
-                pSortableColumn="nombreDocumento"
-                style="background-color: #515963; width: 44%"
-              >
+              <th pSortableColumn="nombreDocumento" style="background-color: #515963; width: 44%">
                 Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
               </th>
-              <th
-                pSortableColumn="fechaSubida"
-                style="background-color: #515963; width: 12%"
-              >
+              <th pSortableColumn="fechaSubida" style="background-color: #515963; width: 12%">
                 Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
               </th>
               <th scope="col" style="background-color: #515963; width: 44%">
@@ -223,39 +183,23 @@
         <span>Documentos inicio</span>
       </ng-template>
 
-      <span
-        *ngIf="documentosInicio?.length > 0; else noDocumentosTpl"
-        class="mySubtituloComponent"
-      >
+      <span *ngIf="documentosInicio?.length > 0; else noDocumentosTpl" class="mySubtituloComponent">
       </span>
 
       <ng-template #noDocumentosTpl>
         <div>
-          <span class="mySubtituloComponent"
-            >No hay documentos asociados a esta solicitud</span
-          >
+          <span class="mySubtituloComponent">No hay documentos asociados a esta solicitud</span>
         </div>
       </ng-template>
 
       <div class="p-grid p-shadow-24" *ngIf="documentosInicio?.length > 0">
-        <p-table
-          [value]="documentosInicio"
-          [rowHover]="true"
-          [rows]="5"
-          [paginator]="true"
-        >
+        <p-table [value]="documentosInicio" [rowHover]="true" [rows]="5" [paginator]="true">
           <ng-template pTemplate="header">
             <tr>
-              <th
-                pSortableColumn="nombreDocumento"
-                style="background-color: #515963; width: 44%"
-              >
+              <th pSortableColumn="nombreDocumento" style="background-color: #515963; width: 44%">
                 Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
               </th>
-              <th
-                pSortableColumn="fechaSubida"
-                style="background-color: #515963; width: 12%"
-              >
+              <th pSortableColumn="fechaSubida" style="background-color: #515963; width: 12%">
                 Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
               </th>
               <th scope="col" style="background-color: #515963; width: 44%">
@@ -289,39 +233,23 @@
         <span>Documentos respuesta</span>
       </ng-template>
 
-      <span
-        *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl"
-        class="mySubtituloComponent"
-      >
+      <span *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl" class="mySubtituloComponent">
       </span>
 
       <ng-template #noDocumentosTpl>
         <div>
-          <span class="mySubtituloComponent"
-            >No hay documentos asociados a esta solicitud</span
-          >
+          <span class="mySubtituloComponent">No hay documentos asociados a esta solicitud</span>
         </div>
       </ng-template>
 
       <div class="p-grid p-shadow-24" *ngIf="documentosRespuesta?.length > 0">
-        <p-table
-          [value]="documentosRespuesta"
-          [rowHover]="true"
-          [rows]="5"
-          [paginator]="true"
-        >
+        <p-table [value]="documentosRespuesta" [rowHover]="true" [rows]="5" [paginator]="true">
           <ng-template pTemplate="header">
             <tr>
-              <th
-                pSortableColumn="nombreDocumento"
-                style="background-color: #515963; width: 44%"
-              >
+              <th pSortableColumn="nombreDocumento" style="background-color: #515963; width: 44%">
                 Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
               </th>
-              <th
-                pSortableColumn="fechaSubida"
-                style="background-color: #515963; width: 12%"
-              >
+              <th pSortableColumn="fechaSubida" style="background-color: #515963; width: 12%">
                 Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
               </th>
               <th scope="col" style="background-color: #515963; width: 44%">
@@ -348,46 +276,30 @@
       </div>
     </p-tabPanel>
 
-     <!-- Documentos respuesta CTA-->
-     <p-tabPanel>
+    <!-- Documentos respuesta CTA-->
+    <p-tabPanel>
       <ng-template pTemplate="header">
         <i class="pi pi-calendar"></i>
         <span>Documentos Consejo Transparencia</span>
       </ng-template>
 
-      <span
-        *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl"
-        class="mySubtituloComponent"
-      >
+      <span *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl" class="mySubtituloComponent">
       </span>
 
       <ng-template #noDocumentosTpl>
         <div>
-          <span class="mySubtituloComponent"
-            >No hay documentos asociados a esta solicitud</span
-          >
+          <span class="mySubtituloComponent">No hay documentos asociados a esta solicitud</span>
         </div>
       </ng-template>
 
       <div class="p-grid p-shadow-24" *ngIf="documentosCTA?.length > 0">
-        <p-table
-          [value]="documentosCTA"
-          [rowHover]="true"
-          [rows]="5"
-          [paginator]="true"
-        >
+        <p-table [value]="documentosCTA" [rowHover]="true" [rows]="5" [paginator]="true">
           <ng-template pTemplate="header">
             <tr>
-              <th
-                pSortableColumn="nombreDocumento"
-                style="background-color: #515963; width: 44%"
-              >
+              <th pSortableColumn="nombreDocumento" style="background-color: #515963; width: 44%">
                 Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
               </th>
-              <th
-                pSortableColumn="fechaSubida"
-                style="background-color: #515963; width: 12%"
-              >
+              <th pSortableColumn="fechaSubida" style="background-color: #515963; width: 12%">
                 Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
               </th>
               <th scope="col" style="background-color: #515963; width: 44%">
@@ -423,56 +335,27 @@
       </ng-template>
 
       <div class="container mt-5">
-        <span
-          *ngIf="gestions?.length > 0; else noGestionesTpl"
-          class="mySubtituloComponent"
-        >
+        <span *ngIf="gestions?.length > 0; else noGestionesTpl" class="mySubtituloComponent">
         </span>
 
-        <button
-          pButton
-          *ngIf="isAdmin"
-          (click)="crearGestion()"
-          class="p-button-rounded p-button-warning"
-          type="button"
-          icon="pi pi-plus"
-          iconPos="left"
-          label="Crear nueva gestión"
-          style="margin-left: 160px"
-        ></button>
+        <button pButton *ngIf="isAdmin" (click)="crearGestion()" class="p-button-rounded p-button-warning" type="button"
+          icon="pi pi-plus" iconPos="left" label="Crear nueva gestión" style="margin-left: 160px"></button>
 
         <ng-template #noGestionesTpl>
           <div>
-            <span class="mySubtituloComponent"
-              >No hay gestiones asociadas a esta solicitud</span
-            >
+            <span class="mySubtituloComponent">No hay gestiones asociadas a esta solicitud</span>
           </div>
         </ng-template>
 
-        <div
-          class="p-grid p-shadow-24"
-          style="margin-left: 100px; margin-right: 100px"
-          id="entities"
-          *ngIf="gestions?.length > 0"
-        >
-          <p-table
-            [value]="gestions"
-            [rowHover]="true"
-            [rows]="5"
-            [paginator]="true"
-          >
+        <div class="p-grid p-shadow-24" style="margin-left: 100px; margin-right: 100px" id="entities"
+          *ngIf="gestions?.length > 0">
+          <p-table [value]="gestions" [rowHover]="true" [rows]="5" [paginator]="true">
             <ng-template pTemplate="header">
               <tr>
-                <th
-                  pSortableColumn="nombreDocumento"
-                  style="background-color: #515963; width: 44%"
-                >
+                <th pSortableColumn="nombreDocumento" style="background-color: #515963; width: 44%">
                   Descripción <p-sortIcon field="nombreDocumento"></p-sortIcon>
                 </th>
-                <th
-                  pSortableColumn="fechaSubida"
-                  style="background-color: #515963; width: 12%"
-                >
+                <th pSortableColumn="fechaSubida" style="background-color: #515963; width: 12%">
                   Fecha <p-sortIcon field="fechaSubida"></p-sortIcon>
                 </th>
                 <th scope="col" style="background-color: #515963; width: 44%">
@@ -500,35 +383,13 @@
 
 <!-- Botones -->
 <div class="col-1 p-shadow-24" style="margin-top: 60px; margin-bottom: 20px">
-  <button
-    pButton
-    (click)="previousState()"
-    class="p-button-rounded p-button-primary"
-    type="button"
-    icon="pi pi-chevron-circle-left"
-    iconPos="left"
-    label="Atras"
-  ></button>
+  <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
+    icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
 
-  <button
-    pButton
-    *ngIf="isAdmin"
-    [routerLink]="['/solicitudes/edit', solicitud?.id]"
-    class="p-button-rounded p-button-success"
-    type="button"
-    icon="pi pi-user-edit"
-    iconPos="left"
-    label="Editar"
-  ></button>
+  <button pButton *ngIf="isAdmin" [routerLink]="['/solicitudes/edit', solicitud?.id]"
+    class="p-button-rounded p-button-success" type="button" icon="pi pi-user-edit" iconPos="left"
+    label="Editar"></button>
 
-  <button
-    pButton
-    *ngIf="isAdmin"
-    (click)="delete(solicitud!)"
-    class="p-button-rounded p-button-danger"
-    type="button"
-    icon="pi pi-trash"
-    iconPos="left"
-    label="Borrar"
-  ></button>
+  <button pButton *ngIf="isAdmin" (click)="delete(solicitud!)" class="p-button-rounded p-button-danger" type="button"
+    icon="pi pi-trash" iconPos="left" label="Borrar"></button>
 </div>

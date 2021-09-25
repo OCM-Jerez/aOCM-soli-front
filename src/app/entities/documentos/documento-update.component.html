@@ -1,22 +1,13 @@
-<div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
+<div class="p-text-center OCM-tituloComponent">{{ textoCabecera }}</div>
 
 <form [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="save()">
-  <div
-    class="p-grid p-shadow-24"
-    style="margin-left: 100px; margin-right: 100px"
-  >
+  <div class="p-grid p-shadow-24" style="margin-left: 100px; margin-right: 100px">
     <div class="p-col-1"></div>
     <div class="p-col-5">
       <div style="margin-top: 20px">
         <label class="mam-label">Descripción</label>
         <div class="input-group">
-          <input
-            id="descripcion"
-            type="text"
-            class="form-control"
-            formControlName="descripcion"
-            style="width: 90%"
-          />
+          <input id="descripcion" type="text" class="form-control" formControlName="descripcion" style="width: 90%" />
         </div>
       </div>
 
@@ -36,39 +27,23 @@
       <div style="margin-top: 20px">
         <label class="mam-label">Fecha</label>
         <div class="input-group">
-          <p-calendar
-            [(ngModel)]="date"
-            dateFormat="yy-mm-dd"
-            [showButtonBar]="true"
-            [showIcon]="true"
-            formControlName="fechaSolicitud"
-          ></p-calendar>
+          <p-calendar [(ngModel)]="date" dateFormat="yy-mm-dd" [showButtonBar]="true" [showIcon]="true"
+            formControlName="fechaSolicitud"></p-calendar>
         </div>
       </div>
 
       <div style="margin-top: 20px">
         <label class="mam-label">Observaciones</label>
         <div class="input-group">
-          <input
-            id="field_descripcion"
-            type="text"
-            class="form-control"
-            formControlName="observacion"
-            style="width: 90%"
-          />
+          <input id="field_descripcion" type="text" class="form-control" formControlName="observacion"
+            style="width: 90%" />
         </div>
       </div>
 
       <div style="margin-top: 20px">
         <div class="input-group">
           <label class="mam-label" style="margin-right: 20px">Privado</label>
-          <input
-            type="checkbox"
-            class="form-control"
-            name="privado"
-            id="field_privado"
-            formControlName="privado"
-          />
+          <input type="checkbox" class="form-control" name="privado" id="field_privado" formControlName="privado" />
         </div>
       </div>
     </div>
@@ -77,14 +52,8 @@
     <div class="p-col-5">
       <label class="mam-label">Ruta del archivo</label>
       <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          name="ruta"
-          id="field_documento"
-          formControlName="ruta"
-          style="width: 90%"
-        />
+        <input type="text" class="form-control" name="ruta" id="field_documento" formControlName="ruta"
+          style="width: 90%" />
       </div>
     </div>
 
@@ -94,35 +63,14 @@
 
 <!-- Botones -->
 <div class="col-1 p-shadow-24" style="margin-top: 60px; margin-bottom: 20px">
-  <button
-    pButton
-    (click)="previousState()"
-    class="p-button-rounded p-button-primary"
-    type="button"
-    icon="pi pi-chevron-circle-left"
-    iconPos="left"
-    label="Atras"
-  ></button>
+  <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
+    icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
 
   <!-- [routerLink]="['/documentos/edit', documento?.id]" -->
-  <button
-    pButton
-    (click)="save()"
-    class="p-button-rounded p-button-success"
-    type="button"
-    icon="pi pi-user-edit"
-    iconPos="left"
-    label="Grabar"
-  ></button>
+  <button pButton (click)="save()" class="p-button-rounded p-button-success" type="button" icon="pi pi-user-edit"
+    iconPos="left" label="Grabar"></button>
 
   <!-- (click)="delete(documento!)" -->
-  <button
-    *ngIf="isSaving"
-    pButton
-    class="p-button-rounded p-button-danger"
-    type="button"
-    icon="pi pi-trash"
-    iconPos="left"
-    label="Borrar"
-  ></button>
+  <button *ngIf="isSaving" pButton class="p-button-rounded p-button-danger" type="button" icon="pi pi-trash"
+    iconPos="left" label="Borrar"></button>
 </div>

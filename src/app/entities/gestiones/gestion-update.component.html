@@ -1,99 +1,58 @@
-<div class="p-text-center mam-tituloComponent">{{ textoCabecera }}</div>
+<div class="p-text-center OCM-tituloComponent">{{ textoCabecera }}</div>
 
-<form
-  name="editForm"
-  role="form"
-  novalidate
-  [formGroup]="editForm"
->
-  <div
-    class="p-grid p-shadow-24"
-    style="margin-left: 100px; margin-right: 100px"
-  >
+<form name="editForm" role="form" novalidate [formGroup]="editForm">
+  <div class="p-grid p-shadow-24" style="margin-left: 100px; margin-right: 100px">
     <div class="p-col-1"></div>
     <div class="col-5">
 
-        <div class="form-group" style="margin-top: 20px">
-          <label class="mam-label">Detalle</label>
-          <input
-            type="text"
-            class="form-control"
-            name="detalle"
-            id="field_detalle"
-            formControlName="detalle"
-          />
-          <div
-            *ngIf="
+      <div class="form-group" style="margin-top: 20px">
+        <label class="mam-label">Detalle</label>
+        <input type="text" class="form-control" name="detalle" id="field_detalle" formControlName="detalle" />
+        <div *ngIf="
               editForm.get('detalle')!.invalid &&
               (editForm.get('detalle')!.dirty ||
                 editForm.get('detalle')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('detalle')?.errors?.required"
-            >
-             Este campo es requerido.
-            </small>
-          </div>
+            ">
+          <small class="form-text text-danger" *ngIf="editForm.get('detalle')?.errors?.required">
+            Este campo es requerido.
+          </small>
         </div>
+      </div>
 
-        <div class="form-group" style="margin-top: 20px">
-          <label class="mam-label">Fecha</label>
-          <div class="input-group">
-            <!-- ngbDatepicker #fechaDp="ngbDatepicker" -->
-            <input
-              id="field_fecha"
-              type="text"
-              class="form-control"
-              name="fecha"
-              formControlName="fecha"
-            />
+      <div class="form-group" style="margin-top: 20px">
+        <label class="mam-label">Fecha</label>
+        <div class="input-group">
+          <!-- ngbDatepicker #fechaDp="ngbDatepicker" -->
+          <input id="field_fecha" type="text" class="form-control" name="fecha" formControlName="fecha" />
 
-            <span class="input-group-append">
-              <!-- <fa-icon icon="calendar-alt"></fa-icon> -->
-              <!-- <button
+          <span class="input-group-append">
+            <!-- <fa-icon icon="calendar-alt"></fa-icon> -->
+            <!-- <button
                 type="button"
                 class="btn btn-secondary"
                 (click)="fechaDp.toggle()"
               ></button> -->
-            </span>
-          </div>
-          <div
-            *ngIf="
+          </span>
+        </div>
+        <div *ngIf="
               editForm.get('fecha')!.invalid &&
               (editForm.get('fecha')!.dirty || editForm.get('fecha')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('fecha')?.errors?.required"
-            >
-              Este campo es requerido.
-            </small>
-          </div>
+            ">
+          <small class="form-text text-danger" *ngIf="editForm.get('fecha')?.errors?.required">
+            Este campo es requerido.
+          </small>
         </div>
+      </div>
 
       <div class="form-group" style="margin-top: 20px">
         <label class="mam-label" for="field_observacion">Observación</label>
-        <input
-          type="text"
-          class="form-control"
-          name="observacion"
-          id="field_observacion"
-          formControlName="observacion"
-        />
+        <input type="text" class="form-control" name="observacion" id="field_observacion"
+          formControlName="observacion" />
       </div>
 
       <div class="form-group">
         <label class="mam-label">Privado</label>
-        <input
-          type="checkbox"
-          class="form-control"
-          name="privado"
-          id="field_privado"
-          formControlName="privado"
-        />
+        <input type="checkbox" class="form-control" name="privado" id="field_privado" formControlName="privado" />
       </div>
     </div>
 
@@ -104,35 +63,14 @@
 
 <!-- Botones -->
 <div class="col-1 p-shadow-24" style="margin-top: 60px; margin-bottom: 20px">
-  <button
-    pButton
-    (click)="previousState()"
-    class="p-button-rounded p-button-primary"
-    type="button"
-    icon="pi pi-chevron-circle-left"
-    iconPos="left"
-    label="Atras"
-  ></button>
+  <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
+    icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
 
   <!-- [routerLink]="['/documentos/edit', documento?.id]" -->
-  <button
-    pButton
-    class="p-button-rounded p-button-success"
-    type="button"
-    (click)="save()"
-    icon="pi pi-user-edit"
-    iconPos="left"
-    label="Grabar"
-  ></button>
+  <button pButton class="p-button-rounded p-button-success" type="button" (click)="save()" icon="pi pi-user-edit"
+    iconPos="left" label="Grabar"></button>
 
   <!-- (click)="delete(documento!)" -->
-  <button
-    *ngIf="isSaving"
-    pButton
-    class="p-button-rounded p-button-danger"
-    type="button"
-    icon="pi pi-trash"
-    iconPos="left"
-    label="Borrar"
-  ></button>
+  <button *ngIf="isSaving" pButton class="p-button-rounded p-button-danger" type="button" icon="pi pi-trash"
+    iconPos="left" label="Borrar"></button>
 </div>
