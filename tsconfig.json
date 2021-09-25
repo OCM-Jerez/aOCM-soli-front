@@ -4,8 +4,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@images/*": ["src/assets/images/*"]
-      },
+      "@img/*": [
+        "src/assets/img/*"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -30,5 +32,3 @@
     "strictTemplates": true
   }
 }
-
-
