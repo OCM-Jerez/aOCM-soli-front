@@ -13,6 +13,7 @@
   <li>Tabla solicitudes.</li>
    <li>Tabla users.</li>
    <li>Tabla documentos.</li>
+   <li>Tabla gestiones.</li>
   </li>
  </ul>
 
@@ -30,11 +31,11 @@
 
 # Planes futuras mejoras 📆
 
-
+-
 # Framework desarrollo 🚀
 
 - [Angular](https://angular.io) 
-- 
+
 
 # Librerias usadas 📖
 - <a href= 'https://fortawesome.com/' target="_blank">fortawesome</a>
