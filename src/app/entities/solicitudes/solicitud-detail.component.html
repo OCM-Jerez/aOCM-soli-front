@@ -129,7 +129,7 @@
         <span>Documentos solicitud</span>
       </ng-template>
 
-      <span *ngIf="documentosSolicitud?.length > 0; else noDocumentosTpl" class="mySubtituloComponent">
+      <span *ngIf="documentosSolicitud?.length > 0; else noDocumentosTpl" class="OCM-SubtituloComponent">
         <!-- Documentos solicitud -->
       </span>
 
@@ -138,7 +138,7 @@
 
       <ng-template #noDocumentosTpl>
         <div>
-          <span class="mySubtituloComponent">No hay documentos asociados a esta solicitud</span>
+          <span class="OCM-SubtituloComponent">No hay documentos asociados a esta solicitud</span>
         </div>
       </ng-template>
 
@@ -183,12 +183,12 @@
         <span>Documentos inicio</span>
       </ng-template>
 
-      <span *ngIf="documentosInicio?.length > 0; else noDocumentosTpl" class="mySubtituloComponent">
+      <span *ngIf="documentosInicio?.length > 0; else noDocumentosTpl" class="OCM-SubtituloComponent">
       </span>
 
       <ng-template #noDocumentosTpl>
         <div>
-          <span class="mySubtituloComponent">No hay documentos asociados a esta solicitud</span>
+          <span class="OCM-SubtituloComponent">No hay documentos asociados a esta solicitud</span>
         </div>
       </ng-template>
 
@@ -233,12 +233,12 @@
         <span>Documentos respuesta</span>
       </ng-template>
 
-      <span *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl" class="mySubtituloComponent">
+      <span *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl" class="OCM-SubtituloComponent">
       </span>
 
       <ng-template #noDocumentosTpl>
         <div>
-          <span class="mySubtituloComponent">No hay documentos asociados a esta solicitud</span>
+          <span class="OCM-SubtituloComponent">No hay documentos asociados a esta solicitud</span>
         </div>
       </ng-template>
 
@@ -283,12 +283,12 @@
         <span>Documentos Consejo Transparencia</span>
       </ng-template>
 
-      <span *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl" class="mySubtituloComponent">
+      <span *ngIf="documentosRespuesta?.length > 0; else noDocumentosTpl" class="OCM-SubtituloComponent">
       </span>
 
       <ng-template #noDocumentosTpl>
         <div>
-          <span class="mySubtituloComponent">No hay documentos asociados a esta solicitud</span>
+          <span class="OCM-SubtituloComponent">No hay documentos asociados a esta solicitud</span>
         </div>
       </ng-template>
 
@@ -335,7 +335,7 @@
       </ng-template>
 
       <div class="container mt-5">
-        <span *ngIf="gestions?.length > 0; else noGestionesTpl" class="mySubtituloComponent">
+        <span *ngIf="gestions?.length > 0; else noGestionesTpl" class="OCM-SubtituloComponent">
         </span>
 
         <button pButton *ngIf="isAdmin" (click)="crearGestion()" class="p-button-rounded p-button-warning" type="button"
@@ -343,7 +343,7 @@
 
         <ng-template #noGestionesTpl>
           <div>
-            <span class="mySubtituloComponent">No hay gestiones asociadas a esta solicitud</span>
+            <span class="OCM-SubtituloComponent">No hay gestiones asociadas a esta solicitud</span>
           </div>
         </ng-template>
 
