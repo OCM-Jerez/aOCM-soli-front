@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { AvatarModule } from 'primeng/avatar';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
@@ -14,7 +13,6 @@ import { TimelineModule } from "primeng/timeline"
 @NgModule({
   declarations: [],
   exports: [
-    AvatarModule,
     SplitButtonModule,
     ButtonModule,
     ToastModule,

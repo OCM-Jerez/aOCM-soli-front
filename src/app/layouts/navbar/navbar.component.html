@@ -14,25 +14,19 @@
 
   <div></div> <!-- Esto es para centrar el titulo -->
 
-  <div>
-    <ul>
-      <li>
-        <p-splitButton *ngIf="isAdmin" label="Entidades" [model]="entidades">
-        </p-splitButton>
-      </li>
-      <li>
-        <a *ngIf="isAdmin" href="#" role="button" style="display: inline-block">
-          <fa-icon [icon]="faBell" size="1x"></fa-icon>
-        </a>
-      </li>
-      <li>
-        <p-avatar *ngIf="isAdmin" image="https://imgur.com/U9nIlOB.jpg" shape="circle"></p-avatar>
-        <p-avatar *ngIf="!isAdmin" image="https://i.imgur.com/C4egmYM.jpg" shape="circle"></p-avatar>
-      </li>
-      <li>
-        <p-splitButton label="{{ userLoged }}" [model]="opciones"></p-splitButton>
-      </li>
-    </ul>
+  <div class="OCM-navbar--menu">
+
+    <p-splitButton *ngIf="isAdmin" label="Entidades" [model]="entidades"></p-splitButton>
+
+    <a *ngIf="isAdmin" href="#" role="button" style="display: inline-block">
+      <fa-icon [icon]="faBell" size="1x"></fa-icon>
+    </a>
+
+    <img *ngIf="isAdmin" class="OCM-avatar" src="https://imgur.com/U9nIlOB.jpg" />
+    <img *ngIf="!isAdmin" class="OCM-avatar" src="https://i.imgur.com/C4egmYM.jpg" />
+
+    <p-splitButton label="{{ userLoged }}" [model]="opciones"></p-splitButton>
+
   </div>
 
 </nav>
