@@ -15,6 +15,7 @@
         "titleBar.inactiveBackground": "#b52e3199",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
+    "editor.bracketPairColorization.enabled": true,
     "peacock.color": "#b52e31",
     "todo-tree.tree.disableCompactFolders": false
 }
