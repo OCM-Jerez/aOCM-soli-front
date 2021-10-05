@@ -25,7 +25,14 @@
     <img *ngIf="isAdmin" class="OCM-avatar" src="https://imgur.com/U9nIlOB.jpg" />
     <img *ngIf="!isAdmin" class="OCM-avatar" src="https://i.imgur.com/C4egmYM.jpg" />
 
-    <p-splitButton label="{{ userLoged }}" [model]="opciones"></p-splitButton>
+    <!-- <p-splitButton label="{{ userLoged }}" [model]="opciones"></p-splitButton> -->
+    <span style="color: white">{{ userLoged }} </span>
+    <select [(ngModel)]="seletedOpcion.id" (change)="onSelect($event.target)"
+      style="width: 20px;margin-right: 20px; background-color: rgb(216, 199, 199);">
+      <option *ngFor="let opcion of opciones1" value="{{opcion.id}}">
+        {{opcion.opcion}}
+      </option>
+    </select>
 
   </div>
 
