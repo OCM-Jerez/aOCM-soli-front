@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueryParamsHandling, Router } from '@angular/router';
 
-import { MenuItem } from 'primeng/api';
+// import { MenuItem } from 'primeng/api';
 
 import { faUser, faHome, faAtlas, faBell } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,7 +16,7 @@ import { LocalStorageService } from 'ngx-webstorage';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  entidades: MenuItem[] = [];
+  // entidades: MenuItem[] = [];
   // opciones: MenuItem[] = [];
 
   isAdmin = environment.IsAdmin;
@@ -27,7 +27,8 @@ export class NavbarComponent implements OnInit {
   faAtlas = faAtlas;
   faBell = faBell;
 
-
+  public seletedEntidad: IMenuItemOCM = { id: 0, opcion: '' };
+  public entidades1: IMenuItemOCM[] = []
   public seletedOpcion: IMenuItemOCM = { id: 0, opcion: '' };
   public opciones1: IMenuItemOCM[] = []
 
@@ -39,28 +40,28 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLoged = this.$localStorage.retrieve('userLog');
-    this.entidades = [
-      {
-        label: 'Usuarios', command: () => {
-          this.router.navigate(['users']);
-        }
-      },
-      {
-        label: 'Solicitudes', command: () => {
-          this.router.navigate(['solicitudes']);
-        }
-      },
-      {
-        label: 'Documentos', command: () => {
-          this.router.navigate(['documentos']);
-        }
-      },
-      {
-        label: 'Gestiones', command: () => {
-          this.router.navigate(['gestiones']);
-        }
-      }
-    ];
+    // this.entidades = [
+    //   {
+    //     label: 'Usuarios', command: () => {
+    //       this.router.navigate(['users']);
+    //     }
+    //   },
+    //   {
+    //     label: 'Solicitudes', command: () => {
+    //       this.router.navigate(['solicitudes']);
+    //     }
+    //   },
+    //   {
+    //     label: 'Documentos', command: () => {
+    //       this.router.navigate(['documentos']);
+    //     }
+    //   },
+    //   {
+    //     label: 'Gestiones', command: () => {
+    //       this.router.navigate(['gestiones']);
+    //     }
+    //   }
+    // ];
 
     // this.opciones = [
     //   {
@@ -87,6 +88,12 @@ export class NavbarComponent implements OnInit {
     //   }
     // ];
 
+    this.entidades1 = [
+      { id: 1, opcion: 'Usuarios' },
+      { id: 2, opcion: 'Solicitudes' },
+      { id: 3, opcion: 'Documentos' },
+      { id: 4, opcion: 'Gestiones' },
+    ];
     this.opciones1 = [
       { id: 1, opcion: 'Perfil' },
       { id: 2, opcion: 'Contraseña' },
@@ -96,7 +103,24 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  onSelect(id: any): void {
+  onSelectOption(id: any): void {
+    switch (id.value) {
+      case '3':
+        console.log(id.value);
+        this.loginService.logout();
+        this.router.navigate(['']);
+        break;
+      case '4':
+        console.log(id.value);
+        this.loginService.logout();
+        this.router.navigate(['']);
+        break;
+      default:
+        break;
+    }
+  }
+
+  onSelectEntidad(id: any): void {
     switch (id.value) {
       case '3':
         console.log(id.value);

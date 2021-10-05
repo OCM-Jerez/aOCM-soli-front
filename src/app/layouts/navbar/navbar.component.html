@@ -16,7 +16,13 @@
 
   <div class="OCM-navbar--menu">
 
-    <p-splitButton *ngIf="isAdmin" label="Entidades" [model]="entidades"></p-splitButton>
+    <!-- <p-splitButton *ngIf="isAdmin" label="Entidades" [model]="entidades"></p-splitButton> -->
+    <span class="OCM-navbar--span">Entidades </span>
+    <select class="OCM-navbar--select" [(ngModel)]="seletedEntidad.id" (change)="onSelectEntidad($event.target)">
+      <option class="OCM-navbar--select-content" *ngFor="let entidad of entidades1" value="{{entidad.id}}">
+        {{entidad.opcion}}
+      </option>
+    </select>
 
     <a *ngIf="isAdmin" href="#" role="button" style="display: inline-block">
       <fa-icon [icon]="faBell" size="1x"></fa-icon>
@@ -26,10 +32,9 @@
     <img *ngIf="!isAdmin" class="OCM-avatar" src="https://i.imgur.com/C4egmYM.jpg" />
 
     <!-- <p-splitButton label="{{ userLoged }}" [model]="opciones"></p-splitButton> -->
-    <span style="color: white">{{ userLoged }} </span>
-    <select [(ngModel)]="seletedOpcion.id" (change)="onSelect($event.target)"
-      style="width: 20px;margin-right: 20px; background-color: rgb(216, 199, 199);">
-      <option *ngFor="let opcion of opciones1" value="{{opcion.id}}">
+    <span class="OCM-navbar--span">{{ userLoged }} </span>
+    <select class="OCM-navbar--select" [(ngModel)]="seletedOpcion.id" (change)="onSelectOption($event.target)">
+      <option class="OCM-navbar--select-content" *ngFor="let opcion of opciones1" value="{{opcion.id}}">
         {{opcion.opcion}}
       </option>
     </select>
