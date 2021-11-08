@@ -69,6 +69,8 @@
 	}
 	&--select-content {
 		// https://www.w3schools.com/css/tryit.asp?filename=trycss_dropdown_right
+		display: inline-flex;
+		position: relative;
 		float: right;
 		display: block;
 		// position: absolute;
