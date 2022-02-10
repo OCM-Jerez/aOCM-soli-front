@@ -18,6 +18,7 @@ export class LoginService {
 
   login(login: ILogin): Observable<IUser | null | any> {
     // Crea el token y lo guarda de en los stores.
+    console.log(login);
     return this.authServerProvider.login(login)
       .pipe
       (mergeMap(() => {                            // mergeMap = flatMap

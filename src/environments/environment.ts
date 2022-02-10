@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // baseUrl: 'http://localhost:4000/api'
-  baseUrl: 'https://ocmapi.org/api/',
+  baseUrl: 'http://localhost:4000/api/',
+  // baseUrl: 'https://ocmapi.org/api/',
   // baseUrl: 'http://172.26.0.115:8081/api/',
   // baseUrl: 'http://3.68.15.74:8081/api/',
   // baseUrl: 'http://142.93.163.223:8081/api/',
