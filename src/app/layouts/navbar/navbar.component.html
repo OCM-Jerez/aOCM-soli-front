@@ -30,7 +30,7 @@
     <img *ngIf="isAdmin" class="OCM-avatar" src="https://imgur.com/U9nIlOB.jpg" />
     <img *ngIf="!isAdmin" class="OCM-avatar" src="https://i.imgur.com/C4egmYM.jpg" />
 
-    <span class="OCM-navbar--span">{{ userLoged }} </span>
+    <!-- <span class="OCM-navbar--span">{{ userLoged }} </span> -->
     <select class="OCM-navbar--select" (change)="onSelectOption($event.target)">
       <option class="OCM-navbar--select-content" *ngFor="let opcion of opciones" value="{{opcion.id}}">
         {{opcion.opcion}}
