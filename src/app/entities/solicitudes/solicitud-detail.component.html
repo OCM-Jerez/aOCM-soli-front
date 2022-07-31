@@ -120,6 +120,12 @@
 
 </div>
 
+<div>
+  <button pButton *ngIf="isAdmin" (click)="crearDocumento()" class="p-button-rounded p-button-warning" type="button"
+    icon="pi pi-plus" iconPos="left" label="Crear nuevo documento" style="margin-left: 30px; margin-top: 50px"></button>
+</div>
+
+
 <!-- Pestañas -->
 <div class="card" style="margin-top: 20px; margin-left: 20px; margin-right: 20px">
   <p-tabView styleClass="tabview-custom">
@@ -132,9 +138,6 @@
       <span *ngIf="documentosSolicitud?.length > 0; else noDocumentosTpl" class="OCM-SubtituloComponent">
         <!-- Documentos solicitud -->
       </span>
-
-      <button pButton *ngIf="isAdmin" (click)="crearDocumento()" class="p-button-rounded p-button-warning" type="button"
-        icon="pi pi-plus" iconPos="left" label="Crear nuevo documento" style="margin-left: 160px"></button>
 
       <ng-template #noDocumentosTpl>
         <div>
