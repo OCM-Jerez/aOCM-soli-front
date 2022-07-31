@@ -5,22 +5,6 @@
  3.-
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- Comentar con Juan Manuel codigo de:
-    
-
  Aclaraciones codigo CSS en stepper.component.
     Me gustaria mantener la barra cuando se complete los puntos.
     https://web.urbantz.com/portal/tracking/60745983-10883bdf-f9f01a65-5f029f20
