@@ -45,7 +45,6 @@ export class SolicitudComponent implements OnInit {
             const date = moment();
             soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
           }
-
           if (soli.fechaInicio) {
             soli.estado = "Iniciada"
           }
@@ -70,9 +69,13 @@ export class SolicitudComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
-
   trackId(index: number, item: ISolicitud): number {
     return item.id!;
+  }
+
+  handleClick() {
+    console.log("boton pulsado");
+
   }
 
 }
