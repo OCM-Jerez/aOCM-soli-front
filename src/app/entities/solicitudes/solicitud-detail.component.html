@@ -120,14 +120,12 @@
 
 </div>
 
-<div>
-  <button pButton *ngIf="isAdmin" (click)="crearDocumento()" class="p-button-rounded p-button-warning" type="button"
-    icon="pi pi-plus" iconPos="left" label="Crear nuevo documento" style="margin-left: 30px; margin-top: 50px"></button>
-</div>
-
+<button pButton *ngIf="isAdmin" (click)="crearDocumento()" class="p-button-rounded p-button-warning" type="button"
+  icon="pi pi-plus" iconPos="left" label="Crear nuevo documento"
+  style="margin-left: 30px; margin-top: 50px; margin-bottom: 0px"></button>
 
 <!-- Pestañas -->
-<div class="card" style="margin-top: 20px; margin-left: 20px; margin-right: 20px">
+<div class="card" style="margin-top: -6px; margin-left: 20px; margin-right: 20px">
   <p-tabView styleClass="tabview-custom">
     <p-tabPanel>
       <ng-template pTemplate="header">
@@ -385,7 +383,8 @@
 </div>
 
 <!-- Botones -->
-<div class="col-1 p-shadow-24" style="margin-top: 60px; margin-bottom: 20px">
+<div class="p-col-2 p-shadow-24"
+  style="margin-top: 30px; margin-bottom: 20px; margin-left: 20px; display: flex; flex-direction: row; justify-content: space-around ">
   <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
     icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
 
