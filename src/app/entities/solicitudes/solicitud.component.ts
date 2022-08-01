@@ -73,7 +73,11 @@ export class SolicitudComponent implements OnInit {
     return item.id!;
   }
 
-  handleClick() {
+  todas() {
+    this.loadAll();
+  }
+
+  CTA() {
     this.solicitudService.findCTA().
       subscribe(resp => {
         // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
