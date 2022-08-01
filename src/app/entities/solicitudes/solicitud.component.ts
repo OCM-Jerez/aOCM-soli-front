@@ -74,13 +74,10 @@ export class SolicitudComponent implements OnInit {
   }
 
   handleClick() {
-    console.log("boton pulsado");
     this.solicitudService.findCTA().
       subscribe(resp => {
         // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
         // TODO Es mejor practica calcularlo en el back?
-        console.log([resp]);
-
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
           // console.log(soli.code);
