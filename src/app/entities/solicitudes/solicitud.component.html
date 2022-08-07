@@ -74,7 +74,7 @@
           {{ solicitud.fechaRespuesta | date: "dd.MM.yyyy" }}
         </td>
         <td style="font-weight: bold; text-align: right" [ngStyle]="{
-            color: solicitud.diasRespuesta! > 30 ? 'red' : 'white'
+            color: solicitud.diasRespuesta! > 30 ? 'red' : 'green'
           }">
           {{ solicitud.diasRespuesta }}
         </td>
