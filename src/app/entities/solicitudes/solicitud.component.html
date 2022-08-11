@@ -19,6 +19,7 @@
   <p-table #dt [value]="solicitudes" [rowHover]="true" [rows]="10" [paginator]="true" [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" sortField="fechaSolicitud"
     [sortOrder]="-1">
+
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="year" class="OCM-th--3">
@@ -36,11 +37,15 @@
           <p-sortIcon field="descripcion"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="fechaSolicitud" class="OCM-th--5">
+        <th *ngIf="!isCTA" pSortableColumn="fechaSolicitud" class="OCM-th--5">
           Fecha solicitud <p-sortIcon field="fechaSolicitud"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="fechaRespuesta" class="OCM-th--5">
+        <th *ngIf="isCTA" pSortableColumn="fechaInicioCTA" class="OCM-th--5">
+          Fecha inicio CTA <p-sortIcon field="fechaInicioCTA"></p-sortIcon>
+        </th>
+
+        <th *ngIf="!isCTA" pSortableColumn="fechaRespuesta" class="OCM-th--5">
           Fecha respuesta <p-sortIcon field="fechaRespuesta"></p-sortIcon>
         </th>
 
@@ -73,17 +78,31 @@
         <td>{{ solicitud.year }}</td>
         <td>{{ solicitud.code }}</td>
         <td>{{ solicitud.descripcion }}</td>
-        <td style="font-weight: bold; text-align: right">
+
+        <td *ngIf="!isCTA" style="font-weight: bold; text-align: right">
           {{ solicitud.fechaSolicitud | date: "dd.MM.yyyy" }}
         </td>
-        <td style="font-weight: bold; text-align: right">
+
+        <td *ngIf="!isCTA" style="font-weight: bold; text-align: right">
           {{ solicitud.fechaRespuesta | date: "dd.MM.yyyy" }}
         </td>
-        <td style="font-weight: bold; text-align: right" [ngStyle]="{
+
+        <td *ngIf="isCTA" style="font-weight: bold; text-align: right">
+          {{ solicitud.fechaInicioCTA | date: "dd.MM.yyyy" }}
+        </td>
+
+        <td *ngIf="!isCTA" style="font-weight: bold; text-align: center" [ngStyle]="{
             color: solicitud.diasRespuesta! > 30 ? 'red' : 'green'
           }">
           {{ solicitud.diasRespuesta }}
         </td>
+
+        <td *ngIf="isCTA" style="font-weight: bold; text-align: center" [ngStyle]="{
+          color: solicitud.diasRespuesta! > 60 ? 'red' : 'green'
+        }">
+          {{ solicitud.diasRespuesta }}
+        </td>
+
         <td>{{ solicitud.observacion }}</td>
         <td style="font-weight: bold; text-align: right" [ngStyle]="{
             opacity:

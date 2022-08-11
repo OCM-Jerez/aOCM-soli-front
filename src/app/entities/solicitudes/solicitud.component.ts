@@ -18,6 +18,7 @@ import { ISolicitud } from './solicitud.interface';
 export class SolicitudComponent implements OnInit {
   solicitudes: any[] = [];
   isAdmin = environment.IsAdmin;
+  isCTA = false;
   fechaRespuesta: any;
   estado = "Solicitada"
 
@@ -31,6 +32,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   private loadAll(): void {
+    this.isCTA = false;
     this.solicitudService.query().
       subscribe(resp => {
         // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
@@ -78,6 +80,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   pendientes() {
+    this.isCTA = false;
     this.solicitudService.findPendientes().
       subscribe(resp => {
         // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
@@ -117,6 +120,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   CTA() {
+    this.isCTA = false;
     this.solicitudService.findCTA().
       subscribe(resp => {
         // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
@@ -156,6 +160,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   pendientesCTA() {
+    this.isCTA = true;
     this.solicitudService.findPendientesCTA().
       subscribe(resp => {
         // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
