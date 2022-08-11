@@ -155,4 +155,35 @@ export class SolicitudComponent implements OnInit {
 
   }
 
+  pendientesCTA() {
+    this.solicitudService.findPendientesCTA().
+      subscribe(resp => {
+        // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
+        // TODO Es mejor practica calcularlo en el back?
+        this.solicitudes = resp;
+        this.solicitudes.forEach(soli => {
+          // console.log(soli.code);
+          if (soli.fechaRespuestaCTA) {
+            const date = moment(soli.fechaInicioCTA);
+            soli.diasRespuesta = date.diff(soli.fechaRespuestaCTA, 'days');
+          } else {
+            const date = moment();
+            soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
+          }
+          if (soli.fechaReclamacionCTA) {
+            soli.estado = "Reclamada CTA"
+          }
+          if (soli.fechaInicioCTA) {
+            soli.estado = "Iniciada CTA"
+          }
+          if (soli.fechaRespuestaCTA) {
+            soli.estado = "Respondida CTA"
+          }
+
+
+        });
+      });
+
+  }
+
 }

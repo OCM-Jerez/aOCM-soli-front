@@ -94,6 +94,15 @@ export class SolicitudService {
     return this.http.get<ISolicitud[]>(url, { headers });
   }
 
+  findPendientesCTA() {
+    // const options = createRequestOption(req);
+    const url = `${this.baseUrl}solicitudes/id/Pendientes/Pendientes/CTA`;
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
+    return this.http.get<ISolicitud[]>(url, { headers });
+  }
+
+
   create(solicitud: ISolicitud): Observable<EntityResponseType> {
     //const copy = this.convertDateFromClient(solicitud);
     return this.http
