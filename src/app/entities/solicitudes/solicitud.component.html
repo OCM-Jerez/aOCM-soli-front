@@ -38,7 +38,7 @@
         </th>
 
         <th *ngIf="!isCTA" pSortableColumn="fechaSolicitud" class="OCM-th--5">
-          Fecha solicitud <p-sortIcon field="fechaSolicitud"></p-sortIcon>
+          Fecha solicitud Ayto <p-sortIcon field="fechaSolicitud"></p-sortIcon>
         </th>
 
         <th *ngIf="isCTA" pSortableColumn="fechaInicioCTA" class="OCM-th--5">
@@ -46,19 +46,32 @@
         </th>
 
         <th *ngIf="!isCTA" pSortableColumn="fechaRespuesta" class="OCM-th--5">
-          Fecha respuesta <p-sortIcon field="fechaRespuesta"></p-sortIcon>
+          Fecha respuesta Ayto <p-sortIcon field="fechaRespuesta"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="diasRespuesta" class="OCM-th--5">
-          Días respuesta <p-sortIcon field="diasRespuesta"></p-sortIcon>
+        <th *ngIf="isCTA" pSortableColumn="fechaRespuesta" class="OCM-th--5">
+          Fecha respuesta CTA <p-sortIcon field="fechaRespuesta"></p-sortIcon>
         </th>
 
-        <th scope="col" class="OCM-th--24">
-          <span>Observaciones</span>
+        <th *ngIf="!isCTA" pSortableColumn="diasRespuesta" class="OCM-th--5">
+          Días respuesta Ayto<p-sortIcon field="diasRespuesta"></p-sortIcon>
         </th>
+
+        <th *ngIf="isCTA" pSortableColumn="diasRespuesta" class="OCM-th--5">
+          Días respuesta CTA<p-sortIcon field="diasRespuesta"></p-sortIcon>
+        </th>
+
+        <th *ngIf="!isCTA" scope="col" class="OCM-th--24">
+          <span>Observaciones Ayto</span>
+        </th>
+
+        <th *ngIf="isCTA" scope="col" class="OCM-th--24">
+          <span>Observaciones CTA</span>
+        </th>
+
 
         <th scope="col" class="OCM-th--6">
-          <span>Respuesta</span>
+          <span>Respuesta Ayto</span>
         </th>
 
         <th scope="col" class="OCM-th--6">
@@ -83,12 +96,16 @@
           {{ solicitud.fechaSolicitud | date: "dd.MM.yyyy" }}
         </td>
 
+        <td *ngIf="isCTA" style="font-weight: bold; text-align: right">
+          {{ solicitud.fechaInicioCTA | date: "dd.MM.yyyy" }}
+        </td>
+
         <td *ngIf="!isCTA" style="font-weight: bold; text-align: right">
           {{ solicitud.fechaRespuesta | date: "dd.MM.yyyy" }}
         </td>
 
         <td *ngIf="isCTA" style="font-weight: bold; text-align: right">
-          {{ solicitud.fechaInicioCTA | date: "dd.MM.yyyy" }}
+          {{ solicitud.fechaRespuestaCTA | date: "dd.MM.yyyy" }}
         </td>
 
         <td *ngIf="!isCTA" style="font-weight: bold; text-align: center" [ngStyle]="{
@@ -103,7 +120,10 @@
           {{ solicitud.diasRespuesta }}
         </td>
 
-        <td>{{ solicitud.observacion }}</td>
+
+        <td *ngIf="!isCTA">{{ solicitud.observacion }}</td>
+        <td *ngIf="isCTA">{{ solicitud.observacionCTA }}</td>
+
         <td style="font-weight: bold; text-align: right" [ngStyle]="{
             opacity:
               solicitud.fechaRespuesta! && !solicitud.isAdmitida ? 100 : 0,
@@ -117,9 +137,16 @@
           color: solicitud.isCerrada! ? 'green' : 'white'
                    }"> {{ solicitud.estado }}</td>
 
-        <td [ngStyle]="{
+        <td *ngIf="!isCTA" [ngStyle]="{
             opacity: solicitud.fechaRespuesta! && solicitud.isAdmitida ? 100 : 0
           }">
+          <p-rating [(ngModel)]="solicitud.calidadRespuesta " [cancel]="false" [disabled]="true">
+          </p-rating>
+        </td>
+
+        <td *ngIf="isCTA" [ngStyle]="{
+          opacity: solicitud.fechaRespuestaCTA && solicitud.isAtendidaCTA ? 100 : 0
+        }">
           <p-rating [(ngModel)]="solicitud.calidadRespuesta " [cancel]="false" [disabled]="true">
           </p-rating>
         </td>

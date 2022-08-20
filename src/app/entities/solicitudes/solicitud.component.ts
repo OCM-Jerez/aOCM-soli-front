@@ -85,7 +85,6 @@ export class SolicitudComponent implements OnInit {
       subscribe(resp => {
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
-          // console.log(soli.code);
           if (soli.fechaRespuesta) {
             const date = moment(soli.fechaRespuesta);
             soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
@@ -118,24 +117,17 @@ export class SolicitudComponent implements OnInit {
   }
 
   CTA() {
-    this.isCTA = false;
+    this.isCTA = true;
     this.solicitudService.findReclamadasCTA().
       subscribe(resp => {
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
-          // console.log(soli.code);
-          if (soli.fechaRespuesta) {
-            const date = moment(soli.fechaRespuesta);
-            soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
+          if (soli.fechaRespuestaCTA) {
+            const date = moment(soli.fechaRespuestaCTA);
+            soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
           } else {
             const date = moment();
-            soli.diasRespuesta = date.diff(soli.fechaSolicitud, 'days');
-          }
-          if (soli.fechaInicio) {
-            soli.estado = "Iniciada"
-          }
-          if (soli.fechaRespuesta) {
-            soli.estado = "Respondida"
+            soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
           }
           if (soli.fechaReclamacionCTA) {
             soli.estado = "Reclamada CTA"
@@ -161,10 +153,9 @@ export class SolicitudComponent implements OnInit {
       subscribe(resp => {
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
-          // console.log(soli.code);
           if (soli.fechaRespuestaCTA) {
-            const date = moment(soli.fechaInicioCTA);
-            soli.diasRespuesta = date.diff(soli.fechaRespuestaCTA, 'days');
+            const date = moment(soli.fechaRespuestaCTA);
+            soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
           } else {
             const date = moment();
             soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
