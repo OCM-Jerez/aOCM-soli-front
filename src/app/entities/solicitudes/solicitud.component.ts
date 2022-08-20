@@ -121,7 +121,7 @@ export class SolicitudComponent implements OnInit {
 
   CTA() {
     this.isCTA = false;
-    this.solicitudService.findCTA().
+    this.solicitudService.findReclamadasCTA().
       subscribe(resp => {
         // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
         // TODO Es mejor practica calcularlo en el back?
