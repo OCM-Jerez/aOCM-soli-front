@@ -59,6 +59,10 @@ export class NavbarComponent implements OnInit {
 
   onSelectEntidad(event: any): void {
     switch (event.value) {
+      case '2':
+        console.log('this.router.navigate');
+        this.router.navigateByUrl('documentos');
+        break;
       case '3':
 
         break;
