@@ -83,8 +83,6 @@ export class SolicitudComponent implements OnInit {
     this.isCTA = false;
     this.solicitudService.findPendientes().
       subscribe(resp => {
-        // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
-        // TODO Es mejor practica calcularlo en el back?
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
           // console.log(soli.code);
@@ -123,8 +121,6 @@ export class SolicitudComponent implements OnInit {
     this.isCTA = false;
     this.solicitudService.findReclamadasCTA().
       subscribe(resp => {
-        // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
-        // TODO Es mejor practica calcularlo en el back?
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
           // console.log(soli.code);
@@ -163,8 +159,6 @@ export class SolicitudComponent implements OnInit {
     this.isCTA = true;
     this.solicitudService.findPendientesCTA().
       subscribe(resp => {
-        // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
-        // TODO Es mejor practica calcularlo en el back?
         this.solicitudes = resp;
         this.solicitudes.forEach(soli => {
           // console.log(soli.code);
