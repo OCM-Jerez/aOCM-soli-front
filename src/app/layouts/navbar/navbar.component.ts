@@ -37,9 +37,9 @@ export class NavbarComponent implements OnInit {
 
     this.entidades = [
       { id: 0, opcion: 'Usuarios' },
-      { id: 1, opcion: 'Solicitudes' },
-      { id: 2, opcion: 'Documentos' },
-      { id: 3, opcion: 'Gestiones' },
+      // { id: 1, opcion: 'Solicitudes' },
+      { id: 1, opcion: 'Documentos' },
+      { id: 2, opcion: 'Gestiones' },
     ];
 
     this.opciones = [
@@ -59,7 +59,7 @@ export class NavbarComponent implements OnInit {
 
   onSelectEntidad(event: any): void {
     switch (event.value) {
-      case '2':
+      case '1':
         console.log('this.router.navigate');
         this.router.navigateByUrl('documentos');
         break;
