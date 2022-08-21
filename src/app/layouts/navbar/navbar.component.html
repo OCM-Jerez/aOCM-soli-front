@@ -16,8 +16,8 @@
 
   <div class="OCM-navbar--menu">
 
-    <span class="OCM-navbar--span">Entidades </span>
-    <select class="OCM-navbar--select" (change)="onSelectEntidad($event.target)">
+    <span *ngIf="isAdmin" class="OCM-navbar--span">Entidades </span>
+    <select *ngIf="isAdmin" class="OCM-navbar--select" (change)="onSelectEntidad($event.target)">
       <option class="OCM-navbar--select-content" *ngFor="let entidad of entidades" value="{{entidad.id}}">
         {{entidad.opcion}}
       </option>
