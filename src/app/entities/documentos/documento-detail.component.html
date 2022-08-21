@@ -81,10 +81,13 @@
     </div>
 </div>
 
-<div class="p-col-2 p-shadow-24"
+<div class="p-col-3 p-shadow-24"
     style="margin-top: 30px; margin-bottom: 20px; margin-left: 20px; display: flex; flex-direction: row; justify-content: space-around ">
     <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
         icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
+
+    <button pButton *ngIf="isAdmin" (click)="ver(documento!.ruta)" class="p-button-rounded p-button-info" type="button"
+        icon="pi pi pi-eye" iconPos="left" label="Ver"></button>
 
     <button pButton *ngIf="isAdmin" [routerLink]="['/documentos/edit', documento?.id]"
         class="p-button-rounded p-button-success" type="button" icon="pi pi-user-edit" iconPos="left"

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import Swal from 'sweetalert2';
 
@@ -19,7 +19,8 @@ export class DocumentoDetailComponent implements OnInit {
 
   constructor(
     protected activatedRoute: ActivatedRoute,
-    protected documentoService: DocumentoService) { }
+    protected documentoService: DocumentoService,
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ documento }) => (this.documento = documento));
@@ -50,6 +51,10 @@ export class DocumentoDetailComponent implements OnInit {
 
       }
     })
+  }
+
+  ver(url: string | undefined) {
+    window.open(url, '_blank');
   }
 
   previousState(): void {
