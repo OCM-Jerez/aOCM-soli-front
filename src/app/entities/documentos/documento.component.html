@@ -54,7 +54,7 @@
 <!-- <app-navbar></app-navbar> -->
 <div class="p-grid p-shadow-24" style="margin: 100px">
   <p-table #dt [value]="documentos" [rowHover]="true" [rows]="10" [paginator]="true" [showCurrentPageReport]="true"
-    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" sortField="nombreDocumento"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" sortField="fechaSubida"
     [sortOrder]="-1">
 
     <ng-template pTemplate="header">
