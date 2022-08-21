@@ -59,12 +59,18 @@
 
     <ng-template pTemplate="header">
       <tr>
+
+        <th pSortableColumn="Tipo" class="OCM-th--5">
+          Tipo
+          <p-sortIcon field="documentoType"></p-sortIcon>
+        </th>
+
         <th pSortableColumn="nombreDocumento" class="OCM-th--24">
           Nombre documento
           <p-sortIcon field="nombreDocumento"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="fechaSubida" class="OCM-th--24">
+        <th pSortableColumn="fechaSubida" class="OCM-th--5">
           Fecha subida
           <p-sortIcon field="fechaSubida"></p-sortIcon>
         </th>
@@ -85,6 +91,7 @@
 
     <ng-template pTemplate="body" let-documentos>
       <tr>
+        <td>{{ documentos.documentoType }}</td>
         <td>{{ documentos.nombreDocumento }}</td>
         <td>{{ documentos.fechaSubida | date: 'dd.MM.yyyy' }}</td>
         <td>{{ documentos.solicitud.year }}-{{ documentos.solicitud.code }} {{ documentos.solicitud.descripcion }}</td>
