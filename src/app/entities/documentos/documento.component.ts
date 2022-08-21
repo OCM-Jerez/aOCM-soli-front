@@ -10,13 +10,15 @@ import { IDocumento } from './documento.interface';
 
 @Component({
   selector: 'app-documento',
-  templateUrl: './documento.component.html'
+  templateUrl: './documento.component.html',
+  styleUrls: ['./documento.component.scss']
 })
 export class DocumentoComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
   faEye = faEye;
 
-  documentos: IDocumento[] | null = null;;
+  documentos: any[] = [];
+  // documentos: IDocumento[] | null = null;;
   eventSubscriber?: Subscription;
   totalItems = 0;
   // itemsPerPage = ITEMS_PER_PAGE;
@@ -24,16 +26,17 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  isCTA = false;
 
   constructor(
     protected documentoService: DocumentoService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
-        this.loadAll();
+      this.loadAll();
     });
     this.registerChangeInDocumentos();
   }
@@ -82,6 +85,8 @@ export class DocumentoComponent implements OnInit, OnDestroy {
       }
     });
     this.documentos = data || [];
+
+
   }
 
   protected onError(): void {
@@ -90,8 +95,9 @@ export class DocumentoComponent implements OnInit, OnDestroy {
 
   private loadAll(): void {
     this.documentoService.query().
-    subscribe( resp =>{
-    this.documentos = resp
-    });
+      subscribe(resp => {
+        this.documentos = resp
+      });
+    setTimeout(() => console.log(this.documentos), 50);
   }
 }
