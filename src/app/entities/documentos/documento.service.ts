@@ -82,6 +82,14 @@ export class DocumentoService {
       .get<IDocumento>(`${this.baseUrl}documentos/${id}`, { observe: 'response' })
   }
 
+  findAll() {
+    const url = `${this.baseUrl}documentos/todas`;
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
+    return this.http.get<IDocumento[]>(url, { headers });
+  }
+
+
   query() {
     const url = `${this.baseUrl}documentos`;
     const headers = new HttpHeaders()

@@ -69,6 +69,11 @@
           <p-sortIcon field="fechaSubida"></p-sortIcon>
         </th>
 
+        <th pSortableColumn="solicitud.descripcion" class="OCM-th--24">
+          solicitud.descripcion
+          <p-sortIcon field="solicitud.descripcion"></p-sortIcon>
+        </th>
+
         <th pColumn="observacion" field="observacion" class="OCM-th--24">
           Observacion
           <!-- <p-sortIcon field="observacion"></p-sortIcon> -->
@@ -82,6 +87,7 @@
       <tr>
         <td>{{ documentos.nombreDocumento }}</td>
         <td>{{ documentos.fechaSubida | date: 'dd.MM.yyyy' }}</td>
+        <td>{{ documentos.solicitud.year }}-{{ documentos.solicitud.code }} {{ documentos.solicitud.descripcion }}</td>
         <td>{{ documentos.observacion }}</td>
         <td class="text-right">
           <button pButton [routerLink]="['/documentos/details', documentos.id]" class="p-button-rounded p-button-info"

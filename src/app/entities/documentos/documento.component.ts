@@ -94,7 +94,7 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   }
 
   private loadAll(): void {
-    this.documentoService.query().
+    this.documentoService.findAll().
       subscribe(resp => {
         this.documentos = resp
       });
