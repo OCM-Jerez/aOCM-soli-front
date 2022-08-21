@@ -100,4 +100,9 @@ export class DocumentoComponent implements OnInit, OnDestroy {
       });
     setTimeout(() => console.log(this.documentos), 50);
   }
+
+  previousState(): void {
+    window.history.back();
+  }
+
 }

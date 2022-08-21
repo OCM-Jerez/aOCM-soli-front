@@ -1,6 +1,6 @@
-<div class="row justify-content-center">
+<!-- <div class="row justify-content-center">
     <div class="col-8">
-        <div >
+        <div>
             <h2><span>Datos documento</span></h2>
             <hr>
 
@@ -10,7 +10,7 @@
                     <span>{{ documento?.nombreDocumento }}</span>
                 </dd>
 
-                <!-- <dt><span>Fichero</span></dt> -->
+              
 
                 <dt><span>Observación</span></dt>
                 <dd>
@@ -26,19 +26,70 @@
 
             </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <!-- <fa-icon icon="arrow-left"></fa-icon> -->
+            <button type="submit" (click)="previousState()" class="btn btn-info">
+               
                 &nbsp;<span>Cancelar</span>
             </button>
 
-            <button type="button"
-                   [routerLink]="['/documentos/edit', documento?.id]"
-                    class="btn btn-primary">
-                <!-- <fa-icon icon="pencil-alt"></fa-icon> -->
+            <button type="button" [routerLink]="['/documentos/edit', documento?.id]" class="btn btn-primary">
+              
                 &nbsp;<span>Editar</span>
             </button>
         </div>
     </div>
+</div> -->
+
+<div class="p-text-center OCM-tituloComponent">Detalles documento</div>
+
+<div class="p-grid p-shadow-24" style="margin-left: 20px; margin-right: 20px">
+
+    <div class="p-col-6">
+        <dl class="">
+            <dt class="OCM-dt"><span>Nombre</span></dt>
+            <dd class="OCM-dd">
+                <span>{{ documento?.nombreDocumento }}</span>
+            </dd>
+
+            <dt class="OCM-dt" style="display: block"><span>Tipo documento</span></dt>
+            <dd class="OCM-dd">
+                <span>{{ documento?.documentoType }}</span>
+            </dd>
+
+            <dt class="OCM-dt" style="display: block"><span>Fecha subida</span></dt>
+            <dd class="OCM-dd">
+                {{ documento?.fechaSubida | date: "dd.MM.yyyy" }}
+            </dd>
+
+            <dt class="OCM-dt"><span>Ruta</span></dt>
+            <dd class="OCM-dd">
+                <span>{{ documento?.ruta }}</span>
+            </dd>
+
+            <dt class="OCM-dt"><span>Observaciones</span></dt>
+            <dd class="OCM-dd">
+                <span>{{ documento?.observacion }}</span>
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="p-col-6">
+        <dt class="OCM-dt"><span>Solicitud asociada</span></dt>
+        <dd class="OCM-dd">
+            <!-- <span>{{ documento?.solicitud?.descripcion }}</span> -->
+        </dd>
+    </div>
+</div>
+
+<div class="p-col-2 p-shadow-24"
+    style="margin-top: 30px; margin-bottom: 20px; margin-left: 20px; display: flex; flex-direction: row; justify-content: space-around ">
+    <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
+        icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
+
+    <button pButton *ngIf="isAdmin" [routerLink]="['/documentos/edit', documento?.id]"
+        class="p-button-rounded p-button-success" type="button" icon="pi pi-user-edit" iconPos="left"
+        label="Editar"></button>
+
+    <button pButton *ngIf="isAdmin" (click)="delete(documento!)" class="p-button-rounded p-button-danger" type="button"
+        icon="pi pi-trash" iconPos="left" label="Borrar"></button>
 </div>

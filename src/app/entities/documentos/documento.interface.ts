@@ -7,10 +7,11 @@ export interface IDocumento {
   ruta?: string;
   privado?: boolean;
   solicitudId?: string;
-  createdBy? : string,
+  createdBy?: string,
   createdDate?: any,
   lastModifiedBy?: string,
   lastModifiedDate?: any
+  // solicitud?: [descripcion: string]
 }
 
 export class Documento implements IDocumento {
@@ -23,12 +24,12 @@ export class Documento implements IDocumento {
     public ruta?: string,
     public privado?: boolean,
     public solicitudId?: string,
-    public createdBy? : string,
+    public createdBy?: string,
     public createdDate?: any,
     public lastModifiedBy?: string,
     public lastModifiedDate?: any,
-    ) {
-      // TODO! ¿Para qué sirve esta linea?
+  ) {
+    // TODO! ¿Para qué sirve esta linea?
     this.privado = this.privado || false;
   }
 }

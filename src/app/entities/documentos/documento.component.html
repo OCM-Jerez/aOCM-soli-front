@@ -52,7 +52,7 @@
 
 
 <!-- <app-navbar></app-navbar> -->
-<div class="p-grid p-shadow-24" style="margin: 100px">
+<div class="p-grid p-shadow-24" style="margin: 30px">
   <p-table #dt [value]="documentos" [rowHover]="true" [rows]="10" [paginator]="true" [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" sortField="fechaSubida"
     [sortOrder]="-1">
@@ -96,4 +96,11 @@
       </tr>
     </ng-template>
   </p-table>
+</div>
+
+
+<div class="p-col-1 p-shadow-24"
+  style="margin-top: 30px; margin-bottom: 20px; margin-left: 20px; display: flex; flex-direction: row; justify-content: space-around ">
+  <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
+    icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
 </div>
