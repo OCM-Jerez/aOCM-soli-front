@@ -76,7 +76,15 @@
     <div class="p-col-6">
         <dt class="OCM-dt"><span>Solicitud asociada</span></dt>
         <dd class="OCM-dd">
-            <!-- <span>{{ documento?.solicitud?.descripcion }}</span> -->
+            <span>
+                {{ documento?.solicitud?.year }}-{{ documento?.solicitud?.code }} {{ documento?.solicitud?.descripcion
+                }}</span>
+        </dd>
+
+        <dt class="OCM-dt"><span>Id Solicitud asociada</span></dt>
+        <dd class="OCM-dd">
+            <span>
+                {{ documento?.solicitud?.id }}</span>
         </dd>
     </div>
 </div>
