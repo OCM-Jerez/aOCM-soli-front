@@ -1,14 +1,11 @@
-<div class="row justify-content-center">
+<!-- <div class="row justify-content-center">
     <div class="col-8">
         <div >
             <h2><span>Datos gestión</span></h2>
             <hr>
 
             <dl class="row-md">
-              <!-- <dt><span>Nombre Documento</span></dt>
-              <dd>
-                  <span>{{ gestion?.nombreDeDocumento }}</span>
-              </dd> -->
+         
                 <dt><span>Detalle</span></dt>
                 <dd>
                     <span>{{ gestion?.detalle }}</span>
@@ -21,14 +18,7 @@
                 <dd>
                     <span>{{ gestion?.observacion }}</span>
                 </dd>
-                <!-- <dt><span>Documento</span></dt>
-                <dd>
-                    <div *ngIf="gestion?.documento">
-                        <a (click)="openFile(gestion?.documentoContentType!, gestion?.documento)">open</a>
-                        {{ gestion?.documentoContentType }}, {{ byteSize(gestion?.documento) }}
-                    </div>
-                </dd> -->
-
+             
                 <dt><span>Privado</span></dt>
                 <dd>
                     <span>{{ gestion?.privado }}</span>
@@ -36,7 +26,6 @@
                 <dt><span>Solicitud</span></dt>
                 <dd>
                     <div *ngIf="gestion?.solicitudId">
-                        <!-- <a [routerLink]="['/solicitud', gestion?.solicitudId, 'view']">{{ gestion?.solicitudDescripcion }}</a> -->
                     </div>
                 </dd>
             </dl>
@@ -44,16 +33,73 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <!-- <fa-icon icon="arrow-left"></fa-icon> -->
+              
                 &nbsp;<span >Cancelar</span>
             </button>
 
             <button type="button"
             [routerLink]="['/gestiones/edit', gestion?.id]"
                     class="btn btn-primary">
-                <!-- <fa-icon icon="pencil-alt"></fa-icon> -->
                 &nbsp;<span>Editar</span>
             </button>
         </div>
     </div>
+</div> -->
+
+
+
+<div class="p-text-center OCM-tituloComponent">Detalles gestion</div>
+
+<div class="p-grid p-shadow-24" style="margin-left: 20px; margin-right: 20px">
+
+    <div class="p-col-6">
+        <dl class="">
+            <dt class="OCM-dt"><span>detalles</span></dt>
+            <dd class="OCM-dd">
+                <span>{{ gestion?.detalle }}</span>
+            </dd>
+
+            <dt class="OCM-dt" style="display: block"><span>Fecha</span></dt>
+            <dd class="OCM-dd">
+                {{ gestion?.fecha | date: "dd.MM.yyyy" }}
+            </dd>
+
+            <dt class="OCM-dt"><span>Observación</span></dt>
+            <dd class="OCM-dd">
+                <span>{{ gestion?.observacion }}</span>
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="p-col-6">
+        <dt class="OCM-dt"><span>Solicitud asociada</span></dt>
+        <dd class="OCM-dd">
+            <span>
+                {{ gestion?.solicitud?.year }}-{{ gestion?.solicitud?.code }} {{ gestion?.solicitud?.descripcion
+                }}</span>
+        </dd>
+
+        <dt class="OCM-dt"><span>Id Solicitud asociada</span></dt>
+        <dd class="OCM-dd">
+            <span>
+                {{ gestion?.solicitud?.id }}</span>
+        </dd>
+    </div>
+</div>
+
+<div class="p-col-2 p-shadow-24"
+    style="margin-top: 30px; margin-bottom: 20px; margin-left: 20px; display: flex; flex-direction: row; justify-content: space-around ">
+    <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
+        icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
+
+    <!-- <button pButton *ngIf="isAdmin" (click)="ver(gestion!.ruta)" class="p-button-rounded p-button-info" type="button"
+        icon="pi pi pi-eye" iconPos="left" label="Ver"></button> -->
+
+    <button pButton *ngIf="isAdmin" [routerLink]="['/documentos/edit', gestion?.id]"
+        class="p-button-rounded p-button-success" type="button" icon="pi pi-user-edit" iconPos="left"
+        label="Editar"></button>
+
+    <button pButton *ngIf="isAdmin" (click)="delete(gestion!)" class="p-button-rounded p-button-danger" type="button"
+        icon="pi pi-trash" iconPos="left" label="Borrar"></button>
 </div>

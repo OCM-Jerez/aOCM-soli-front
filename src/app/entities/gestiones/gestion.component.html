@@ -1,7 +1,6 @@
-
 <!-- <app-navbar></app-navbar> -->
 
-<div class="container">
+<!-- <div class="container">
   <div class="tituloPagina">
     <div class="row justify-content-evenly">
       <div class="col-4">
@@ -9,13 +8,9 @@
           <span>Gestiones.</span>
         </h2>
       </div>
-      <div class="col-4" >
+      <div class="col-4">
 
-        <!-- *ngIf= isAdmin -->
-        <button
-             class="btn btn-primary float-right"
-             [routerLink]="['/gestiones/new']"
-              >
+        <button class="btn btn-primary float-right" [routerLink]="['/gestiones/new']">
           <fa-icon [icon]="faPlus"></fa-icon>
           <span> Crear nueva gestión</span>
         </button>
@@ -42,7 +37,7 @@
           <td class="text-right">
             <div class="btn-group">
               <button type="button" class="btn btn-info btn-sm" [routerLink]="['/gestiones/details', gestion.id]">
-                <fa-icon  [icon]="faEye"></fa-icon>
+                <fa-icon [icon]="faEye"></fa-icon>
                 <span class="d-none d-md-inline">Ver</span>
               </button>
 
@@ -53,4 +48,61 @@
     </table>
   </div>
 </div>
+ -->
 
+
+<div class="p-grid p-shadow-24" style="margin: 30px">
+  <p-table #dt [value]="gestiones" [rowHover]="true" [rows]="10" [paginator]="true" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" sortField="fechaSubida"
+    [sortOrder]="-1">
+
+    <ng-template pTemplate="header">
+      <tr>
+
+        <th pSortableColumn="detalle" class="OCM-th--24">
+          Detalle
+          <p-sortIcon field="detalle"></p-sortIcon>
+        </th>
+
+        <th pSortableColumn="fecha" class="OCM-th--5">
+          Fecha
+          <p-sortIcon field="fecha"></p-sortIcon>
+        </th>
+
+        <th pColumn="observacion" field="observacion" class="OCM-th--24">
+          Observacion
+          <!-- <p-sortIcon field="observacion"></p-sortIcon> -->
+        </th>
+
+        <th pSortableColumn="solicitud.descripcion" class="OCM-th--24">
+          solicitud.descripcion
+          <p-sortIcon field="solicitud.descripcion"></p-sortIcon>
+        </th>
+
+
+
+        <th class="OCM-th--6"></th> <!-- Espacio para botón Ver -->
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-gestiones>
+      <tr>
+        <td>{{ gestiones.detalle}}</td>
+        <td>{{ gestiones.fecha | date: 'dd.MM.yyyy' }}</td>
+        <td>{{ gestiones.observacion }}</td>
+        <td>{{ gestiones.solicitud.year }}-{{ gestiones.solicitud.code }} {{ gestiones.solicitud.descripcion }}</td>
+        <td class="text-right">
+          <button pButton [routerLink]="['/gestiones/details', gestiones.id]" class="p-button-rounded p-button-info"
+            type="button" icon="pi pi-eye" iconPos="left" label="Ver" style="height: 32px "></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+
+<div class="p-col-1 p-shadow-24"
+  style="margin-top: 30px; margin-bottom: 20px; margin-left: 20px; display: flex; flex-direction: row; justify-content: space-around ">
+  <button pButton (click)="previousState()" class="p-button-rounded p-button-primary" type="button"
+    icon="pi pi-chevron-circle-left" iconPos="left" label="Atras"></button>
+</div>

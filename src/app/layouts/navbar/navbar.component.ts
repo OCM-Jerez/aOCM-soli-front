@@ -63,8 +63,9 @@ export class NavbarComponent implements OnInit {
         console.log('this.router.navigate');
         this.router.navigateByUrl('documentos');
         break;
-      case '3':
-
+      case '2':
+        console.log('this.router.navigate');
+        this.router.navigateByUrl('gestiones');
         break;
       case '4':
 

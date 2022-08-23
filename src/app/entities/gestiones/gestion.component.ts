@@ -16,7 +16,9 @@ export class GestionComponent implements OnInit {
   faPlus = faPlus;
   faEye = faEye;
 
-  gestiones?: IGestion[];
+
+  gestiones: any[] = [];
+  // gestiones?: IGestion[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   page!: number;
@@ -28,7 +30,7 @@ export class GestionComponent implements OnInit {
     protected gestionService: GestionService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-  ) {}
+  ) { }
 
 
   ngOnInit(): void {
@@ -36,9 +38,16 @@ export class GestionComponent implements OnInit {
   }
 
   private loadAll(): void {
-    this.gestionService.query().
-    subscribe( resp =>{
-    this.gestiones = resp
-    });
+    this.gestionService.findAll().
+      subscribe(resp => {
+        this.gestiones = resp
+      });
+    setTimeout(() => console.log(this.gestiones), 50);
   }
+
+  previousState(): void {
+    window.history.back();
+  }
+
 }
+
