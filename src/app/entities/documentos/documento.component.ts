@@ -52,7 +52,6 @@ export class DocumentoComponent implements OnInit, OnDestroy {
     return item.id!;
   }
 
-
   openFile(contentType: string, base64String: string): void {
     // return this.dataUtils.openFile(contentType, base64String);
   }
@@ -85,8 +84,6 @@ export class DocumentoComponent implements OnInit, OnDestroy {
       }
     });
     this.documentos = data || [];
-
-
   }
 
   protected onError(): void {
