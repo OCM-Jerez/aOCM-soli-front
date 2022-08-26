@@ -125,9 +125,11 @@ export class SolicitudComponent implements OnInit {
           if (soli.fechaRespuestaCTA) {
             const date = moment(soli.fechaRespuestaCTA);
             soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
-          } else {
+          } else if (soli.fechaInicioCTA) {
             const date = moment();
             soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
+          } else {
+
           }
           if (soli.fechaReclamacionCTA) {
             soli.estado = "Reclamada CTA"
@@ -156,9 +158,11 @@ export class SolicitudComponent implements OnInit {
           if (soli.fechaRespuestaCTA) {
             const date = moment(soli.fechaRespuestaCTA);
             soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
-          } else {
+          } else if (soli.fechaInicioCTA) {
             const date = moment();
             soli.diasRespuesta = date.diff(soli.fechaInicioCTA, 'days');
+          } else {
+
           }
           if (soli.fechaReclamacionCTA) {
             soli.estado = "Reclamada CTA"
