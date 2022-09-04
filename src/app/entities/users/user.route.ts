@@ -1,23 +1,88 @@
 import { Injectable } from '@angular/core';
-import { Routes } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
+
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+import { IUser, User } from './user.interface';
+import { UserService } from './user.service';
+import { UserComponent } from './user.component';
 import { UserDatosComponent } from './user-datos.component';
 
-import { UserComponent } from './user.component';
 
-// @Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'root' })
+export class UserResolve implements Resolve<IUser> {
+  constructor(private service: UserService, private router: Router) { }
+
+  resolve(route: ActivatedRouteSnapshot): Observable<IUser> | Observable<never> {
+    const id = route.params['id'];
+    if (id) {
+      return this.service.find(id).pipe(
+        flatMap((user: HttpResponse<User>) => {
+          if (user.body) {
+            return of(user.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
+    }
+    return of(new User());
+  }
+}
+
 export const userRoute: Routes = [
   {
     path: '',
-    component: UserComponent,
+    component: UserComponent
+  },
+
+  // {
+  //   path: 'new',
+  //   component: DocumentoUpdateComponent,
+  //   resolve: {
+  //     documento: DocumentoResolve
+  //   },
+  //   data: {
+  //     // authorities: [Authority.USER],
+  //     // pageTitle: 'ocmSoliServerApp.solicitud.home.title'
+  //   },
+  //    // canActivate: [UserRouteAccessService]
+  //  },
+
+  {
+    // path: 'details/:id',
+    path: '**',
+    component: UserDatosComponent,
     resolve: {
+      user: UserResolve
     },
-    data: {
-      defaultSort: 'id,asc'
-    }
   },
 
   {
-    path: 'users/datos',
-    component:UserDatosComponent,
+    path: 'edit/:id',
+    component: UserDatosComponent,
+    resolve: {
+      user: UserResolve
+    },
+    data: {
+      // authorities: [Authority.USER],
+    }
+    // canActivate: [UserRouteAccessService]
   },
+
+  {
+    path: ':id',
+    component: UserDatosComponent,
+    resolve: {
+      user: UserResolve
+    },
+    data: {
+      // authorities: [Authority.USER],
+    }
+    // canActivate: [UserRouteAccessService]
+  }
+
+
 ]

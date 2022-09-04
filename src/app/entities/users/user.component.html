@@ -37,9 +37,8 @@
                 <td>{{ users.createdDate}}</td>
                 <td>{{ users.lastModifiedBy }}</td>
                 <td class="text-right">
-                    <button pButton [routerLink]="['/documentos/details', users.id]"
-                        class="p-button-rounded p-button-info" type="button" icon="pi pi-eye" iconPos="left" label="Ver"
-                        style="height: 32px "></button>
+                    <button pButton [routerLink]="['/users/details', users.id]" class="p-button-rounded p-button-info"
+                        type="button" icon="pi pi-eye" iconPos="left" label="Ver" style="height: 32px "></button>
                 </td>
             </tr>
         </ng-template>

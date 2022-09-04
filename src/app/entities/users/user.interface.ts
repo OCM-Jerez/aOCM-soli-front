@@ -5,21 +5,43 @@ export interface IUser {
   createdDate?: Date;
   lastModifiedBy?: string;
   lastModifiedDate?: Date;
-  login: string;
-  firstName: string;
-  lastName: string;
+  login?: string | undefined;
+  firstName?: string;
+  lastName?: string;
   email?: string;
-  activated: boolean;
-  langKey: string;
-  password: string;
-  ImageUrl? : string;
+  activated?: boolean;
+  langKey?: string;
+  password?: string;
+  ImageUrl?: string;
   ActivationKey?: string;
   ResetKey?: string;
   // resetDate: Date;
   authorities?: string[];
 }
 
+export class User implements IUser {
+  constructor(
+    public login?: string,
+    public firstName?: string,
+    public lastName?: string,
+    public activated?: boolean,
+    public langKey?: string,
+    public password?: string,
+    public id?: any,
+    public createdBy?: string,
+    public createdDate?: Date,
+    public lastModifiedBy?: string,
+    public lastModifiedDate?: Date,
+    public email?: string,
+    public ImageUrl?: string,
+    public ActivationKey?: string,
+    public ResetKey?: string,
+    public authorities?: string[],
+  ) {
 
+
+  }
+}
 
 
 // Ejemplo para usar en Swagger.

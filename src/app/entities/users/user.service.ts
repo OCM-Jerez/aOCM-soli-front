@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { IUser } from './user.interface';
+type EntityResponseType = HttpResponse<IUser>;
 
 
 // import { SERVER_API_URL } from 'app/app.constants';
@@ -36,6 +37,12 @@ export class UserService {
       .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
     return this.http.get<IUser[]>(url, { headers });
   }
+
+  find(id: number): Observable<EntityResponseType> {
+    return this.http
+      .get<IUser>(`${this.baseUrl}documentos/${id}`, { observe: 'response' })
+  }
+
 
   findAll() {
     const url = `${this.baseUrl}users/todas`;

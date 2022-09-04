@@ -8,8 +8,8 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () => import('./entities/users/user.module').then(m => m.UserModule),
-    canActivate: [ValidarTokenGuard],
-    canLoad: [ValidarTokenGuard],
+    // canActivate: [ValidarTokenGuard],
+    // canLoad: [ValidarTokenGuard],
   },
   {
     path: 'solicitudes',
