@@ -403,6 +403,37 @@ button:hover {
   background-color: grey;
 }
 
+.OCM-th {
+  &--3 {
+      background-color: map-get($OCM-colors, table-th) !important;
+      width: 3%;
+  }
+  &--4 {
+      background-color: map-get($OCM-colors, table-th) !important;
+      width: 4%;
+  }
+  &--5 {
+      background-color: map-get($OCM-colors, table-th) !important;
+      width: 5%;
+  }
+  &--6 {
+      background-color: map-get($OCM-colors, table-th) !important;
+      width: 6%;
+  }
+  &--10 {
+      background-color: map-get($OCM-colors, table-th) !important;
+      width: 10%;
+  }
+  &--24 {
+      background-color: map-get($OCM-colors, table-th) !important;
+      width: 24%;
+  }
+  &--28 {
+      background-color: map-get($OCM-colors, table-th) !important;
+      width: 28%;
+  }
+}
+
 /*[ PADDING ]
 ///////////////////////////////////////////////////////////
 */
