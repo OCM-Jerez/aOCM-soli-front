@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ValidarTokenGuard } from './guards/validar-token.guard';
-import { UserComponent } from './entities/users/user.component';
+// import { UserComponent } from './entities/users/user.component';
+// import { UserModule } from './entities/users/user.module';
 
 const routes: Routes = [
   {
     path: 'users',
-    component: UserComponent,
+    loadChildren: () => import('./entities/users/user.module').then(m => m.UserModule),
+    canActivate: [ValidarTokenGuard],
+    canLoad: [ValidarTokenGuard],
   },
   {
     path: 'solicitudes',

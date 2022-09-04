@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { userRoute } from './user.route';
 import { UserComponent } from './user.component';
 import { UserDatosComponent } from './user-datos.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PrimeNgModule } from '../../prime-ng/prime-ng.module';
 
 @NgModule({
   imports: [
-            RouterModule.forChild(userRoute),
-            CommonModule,
-            ReactiveFormsModule
-          ],
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FontAwesomeModule,
+    PrimeNgModule,
+    RouterModule.forChild(userRoute),
+  ],
   declarations: [
     UserComponent,
     UserDatosComponent,
@@ -20,4 +25,4 @@ import { UserDatosComponent } from './user-datos.component';
   entryComponents: [
   ]
 })
-export class UserModule {}
+export class UserModule { }

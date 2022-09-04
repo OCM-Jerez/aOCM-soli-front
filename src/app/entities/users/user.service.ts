@@ -15,7 +15,7 @@ export class UserService {
   private baseUrl: string = environment.baseUrl;
   // public resourceUrl = SERVER_API_URL + 'api/users';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // create(user: IUser): Observable<IUser> {
   //   return this.http.post<IUser>(this.resourceUrl, user);
@@ -29,13 +29,21 @@ export class UserService {
   //   return this.http.get<IUser>(`${this.resourceUrl}/${login}`);
   // }
 
-  query(){
+  query() {
     // const options = createRequestOption(req);
     const url = `${this.baseUrl}users`;
     const headers = new HttpHeaders()
-    .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
-   return this.http.get<IUser[]>(url, { headers });
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
+    return this.http.get<IUser[]>(url, { headers });
   }
+
+  findAll() {
+    const url = `${this.baseUrl}users/todas`;
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('token') || '');
+    return this.http.get<IUser[]>(url, { headers });
+  }
+
 
   // delete(login: string): Observable<{}> {
   //   return this.http.delete(`${this.resourceUrl}/${login}`);

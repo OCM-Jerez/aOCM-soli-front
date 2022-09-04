@@ -3,7 +3,7 @@ import { HttpResponse, HttpHeaders } from '@angular/common/http';
 
 // import { NgbModal } from '@ng-/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
+// import { flatMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // import { JhiEventManager } from 'ng-jhipster';
@@ -18,6 +18,7 @@ import { AccountService } from 'src/app/entities/account/account.service';
 import { resetFakeAsyncZone } from '@angular/core/testing';
 import { UserService } from './user.service';
 import { IUser } from './user.interface';
+import { Account } from '../account/account.model';
 
 @Component({
   selector: 'jhi-user-mgmt',
@@ -25,7 +26,9 @@ import { IUser } from './user.interface';
 })
 export class UserComponent implements OnInit, OnDestroy {
   currentAccount: Account | null = null;
-  users: IUser[] | null = null;
+  // users: IUser[] | null = null;
+  users: IUser[] = [];
+  // users: any[] = [];
   userListSubscription?: Subscription;
   totalItems = 0;
   // itemsPerPage = ITEMS_PER_PAGE;
@@ -41,7 +44,7 @@ export class UserComponent implements OnInit, OnDestroy {
     private router: Router,
     // private eventManager: JhiEventManager,
     // private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // this.activatedRoute.data
@@ -55,7 +58,7 @@ export class UserComponent implements OnInit, OnDestroy {
     //         this.ascending = data.pagingParams.ascending;
     //         this.predicate = data.pagingParams.predicate;
     //         this.currentAccount = account;
-            this.loadAll();
+    this.loadAll();
     //         // this.userListSubscription = this.eventManager.subscribe('userListModification', () => this.loadAll());
     //       }
     //     )
@@ -100,11 +103,24 @@ export class UserComponent implements OnInit, OnDestroy {
     // modalRef.componentInstance.user = user;
   }
 
+  // private loadAll(): void {
+  //   this.userService.query().
+  //     subscribe(resp => {
+  //       this.users = resp
+  //     });
+  // }
+
   private loadAll(): void {
-    this.userService.query().
-    subscribe( resp =>{
-    this.users = resp
-    });
+    this.userService.findAll().
+      subscribe(resp => {
+        this.users = resp
+      });
+    setTimeout(() => console.log(this.users), 50);
+  }
+
+
+  previousState(): void {
+    window.history.back();
   }
 
   // private sort(): string[] {
