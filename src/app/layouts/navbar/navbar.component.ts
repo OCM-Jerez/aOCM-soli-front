@@ -36,10 +36,10 @@ export class NavbarComponent implements OnInit {
     this.userLoged = this.$localStorage.retrieve('userLog');
 
     this.entidades = [
-      { id: 0, opcion: 'Usuarios' },
-      // { id: 1, opcion: 'Solicitudes' },
-      { id: 1, opcion: 'Documentos' },
-      { id: 2, opcion: 'Gestiones' },
+      { id: 0, opcion: 'Selecciona ....' },
+      { id: 1, opcion: 'Usuarios' },
+      { id: 2, opcion: 'Documentos' },
+      { id: 3, opcion: 'Gestiones' },
     ];
 
     this.opciones = [
@@ -58,20 +58,23 @@ export class NavbarComponent implements OnInit {
   }
 
   onSelectEntidad(event: any): void {
+    console.log(event);
+
     switch (event.value) {
       case '1':
-        console.log('this.router.navigate');
-        this.router.navigateByUrl('documentos');
+        this.router.navigateByUrl('users');
         break;
       case '2':
-        console.log('this.router.navigate');
+        this.router.navigateByUrl('documentos');
+        break;
+      case '3':
         this.router.navigateByUrl('gestiones');
         break;
-      case '4':
+      // case '4':
 
-        break;
-      default:
-        break;
+      //   break;
+      // default:
+      //   break;
     }
   }
 
