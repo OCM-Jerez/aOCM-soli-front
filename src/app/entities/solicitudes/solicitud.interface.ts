@@ -21,10 +21,14 @@ export interface ISolicitud {
   year?: number,
   code?: number,
   estado?: string,
-  createdBy? : string,
+  createdBy?: string,
   createdDate?: any,
   lastModifiedBy?: string,
   lastModifiedDate?: any
+}
+
+export interface ISolicitudComponent extends ISolicitud {
+  rating?: string
 }
 
 export class Solicitud implements ISolicitud {
@@ -51,9 +55,9 @@ export class Solicitud implements ISolicitud {
     public year?: number,
     public code?: number,
     public estado?: string,
-    public createdBy? : string,
+    public createdBy?: string,
     public createdDate?: any,
     public lastModifiedBy?: string,
     public lastModifiedDate?: any
-  ) {}
+  ) { }
 }

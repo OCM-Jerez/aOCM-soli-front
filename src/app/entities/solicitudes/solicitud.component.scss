@@ -1,2 +1,13 @@
 @import "/src/app/scss/variables";
 
+ul li {
+    width: 16px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 32px;
+  
+    &:hover {
+      color: green;
+    }
+  }
+  

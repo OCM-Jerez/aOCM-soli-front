@@ -140,15 +140,18 @@
         <td *ngIf="!isCTA" [ngStyle]="{
             opacity: solicitud.fechaRespuesta! && solicitud.isAdmitida ? 100 : 0
           }">
-          <p-rating [(ngModel)]="solicitud.calidadRespuesta " [cancel]="false" [disabled]="true">
-          </p-rating>
+          <!-- <p-rating [(ngModel)]="solicitud.calidadRespuesta " [cancel]="false" [disabled]="true">
+          </p-rating> -->
+          <div style="font-size: 32px; color: yellow">
+            {{solicitud.rating}}
+          </div>
         </td>
 
         <td *ngIf="isCTA" [ngStyle]="{
           opacity: solicitud.fechaRespuestaCTA && solicitud.isAtendidaCTA ? 100 : 0
         }">
-          <p-rating [(ngModel)]="solicitud.calidadRespuesta " [cancel]="false" [disabled]="true">
-          </p-rating>
+          <!-- <p-rating [(ngModel)]="solicitud.calidadRespuesta " [cancel]="false" [disabled]="true">
+          </p-rating> -->
         </td>
 
         <td class="text-right">

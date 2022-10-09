@@ -8,7 +8,7 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 
 import { SolicitudService } from './solicitud.service';
-import { ISolicitud } from './solicitud.interface';
+import { ISolicitud, ISolicitudComponent } from './solicitud.interface';
 
 @Component({
   selector: 'app-solicitud',
@@ -16,16 +16,17 @@ import { ISolicitud } from './solicitud.interface';
   styleUrls: ['./solicitud.component.scss']
 })
 export class SolicitudComponent implements OnInit {
-  solicitudes: any[] = [];
+  solicitudes: ISolicitudComponent[] = [];
   isAdmin = environment.IsAdmin;
   isCTA = false;
   fechaRespuesta: any;
   estado = "Solicitada"
+  public calidadRespuesta = "";
 
   @ViewChild('dt') table: Table | undefined;
 
   constructor(protected solicitudService: SolicitudService,
-    private primengConfig: PrimeNGConfig) { }
+    private primengConfig: PrimeNGConfig) { };
 
   ngOnInit(): void {
     this.loadAll();
@@ -37,7 +38,7 @@ export class SolicitudComponent implements OnInit {
       subscribe(resp => {
         // Se añade diasRespuesta a cada solicitud. diasRespuesta es un campo calculado en la Interfaz ISolicitud
         // TODO Es mejor practica calcularlo en el back?
-        this.solicitudes = resp;
+        this.solicitudes = resp as ISolicitudComponent[];
         this.solicitudes.forEach(soli => {
           // console.log(soli.code);
           if (soli.fechaRespuesta) {
@@ -66,8 +67,14 @@ export class SolicitudComponent implements OnInit {
             soli.estado = "Cerrada"
           }
 
+          if (soli.calidadRespuesta) {
+            soli.rating = soli.calidadRespuesta > 0 ? '★'.repeat(soli.calidadRespuesta).padEnd(5, '☆') : ""
+          }
+          //if (soli.year === 2022 && soli.code > 70) console.log(soli.code, soli.calidadRespuesta, this.calidadRespuesta);
+
         });
       });
+
     this.primengConfig.ripple = true;
   }
 
@@ -173,11 +180,8 @@ export class SolicitudComponent implements OnInit {
           if (soli.fechaRespuestaCTA) {
             soli.estado = "Respondida CTA"
           }
-
-
         });
       });
 
   }
-
 }
