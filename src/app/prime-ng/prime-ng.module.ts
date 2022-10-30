@@ -6,6 +6,7 @@ import { RatingModule } from 'primeng/rating';
 // import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 // import { TimelineModule } from "primeng/timeline"
 // import { ToastModule } from 'primeng/toast';
 
@@ -20,6 +21,7 @@ import { TabViewModule } from 'primeng/tabview';
     TabViewModule,
     // TimelineModule,
     // ToastModule,
+    InputTextareaModule,
   ]
 })
 export class PrimeNgModule { }

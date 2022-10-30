@@ -71,15 +71,19 @@
 
     <div class="p-col-6">
       <div style="margin-top: 20px">
-        <label class="mam-label">Observaciones</label>
+        <!-- <label class="mam-label">Observaciones</label>
         <div class="input-group">
           <input id="field_observacion" type="text" class="form-control" formControlName="observacion" style="
               width: 90%;
               margin-bottom: 20px;
-              height: 30px;
+              height: 90px;
               font-size: 16px;
+              word-wrap: normal;
             " />
-        </div>
+        </div> -->
+        <h5>Observaciones</h5>
+        <textarea rows="8" cols="100" pInputTextarea formControlName="observacion"
+          style="background-color: rgb(204, 204, 214); color: black; font-weight: bold ;"></textarea>
       </div>
 
       <div style="margin-top: 20px">
