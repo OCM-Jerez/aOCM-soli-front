@@ -125,8 +125,12 @@
         </td>
 
 
-        <td *ngIf="!isCTA">{{ solicitud.observacion }}</td>
-        <td *ngIf="isCTA">{{ solicitud.observacionCTA }}</td>
+        <!-- <td *ngIf="!isCTA">{{ solicitud.observacion }}</td> -->
+        <td *ngIf="!isCTA"> <textarea rows="1" cols="58" pInputTextarea [autoResize]="true"
+            style="border: none; background-color: #1F2D40 ;">{{ solicitud.observacion }}</textarea></td>
+        <!-- <td *ngIf="isCTA">{{ solicitud.observacionCTA }}</td> -->
+        <td *ngIf="isCTA"> <textarea rows="1" cols="58" pInputTextarea [autoResize]="true"
+            style="border: none; background-color: #1F2D40 ;">{{ solicitud.observacionCTA }}</textarea></td>
 
         <td class="boldRight" [ngStyle]="{
             opacity:
