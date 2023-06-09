@@ -1,6 +1,6 @@
 {
   "name": "a-ocm-soli-front",
-  "version": "0.0.0",
+  "version": "1.06.08",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
