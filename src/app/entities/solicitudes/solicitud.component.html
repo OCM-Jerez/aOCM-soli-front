@@ -1,29 +1,72 @@
 <app-navbar></app-navbar>
 
-<button pButton *ngIf="isAdmin" [routerLink]="['/solicitudes/new']" class="p-button-rounded p-button-success ml160"
-  type="button" icon="pi pi-plus" iconPos="left" label="Crear nueva solicitud"></button>
+<button
+  pButton
+  *ngIf="isAdmin"
+  [routerLink]="['/solicitudes/new']"
+  class="p-button-rounded p-button-success ml160"
+  type="button"
+  icon="pi pi-plus"
+  iconPos="left"
+  label="Crear nueva solicitud"
+></button>
 
-<button pButton *ngIf="isAdmin" (click)="todas()" class="p-button-rounded p-button-warning ml20" type="button"
-  icon="pi pi-plus" iconPos="left" label="Todas"></button>
+<button
+  pButton
+  *ngIf="isAdmin"
+  (click)="todas()"
+  class="p-button-rounded p-button-warning ml20"
+  type="button"
+  icon="pi pi-plus"
+  iconPos="left"
+  label="Todas"
+></button>
 
-<button pButton *ngIf="isAdmin" (click)="pendientes()" class="p-button-rounded p-button-warning ml20" type="button"
-  icon="pi pi-plus" iconPos="left" label="Pendientes"></button>
+<button
+  pButton
+  *ngIf="isAdmin"
+  (click)="pendientes()"
+  class="p-button-rounded p-button-warning ml20"
+  type="button"
+  icon="pi pi-plus"
+  iconPos="left"
+  label="Pendientes"
+></button>
 
-<button pButton *ngIf="isAdmin" (click)="CTA()" class="p-button-rounded p-button-info ml20" type="button"
-  icon="pi pi-plus" iconPos="left" label="Consejo de Transparencia"></button>
+<button
+  pButton
+  *ngIf="isAdmin"
+  (click)="CTA()"
+  class="p-button-rounded p-button-info ml20"
+  type="button"
+  icon="pi pi-plus"
+  iconPos="left"
+  label="Consejo de Transparencia"
+></button>
 
-<button pButton *ngIf="isAdmin" (click)="pendientesCTA()" class="p-button-rounded p-button-info ml20" type="button"
-  icon="pi pi-plus" iconPos="left" label="Pendientes CTA"></button>
+<button
+  pButton
+  *ngIf="isAdmin"
+  (click)="pendientesCTA()"
+  class="p-button-rounded p-button-info ml20"
+  type="button"
+  icon="pi pi-plus"
+  iconPos="left"
+  label="Pendientes CTA"
+></button>
 
 <div class="p-grid p-shadow-24" class="ml100mr100">
-  <p-table #dt [value]="solicitudes" [rowHover]="true" [rows]="10" [paginator]="true" [showCurrentPageReport]="true"
-    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" sortField="fechaSolicitud"
-    [sortOrder]="-1">
-
-
-
-
-
+  <p-table
+    #dt
+    [value]="solicitudes"
+    [rowHover]="true"
+    [rows]="15"
+    [paginator]="true"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    sortField="fechaSolicitud"
+    [sortOrder]="-1"
+  >
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="year" class="OCM-th--3">
@@ -73,7 +116,6 @@
           <span>Observaciones CTA</span>
         </th>
 
-
         <th scope="col" class="OCM-th--6">
           <span>Respuesta Ayto</span>
         </th>
@@ -86,7 +128,8 @@
           <!-- Espacio para calificación respuesta -->
         </th>
 
-        <th class="OCM-th--6"></th> <!-- Espacio para botón Ver -->
+        <th class="OCM-th--6"></th>
+        <!-- Espacio para botón Ver -->
       </tr>
     </ng-template>
 
@@ -97,75 +140,119 @@
         <td>{{ solicitud.descripcion }}</td>
 
         <td *ngIf="!isCTA" class="boldRight">
-          {{ solicitud.fechaSolicitud | date: "dd.MM.yyyy" }}
+          {{ solicitud.fechaSolicitud | date : "dd.MM.yyyy" }}
         </td>
 
         <td *ngIf="isCTA" class="boldRight">
-          {{ solicitud.fechaInicioCTA | date: "dd.MM.yyyy" }}
+          {{ solicitud.fechaInicioCTA | date : "dd.MM.yyyy" }}
         </td>
 
         <td *ngIf="!isCTA" class="boldRight">
-          {{ solicitud.fechaRespuesta | date: "dd.MM.yyyy" }}
+          {{ solicitud.fechaRespuesta | date : "dd.MM.yyyy" }}
         </td>
 
         <td *ngIf="isCTA" class="boldRight">
-          {{ solicitud.fechaRespuestaCTA | date: "dd.MM.yyyy" }}
+          {{ solicitud.fechaRespuestaCTA | date : "dd.MM.yyyy" }}
         </td>
 
-        <td *ngIf="!isCTA" class="boldRightCenter" [ngStyle]="{
+        <td
+          *ngIf="!isCTA"
+          class="boldRightCenter"
+          [ngStyle]="{
             color: solicitud.diasRespuesta! > 30 ? 'red' : 'green'
-          }">
+          }"
+        >
           {{ solicitud.diasRespuesta }}
         </td>
 
-        <td *ngIf="isCTA" class="boldRightCenter" [ngStyle]="{
-          color: solicitud.diasRespuesta! > 60 ? 'red' : 'green'
-        }">
+        <td
+          *ngIf="isCTA"
+          class="boldRightCenter"
+          [ngStyle]="{
+            color: solicitud.diasRespuesta! > 60 ? 'red' : 'green'
+          }"
+        >
           {{ solicitud.diasRespuesta }}
         </td>
-
 
         <!-- <td *ngIf="!isCTA">{{ solicitud.observacion }}</td> -->
-        <td *ngIf="!isCTA"> <textarea rows="1" cols="58" pInputTextarea [autoResize]="true"
-            style="border: none; background-color: #1F2D40 ;">{{ solicitud.observacion }}</textarea></td>
+        <td *ngIf="!isCTA">
+          <textarea
+            rows="1"
+            cols="58"
+            pInputTextarea
+            [autoResize]="true"
+            style="border: none; background-color: #1f2d40"
+            >{{ solicitud.observacion }}</textarea
+          >
+        </td>
         <!-- <td *ngIf="isCTA">{{ solicitud.observacionCTA }}</td> -->
-        <td *ngIf="isCTA"> <textarea rows="1" cols="58" pInputTextarea [autoResize]="true"
-            style="border: none; background-color: #1F2D40 ;">{{ solicitud.observacionCTA }}</textarea></td>
+        <td *ngIf="isCTA">
+          <textarea
+            rows="1"
+            cols="58"
+            pInputTextarea
+            [autoResize]="true"
+            style="border: none; background-color: #1f2d40"
+            >{{ solicitud.observacionCTA }}</textarea
+          >
+        </td>
 
-        <td class="boldRight" [ngStyle]="{
+        <td
+          class="boldRight"
+          [ngStyle]="{
             opacity:
               solicitud.fechaRespuesta! && !solicitud.isAdmitida ? 100 : 0,
             color: 'red',
             'font-weight': 'bold'
-          }">
+          }"
+        >
           Inadmitida
         </td>
 
-        <td class="bold" [ngStyle]="{
-          color: solicitud.isCerrada! ? 'green' : 'white'
-                   }"> {{ solicitud.estado }}</td>
+        <td
+          class="bold"
+          [ngStyle]="{
+            color: solicitud.isCerrada! ? 'green' : 'white'
+          }"
+        >
+          {{ solicitud.estado }}
+        </td>
 
-        <td *ngIf="!isCTA" [ngStyle]="{
+        <td
+          *ngIf="!isCTA"
+          [ngStyle]="{
             opacity: solicitud.fechaRespuesta! && solicitud.isAdmitida ? 100 : 0
-          }">
+          }"
+        >
           <!-- <p-rating [(ngModel)]="solicitud.calidadRespuesta " [cancel]="false" [disabled]="true">
           </p-rating> -->
           <div class="rating">
-            {{solicitud.rating}}
+            {{ solicitud.rating }}
           </div>
         </td>
 
-        <td *ngIf="isCTA" [ngStyle]="{
-          opacity: solicitud.fechaRespuestaCTA && solicitud.isAtendidaCTA ? 100 : 0
-        }">
+        <td
+          *ngIf="isCTA"
+          [ngStyle]="{
+            opacity:
+              solicitud.fechaRespuestaCTA && solicitud.isAtendidaCTA ? 100 : 0
+          }"
+        >
           <!-- <p-rating [(ngModel)]="solicitud.calidadRespuesta " [cancel]="false" [disabled]="true">
           </p-rating> -->
         </td>
 
         <td class="text-right">
-          <button pButton [routerLink]="['/solicitudes/details', solicitud.id]"
-            class="p-button-rounded p-button-info height32" type="button" icon="pi pi-eye" iconPos="left"
-            label="Ver"></button>
+          <button
+            pButton
+            [routerLink]="['/solicitudes/details', solicitud.id]"
+            class="p-button-rounded p-button-info height32"
+            type="button"
+            icon="pi pi-eye"
+            iconPos="left"
+            label="Ver"
+          ></button>
         </td>
       </tr>
     </ng-template>
